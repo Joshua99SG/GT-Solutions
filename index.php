@@ -7,17 +7,7 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM tblcliente";
-$result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    $clientes = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $clientes[] = $row;
-    }
-} else {
-    echo "No se encontraron resultados.";
-}
 
 mysqli_free_result($result);
 
