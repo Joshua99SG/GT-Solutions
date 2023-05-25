@@ -38,12 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cedula = $_POST['cedula'];
         $correo = $_POST['correo'];
         $id_tipo_cliente = $_POST['id_tipo_cliente'];
+        $fecha_instalacion = $_POST['fecha_instalacion'];
+        $monto_instalacion = $_POST['monto_instalacion'];
+        $mensualidad = $_POST['mensualidad'];
         $sql = "UPDATE tblcliente SET nombre_cliente = '$nombre_cliente', telefono = '$telefono', localidad = '$localidad',
         velocidad_contratada = '$velocidad_contratada', numero_contrato = '$numero_contrato', coordenadas = '$coordenadas', 
         contrasena_ppoe = '$contrasena_ppoe', equipo_1 = '$equipo_1', mac_address_1 = '$mac_address_1', equipo_2 = '$equipo_2', 
         mac_address_2 = '$mac_address_2', equipo_3 = '$equipo_3', serie = '$serie', wifi_nombre = '$wifi_nombre', 
         wifi_contrasena = '$wifi_contrasena', sector_anclado = '$sector_anclado', cedula = '$cedula', correo =  '$correo', 
-        id_tipo_cliente = '$id_tipo_cliente' WHERE id_cliente = $id_cliente;";
+        id_tipo_cliente = '$id_tipo_cliente', fecha_instalacion = '$fecha_instalacion', monto_instalacion = '$monto_instalacion', mensualidad = '$mensualidad' 
+        WHERE id_cliente = $id_cliente;";
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
             echo "El cliente ha sido editado correctamente.";
@@ -71,6 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cedula = $_POST['cedula'];
         $correo = $_POST['correo'];
         $id_tipo_cliente = $_POST['id_tipo_cliente'];
+        $fecha_instalacion = $_POST['fecha_instalacion'];
+        $monto_instalacion = $_POST['monto_instalacion'];
+        $mensualidad = $_POST['mensualidad'];
         $sql = "INSERT INTO tblcliente (nombre_cliente, telefono, localidad, velocidad_contratada, 
         numero_contrato, coordenadas, contrasena_ppoe, equipo_1, mac_address_1, equipo_2, mac_address_2, equipo_3,
         serie, wifi_nombre, wifi_contrasena, sector_anclado, cedula, correo, id_tipo_cliente) 
@@ -84,6 +91,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "El cliente ha sido creado correctamente.";
         } else {
             echo "Error al crear el cliente: " . $conn->error;
+        }
+    }
+    if ($_POST['function'] == 'edit') {
+        $id_cliente = $_POST['id_cliente'];
+        $nombre_cliente = $_POST['nombre_cliente'];
+        $telefono = $_POST['telefono'];
+        $localidad = $_POST['localidad'];
+        $velocidad_contratada = $_POST['velocidad_contratada'];
+        $numero_contrato = $_POST['numero_contrato'];
+        $coordenadas = $_POST['coordenadas'];
+        $contrasena_ppoe = $_POST['contrasena_ppoe'];
+        $equipo_1 = $_POST['equipo_1'];
+        $mac_address_1 = $_POST['mac_address_1'];
+        $equipo_2 = $_POST['equipo_2'];
+        $mac_address_2 = $_POST['mac_address_2'];
+        $equipo_3 = $_POST['equipo_3'];
+        $serie = $_POST['serie'];
+        $wifi_nombre = $_POST['wifi_nombre'];
+        $wifi_contrasena = $_POST['wifi_contrasena'];
+        $sector_anclado = $_POST['sector_anclado'];
+        $cedula = $_POST['cedula'];
+        $correo = $_POST['correo'];
+        $id_tipo_cliente = $_POST['id_tipo_cliente'];
+        $fecha_instalacion = $_POST['fecha_instalacion'];
+        $monto_instalacion = $_POST['monto_instalacion'];
+        $mensualidad = $_POST['mensualidad'];
+        $sql = "UPDATE tblcliente
+        SET nombre_cliente = '$nombre_cliente',
+            telefono = '$telefono',
+            localidad = '$localidad',
+            velocidad_contratada = '$velocidad_contratada',
+            numero_contrato = '$numero_contrato',
+            coordenadas = '$coordenadas',
+            contrasena_ppoe = '$contrasena_ppoe',
+            equipo_1 = '$equipo_1',
+            mac_address_1 = '$mac_address_1',
+            equipo_2 = '$equipo_2',
+            mac_address_2 = '$mac_address_2',
+            equipo_3 = '$equipo_3',
+            serie = '$serie',
+            wifi_nombre = '$wifi_nombre',
+            wifi_contrasena = '$wifi_contrasena',
+            sector_anclado = '$sector_anclado',
+            cedula = '$cedula',
+            correo = '$correo',
+            id_tipo_cliente = '$id_tipo_cliente'
+        WHERE id_cliente = $id_cliente;
+        ";
+        // Ejecutar la consulta
+        if ($conn->query($sql) === TRUE) {
+            echo "El cliente ha sido editador correctamente.";
+        } else {
+            echo "Error al editar el cliente: " . $conn->error;
         }
     }
     $conn->close();
@@ -213,6 +273,21 @@ mysqli_close($conn);
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="contrasena_ppoe" class="form-label">Contraseña PPOE:</label>
                                             <input type="password" class="form-control" id="contrasena_ppoe" name="contrasena_ppoe">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-12 col-md-4">
+                                            <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
+                                            <input type="text" class="form-control" id="fecha_instalacion" name="fecha_instalacion">
+                                        </div>
+
+                                        <div class="mb-3 col-12 col-md-4">
+                                            <label for="mac_address_1" class="form-label">Monto de instalacion:</label>
+                                            <input type="text" class="form-control" id="monto_instalacion" name="monto_instalacion">
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-4">
+                                            <label for="mac_address_1" class="form-label">Mensualidad:</label>
+                                            <input type="text" class="form-control" id="mensualidad" name="mensualidad">
                                         </div>
                                     </div>
 
@@ -395,6 +470,21 @@ mysqli_close($conn);
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
+                                                                                <input type="text" class="form-control" name="fecha_instalacion" value="<?php echo $cliente['fecha_instalacion']; ?>">
+                                                                            </div>
+
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="mac_address_1" class="form-label">Monto de instalacion:</label>
+                                                                                <input type="text" class="form-control" name="monto_instalacion" value="<?php echo $cliente['monto_instalacion']; ?>">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="mac_address_1" class="form-label">Mensualidad:</label>
+                                                                                <input type="text" class="form-control" name="mensualidad" value="<?php echo $cliente['mensualidad']; ?>">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="equipo_1" class="form-label">Equipo 1:</label>
                                                                                 <input type="text" class="form-control" name="equipo_1" value="<?php echo $cliente['equipo_1']; ?>">
@@ -416,6 +506,7 @@ mysqli_close($conn);
                                                                                 <input type="text" class="form-control" name="mac_address_2" value="<?php echo $cliente['mac_address_2']; ?>">
                                                                             </div>
                                                                         </div>
+                                                                    </form>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="mb-3 col-12 col-md-6">
