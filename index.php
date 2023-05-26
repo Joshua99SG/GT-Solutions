@@ -165,6 +165,20 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_free_result($result);
 
+$sql = "SELECT * FROM tipo_cliente";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $tipos = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $tipos[] = $row;
+    }
+} else {
+    echo "No se encontraron resultados.";
+}
+
+mysqli_free_result($result);
+
 mysqli_close($conn);
 ?>
 
@@ -588,7 +602,16 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="id_tipo_cliente" class="form-label">Tipo
                                                                                     Cliente:</label>
-                                                                                <input disabled type="text" class="form-control" name="id_tipo_cliente" value="<?php echo $cliente['id_tipo_cliente']; ?>" placeholder="Sin datos">
+                                                                                <select name="id_tipo_cliente">
+                                                                                <?php
+                                                                                    foreach ($tipo as $tipos) {
+                                                                                        $id = $row['id_tipo_cliente'];
+                                                                                        $nombre = $row['nombre_cliente'];
+                                                                                        $selected = ($cliente['id_tipo_cliente'] == $id) ? "selected" : "";
+                                                                                        echo "<option value=\"$id\" $selected>$nombre</option>";
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="sector_anclado" class="form-label">Sector
@@ -669,7 +692,6 @@ mysqli_close($conn);
                                                                 </form>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                                    <button type="button" class="btn btn-primary btn_edit" data-id="<?php echo $cliente['id_cliente']; ?>">Guardar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
