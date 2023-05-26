@@ -1,4 +1,4 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !login.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ login.php [L]
+RewriteCond %{REQUEST_URI} !^/login.php$
+RewriteCond %{REQUEST_URI} !^/index.php$
+RewriteRule ^ - [R=403,L]
