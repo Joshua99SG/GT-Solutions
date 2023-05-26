@@ -218,89 +218,89 @@ mysqli_close($conn);
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-3">
                                             <label for="cedula" class="form-label">Cédula:</label>
-                                            <input type="text" class="form-control" id="cedula" name="cedula">
+                                            <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula">
                                         </div>
                                         <div class="mb-3 col-12 col-md-3">
                                             <label for="nombre_cliente" class="form-label">Nombre del Cliente:</label>
-                                            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente">
+                                            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" placeholder="Nombre del cliente">
                                         </div>
                                         <div class="mb-3 col-12 col-md-3">
                                             <label for="telefono" class="form-label">Teléfono:</label>
-                                            <input type="text" class="form-control" id="telefono" name="telefono">
+                                            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono">
                                         </div>
                                         <div class="mb-3 col-12 col-md-3">
                                             <label for="correo" class="form-label">Correo:</label>
-                                            <input type="email" class="form-control" id="correo" name="correo">
+                                            <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electronico">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="localidad" class="form-label">Localidad:</label>
-                                            <input type="text" class="form-control" id="localidad" name="localidad">
+                                            <input type="text" class="form-control" id="localidad" name="localidad" placeholder="Localidad">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="coordenadas" class="form-label">Coordenadas:</label>
-                                            <input type="text" class="form-control" id="coordenadas" name="coordenadas">
+                                            <input type="text" class="form-control" id="coordenadas" name="coordenadas" placeholder="Coordenadas">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="velocidad_contratada" class="form-label">Velocidad
                                                 Contratada:</label>
-                                            <input type="text" class="form-control" id="velocidad_contratada" name="velocidad_contratada">
+                                            <input type="text" class="form-control" id="velocidad_contratada" name="velocidad_contratada" placeholder="Velocidad contratada">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="numero_contrato" class="form-label">Número de Contrato:</label>
-                                            <input type="text" class="form-control" id="numero_contrato" name="numero_contrato">
+                                            <input type="text" class="form-control" id="numero_contrato" name="numero_contrato" placeholder="Numero contrato">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="id_tipo_cliente" class="form-label">Tipo Cliente:</label>
-                                            <input type="text" class="form-control" id="id_tipo_cliente" name="id_tipo_cliente">
+                                            <input type="text" class="form-control" id="id_tipo_cliente" name="id_tipo_cliente" placeholder="Tipo de cliente">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="sector_anclado" class="form-label">Sector Anclado:</label>
-                                            <input type="text" class="form-control" id="sector_anclado" name="sector_anclado">
+                                            <input type="text" class="form-control" id="sector_anclado" name="sector_anclado" placeholder="Sector anclado">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="wifi_nombre" class="form-label">Nombre de WiFi:</label>
-                                            <input type="text" class="form-control" id="wifi_nombre" name="wifi_nombre">
+                                            <input type="text" class="form-control" id="wifi_nombre" name="wifi_nombre" placeholder="Nombre WIFI">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="wifi_contrasena" class="form-label">Contraseña de WiFi:</label>
-                                            <input type="password" class="form-control" id="wifi_contrasena" name="wifi_contrasena">
+                                            <input type="password" class="form-control" id="wifi_contrasena" name="wifi_contrasena" placeholder="Contraseña WIFI">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="contrasena_ppoe" class="form-label">Contraseña PPOE:</label>
-                                            <input type="password" class="form-control" id="contrasena_ppoe" name="contrasena_ppoe">
+                                            <input type="password" class="form-control" id="contrasena_ppoe" name="contrasena_ppoe" placeholder="Contraseña PPOE">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
-                                            <input type="text" class="form-control" id="fecha_instalacion" name="fecha_instalacion">
+                                            <input type="text" class="form-control" id="fecha_instalacion" name="fecha_instalacion" placeholder="Fecha instalacion">
                                         </div>
 
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="mac_address_1" class="form-label">Monto de instalacion:</label>
-                                            <input type="text" class="form-control" id="monto_instalacion" name="monto_instalacion">
+                                            <input type="text" class="form-control" id="monto_instalacion" name="monto_instalacion" placeholder="Monto instalacion">
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="mac_address_1" class="form-label">Mensualidad:</label>
-                                            <input type="text" class="form-control" id="mensualidad" name="mensualidad">
+                                            <input type="text" class="form-control" id="mensualidad" name="mensualidad" placeholder="Mensualidad">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="equipo_1" class="form-label">Equipo 1:</label>
-                                            <input type="text" class="form-control" id="equipo_1" name="equipo_1">
+                                            <input type="text" class="form-control" id="equipo_1" name="equipo_1" placeholder="Equipo 1">
                                         </div>
 
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="mac_address_1" class="form-label">MAC Address 1:</label>
-                                            <input type="text" class="form-control" id="mac_address_1" name="mac_address_1">
+                                            <input type="text" class="form-control" id="mac_address_1" name="mac_address_1" placeholder="Mac address">
                                         </div>
 
                                     </div>
@@ -308,22 +308,22 @@ mysqli_close($conn);
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="equipo_2" class="form-label">Equipo 2:</label>
-                                            <input type="text" class="form-control" id="equipo_2" name="equipo_2">
+                                            <input type="text" class="form-control" id="equipo_2" name="equipo_2" placeholder="Equipo 2">
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="mac_address_2" class="form-label">MAC Address 2:</label>
-                                            <input type="text" class="form-control" id="mac_address_2" name="mac_address_2">
+                                            <input type="text" class="form-control" id="mac_address_2" name="mac_address_2" placeholder="Mac address">
                                         </div>
 
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="equipo_3" class="form-label">Equipo 3:</label>
-                                            <input type="text" class="form-control" id="equipo_3" name="equipo_3">
+                                            <input type="text" class="form-control" id="equipo_3" name="equipo_3" placeholder="Equipo 3">
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="serie" class="form-label">Serie:</label>
-                                            <input type="text" class="form-control" id="serie" name="serie">
+                                            <input type="text" class="form-control" id="serie" name="serie" placeholder="NUmero de serie">
                                         </div>
 
                                     </div>
@@ -404,52 +404,52 @@ mysqli_close($conn);
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="cedula" class="form-label">Cédula:</label>
-                                                                                <input type="text" class="form-control" name="cedula" value="<?php echo $cliente['cedula']; ?>">
+                                                                                <input type="text" class="form-control" name="cedula" value="<?php echo $cliente['cedula']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="nombre_cliente" class="form-label">Nombre del
                                                                                     Cliente:</label>
-                                                                                <input type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>">
+                                                                                <input type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>"placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="telefono" class="form-label">Teléfono:</label>
-                                                                                <input type="text" class="form-control" name="telefono" value="<?php echo $cliente['telefono']; ?>">
+                                                                                <input type="text" class="form-control" name="telefono" value="<?php echo $cliente['telefono']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="correo" class="form-label">Correo:</label>
-                                                                                <input type="email" class="form-control" name="correo" value="<?php echo $cliente['correo']; ?>">
+                                                                                <input type="email" class="form-control" name="correo" value="<?php echo $cliente['correo']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="localidad" class="form-label">Localidad:</label>
-                                                                                <input type="text" class="form-control" name="localidad" value="<?php echo $cliente['localidad']; ?>">
+                                                                                <input type="text" class="form-control" name="localidad" value="<?php echo $cliente['localidad']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="coordenadas" class="form-label">Coordenadas:</label>
-                                                                                <input type="text" class="form-control" name="coordenadas" value="<?php echo $cliente['coordenadas']; ?>">
+                                                                                <input type="text" class="form-control" name="coordenadas" value="<?php echo $cliente['coordenadas']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="velocidad_contratada" class="form-label">Velocidad
                                                                                     Contratada:</label>
-                                                                                <input type="text" class="form-control" name="velocidad_contratada" value="<?php echo $cliente['velocidad_contratada']; ?>">
+                                                                                <input type="text" class="form-control" name="velocidad_contratada" value="<?php echo $cliente['velocidad_contratada']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="numero_contrato" class="form-label">Número de
                                                                                     Contrato:</label>
-                                                                                <input type="text" class="form-control" name="numero_contrato" value="<?php echo $cliente['numero_contrato']; ?>">
+                                                                                <input type="text" class="form-control" name="numero_contrato" value="<?php echo $cliente['numero_contrato']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="id_tipo_cliente" class="form-label">Tipo
                                                                                     Cliente:</label>
-                                                                                <input type="text" class="form-control" name="id_tipo_cliente" value="<?php echo $cliente['id_tipo_cliente']; ?>">
+                                                                                <input type="text" class="form-control" name="id_tipo_cliente" value="<?php echo $cliente['id_tipo_cliente']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="sector_anclado" class="form-label">Sector
                                                                                     Anclado:</label>
-                                                                                <input type="text" class="form-control" name="sector_anclado" value="<?php echo $cliente['sector_anclado']; ?>">
+                                                                                <input type="text" class="form-control" name="sector_anclado" value="<?php echo $cliente['sector_anclado']; ?>" placeholder="Sin datos">
                                                                             </div>
 
                                                                         </div>
@@ -457,66 +457,66 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="wifi_nombre" class="form-label">Nombre de
                                                                                     WiFi:</label>
-                                                                                <input type="text" class="form-control" name="wifi_nombre" value="<?php echo $cliente['wifi_nombre']; ?>">
+                                                                                <input type="text" class="form-control" name="wifi_nombre" value="<?php echo $cliente['wifi_nombre']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="contrasena_ppoe" class="form-label">Contraseña
                                                                                     PPOE:</label>
-                                                                                <input type="password" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>">
+                                                                                <input type="password" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="wifi_contrasena" class="form-label">Contraseña de
                                                                                     WiFi:</label>
-                                                                                <input type="password" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>">
+                                                                                <input type="password" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
-                                                                                <input type="text" class="form-control" name="fecha_instalacion" value="<?php echo $cliente['fecha_instalacion']; ?>">
+                                                                                <input type="text" class="form-control" name="fecha_instalacion" value="<?php echo $cliente['fecha_instalacion']; ?>" placeholder="Sin datos">
                                                                             </div>
 
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="mac_address_1" class="form-label">Monto de instalacion:</label>
-                                                                                <input type="text" class="form-control" name="monto_instalacion" value="<?php echo $cliente['monto_instalacion']; ?>">
+                                                                                <input type="text" class="form-control" name="monto_instalacion" value="<?php echo $cliente['monto_instalacion']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="mac_address_1" class="form-label">Mensualidad:</label>
-                                                                                <input type="text" class="form-control" name="mensualidad" value="<?php echo $cliente['mensualidad']; ?>">
+                                                                                <input type="text" class="form-control" name="mensualidad" value="<?php echo $cliente['mensualidad']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="equipo_1" class="form-label">Equipo 1:</label>
-                                                                                <input type="text" class="form-control" name="equipo_1" value="<?php echo $cliente['equipo_1']; ?>">
+                                                                                <input type="text" class="form-control" name="equipo_1" value="<?php echo $cliente['equipo_1']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="mac_address_1" class="form-label">MAC Address
                                                                                     1:</label>
-                                                                                <input type="text" class="form-control" name="mac_address_1" value="<?php echo $cliente['mac_address_1']; ?>">
+                                                                                <input type="text" class="form-control" name="mac_address_1" value="<?php echo $cliente['mac_address_1']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="equipo_2" class="form-label">Equipo 2:</label>
-                                                                                <input type="text" class="form-control" name="equipo_2" value="<?php echo $cliente['equipo_2']; ?>">
+                                                                                <input type="text" class="form-control" name="equipo_2" value="<?php echo $cliente['equipo_2']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="mac_address_2" class="form-label">MAC Address
                                                                                     2:</label>
-                                                                                <input type="text" class="form-control" name="mac_address_2" value="<?php echo $cliente['mac_address_2']; ?>">
+                                                                                <input type="text" class="form-control" name="mac_address_2" value="<?php echo $cliente['mac_address_2']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="equipo_3" class="form-label">Equipo
                                                                                     3:</label>
-                                                                                <input type="text" class="form-control" name="equipo_3" value="<?php echo $cliente['equipo_3']; ?>">
+                                                                                <input type="text" class="form-control" name="equipo_3" value="<?php echo $cliente['equipo_3']; ?>" placeholder="Sin datos">
 
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="serie" class="form-label">Serie:</label>
-                                                                                <input type="text" class="form-control" name="serie" value="<?php echo $cliente['serie']; ?>">
+                                                                                <input type="text" class="form-control" name="serie" value="<?php echo $cliente['serie']; ?>" placeholder="Sin datos">
                                                                             </div>
 
                                                                         </div>
