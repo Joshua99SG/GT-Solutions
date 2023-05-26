@@ -385,6 +385,9 @@ mysqli_close($conn);
                                                                 <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editarModal<?php echo $cliente['id_cliente']; ?>">Editar</a>
                                                             </li>
                                                             <li>
+                                                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#detalleModal<?php echo $cliente['id_cliente']; ?>">Detalles</a>
+                                                            </li>
+                                                            <li>
                                                                 <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente']; ?>">Eliminar</a>
                                                             </li>
                                                         </ul>
@@ -517,6 +520,147 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-6">
                                                                                 <label for="serie" class="form-label">Serie:</label>
                                                                                 <input type="text" class="form-control" name="serie" value="<?php echo $cliente['serie']; ?>" placeholder="Sin datos">
+                                                                            </div>
+
+                                                                        </div>
+                                                                </div>
+
+                                                                </form>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                                    <button type="button" class="btn btn-primary btn_edit" data-id="<?php echo $cliente['id_cliente']; ?>">Guardar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal fade" id="detalleModal<?php echo $cliente['id_cliente']; ?>" tabindex="-1" aria-labelledby="detalleModal<?php echo $cliente['id_cliente']; ?>Label" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Detalle datos del cliente</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Contenido del formulario para crear -->
+                                                                    <form action="index.php" method="post" id="form_edit_<?php echo $cliente['id_cliente']; ?>">
+                                                                        <input hidden type="text" class="form-control" name="id_cliente" value="<?php echo $cliente['id_cliente']; ?>" />
+                                                                        <input type="hidden" name="function" value="edit">
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-3">
+                                                                                <label for="cedula" class="form-label">Cédula:</label>
+                                                                                <input disabled type="text" class="form-control" name="cedula" value="<?php echo $cliente['cedula']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-3">
+                                                                                <label for="nombre_cliente" class="form-label">Nombre del
+                                                                                    Cliente:</label>
+                                                                                <input disabled type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>"placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-3">
+                                                                                <label for="telefono" class="form-label">Teléfono:</label>
+                                                                                <input disabled type="text" class="form-control" name="telefono" value="<?php echo $cliente['telefono']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-3">
+                                                                                <label for="correo" class="form-label">Correo:</label>
+                                                                                <input  disabled type="email" class="form-control" name="correo" value="<?php echo $cliente['correo']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="localidad" class="form-label">Localidad:</label>
+                                                                                <input disabled type="text" class="form-control" name="localidad" value="<?php echo $cliente['localidad']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="coordenadas" class="form-label">Coordenadas:</label>
+                                                                                <input disabled type="text" class="form-control" name="coordenadas" value="<?php echo $cliente['coordenadas']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="velocidad_contratada" class="form-label">Velocidad
+                                                                                    Contratada:</label>
+                                                                                <input disabled type="text" class="form-control" name="velocidad_contratada" value="<?php echo $cliente['velocidad_contratada']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="numero_contrato" class="form-label">Número de
+                                                                                    Contrato:</label>
+                                                                                <input disabled type="text" class="form-control" name="numero_contrato" value="<?php echo $cliente['numero_contrato']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="id_tipo_cliente" class="form-label">Tipo
+                                                                                    Cliente:</label>
+                                                                                <input disabled type="text" class="form-control" name="id_tipo_cliente" value="<?php echo $cliente['id_tipo_cliente']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="sector_anclado" class="form-label">Sector
+                                                                                    Anclado:</label>
+                                                                                <input disabled type="text" class="form-control" name="sector_anclado" value="<?php echo $cliente['sector_anclado']; ?>" placeholder="Sin datos">
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="wifi_nombre" class="form-label">Nombre de
+                                                                                    WiFi:</label>
+                                                                                <input disabled type="text" class="form-control" name="wifi_nombre" value="<?php echo $cliente['wifi_nombre']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="contrasena_ppoe" class="form-label">Contraseña
+                                                                                    PPOE:</label>
+                                                                                <input disabled type="password" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="wifi_contrasena" class="form-label">Contraseña de
+                                                                                    WiFi:</label>
+                                                                                <input disabled type="password" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
+                                                                                <input disabled type="text" class="form-control" name="fecha_instalacion" value="<?php echo $cliente['fecha_instalacion']; ?>" placeholder="Sin datos">
+                                                                            </div>
+
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="mac_address_1" class="form-label">Monto de instalacion:</label>
+                                                                                <input disabled type="text" class="form-control" name="monto_instalacion" value="<?php echo $cliente['monto_instalacion']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-4">
+                                                                                <label for="mac_address_1" class="form-label">Mensualidad:</label>
+                                                                                <input disabled type="text" class="form-control" name="mensualidad" value="<?php echo $cliente['mensualidad']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="equipo_1" class="form-label">Equipo 1:</label>
+                                                                                <input disabled type="text" class="form-control" name="equipo_1" value="<?php echo $cliente['equipo_1']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="mac_address_1" class="form-label">MAC Address
+                                                                                    1:</label>
+                                                                                <input disabled type="text" class="form-control" name="mac_address_1" value="<?php echo $cliente['mac_address_1']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="equipo_2" class="form-label">Equipo 2:</label>
+                                                                                <input disabled type="text" class="form-control" name="equipo_2" value="<?php echo $cliente['equipo_2']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="mac_address_2" class="form-label">MAC Address
+                                                                                    2:</label>
+                                                                                <input disabled type="text" class="form-control" name="mac_address_2" value="<?php echo $cliente['mac_address_2']; ?>" placeholder="Sin datos">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="equipo_3" class="form-label">Equipo
+                                                                                    3:</label>
+                                                                                <input disabled type="text" class="form-control" name="equipo_3" value="<?php echo $cliente['equipo_3']; ?>" placeholder="Sin datos">
+
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="serie" class="form-label">Serie:</label>
+                                                                                <input disabled type="text" class="form-control" name="serie" value="<?php echo $cliente['serie']; ?>" placeholder="Sin datos">
                                                                             </div>
 
                                                                         </div>
