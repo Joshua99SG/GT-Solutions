@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Obtener los valores ingresados en el formulario
   $user = $_POST["correo"];
   $contrasena = $_POST["password"];
-  echo $contrasena;
+
 
   // Consultar la base de datos para verificar las credenciales
   $query = "SELECT * FROM usuario WHERE correo = '$user'";
@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Verificar si se encontró un usuario con el correo proporcionado
   if ($result->num_rows === 1) {
     $usuario = $result->fetch_assoc();
-    echo $usuario["password"];
     // Verificar la contraseña
     if (password_verify($contrasena, $usuario["password"])) {
       // Inicio de sesión exitoso, redirigir a la página de inicio
