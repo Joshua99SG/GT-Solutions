@@ -507,21 +507,22 @@ mysqli_close($conn);
                                                                                 <input type="text" class="form-control" name="mac_address_2" value="<?php echo $cliente['mac_address_2']; ?>">
                                                                             </div>
                                                                         </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="mb-3 col-12 col-md-6">
-                                                                        <label for="equipo_3" class="form-label">Equipo
-                                                                            3:</label>
-                                                                        <input type="text" class="form-control" name="equipo_3" value="<?php echo $cliente['equipo_3']; ?>">
+                                                                        <div class="row">
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="equipo_3" class="form-label">Equipo
+                                                                                    3:</label>
+                                                                                <input type="text" class="form-control" name="equipo_3" value="<?php echo $cliente['equipo_3']; ?>">
 
-                                                                    </div>
-                                                                    <div class="mb-3 col-12 col-md-6">
-                                                                        <label for="serie" class="form-label">Serie:</label>
-                                                                        <input type="text" class="form-control" name="serie" value="<?php echo $cliente['serie']; ?>">
-                                                                    </div>
-                                                                    </form>
+                                                                            </div>
+                                                                            <div class="mb-3 col-12 col-md-6">
+                                                                                <label for="serie" class="form-label">Serie:</label>
+                                                                                <input type="text" class="form-control" name="serie" value="<?php echo $cliente['serie']; ?>">
+                                                                            </div>
+
+                                                                        </div>
                                                                 </div>
+
+                                                                </form>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                                                     <button type="button" class="btn btn-primary btn_edit" data-id="<?php echo $cliente['id_cliente']; ?>">Guardar</button>
@@ -553,5 +554,4 @@ mysqli_close($conn);
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script src="js.js"></script>
-
 </html>
