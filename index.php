@@ -269,7 +269,16 @@ mysqli_close($conn);
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="id_tipo_cliente" class="form-label">Tipo Cliente:</label>
-                                            <input type="text" class="form-control" id="id_tipo_cliente" name="id_tipo_cliente" placeholder="Tipo de cliente">
+                                            <select name="id_tipo_cliente" class="form-control">
+                                                <option>--Seleccione--</option>
+                                                <?php
+                                                foreach ($tipos as $tipo) {
+                                                    $id = $tipo['id_tipo_cliente'];
+                                                    $nombre = $tipo['nombre_cliente'];
+                                                    echo "<option value=\"$id\">$nombre</option>";
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                         <div class="mb-3 col-12 col-md-4">
                                             <label for="sector_anclado" class="form-label">Sector Anclado:</label>
@@ -426,7 +435,7 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="nombre_cliente" class="form-label">Nombre del
                                                                                     Cliente:</label>
-                                                                                <input type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>"placeholder="Sin datos">
+                                                                                <input type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="telefono" class="form-label">Teléfono:</label>
@@ -461,7 +470,16 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="id_tipo_cliente" class="form-label">Tipo
                                                                                     Cliente:</label>
-                                                                                <input type="text" class="form-control" name="id_tipo_cliente" value="<?php echo $cliente['id_tipo_cliente']; ?>" placeholder="Sin datos">
+                                                                                <select name="id_tipo_cliente" class="form-control">
+                                                                                    <?php
+                                                                                    foreach ($tipos as $tipo) {
+                                                                                        $id = $tipo['id_tipo_cliente'];
+                                                                                        $nombre = $tipo['nombre_cliente'];
+                                                                                        $selected = ($cliente['id_tipo_cliente'] == $id) ? "selected" : "";
+                                                                                        echo "<option value=\"$id\" $selected>$nombre</option>";
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="sector_anclado" class="form-label">Sector
@@ -567,7 +585,7 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="nombre_cliente" class="form-label">Nombre del
                                                                                     Cliente:</label>
-                                                                                <input disabled type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>"placeholder="Sin datos">
+                                                                                <input disabled type="text" class="form-control" name="nombre_cliente" value="<?php echo $cliente['nombre_cliente']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="telefono" class="form-label">Teléfono:</label>
@@ -575,7 +593,7 @@ mysqli_close($conn);
                                                                             </div>
                                                                             <div class="mb-3 col-12 col-md-3">
                                                                                 <label for="correo" class="form-label">Correo:</label>
-                                                                                <input  disabled type="email" class="form-control" name="correo" value="<?php echo $cliente['correo']; ?>" placeholder="Sin datos">
+                                                                                <input disabled type="email" class="form-control" name="correo" value="<?php echo $cliente['correo']; ?>" placeholder="Sin datos">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
@@ -602,11 +620,11 @@ mysqli_close($conn);
                                                                             <div class="mb-3 col-12 col-md-4">
                                                                                 <label for="id_tipo_cliente" class="form-label">Tipo
                                                                                     Cliente:</label>
-                                                                                <select name="id_tipo_cliente">
-                                                                                <?php
-                                                                                    foreach ($tipo as $tipos) {
-                                                                                        $id = $row['id_tipo_cliente'];
-                                                                                        $nombre = $row['nombre_cliente'];
+                                                                                <select name="id_tipo_cliente" disabled class="form-control">
+                                                                                    <?php
+                                                                                    foreach ($tipos as $tipo) {
+                                                                                        $id = $tipo['id_tipo_cliente'];
+                                                                                        $nombre = $tipo['nombre_cliente'];
                                                                                         $selected = ($cliente['id_tipo_cliente'] == $id) ? "selected" : "";
                                                                                         echo "<option value=\"$id\" $selected>$nombre</option>";
                                                                                     }
@@ -720,4 +738,5 @@ mysqli_close($conn);
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script src="js.js"></script>
+
 </html>
