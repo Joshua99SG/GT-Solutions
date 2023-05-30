@@ -283,7 +283,7 @@ mysqli_close($conn);
                                             <label for="mac_address_1" class="form-label">Mensualidad:</label>
                                             <input type="text" class="form-control" id="mensualidad" name="mensualidad" placeholder="Mensualidad">
                                         </div>
-                                        <div class="mb-3 col-12 col-md-6 col-lg-4">
+                                        <div class="mb-3 col-12 col-md-6">
                                             <label for="equipo_1" class="form-label">Equipo 1:</label>
                                             <input type="text" class="form-control" id="equipo_1" name="equipo_1" placeholder="Equipo 1">
                                         </div>
