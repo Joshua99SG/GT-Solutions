@@ -259,17 +259,18 @@ mysqli_close($conn);
                                             <input type="text" class="form-control" id="sector_anclado" name="sector_anclado" placeholder="Sector anclado">
                                         </div>
                                         <div class="mb-3 col-12 col-md-6 col-lg-4">
+                                            <label for="contrasena_ppoe" class="form-label">Contraseña PPOE:</label>
+                                            <input type="text" class="form-control" id="contrasena_ppoe" name="contrasena_ppoe" placeholder="Contraseña PPOE">
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-6 col-lg-4">
                                             <label for="wifi_nombre" class="form-label">Nombre de WiFi:</label>
                                             <input type="text" class="form-control" id="wifi_nombre" name="wifi_nombre" placeholder="Nombre WIFI">
                                         </div>
                                         <div class="mb-3 col-12 col-md-6 col-lg-4">
                                             <label for="wifi_contrasena" class="form-label">Contraseña de WiFi:</label>
-                                            <input type="password" class="form-control" id="wifi_contrasena" name="wifi_contrasena" placeholder="Contraseña WIFI">
+                                            <input type="text" class="form-control" id="wifi_contrasena" name="wifi_contrasena" placeholder="Contraseña WIFI">
                                         </div>
-                                        <div class="mb-3 col-12 col-md-6 col-lg-4">
-                                            <label for="contrasena_ppoe" class="form-label">Contraseña PPOE:</label>
-                                            <input type="password" class="form-control" id="contrasena_ppoe" name="contrasena_ppoe" placeholder="Contraseña PPOE">
-                                        </div>
+                                        
                                         <div class="mb-3 col-12 col-md-6 col-lg-4">
                                             <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
                                             <input type="date" class="form-control" id="fecha_instalacion" name="fecha_instalacion" placeholder="Fecha instalacion">
@@ -283,7 +284,7 @@ mysqli_close($conn);
                                             <label for="mac_address_1" class="form-label">Mensualidad:</label>
                                             <input type="text" class="form-control" id="mensualidad" name="mensualidad" placeholder="Mensualidad">
                                         </div>
-                                        <div class="mb-3 col-12 col-md-6">
+                                        <div class="mb-3 col-12 col-md-6 col-lg-4">
                                             <label for="equipo_1" class="form-label">Equipo 1:</label>
                                             <input type="text" class="form-control" id="equipo_1" name="equipo_1" placeholder="Equipo 1">
                                         </div>
@@ -468,19 +469,20 @@ mysqli_close($conn);
                                                                                     <input type="text" class="form-control" name="sector_anclado" value="<?php echo $cliente['sector_anclado']; ?>" placeholder="Sin datos">
                                                                                 </div>
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
+                                                                                    <label for="contrasena_ppoe" class="form-label">Contraseña
+                                                                                        PPOE:</label>
+                                                                                    <input type="text" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>" placeholder="Sin datos">
+                                                                                </div>
+                                                                                <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="wifi_nombre" class="form-label">Nombre de
                                                                                         WiFi:</label>
                                                                                     <input type="text" class="form-control" name="wifi_nombre" value="<?php echo $cliente['wifi_nombre']; ?>" placeholder="Sin datos">
                                                                                 </div>
-                                                                                <div class="mb-3 col-12 col-md-6 col-lg-4">
-                                                                                    <label for="contrasena_ppoe" class="form-label">Contraseña
-                                                                                        PPOE:</label>
-                                                                                    <input type="password" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>" placeholder="Sin datos">
-                                                                                </div>
+                                                                                
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="wifi_contrasena" class="form-label">Contraseña de
                                                                                         WiFi:</label>
-                                                                                    <input type="password" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>" placeholder="Sin datos">
+                                                                                    <input type="text" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>" placeholder="Sin datos">
                                                                                 </div>
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
@@ -608,25 +610,25 @@ mysqli_close($conn);
                                                                                     <input disabled type="text" class="form-control" name="sector_anclado" value="<?php echo $cliente['sector_anclado']; ?>" placeholder="Sin datos">
                                                                                 </div>
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
+                                                                                    <label for="contrasena_ppoe" class="form-label">Contraseña
+                                                                                        PPOE:</label>
+                                                                                    <input disabled type="text" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>" placeholder="Sin datos">
+                                                                                </div>
+                                                                               
+                                                                                <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="wifi_nombre" class="form-label">Nombre de
                                                                                         WiFi:</label>
                                                                                     <input disabled type="text" class="form-control" name="wifi_nombre" value="<?php echo $cliente['wifi_nombre']; ?>" placeholder="Sin datos">
                                                                                 </div>
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
-                                                                                    <label for="contrasena_ppoe" class="form-label">Contraseña
-                                                                                        PPOE:</label>
-                                                                                    <input disabled type="password" class="form-control" name="contrasena_ppoe" value="<?php echo $cliente['contrasena_ppoe']; ?>" placeholder="Sin datos">
-                                                                                </div>
-                                                                                <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="wifi_contrasena" class="form-label">Contraseña de
                                                                                         WiFi:</label>
-                                                                                    <input disabled type="password" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>" placeholder="Sin datos">
+                                                                                    <input disabled type="text" class="form-control" name="wifi_contrasena" value="<?php echo $cliente['wifi_contrasena']; ?>" placeholder="Sin datos">
                                                                                 </div>
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="equipo_1" class="form-label">Fecha de instalacion:</label>
                                                                                     <input disabled type="date" class="form-control" name="fecha_instalacion" value="<?php echo $cliente['fecha_instalacion']; ?>" placeholder="Sin datos">
                                                                                 </div>
-
                                                                                 <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                                                     <label for="mac_address_1" class="form-label">Monto de instalacion:</label>
                                                                                     <input disabled type="text" class="form-control" name="monto_instalacion" value="<?php echo $cliente['monto_instalacion']; ?>" placeholder="Sin datos">
