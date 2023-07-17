@@ -36,6 +36,106 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.add("loaded");
 });
 
+$(".link_pay").click(function(e) {
+    e.preventDefault();
+    var id_servicio = $(this).data("id");
+    var nombre_cliente = $(this).data("name");
+    var monto_pago = $(this).data("monto");
+    $("#id_servicio_pago").val(id_servicio);
+    $("#nombre_cliente_pago").val(nombre_cliente);
+    $("#monto_pago").val(monto_pago);
+})
+
+$(".btn-edit-get").click(function(e) {
+    e.preventDefault();
+    var id_cliente = $(this).data("id");
+    $.ajax({
+        url: "edit_service.php",
+        method: "POST",
+        data: {
+            id_cliente: id_cliente,
+            function: "edit_get"
+        },
+        success: function (response) {
+            response = JSON.parse(response)
+            $("#edit_id_cliente").val(response.cliente.id_cliente).prop("disabled", false)
+            $("#edit_id_contrato").val(response.cliente.id_contrato).prop("disabled", false)
+            $("#edit_id_servicio").val(response.cliente.id_servicio).prop("disabled", false)
+            $("#edit_id_wifi").val(response.cliente.id_wifi).prop("disabled", false)
+            $("#edit_id_equipo_1").val(response.equipos[0].id_equipo).prop("disabled", false)
+            $("#edit_id_equipo_2").val(response.equipos[1].id_equipo).prop("disabled", false)
+            $("#edit_id_equipo_3").val(response.equipos[2].id_equipo).prop("disabled", false)
+            $("#edit_identificacion").val(response.cliente.identificacion).prop("disabled", false)
+            $("#edit_nombre_cliente").val(response.cliente.nombre_cliente).prop("disabled", false)
+            $("#edit_telefono").val(response.cliente.telefono).prop("disabled", false)
+            $("#edit_email").val(response.cliente.email).prop("disabled", false)
+            $("#edit_localidad").val(response.cliente.localidad).prop("disabled", false)
+            $("#edit_coordenadas").val(response.cliente.coordenadas).prop("disabled", false)
+            $("#edit_velocidad_contratada").val(response.cliente.velocidad_contratada).prop("disabled", false)
+            $("#edit_numero_contrato").val(response.cliente.numero_contrato).prop("disabled", false)
+            $("#edit_sector_anclado").val(response.cliente.sector_anclado).prop("disabled", false)
+            $("#edit_contra_ppoe").val(response.cliente.contra_ppoe).prop("disabled", false)
+            $("#edit_nombre_wifi").val(response.cliente.nombre_wifi).prop("disabled", false)
+            $("#edit_contra_wifi").val(response.cliente.contra_wifi).prop("disabled", false)
+            $("#edit_fecha_instalacion").val(response.cliente.fecha_instalacion).prop("disabled", false)
+            $("#edit_monto_instalacion").val(response.cliente.monto_instalacion).prop("disabled", false)
+            $("#edit_mensualidad").val(response.cliente.mensualidad).prop("disabled", false)
+            $("#edit_fecha_cobro").val(response.cliente.fecha_cobro).prop("disabled", false)
+            $("#edit_fecha_corte").val(response.cliente.fecha_corte).prop("disabled", false)
+            $("#edit_equipo_1").val(response.equipos[0].equipo_nombre).prop("disabled", false)
+            $("#edit_mac_address_1").val(response.equipos[0].equipo_mac_address).prop("disabled", false)
+            $("#edit_equipo_2").val(response.equipos[1].equipo_nombre).prop("disabled", false)
+            $("#edit_mac_address_2").val(response.equipos[1].equipo_mac_address).prop("disabled", false)
+            $("#edit_equipo_3").val(response.equipos[2].equipo_nombre).prop("disabled", false)
+            $("#edit_serie").val(response.equipos[2].equipo_serie).prop("disabled", false)
+            $("#edit_TMU").val(response.cliente.TMU).prop("disabled", false)
+            $("#edit_numero_facturacion").val(response.cliente.numero_facturacion).prop("disabled", false)
+        },
+    });
+});
+
+$(".btn-details-get").click(function(e) {
+    e.preventDefault();
+    var id_cliente = $(this).data("id");
+    $.ajax({
+        url: "edit_service.php",
+        method: "POST",
+        data: {
+            id_cliente: id_cliente,
+            function: "edit_get"
+        },
+        success: function (response) {
+            response = JSON.parse(response)
+            console.log(response.cliente.identificacion)
+            $("#edit_identificacion").val(response.cliente.identificacion).prop("disabled", true)
+            $("#edit_nombre_cliente").val(response.cliente.nombre_cliente).prop("disabled", true)
+            $("#edit_telefono").val(response.cliente.telefono).prop("disabled", true)
+            $("#edit_email").val(response.cliente.email).prop("disabled", true)
+            $("#edit_localidad").val(response.cliente.localidad).prop("disabled", true)
+            $("#edit_coordenadas").val(response.cliente.coordenadas).prop("disabled", true)
+            $("#edit_velocidad_contratada").val(response.cliente.velocidad_contratada).prop("disabled", true)
+            $("#edit_numero_contrato").val(response.cliente.numero_contrato).prop("disabled", true)
+            $("#edit_sector_anclado").val(response.cliente.sector_anclado).prop("disabled", true)
+            $("#edit_contra_ppoe").val(response.cliente.contra_ppoe).prop("disabled", true)
+            $("#edit_nombre_wifi").val(response.cliente.nombre_wifi).prop("disabled", true)
+            $("#edit_contra_wifi").val(response.cliente.contra_wifi).prop("disabled", true)
+            $("#edit_fecha_instalacion").val(response.cliente.fecha_instalacion).prop("disabled", true)
+            $("#edit_monto_instalacion").val(response.cliente.monto_instalacion).prop("disabled", true)
+            $("#edit_mensualidad").val(response.cliente.mensualidad).prop("disabled", true)
+            $("#edit_fecha_cobro").val(response.cliente.fecha_cobro).prop("disabled", true)
+            $("#edit_fecha_corte").val(response.cliente.fecha_corte).prop("disabled", true)
+            $("#edit_equipo_1").val(response.equipos[0].equipo_nombre).prop("disabled", true)
+            $("#edit_mac_address_1").val(response.equipos[0].equipo_mac_address).prop("disabled", true)
+            $("#edit_equipo_2").val(response.equipos[1].equipo_nombre).prop("disabled", true)
+            $("#edit_mac_address_2").val(response.equipos[1].equipo_mac_address).prop("disabled", true)
+            $("#edit_equipo_3").val(response.equipos[2].equipo_nombre).prop("disabled", true)
+            $("#edit_serie").val(response.equipos[2].equipo_serie).prop("disabled", true)
+            $("#edit_TMU").val(response.cliente.TMU).prop("disabled", true)
+            $("#edit_numero_facturacion").val(response.cliente.numero_facturacion).prop("disabled", true)
+        },
+    });
+});
+
 $(".link_delete").click(function(e) {
     e.preventDefault();
 
@@ -44,13 +144,16 @@ $(".link_delete").click(function(e) {
 });
 $(".btn_edit").click(function(e) {
     e.preventDefault();
-
-    var id = $(this).data("id");
-    $("#form_edit_" + id).submit();
+    $("#form_edit").submit();
 });
 $("#btn_create").click(function(e) {
     $("#form_create").submit();
 });
+$("#btn-pay").click(function(e) {
+    e.preventDefault();
+    $("#form_pay").submit();
+});
+
 
 var email_candidates = [];
 
@@ -160,7 +263,6 @@ const show_response_modal = () => {
 }
 
 const redirectToWhatsApp = (phone_number) => {
-    var message = "Hello, I would like to get in touch.";
-    var whatsAppLink = `https://wa.me/${phone_number}?text=${message}`;
+    var whatsAppLink = `https://wa.me/${phone_number}`;
     window.open(whatsAppLink, "_blank");
 }

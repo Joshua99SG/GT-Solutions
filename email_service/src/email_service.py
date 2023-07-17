@@ -41,7 +41,7 @@ def send_email():
     email_emisor = request_data['email_emisor']
     title = request_data['email_title']
     message = request_data['email_message']
-    password_emisor = "ercrsieicmukqito"
+    password_emisor = ""
     candidates = request_data['candidates']
     email_sends = 0
     for candidate in candidates:
