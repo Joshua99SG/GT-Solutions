@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ));
         $context  = stream_context_create($opts);
         #-- Production
-        $res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
+        #$res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
         #-- Develop
-        #$res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
+        $res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
         echo json_encode($res_credits);
     }
     if ($_POST['function'] == 'delete') {
@@ -310,7 +310,7 @@ mysqli_close($conn);
                                         <?php if (isset($clientes)) : ?>
                                             <?php foreach ($clientes as $cliente) : ?>
                                                 <tr>
-                                                    <td>
+                                                    <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : "";?>>
                                                         <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
                                                     </td>
                                                     <td>
