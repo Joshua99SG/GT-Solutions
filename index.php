@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ));
         $context  = stream_context_create($opts);
         #-- Production
-        #$res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
+        $res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
         #-- Develop
-        $res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
+        #$res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
         echo json_encode($res_credits);
     }
     if ($_POST['function'] == 'delete') {
