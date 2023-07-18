@@ -36,6 +36,24 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.add("loaded");
 });
 
+function siguientePaso(pasoSiguiente) {
+    $('#pasosFormulario li.nav-item a[href="#' + pasoSiguiente + '"]').tab('show');
+}
+
+// Función para volver al paso anterior
+function anteriorPaso(pasoAnterior) {
+    $('#pasosFormulario li.nav-item a[href="#' + pasoAnterior + '"]').tab('show');
+}
+
+function siguientePasoEdit(pasoSiguiente) {
+    $('#pasosFormularioEdit li.nav-item a[href="#' + pasoSiguiente + '"]').tab('show');
+}
+
+// Función para volver al paso anterior
+function anteriorPasoEdit(pasoAnterior) {
+    $('#pasosFormularioEdit li.nav-item a[href="#' + pasoAnterior + '"]').tab('show');
+}
+
 $(".link_pay").click(function(e) {
     e.preventDefault();
     var id_servicio = $(this).data("id");
@@ -79,6 +97,7 @@ $(".btn-edit-get").click(function(e) {
             $("#edit_contra_wifi").val(response.cliente.contra_wifi).prop("disabled", false)
             $("#edit_fecha_instalacion").val(response.cliente.fecha_instalacion).prop("disabled", false)
             $("#edit_monto_instalacion").val(response.cliente.monto_instalacion).prop("disabled", false)
+            $("#edit_abono_instalacion").val(response.cliente.abono_instalacion).prop("disabled", false)
             $("#edit_mensualidad").val(response.cliente.mensualidad).prop("disabled", false)
             $("#edit_fecha_cobro").val(response.cliente.fecha_cobro).prop("disabled", false)
             $("#edit_fecha_corte").val(response.cliente.fecha_corte).prop("disabled", false)
@@ -121,6 +140,7 @@ $(".btn-details-get").click(function(e) {
             $("#edit_contra_wifi").val(response.cliente.contra_wifi).prop("disabled", true)
             $("#edit_fecha_instalacion").val(response.cliente.fecha_instalacion).prop("disabled", true)
             $("#edit_monto_instalacion").val(response.cliente.monto_instalacion).prop("disabled", true)
+            $("#edit_abono_instalacion").val(response.cliente.abono_instalacion).prop("disabled", true)
             $("#edit_mensualidad").val(response.cliente.mensualidad).prop("disabled", true)
             $("#edit_fecha_cobro").val(response.cliente.fecha_cobro).prop("disabled", true)
             $("#edit_fecha_corte").val(response.cliente.fecha_corte).prop("disabled", true)
