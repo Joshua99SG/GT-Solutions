@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         monto_instalacion = $monto_instalacion,
         mensualidad = $mensualidad,
         fecha_corte = '$fecha_corte',
-        fecha_cobro = '$fecha_cobro'
+        fecha_cobro = '$fecha_cobro',
         id_cliente = $id_cliente
         WHERE id_contrato = $id_contrato;";
 
