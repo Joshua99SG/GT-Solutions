@@ -310,7 +310,7 @@ mysqli_close($conn);
                                         <?php if (isset($clientes)) : ?>
                                             <?php foreach ($clientes as $cliente) : ?>
                                                 <tr>
-                                                    <td>
+                                                    <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : "";?>>
                                                         <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
                                                     </td>
                                                     <td>
