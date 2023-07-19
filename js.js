@@ -140,7 +140,7 @@ $(".btn-details-get").click(function(e) {
         },
         success: function (response) {
             response = JSON.parse(response)
-            console.log(response.cliente.identificacion)
+            $("#edit_id_tipo_cliente").val(response.cliente.id_tipo_cliente).prop("disabled", true)
             $("#edit_identificacion").val(response.cliente.identificacion).prop("disabled", true)
             $("#edit_nombre_cliente").val(response.cliente.nombre_cliente).prop("disabled", true)
             $("#edit_telefono").val(response.cliente.telefono).prop("disabled", true)
