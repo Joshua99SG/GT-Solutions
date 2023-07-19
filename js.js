@@ -64,6 +64,20 @@ $(".link_pay").click(function(e) {
     $("#monto_pago").val(monto_pago);
 })
 
+$("#ver_eliminados").click(function(e){
+    //Develop
+    window.location.href = "http://localhost/gt_solutions/desactivate.php"
+    //Production
+    //window.location.href = ""
+})
+
+$("#ver_activos").click(function(e){
+    //Develop
+    window.location.href = "http://localhost/gt_solutions/index.php"
+    //Production
+    //window.location.href = ""
+})
+
 $(".btn-edit-get").click(function(e) {
     e.preventDefault();
     var id_cliente = $(this).data("id");
@@ -83,6 +97,7 @@ $(".btn-edit-get").click(function(e) {
             $("#edit_id_equipo_1").val(response.equipos[0].id_equipo).prop("disabled", false)
             $("#edit_id_equipo_2").val(response.equipos[1].id_equipo).prop("disabled", false)
             $("#edit_id_equipo_3").val(response.equipos[2].id_equipo).prop("disabled", false)
+            $("#edit_id_tipo_cliente").val(response.cliente.id_tipo_cliente).prop("disabled", false)
             $("#edit_identificacion").val(response.cliente.identificacion).prop("disabled", false)
             $("#edit_nombre_cliente").val(response.cliente.nombre_cliente).prop("disabled", false)
             $("#edit_telefono").val(response.cliente.telefono).prop("disabled", false)
@@ -125,7 +140,7 @@ $(".btn-details-get").click(function(e) {
         },
         success: function (response) {
             response = JSON.parse(response)
-            console.log(response.cliente.identificacion)
+            $("#edit_id_tipo_cliente").val(response.cliente.id_tipo_cliente).prop("disabled", true)
             $("#edit_identificacion").val(response.cliente.identificacion).prop("disabled", true)
             $("#edit_nombre_cliente").val(response.cliente.nombre_cliente).prop("disabled", true)
             $("#edit_telefono").val(response.cliente.telefono).prop("disabled", true)

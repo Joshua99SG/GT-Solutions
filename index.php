@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if ($_POST['function'] == 'delete') {
         $id_cliente = $_POST['id_cliente'];
-        $sql = "DELETE FROM cliente WHERE id_cliente = $id_cliente";
+        $sql = "UPDATE contrato SET activo = 0 WHERE id_cliente = $id_cliente";
         if ($conn->query($sql) === TRUE) {
             echo "El cliente con ID $id_cliente ha sido eliminado correctamente.";
         } else {
@@ -192,7 +192,8 @@ JOIN
         servicio s
 ) AS s ON ct.id_contrato = s.s_id_servicio
 LEFT JOIN wifi wf ON s.s_id_servicio = wf.id_servicio
-LEFT JOIN registro_pago rp ON s.s_id_servicio = rp.id_servicio;";
+LEFT JOIN registro_pago rp ON s.s_id_servicio = rp.id_servicio
+WHERE ct.activo = 1;";
 
 $result = mysqli_query($conn, $sql);
 
@@ -282,9 +283,15 @@ mysqli_close($conn);
     </nav>
     <div class="container-fluid mt-5">
         <div class="search-section table-container">
-            <?php
-            require_once 'create.php';
-            ?>
+            <div class="row d-flex justify-content-between mb-5">
+                <h4 class="table-title title col-6">Administracion de clientes</h4>
+                <button type="button" class="btn btn-secondary col-2" id="ver_eliminados">Ver eliminados</button>
+                <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#crearModal">Agregar cliente</button>
+                <?php
+                require_once 'create_view.php';
+                ?>
+            </div>
+
             <div class="row">
                 <div class="w-100">
                     <div class="row">
@@ -310,7 +317,7 @@ mysqli_close($conn);
                                         <?php if (isset($clientes)) : ?>
                                             <?php foreach ($clientes as $cliente) : ?>
                                                 <tr>
-                                                    <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : "";?>>
+                                                    <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : ""; ?>>
                                                         <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
                                                     </td>
                                                     <td>
@@ -353,10 +360,10 @@ mysqli_close($conn);
                                                                     <a class="dropdown-item btn-details-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/detalles.png" class="img-fluid dropdown-image" alt="Gmail" /> Detalles</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente'];?>" ><img src="./img/borrar.png" class="img-fluid dropdown-image" alt="Gmail" /> Eliminar</a>
+                                                                    <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/borrar.png" class="img-fluid dropdown-image" alt="Gmail" /> Eliminar</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a class="dropdown-item link_pay" data-id="<?php echo $cliente['id_servicio']; ?>" data-name="<?php echo $cliente['nombre_cliente'];?>" data-monto="<?php echo $cliente['mensualidad'];?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
+                                                                    <a class="dropdown-item link_pay" data-id="<?php echo $cliente['id_servicio']; ?>" data-name="<?php echo $cliente['nombre_cliente']; ?>" data-monto="<?php echo $cliente['mensualidad']; ?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
                                                                 </li>
                                                                 <li>
                                                                     <a href="#" onclick="redirectToWhatsApp(<?php echo $cliente['telefono']; ?>)" class="dropdown-item">
@@ -365,7 +372,7 @@ mysqli_close($conn);
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        
+
                                                         <div>
                                                             <form action="index.php" method="post" id="form_delete_<?php echo $cliente['id_cliente']; ?>">
                                                                 <input type="hidden" name="function" value="delete">
@@ -385,9 +392,9 @@ mysqli_close($conn);
             </div>
         </div>
     </div>
-    <?php 
-    require_once 'edit.php';
-    require_once 'pago.php';
+    <?php
+    require_once 'edit_view.php';
+    require_once 'pago_view.php';
     ?>
     <div class="modal fade" id="email_modal" tabindex="-1" aria-labelledby="email_modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -442,7 +449,7 @@ mysqli_close($conn);
     </div>
     <button class="d-none" id="btn_sending_email_modal" data-bs-toggle="modal" data-bs-target="#sending_email_modal">Sending emails</button>
     <div class="modal fade" id="success_email_modal" tabindex="-1" aria-labelledby="success_email_modal">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modzal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title" id="modal-title-loading">Successful</h5>
