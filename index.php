@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ));
         $context  = stream_context_create($opts);
         #-- Production
-        $res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
+        #$res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
         #-- Develop
-        #$res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
+        $res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
         echo json_encode($res_credits);
     }
     if ($_POST['function'] == 'delete') {
@@ -178,7 +178,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: " . $_SERVER['PHP_SELF']);
 }
 
-$sql = "SELECT c.*, ct.*, tc.*, s.*, wf.* FROM cliente c
+$sql = "SELECT c.*, ct.*, tc.*, s.*, wf.*, rp.*
+FROM cliente c
 JOIN contrato ct ON c.id_cliente = ct.id_cliente
 JOIN tipo_cliente tc ON c.id_tipo_cliente = tc.id_tipo_cliente
 JOIN 
@@ -192,8 +193,14 @@ JOIN
         servicio s
 ) AS s ON ct.id_contrato = s.s_id_servicio
 LEFT JOIN wifi wf ON s.s_id_servicio = wf.id_servicio
-LEFT JOIN registro_pago rp ON s.s_id_servicio = rp.id_servicio
-WHERE ct.activo = 1;";
+LEFT JOIN (
+    SELECT rp.id_servicio, MAX(rp.fecha_pago) AS fecha_pago
+    FROM registro_pago rp
+    GROUP BY rp.id_servicio
+) AS latest_rp ON s.s_id_servicio = latest_rp.id_servicio
+LEFT JOIN registro_pago rp ON latest_rp.id_servicio = rp.id_servicio AND latest_rp.fecha_pago = rp.fecha_pago
+WHERE ct.activo = 1
+GROUP BY c.id_cliente;";
 
 $result = mysqli_query($conn, $sql);
 
@@ -273,125 +280,132 @@ mysqli_close($conn);
         Cargando...
         <div class="spinner"></div>
     </div>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="./img/logo.png" class="w-25" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="d-flex">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#"><img src="./img/logo.png" class="w-25" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
         </div>
-    </nav>
-    <div class="container-fluid mt-5">
-        <div class="search-section table-container">
-            <div class="row d-flex justify-content-between mb-5">
-                <h4 class="table-title title col-6">Administracion de clientes</h4>
-                <button type="button" class="btn btn-secondary col-2" id="ver_eliminados">Ver eliminados</button>
-                <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#crearModal">Agregar cliente</button>
-                <?php
-                require_once 'create_view.php';
-                ?>
-            </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="d-flex">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="container-fluid mt-5">
+                <div class="search-section table-container">
+                    <div class="row d-flex justify-content-between mb-5">
+                        <h4 class="table-title title col-6">Administracion de clientes</h4>
+                        <button type="button" class="btn btn-secondary col-2" id="ver_eliminados">Ver eliminados</button>
+                        <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#crearModal">Agregar cliente</button>
+                        <?php
+                        require_once 'create_view.php';
+                        ?>
+                    </div>
 
-            <div class="row">
-                <div class="w-100">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="table-responsive" id="div_candidates">
-                                <table id="table_candidates" class="table table-striped">
-                                    <thead style="background-color: #006AF9;">
-                                        <tr>
-                                            <th><input type="checkbox" class="no-sort form-check-input custom-checkbox" id="checkAll" onclick="check_candidates()"></th>
-                                            <th class="no-sort">Contrato</th>
-                                            <th class="no-sort">N° Facturacion</th>
-                                            <th class="no-sort">TMU</th>
-                                            <th class="no-sort">Nombre cliente</th>
-                                            <th class="no-sort">Teléfono</th>
-                                            <th class="no-sort">Correo</th>
-                                            <th class="no-sort">Localidad</th>
-                                            <th class="no-sort text-center">Velocidad</th>
-                                            <th class="no-sort text-center">Debe?</th>
-                                            <th class="no-sort">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (isset($clientes)) : ?>
-                                            <?php foreach ($clientes as $cliente) : ?>
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive" id="div_candidates">
+                                        <table id="table_candidates" class="table table-striped">
+                                            <thead style="background-color: #006AF9;">
                                                 <tr>
-                                                    <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : ""; ?>>
-                                                        <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $cliente['numero_contrato']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $cliente['numero_facturacion']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $cliente['TMU']; ?>
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        <?php echo $cliente['nombre_cliente']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $cliente['telefono']; ?>
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        <?php echo $cliente['email']; ?>
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        <?php echo $cliente['localidad']; ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <?php echo $cliente['velocidad_contratada']; ?> MB
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <?php echo $cliente['debe_mensualidad'] == 1 ? "Si" : "No"; ?>
-                                                    </td>
-                                                    <td>
-                                                        <div class="">
-                                                            <a data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="bi bi-three-dots-vertical"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu" style="width: 100px;">
-                                                                <li>
-                                                                    <a class="dropdown-item btn-edit-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/editar.png" class="img-fluid dropdown-image" alt="Gmail" /> Editar</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item btn-details-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/detalles.png" class="img-fluid dropdown-image" alt="Gmail" /> Detalles</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/borrar.png" class="img-fluid dropdown-image" alt="Gmail" /> Eliminar</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item link_pay" data-id="<?php echo $cliente['id_servicio']; ?>" data-name="<?php echo $cliente['nombre_cliente']; ?>" data-monto="<?php echo $cliente['mensualidad']; ?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" onclick="redirectToWhatsApp(<?php echo $cliente['telefono']; ?>)" class="dropdown-item">
-                                                                        <img src="./img/whatsapp.png" class="img-fluid dropdown-image" alt="Whatsapp" /> WhatsApp
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-
-                                                        <div>
-                                                            <form action="index.php" method="post" id="form_delete_<?php echo $cliente['id_cliente']; ?>">
-                                                                <input type="hidden" name="function" value="delete">
-                                                                <input type="hidden" name="id_cliente" value="<?php echo $cliente['id_cliente']; ?>">
-                                                            </form>
-                                                        </div>
-                                                    </td>
+                                                    <th><input type="checkbox" class="no-sort form-check-input custom-checkbox" id="checkAll" onclick="check_candidates()"></th>
+                                                    <th class="no-sort">Contrato</th>
+                                                    <th class="no-sort">N° Facturacion</th>
+                                                    <th class="no-sort">TMU</th>
+                                                    <th class="no-sort">Nombre cliente</th>
+                                                    <th class="no-sort">Teléfono</th>
+                                                    <th class="no-sort">Localidad</th>
+                                                    <th class="no-sort text-center">Velocidad</th>
+                                                    <th class="no-sort text-center">Debe?</th>
+                                                    <th class="no-sort">Acciones</th>
                                                 </tr>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (isset($clientes)) : ?>
+                                                    <?php foreach ($clientes as $cliente) : ?>
+                                                        <tr>
+                                                            <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : ""; ?>>
+                                                                <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['numero_contrato']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['numero_facturacion']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['TMU']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['nombre_cliente']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['telefono']; ?>
+                                                            </td>
+                                                            <td class="text-truncate">
+                                                                <?php echo $cliente['localidad']; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $cliente['velocidad_contratada']; ?> MB
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $cliente['debe_mensualidad'] == 1 ? "Si" : "No"; ?>
+                                                            </td>
+                                                            <td>
+                                                                <div class="">
+                                                                    <a data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <i class="bi bi-three-dots-vertical"></i>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu" style="width: 100px;">
+                                                                        <li>
+                                                                            <a class="dropdown-item btn-edit-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/editar.png" class="img-fluid dropdown-image" alt="Gmail" /> Editar</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item btn-details-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/detalles.png" class="img-fluid dropdown-image" alt="Gmail" /> Detalles</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/borrar.png" class="img-fluid dropdown-image" alt="Gmail" /> Eliminar</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item link_pay" data-id="<?php echo $cliente['id_servicio']; ?>" data-name="<?php echo $cliente['nombre_cliente']; ?>" data-monto="<?php echo $cliente['mensualidad']; ?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" onclick="redirectToWhatsApp(<?php echo $cliente['telefono']; ?>)" class="dropdown-item">
+                                                                                <img src="./img/whatsapp.png" class="img-fluid dropdown-image" alt="Whatsapp" /> WhatsApp
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                                <div>
+                                                                    <form action="index.php" method="post" id="form_delete_<?php echo $cliente['id_cliente']; ?>">
+                                                                        <input type="hidden" name="function" value="delete">
+                                                                        <input type="hidden" name="id_cliente" value="<?php echo $cliente['id_cliente']; ?>">
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-1"></div>
     </div>
+
     <?php
     require_once 'edit_view.php';
     require_once 'pago_view.php';
