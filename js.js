@@ -1,5 +1,9 @@
  // Inicializamos la tabla con DataTables
  $(document).ready(function() {
+    $('#editarModal').on('show.bs.modal', function (e) {
+        // Al abrir el modal, activar la pestaña "Cliente"
+        $('#pasosFormularioEdit a[href="#pasoClienteEdit"]').tab('show');
+    });
     $('#table_candidates').DataTable({
         paging: true,
         lengthChange: true,
@@ -66,16 +70,16 @@ $(".link_pay").click(function(e) {
 
 $("#ver_eliminados").click(function(e){
     //Develop
-    window.location.href = "http://localhost/gt_solutions/desactivate.php"
+    //window.location.href = "http://localhost/gt_solutions/desactivate.php"
     //Production
-    //window.location.href = ""
+    window.location.href = "http://178.128.155.183/desactivate.php"
 })
 
 $("#ver_activos").click(function(e){
     //Develop
-    window.location.href = "http://localhost/gt_solutions/index.php"
+    //window.location.href = "http://localhost/gt_solutions/index.php"
     //Production
-    //window.location.href = ""
+    window.location.href = "http://178.128.155.183/index.php"
 })
 
 $(".btn-edit-get").click(function(e) {

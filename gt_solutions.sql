@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2023 at 09:37 AM
+-- Generation Time: Jul 20, 2023 at 01:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1681,7 +1681,6 @@ INSERT INTO `equipo` (`id_equipo`, `equipo`, `mac_address`, `serie`, `id_servici
 CREATE TABLE `registro_pago` (
   `id_pago` int(11) NOT NULL,
   `id_servicio` int(11) NOT NULL,
-  `nombre_cliente` varchar(255) DEFAULT NULL,
   `fecha_pago` date DEFAULT NULL,
   `mes_pago` int(255) DEFAULT NULL,
   `monto_pago` double DEFAULT NULL
@@ -2552,6 +2551,12 @@ ALTER TABLE `contrato`
 --
 ALTER TABLE `equipo`
   ADD CONSTRAINT `fk_equipo_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `registro_pago`
+--
+ALTER TABLE `registro_pago`
+  ADD CONSTRAINT `fk_registro_pago_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`);
 
 --
 -- Constraints for table `servicio`

@@ -20,7 +20,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="monto" class="form-label">Monto del Pago:</label>
-                        <input type="number" step="0.01" class="form-control" id="monto_pago" name="monto" readonly required>
+                        <input type="number" step="0.01" class="form-control col-6" id="monto_pago" name="monto" readonly required>
                     </div>
                     <div class="mb-3">
                         <label for="fecha_pago" class="form-label">Fecha a Pagar:</label>
