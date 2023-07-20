@@ -13,7 +13,7 @@
                             <div class="col-md-12">
                                 <!-- Barra de pestañas (tabs) para los pasos -->
                                 <ul class="nav nav-tabs" id="pasosFormulario" role="tablist">
-                                    <li class="nav-item"  role="presentation">
+                                    <li class="nav-item" role="presentation">
                                         <a class="nav-link active" id="pasoCliente-tab" data-bs-toggle="tab" href="#pasoCliente" role="tab" aria-controls="pasoCliente" aria-selected="true">Cliente</a>
                                     </li>
                                     <li class="nav-item" role="presentation">
