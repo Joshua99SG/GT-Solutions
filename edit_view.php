@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs" id="pasosFormularioEdit" role="tablist">
-                                <li class="nav-item" role="presentation" id="test1">
+                                <li class="nav-item" role="presentation">
                                     <a class="nav-link active" id="pasoClienteEdit-tab" data-bs-toggle="tab" href="#pasoClienteEdit" role="tab" aria-controls="pasoClienteEdit" aria-selected="true">Cliente</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
