@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 01:30 AM
+-- Generation Time: Jul 20, 2023 at 08:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,6 +42,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDeudaClientes` ()   BEGIN
               AND YEAR(rp.fecha_pago) = YEAR(fecha_actual)
         )
     );
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadas` ()   BEGIN
+    SELECT SUM(monto_pago) AS sumatoria_mensualidades, fecha_pago
+    FROM registro_pago
+    WHERE MONTH(fecha_pago) = MONTH(CURDATE()) AND YEAR(fecha_pago) = YEAR(CURDATE());
 END$$
 
 DELIMITER ;
@@ -1682,9 +1688,15 @@ CREATE TABLE `registro_pago` (
   `id_pago` int(11) NOT NULL,
   `id_servicio` int(11) NOT NULL,
   `fecha_pago` date DEFAULT NULL,
-  `mes_pago` int(255) DEFAULT NULL,
   `monto_pago` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registro_pago`
+--
+
+INSERT INTO `registro_pago` (`id_pago`, `id_servicio`, `fecha_pago`, `monto_pago`) VALUES
+(6, 517, '2023-07-03', 60000);
 
 -- --------------------------------------------------------
 
@@ -2498,7 +2510,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT for table `registro_pago`
 --
 ALTER TABLE `registro_pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `servicio`
