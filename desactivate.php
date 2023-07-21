@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: " . $_SERVER['PHP_SELF']);
 }
 
-$sql = "SELECT c.*, ct.*, tc.*, s.*, wf.* FROM cliente c
+$sql = "SELECT c.*, ct.*, ct.id_contrato AS ct_id_contrato, tc.*, s.*, wf.*, rp.*
+FROM cliente c
 JOIN contrato ct ON c.id_cliente = ct.id_cliente
 JOIN tipo_cliente tc ON c.id_tipo_cliente = tc.id_tipo_cliente
 JOIN 
@@ -36,8 +37,14 @@ JOIN
         servicio s
 ) AS s ON ct.id_contrato = s.s_id_servicio
 LEFT JOIN wifi wf ON s.s_id_servicio = wf.id_servicio
-LEFT JOIN registro_pago rp ON s.s_id_servicio = rp.id_servicio
-WHERE ct.activo = 0;";
+LEFT JOIN (
+    SELECT rp.id_contrato, MAX(rp.fecha_pago) AS fecha_pago
+    FROM registro_pago rp
+    GROUP BY rp.id_contrato
+) AS latest_rp ON ct.id_contrato = latest_rp.id_contrato
+LEFT JOIN registro_pago rp ON latest_rp.id_contrato = rp.id_contrato AND latest_rp.fecha_pago = rp.fecha_pago
+WHERE ct.activo = 0
+GROUP BY c.id_cliente;";
 
 $result = mysqli_query($conn, $sql);
 
