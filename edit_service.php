@@ -22,7 +22,7 @@
                     servicio s
             ) AS s ON ct.id_contrato = s.s_id_servicio
             LEFT JOIN wifi wf ON s.s_id_servicio = wf.id_servicio
-            LEFT JOIN registro_pago rp ON s.s_id_servicio = rp.id_servicio
+            LEFT JOIN registro_pago rp ON ct.id_contrato = rp.id_contrato
             WHERE c.id_cliente = $id_cliente;";
             $result =$conn->query($sql);
             if ($result->num_rows > 0) {

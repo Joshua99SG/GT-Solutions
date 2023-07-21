@@ -12,7 +12,7 @@
                     <input type="text" class="form-control" id="function" name="function" value="pay" readonly required hidden>
                     <div class="mb-3" hidden>
                         <label for="id_cliente" class="form-label">ID del Cliente:</label>
-                        <input type="text" class="form-control" id="id_servicio_pago" name="id_servicio" readonly required>
+                        <input type="text" class="form-control" id="id_contrato_pago" name="id_contrato" readonly required>
                     </div>
                     <div class="mb-3">
                         <label for="nombre_cliente" class="form-label">Nombre del cliente:</label>

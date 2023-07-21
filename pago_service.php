@@ -8,14 +8,16 @@
         }
 
         if ($_POST['function'] == 'pay') {
-            $id_servicio = $_POST['id_servicio'];
+            $id_contrato = $_POST['id_contrato'];
             $monto = $_POST['monto'];
             $fecha_pago = $_POST['fecha_pago'];
-            $sql = "INSERT INTO registro_pago (id_servicio, fecha_pago, monto_pago)
-            VALUES ($id_servicio, '$fecha_pago', $monto);";
+            $sql = "INSERT INTO registro_pago (id_contrato, fecha_pago, monto_pago)
+            VALUES ($id_contrato, '$fecha_pago', $monto);";
             if ($conn->query($sql) === TRUE) {
                 echo "El pago ha sido registrado correctamente.";
                 $sql = 'call ActualizarDeudaClientes();';
+                $conn->query($sql);
+                $sql = "call actualizarFechasContrato($id_contrato);";
                 $conn->query($sql);
             } else {
                 echo "Error al registrar el pago: " . $conn->error;

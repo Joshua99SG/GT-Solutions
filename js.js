@@ -60,10 +60,10 @@ function anteriorPasoEdit(pasoAnterior) {
 
 $(".link_pay").click(function(e) {
     e.preventDefault();
-    var id_servicio = $(this).data("id");
+    var id_contrato = $(this).data("id");
     var nombre_cliente = $(this).data("name");
     var monto_pago = $(this).data("monto");
-    $("#id_servicio_pago").val(id_servicio);
+    $("#id_contrato_pago").val(id_contrato);
     $("#nombre_cliente_pago").val(nombre_cliente);
     $("#monto_pago").val(monto_pago);
 })
