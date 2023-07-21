@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2023 at 04:58 AM
+-- Generation Time: Jul 21, 2023 at 05:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -748,7 +748,7 @@ INSERT INTO `contrato` (`id_contrato`, `numero_contrato`, `numero_facturacion`, 
 (308, '20221029', NULL, NULL, NULL, 0, NULL, 269, NULL, NULL, 1, 1222, 1),
 (309, '20221030', NULL, NULL, NULL, 0, NULL, 172, NULL, NULL, 1, 1223, 1),
 (310, '20221031', NULL, NULL, NULL, 0, NULL, 167, NULL, NULL, 1, 1224, 1),
-(517, 'test', '100', '100', '2023-06-30', 100000, NULL, 60000, '2023-08-01', '2023-08-15', 0, 1230, 1);
+(517, 'test', '100', '100', '2023-06-30', 100000, NULL, 60000, '2023-09-01', '2023-09-15', 1, 1230, 1);
 
 -- --------------------------------------------------------
 
@@ -1716,13 +1716,6 @@ CREATE TABLE `registro_pago` (
   `monto_pago` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `registro_pago`
---
-
-INSERT INTO `registro_pago` (`id_pago`, `id_contrato`, `fecha_pago`, `monto_pago`) VALUES
-(17, 517, '2023-07-20', 60000);
-
 -- --------------------------------------------------------
 
 --
@@ -2535,7 +2528,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT for table `registro_pago`
 --
 ALTER TABLE `registro_pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `servicio`
