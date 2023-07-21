@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 08:25 PM
+-- Generation Time: Jul 21, 2023 at 04:58 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -26,22 +26,47 @@ DELIMITER $$
 -- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDeudaClientes` ()   BEGIN
-    DECLARE fecha_actual DATE;
-    SET fecha_actual = CURDATE(); -- Obtiene la fecha actual
+    UPDATE contrato
+SET debe_mensualidad = 1
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM registro_pago rp
+    WHERE rp.id_contrato = contrato.id_contrato
+      AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+);
+
+UPDATE contrato
+SET debe_mensualidad = 0
+WHERE EXISTS (
+    SELECT 1
+    FROM registro_pago rp
+    WHERE rp.id_contrato = contrato.id_contrato
+      AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarFechasContrato` (IN `contrato_id` INT)   BEGIN
+    -- Variables para las fechas actuales y nuevas
+    DECLARE fecha_cobro_actual DATE;
+    DECLARE fecha_corte_actual DATE;
+    DECLARE fecha_cobro_nueva DATE;
+    DECLARE fecha_corte_nueva DATE;
     
-    UPDATE contrato ct
-    LEFT JOIN servicio s ON ct.id_contrato = s.id_contrato
-    SET ct.debe_mensualidad = (
-        MONTH(ct.fecha_cobro) <> MONTH(fecha_actual) OR
-        YEAR(ct.fecha_cobro) <> YEAR(fecha_actual) OR
-        NOT EXISTS (
-            SELECT 1
-            FROM registro_pago rp
-            WHERE rp.id_servicio = s.id_servicio
-              AND MONTH(rp.fecha_pago) = MONTH(fecha_actual)
-              AND YEAR(rp.fecha_pago) = YEAR(fecha_actual)
-        )
-    );
+    -- Obtener las fechas actuales de fecha_cobro y fecha_corte
+    SELECT fecha_cobro, fecha_corte
+    INTO fecha_cobro_actual, fecha_corte_actual
+    FROM contrato
+    WHERE id_contrato = contrato_id;
+    
+    -- Calcular las nuevas fechas sumando un mes a las fechas actuales
+    SET fecha_cobro_nueva = DATE_ADD(fecha_cobro_actual, INTERVAL 1 MONTH);
+    SET fecha_corte_nueva = DATE_ADD(fecha_corte_actual, INTERVAL 1 MONTH);
+    
+    -- Actualizar fecha_cobro y fecha_corte del contrato
+    UPDATE contrato
+    SET fecha_cobro = fecha_cobro_nueva,
+        fecha_corte = fecha_corte_nueva
+    WHERE id_contrato = contrato_id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadas` ()   BEGIN
@@ -723,7 +748,7 @@ INSERT INTO `contrato` (`id_contrato`, `numero_contrato`, `numero_facturacion`, 
 (308, '20221029', NULL, NULL, NULL, 0, NULL, 269, NULL, NULL, 1, 1222, 1),
 (309, '20221030', NULL, NULL, NULL, 0, NULL, 172, NULL, NULL, 1, 1223, 1),
 (310, '20221031', NULL, NULL, NULL, 0, NULL, 167, NULL, NULL, 1, 1224, 1),
-(517, 'test', '100', '100', '2023-07-17', 100000, NULL, 60000, '2023-08-01', '2023-08-15', 1, 1230, 1);
+(517, 'test', '100', '100', '2023-06-30', 100000, NULL, 60000, '2023-08-01', '2023-08-15', 0, 1230, 1);
 
 -- --------------------------------------------------------
 
@@ -1686,7 +1711,7 @@ INSERT INTO `equipo` (`id_equipo`, `equipo`, `mac_address`, `serie`, `id_servici
 
 CREATE TABLE `registro_pago` (
   `id_pago` int(11) NOT NULL,
-  `id_servicio` int(11) NOT NULL,
+  `id_contrato` int(11) NOT NULL,
   `fecha_pago` date DEFAULT NULL,
   `monto_pago` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1695,8 +1720,8 @@ CREATE TABLE `registro_pago` (
 -- Dumping data for table `registro_pago`
 --
 
-INSERT INTO `registro_pago` (`id_pago`, `id_servicio`, `fecha_pago`, `monto_pago`) VALUES
-(6, 517, '2023-07-03', 60000);
+INSERT INTO `registro_pago` (`id_pago`, `id_contrato`, `fecha_pago`, `monto_pago`) VALUES
+(17, 517, '2023-07-20', 60000);
 
 -- --------------------------------------------------------
 
@@ -2450,7 +2475,7 @@ ALTER TABLE `equipo`
 --
 ALTER TABLE `registro_pago`
   ADD PRIMARY KEY (`id_pago`),
-  ADD KEY `fk_registro_pago_servicio` (`id_servicio`);
+  ADD KEY `fk_registro_pago_servicio` (`id_contrato`);
 
 --
 -- Indexes for table `servicio`
@@ -2510,7 +2535,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT for table `registro_pago`
 --
 ALTER TABLE `registro_pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `servicio`
@@ -2568,7 +2593,7 @@ ALTER TABLE `equipo`
 -- Constraints for table `registro_pago`
 --
 ALTER TABLE `registro_pago`
-  ADD CONSTRAINT `fk_registro_pago_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`);
+  ADD CONSTRAINT `fk_registro_pago_servicio` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `servicio`
