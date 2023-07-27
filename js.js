@@ -71,8 +71,10 @@ $(".link_pay").click(function(e) {
 $(".export").click(function(e) {
     e.preventDefault();
     var id_cliente = $(this).data("id");
-    // Redirige al usuario a la página PHP que generará el PDF
-    window.open("export.php?id=" + id_cliente) 
+    //Develop
+    window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente) 
+    //Production
+    //window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
 })
 
 $("#ver_eliminados").click(function(e){
