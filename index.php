@@ -414,6 +414,9 @@ mysqli_close($conn);
                                                                                 <a class="dropdown-item link_pay" data-id="<?php echo $cliente['ct_id_contrato']; ?>" data-name="<?php echo $cliente['nombre_cliente']; ?>" data-monto="<?php echo $cliente['mensualidad']; ?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
                                                                             </li>
                                                                             <li>
+                                                                                <a class="dropdown-item export" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/pdf.png" class="img-fluid dropdown-image" alt="Pago" /> Exportar </a>
+                                                                            </li>
+                                                                            <li>
                                                                                 <a href="#" onclick="redirectToWhatsApp(<?php echo $cliente['telefono']; ?>)" class="dropdown-item">
                                                                                     <img src="./img/whatsapp.png" class="img-fluid dropdown-image" alt="Whatsapp" /> WhatsApp
                                                                                 </a>

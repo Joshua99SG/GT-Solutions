@@ -68,6 +68,15 @@ $(".link_pay").click(function(e) {
     $("#monto_pago").val(monto_pago);
 })
 
+$(".export").click(function(e) {
+    e.preventDefault();
+    var id_cliente = $(this).data("id");
+    //Develop
+    //window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente) 
+    //Production
+    window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
+})
+
 $("#ver_eliminados").click(function(e){
     //Develop
     //window.location.href = "http://localhost/gt_solutions/desactivate.php"
