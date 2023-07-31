@@ -72,9 +72,9 @@ $(".export").click(function(e) {
     e.preventDefault();
     var id_cliente = $(this).data("id");
     //Develop
-    window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente) 
+    //window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente) 
     //Production
-    //window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
+    window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
 })
 
 $("#ver_eliminados").click(function(e){
