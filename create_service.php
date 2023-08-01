@@ -7,7 +7,7 @@
             echo "Error al conectar con la base de datos";
         }
         if ($_POST['function'] == 'create') {
-            $cedula = $_POST['cedula'];
+            $cedula = $_POST['cedula'] ;
             $nombre_cliente = $_POST['nombre_cliente'];
             $telefono = $_POST['telefono'];
             $correo = $_POST['correo'];
@@ -20,9 +20,11 @@
             $tmu = $_POST['TMU'];
             $fecha_instalacion = $_POST['fecha_instalacion'];
             $monto_instalacion = $_POST['monto_instalacion'];
+            $abono_instalacion = $_POST['abono_instalacion'];
             $mensualidad = $_POST['mensualidad'];
             $fecha_cobro = $_POST['fecha_cobro'];
             $fecha_corte = $_POST['fecha_corte'];
+            $moneda = $_POST['moneda'];
     
             $velocidad_contratada = $_POST['velocidad_contratada'];
             $sector_anclado = $_POST['sector_anclado'];
@@ -44,8 +46,8 @@
     
             if ($conn->query($sql_cliente) === TRUE) {
                 $id_cliente_insertado = $conn->insert_id;
-                $sql_contrato = "INSERT INTO contrato (numero_contrato, numero_facturacion, TMU, fecha_instalacion, monto_instalacion, mensualidad, fecha_corte, fecha_cobro, id_cliente)
-                VALUES ('$numero_contrato', '$numero_facturacion', '$tmu', '$fecha_instalacion', $monto_instalacion, $mensualidad, '$fecha_corte', '$fecha_cobro', $id_cliente_insertado);";
+                $sql_contrato = "INSERT INTO contrato (numero_contrato, numero_facturacion, TMU, fecha_instalacion, monto_instalacion, mensualidad, fecha_corte, fecha_cobro, id_cliente, moneda, abono_instalacion)
+                VALUES ('$numero_contrato', '$numero_facturacion', '$tmu', '$fecha_instalacion', $monto_instalacion, $mensualidad, '$fecha_corte', '$fecha_cobro', $id_cliente_insertado, '$moneda', $abono_instalacion);";
     
                 if ($conn->query($sql_contrato) === TRUE) {
                     $id_contrato_insertado = $conn->insert_id;
@@ -80,4 +82,3 @@
         $conn->close();
         header("Location: index.php");
     }
-?>

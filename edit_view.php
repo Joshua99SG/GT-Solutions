@@ -108,7 +108,14 @@
                                             </div>
                                             <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                 <label for="mac_address_1" class="form-label">Mensualidad:</label>
-                                                <input type="text" class="form-control" name="mensualidad" id="edit_mensualidad" placeholder="Sin datos">
+                                                <div class="input-group">
+                                                <select id="edit_moneda" name="moneda">
+                                                        <option value="colones">₡</option>
+                                                        <option value="dolares">$</option>
+                                                    </select>
+                                                    <input type="text" class="form-control" name="mensualidad" id="edit_mensualidad" placeholder="Sin datos">
+                                                </div>
+                                                
                                             </div>
                                             <div class="mb-3 col-12 col-md-6 col-lg-4">
                                                 <label for="fecha_cobro" class="form-label">Fecha de cobro:</label>

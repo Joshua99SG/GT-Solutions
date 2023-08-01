@@ -56,9 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tmu = $_POST['TMU'];
         $fecha_instalacion = $_POST['fecha_instalacion'];
         $monto_instalacion = $_POST['monto_instalacion'];
+        $abono_instalacion = $_POST['abono_instalacion'];
         $mensualidad = $_POST['mensualidad'];
         $fecha_corte = $_POST['fecha_corte'];
         $fecha_cobro = $_POST['fecha_cobro'];
+        $moneda = $_POST['moneda'];
 
         $id_servicio = $_POST['id_servicio'];
         $velocidad_contratada = $_POST['velocidad_contratada'];
@@ -95,84 +97,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error al actualizar datos del cliente: " . $conn->error;
         }
 
-        $sql_contrato = "UPDATE contrato SET
-        numero_contrato = '$numero_contrato',
-        numero_facturacion = '$numero_facturacion',
-        TMU = '$tmu',
-        fecha_instalacion = '$fecha_instalacion',
-        monto_instalacion = $monto_instalacion,
-        mensualidad = $mensualidad,
-        fecha_corte = '$fecha_corte',
-        fecha_cobro = '$fecha_cobro',
-        id_cliente = $id_cliente
-        WHERE id_contrato = $id_contrato;";
+        if (isset($_POST['id_contrato']) && !empty($_POST['id_contrato'])) {
+            $sql_contrato = "UPDATE contrato SET
+            numero_contrato = '$numero_contrato',
+            numero_facturacion = '$numero_facturacion',
+            TMU = '$tmu',
+            fecha_instalacion = '$fecha_instalacion',
+            monto_instalacion = $monto_instalacion,
+            abono_instalacion = $abono_instalacion,
+            mensualidad = $mensualidad,
+            fecha_corte = '$fecha_corte',
+            fecha_cobro = '$fecha_cobro',
+            id_cliente = $id_cliente,
+            moneda = '$moneda'
+            WHERE id_contrato = $id_contrato;";
 
-        if ($conn->query($sql_contrato) === TRUE) {
-            echo "Datos del contrato actualizados correctamente.";
-        } else {
-            echo "Error al actualizar datos del contrato: " . $conn->error;
+            if ($conn->query($sql_contrato) === TRUE) {
+                echo "Datos del contrato actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos del contrato: " . $conn->error;
+            }
         }
 
-        $sql_servicio = "UPDATE servicio SET
-        velocidad_contratada = '$velocidad_contratada',
-        sector_anclado = '$sector_anclado',
-        contra_ppoe = '$contrasena_ppoe',
-        id_contrato = $id_contrato
-        WHERE id_servicio = $id_servicio;";
+        if (isset($_POST['id_servicio']) && !empty($_POST['id_servicio'])) {
+            $sql_servicio = "UPDATE servicio SET
+            velocidad_contratada = '$velocidad_contratada',
+            sector_anclado = '$sector_anclado',
+            contra_ppoe = '$contrasena_ppoe',
+            id_contrato = $id_contrato
+            WHERE id_servicio = $id_servicio;";
 
-        if ($conn->query($sql_servicio) === TRUE) {
-            echo "Datos del servicio actualizados correctamente.";
-        } else {
-            echo "Error al actualizar datos del servicio: " . $conn->error;
+            if ($conn->query($sql_servicio) === TRUE) {
+                echo "Datos del servicio actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos del servicio: " . $conn->error;
+            }
         }
 
-        $sql_equipo_1 = "UPDATE equipo SET
-        equipo = '$equipo_1',
-        mac_address = '$mac_address_1',
-        id_servicio = $id_servicio
-        WHERE id_equipo = $id_equipo_1;";
+        if (isset($_POST['id_wifi']) && !empty($_POST['id_wifi'])) {
+            $sql_wifi = "UPDATE wifi SET
+            nombre_wifi = '$wifi_nombre',
+            contra_wifi = '$wifi_contrasena',
+            id_servicio = $id_servicio
+            WHERE id_wifi = $id_wifi;";
 
-        if ($conn->query($sql_equipo_1) === TRUE) {
-            echo "Datos del equipo actualizados correctamente.";
-        } else {
-            echo "Error al actualizar datos del equipo: " . $conn->error;
+            if ($conn->query($sql_wifi) === TRUE) {
+                echo "Datos del wifi actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos del wifi: " . $conn->error;
+            }
         }
 
-        $sql_equipo_2 = "UPDATE equipo SET
-        equipo = '$equipo_2',
-        mac_address = '$mac_address_2',
-        id_servicio = $id_servicio
-        WHERE id_equipo = $id_equipo_2;";
+        if (isset($_POST['id_equipo_1']) && !empty($_POST['id_equipo_1'])) {
+            $sql_equipo_1 = "UPDATE equipo SET
+            equipo = '$equipo_1',
+            mac_address = '$mac_address_1',
+            id_servicio = $id_servicio
+            WHERE id_equipo = $id_equipo_1;";
 
-        if ($conn->query($sql_equipo_2) === TRUE) {
-            echo "Datos del equipo actualizados correctamente.";
-        } else {
-            echo "Error al actualizar datos del equipo: " . $conn->error;
+            if ($conn->query($sql_equipo_1) === TRUE) {
+                echo "Datos del equipo actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos del equipo: " . $conn->error;
+            }
         }
 
-        $sql_equipo_3 = "UPDATE equipo SET
-        equipo = '$equipo_1',
-        serie = '$serie',
-        id_servicio = $id_servicio
-        WHERE id_equipo = $id_equipo_3;";
+        if (isset($_POST['id_equipo_2']) && !empty($_POST['id_equipo_2'])) {
+            $sql_equipo_2 = "UPDATE equipo SET
+            equipo = '$equipo_2',
+            mac_address = '$mac_address_2',
+            id_servicio = $id_servicio
+            WHERE id_equipo = $id_equipo_2;";
 
-        if ($conn->query($sql_equipo_3) === TRUE) {
-            echo "Datos del equipo actualizados correctamente.";
-        } else {
-            echo "Error al actualizar datos del equipo: " . $conn->error;
+            if ($conn->query($sql_equipo_2) === TRUE) {
+                echo "Datos del equipo actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos del equipo: " . $conn->error;
+            }
         }
+        
+        if (isset($_POST['id_equipo_3']) && !empty($_POST['id_equipo_3'])) {
+            $sql_equipo_3 = "UPDATE equipo SET
+            equipo = '$equipo_1',
+            serie = '$serie',
+            id_servicio = $id_servicio
+            WHERE id_equipo = $id_equipo_3;";
 
-        $sql_wifi = "UPDATE wifi SET
-        nombre_wifi = '$wifi_nombre',
-        contra_wifi = '$wifi_contrasena',
-        id_servicio = $id_servicio
-        WHERE id_wifi = $id_wifi;";
-
-        if ($conn->query($sql_wifi) === TRUE) {
-            echo "Datos del wifi actualizados correctamente.";
-        } else {
-            echo "Error al actualizar datos del wifi: " . $conn->error;
+            if ($conn->query($sql_equipo_3) === TRUE) {
+                echo "Datos del equipo actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos del equipo: " . $conn->error;
+            }
         }
+        
+
+        
     }
     $conn->close();
     header("Location: " . $_SERVER['PHP_SELF']);
@@ -180,19 +199,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $sql = "SELECT c.*, ct.*, ct.id_contrato AS ct_id_contrato, tc.*, s.*, wf.*, rp.*
 FROM cliente c
-JOIN contrato ct ON c.id_cliente = ct.id_cliente
-JOIN tipo_cliente tc ON c.id_tipo_cliente = tc.id_tipo_cliente
-JOIN 
-(
-    SELECT 
-        s.id_servicio AS s_id_servicio,
-        s.velocidad_contratada,
-        s.sector_anclado,
-        s.contra_ppoe
-    FROM 
-        servicio s
-) AS s ON ct.id_contrato = s.s_id_servicio
-LEFT JOIN wifi wf ON s.s_id_servicio = wf.id_servicio
+LEFT JOIN contrato ct ON c.id_cliente = ct.id_cliente
+LEFT JOIN tipo_cliente tc ON c.id_tipo_cliente = tc.id_tipo_cliente
+LEFT JOIN servicio s ON ct.id_contrato = s.id_contrato
+LEFT JOIN wifi wf ON s.id_servicio = wf.id_servicio
 LEFT JOIN (
     SELECT rp.id_contrato, MAX(rp.fecha_pago) AS fecha_pago
     FROM registro_pago rp
@@ -252,11 +262,18 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_free_result($result);
 
-$result = mysqli_query($conn, "CALL ObtenerSumatoriaMensualidadesPagadas()");
+$result = mysqli_query($conn, "CALL ObtenerSumatoriaMensualidadesPagadasColones()");
 
 // Obtener el resultado de la consulta
 $row = mysqli_fetch_assoc($result);
+mysqli_free_result($result);
+mysqli_next_result($conn); // Limpiar resultados antes de la siguiente consulta
 
+$result = mysqli_query($conn, "CALL ObtenerSumatoriaMensualidadesPagadasDolares()");
+
+// Obtener el resultado de la consulta
+$row_dolares = mysqli_fetch_assoc($result);
+mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 
@@ -305,7 +322,7 @@ mysqli_close($conn);
                     <div class="col-md-2">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="text-center">Total mensual cobrado</h4>
+                                <h4 class="text-center">Total mensual cobrado colones</h4>
                             </div>
                             <div class="card-body">
                                 <?php
@@ -316,7 +333,32 @@ mysqli_close($conn);
                                 ?>
                                     <h4 class="text-center">
                                         ₡<?php echo $sumatoria_mensualidades; ?>
-                                </h4>
+                                    </h4>
+                                <?php
+                                } else {
+                                ?>
+                                    <p class="text-center">No hay mensualidades pagadas en el mes actual.</p>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-center">Total mensual cobrado dolares</h4>
+                            </div>
+                            <div class="card-body">
+                                <?php
+
+                                // Mostrar el resultado en la tarjeta de Bootstrap
+                                if ($row_dolares) {
+                                    $sumatoria_mensualidades = $row_dolares['sumatoria_mensualidades'];
+                                ?>
+                                    <h4 class="text-center">
+                                        $<?php echo $sumatoria_mensualidades; ?>
+                                    </h4>
                                 <?php
                                 } else {
                                 ?>
@@ -331,112 +373,111 @@ mysqli_close($conn);
             </div>
         </div>
         <div class="col-1"></div>
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div class="container-fluid mt-5">
-                    <div class="search-section table-container">
-                        <div class="row d-flex justify-content-between mb-5">
-                            <h4 class="table-title title col-6">Administracion de clientes</h4>
-                            <button type="button" class="btn btn-secondary col-2" id="ver_eliminados">Ver eliminados</button>
-                            <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#crearModal">Agregar cliente</button>
-                            <?php
-                            require_once 'create_view.php';
-                            ?>
-                        </div>
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="container-fluid mt-5">
+                <div class="search-section table-container">
+                    <div class="row d-flex justify-content-between mb-5">
+                        <h4 class="table-title title col-6">Administracion de clientes</h4>
+                        <button type="button" class="btn btn-secondary col-2" id="ver_eliminados">Ver eliminados</button>
+                        <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#crearModal">Agregar cliente</button>
+                        <?php
+                        require_once 'create_view.php';
+                        ?>
+                    </div>
 
-                        <div class="row">
-                            <div class="w-100">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="table-responsive" id="div_candidates">
-                                            <table id="table_candidates" class="table table-striped">
-                                                <thead style="background-color: #006AF9;">
-                                                    <tr>
-                                                        <th><input type="checkbox" class="no-sort form-check-input custom-checkbox" id="checkAll" onclick="check_candidates()"></th>
-                                                        <th class="no-sort">Contrato</th>
-                                                        <th class="no-sort">N° Facturacion</th>
-                                                        <th class="no-sort">TMU</th>
-                                                        <th class="no-sort">Nombre cliente</th>
-                                                        <th class="no-sort">Teléfono</th>
-                                                        <th class="no-sort">Localidad</th>
-                                                        <th class="no-sort text-center">Velocidad</th>
-                                                        <th class="no-sort text-center">Debe?</th>
-                                                        <th class="no-sort">Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php if (isset($clientes)) : ?>
-                                                        <?php foreach ($clientes as $cliente) : ?>
-                                                            <tr>
-                                                                <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : ""; ?>>
-                                                                    <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $cliente['numero_contrato']; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $cliente['numero_facturacion']; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $cliente['TMU']; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $cliente['nombre_cliente']; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $cliente['telefono']; ?>
-                                                                </td>
-                                                                <td class="text-truncate">
-                                                                    <?php echo $cliente['localidad']; ?>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <?php echo $cliente['velocidad_contratada']; ?> MB
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <?php echo $cliente['debe_mensualidad'] == 1 ? "Si" : "No"; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="">
-                                                                        <a data-bs-toggle="dropdown" aria-expanded="false">
-                                                                            <i class="bi bi-three-dots-vertical"></i>
-                                                                        </a>
-                                                                        <ul class="dropdown-menu" style="width: 100px;">
-                                                                            <li>
-                                                                                <a class="dropdown-item btn-edit-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/editar.png" class="img-fluid dropdown-image" alt="Gmail" /> Editar</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item btn-details-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/detalles.png" class="img-fluid dropdown-image" alt="Gmail" /> Detalles</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/borrar.png" class="img-fluid dropdown-image" alt="Gmail" /> Eliminar</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item link_pay" data-id="<?php echo $cliente['ct_id_contrato']; ?>" data-name="<?php echo $cliente['nombre_cliente']; ?>" data-monto="<?php echo $cliente['mensualidad']; ?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item export" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/pdf.png" class="img-fluid dropdown-image" alt="Pago" /> Exportar </a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#" onclick="redirectToWhatsApp(<?php echo $cliente['telefono']; ?>)" class="dropdown-item">
-                                                                                    <img src="./img/whatsapp.png" class="img-fluid dropdown-image" alt="Whatsapp" /> WhatsApp
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
+                    <div class="row">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive" id="div_candidates">
+                                        <table id="table_candidates" class="table table-striped">
+                                            <thead style="background-color: #006AF9;">
+                                                <tr>
+                                                    <th><input type="checkbox" class="no-sort form-check-input custom-checkbox" id="checkAll" onclick="check_candidates()"></th>
+                                                    <th class="no-sort">Contrato</th>
+                                                    <th class="no-sort">N° Facturacion</th>
+                                                    <th class="no-sort">TMU</th>
+                                                    <th class="no-sort">Nombre cliente</th>
+                                                    <th class="no-sort">Teléfono</th>
+                                                    <th class="no-sort">Localidad</th>
+                                                    <th class="no-sort text-center">Velocidad</th>
+                                                    <th class="no-sort text-center">Debe?</th>
+                                                    <th class="no-sort">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (isset($clientes)) : ?>
+                                                    <?php foreach ($clientes as $cliente) : ?>
+                                                        <tr>
+                                                            <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : ""; ?>>
+                                                                <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['numero_contrato']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['numero_facturacion']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['TMU']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['nombre_cliente']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['telefono']; ?>
+                                                            </td>
+                                                            <td class="text-truncate">
+                                                                <?php echo $cliente['localidad']; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $cliente['velocidad_contratada']; ?> MB
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $cliente['debe_mensualidad'] == 1 ? "Si" : "No"; ?>
+                                                            </td>
+                                                            <td>
+                                                                <div class="">
+                                                                    <a data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <i class="bi bi-three-dots-vertical"></i>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu" style="width: 100px;">
+                                                                        <li>
+                                                                            <a class="dropdown-item btn-edit-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/editar.png" class="img-fluid dropdown-image" alt="Gmail" /> Editar</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item btn-details-get" data-id="<?php echo $cliente['id_cliente']; ?>" data-bs-toggle="modal" data-bs-target="#editarModal"><img src="./img/detalles.png" class="img-fluid dropdown-image" alt="Gmail" /> Detalles</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item link_delete" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/borrar.png" class="img-fluid dropdown-image" alt="Gmail" /> Eliminar</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item link_pay" data-id="<?php echo $cliente['ct_id_contrato']; ?>" data-name="<?php echo $cliente['nombre_cliente']; ?>" data-monto="<?php echo $cliente['mensualidad']; ?>" data-bs-toggle="modal" data-bs-target="#modalRegistrarPago"><img src="./img/pagar.png" class="img-fluid dropdown-image" alt="Pago" /> Reg.pago </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item export" data-id="<?php echo $cliente['id_cliente']; ?>"><img src="./img/pdf.png" class="img-fluid dropdown-image" alt="Pago" /> Exportar </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" onclick="redirectToWhatsApp(<?php echo $cliente['telefono']; ?>)" class="dropdown-item">
+                                                                                <img src="./img/whatsapp.png" class="img-fluid dropdown-image" alt="Whatsapp" /> WhatsApp
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
 
-                                                                    <div>
-                                                                        <form action="index.php" method="post" id="form_delete_<?php echo $cliente['id_cliente']; ?>">
-                                                                            <input type="hidden" name="function" value="delete">
-                                                                            <input type="hidden" name="id_cliente" value="<?php echo $cliente['id_cliente']; ?>">
-                                                                        </form>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        <?php endforeach; ?>
-                                                    <?php endif; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                                <div>
+                                                                    <form action="index.php" method="post" id="form_delete_<?php echo $cliente['id_cliente']; ?>">
+                                                                        <input type="hidden" name="function" value="delete">
+                                                                        <input type="hidden" name="id_cliente" value="<?php echo $cliente['id_cliente']; ?>">
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -444,7 +485,8 @@ mysqli_close($conn);
                     </div>
                 </div>
             </div>
-            <div class="col-1"></div>
+        </div>
+        <div class="col-1"></div>
     </div>
 
     <?php

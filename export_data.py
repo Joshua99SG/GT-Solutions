@@ -1,4 +1,7 @@
 import pandas as pd
+import pymysql
+    
+import csv
 import re
 
 def import_data():
@@ -32,7 +35,6 @@ def import_data():
         archivo.write(query+"\n")
     archivo.close()
     
-import_data()
     
 def import_data2():
     df = pd.read_csv('Data2.csv', encoding='ISO-8859-1')
@@ -54,3 +56,84 @@ def import_data2():
         query = query.replace('"NULL"', 'NULL')
         archivo.write(query+"\n")
     archivo.close()
+
+def insert_data_from_csv(connection):
+    with open('Data3.csv', 'r', newline='', encoding='ISO-8859-1') as csvfile:
+        csvreader = csv.DictReader(csvfile)
+        for row in csvreader:
+            # Insertar datos en la tabla cliente
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO cliente (nombre_cliente, telefono, email, localidad, coordenadas, id_tipo_cliente, identificacion)
+                                  VALUES (%s, %s, %s, %s, %s, %s, %s)''',
+                               (row['CLIENTE'], row['N TELEFONO'], row['CORREO'],
+                                row['LOCALIDAD'], row['COORDENADAS'], 3, row['CEDULA']))
+
+                id_cliente = cursor.lastrowid
+            # Insertar datos en la tabla contrato
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO contrato (numero_facturacion, TMU, debe_mensualidad, id_cliente, activo, moneda)
+                                  VALUES (%s, %s, %s, %s, %s, %s)''',
+                               (row['N CLIENTE FACT'], row['TMU'], 1, id_cliente, 1, 'colones'))
+
+                id_contrato = cursor.lastrowid
+            # Insertar datos en la tabla servicio
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO servicio (velocidad_contratada, sector_anclado, contra_ppoe, id_contrato)
+                                  VALUES (%s, %s, %s, %s)''',
+                               (re.findall(r'\d+',row['VELOCIDAD SOLICTADA'])[0], row['SECTOR ANCLADO'], row['CONTRA PPOE'], id_contrato))
+
+                id_servicio = cursor.lastrowid
+            # Insertar datos en la tabla equipo (hasta tres equipos)
+            equipos = [(row['EQUIPO 1'], row['MAC ADDRESS1'], row['SERIE']),
+                       (row['EQUIPO 2'], row['MAC ADDRESS2'], row['SERIE']),
+                       (row['EQUIPO 3'], '', row['SERIE'])]
+            for equipo in equipos:
+                if equipo[0]:
+                    with connection.cursor() as cursor:
+                        cursor.execute('''INSERT INTO equipo (equipo, mac_address, serie, id_servicio)
+                                          VALUES (%s, %s, %s, %s)''', (equipo[0], equipo[1], equipo[2], id_servicio))
+            # Insertar datos en la tabla wifi
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO wifi (nombre_wifi, contra_wifi, id_servicio)
+                                  VALUES (%s, %s, %s)''',
+                               (row['WIFI NOMBRE'], row['WIFI CONTRA'], id_servicio))
+        connection.commit()
+        
+        
+        
+def insert_data_from_csv2(connection):
+    with open('Data4.csv', 'r', newline='', encoding='ISO-8859-1') as csvfile:
+        csvreader = csv.DictReader(csvfile)
+        for row in csvreader:
+            # Insertar datos en la tabla cliente
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO cliente (nombre_cliente, telefono, email, localidad, coordenadas, id_tipo_cliente, identificacion)
+                                  VALUES (%s, %s, %s, %s, %s, %s, %s)''',
+                               (row['Cliente'], row['Phone'], row['EmailID'],
+                                row['Sector'] + '|'+ row['Direccion'], row['Coordenadas'], 4, row['Identificacion']))
+
+                id_cliente = cursor.lastrowid
+            # Insertar datos en la tabla contrato
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO contrato (numero_contrato, numero_facturacion, TMU, debe_mensualidad, id_cliente, activo, mensualidad, moneda)
+                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''',
+                               (row['codigo de cliente'], row['CODIGO FACT'],row['TMU'], 1, id_cliente, 1, row['Mensualidad'], 'dolares'))
+
+                id_contrato = cursor.lastrowid
+            # Insertar datos en la tabla servicio
+            with connection.cursor() as cursor:
+                cursor.execute('''INSERT INTO servicio (velocidad_contratada, sector_anclado, contra_ppoe, id_contrato)
+                                  VALUES (%s, %s, %s, %s)''',
+                               (row['Capacidad Mbps'], row['Circuit Number'], row['contra_ppoe'], id_contrato))
+
+                id_servicio = cursor.lastrowid
+        connection.commit()
+ 
+def main():
+    connection = pymysql.connect(host='localhost', user='root', database='gt_solutions')
+    insert_data_from_csv(connection)
+    insert_data_from_csv2(connection)
+    connection.close()
+
+if __name__ == '__main__':
+    main()
