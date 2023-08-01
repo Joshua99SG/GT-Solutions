@@ -24,19 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $sql = "SELECT c.*, ct.*, ct.id_contrato AS ct_id_contrato, tc.*, s.*, wf.*, rp.*
 FROM cliente c
-JOIN contrato ct ON c.id_cliente = ct.id_cliente
-JOIN tipo_cliente tc ON c.id_tipo_cliente = tc.id_tipo_cliente
-JOIN 
-(
-    SELECT 
-        s.id_servicio AS s_id_servicio,
-        s.velocidad_contratada,
-        s.sector_anclado,
-        s.contra_ppoe
-    FROM 
-        servicio s
-) AS s ON ct.id_contrato = s.s_id_servicio
-LEFT JOIN wifi wf ON s.s_id_servicio = wf.id_servicio
+LEFT JOIN contrato ct ON c.id_cliente = ct.id_cliente
+LEFT JOIN tipo_cliente tc ON c.id_tipo_cliente = tc.id_tipo_cliente
+LEFT JOIN servicio s ON ct.id_contrato = s.id_contrato
+LEFT JOIN wifi wf ON s.id_servicio = wf.id_servicio
 LEFT JOIN (
     SELECT rp.id_contrato, MAX(rp.fecha_pago) AS fecha_pago
     FROM registro_pago rp
