@@ -7,7 +7,8 @@ $(document).ready(function () {
     $('#table_candidates').DataTable({
         paging: true,
         lengthChange: true,
-        lengthMenu: [5, 10, 25, 50],
+        lengthMenu: [5, 10, 25, 50, 100],
+	pageLength: 100,
         language: {
             emptyTable: "No hay datos disponibles en la tabla",
             search: '<i class="bi bi-search search-icon"></i>',
@@ -72,9 +73,9 @@ $(".export").click(function (e) {
     e.preventDefault();
     var id_cliente = $(this).data("id");
     //Develop
-    window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente)
+    //window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente)
     //Production
-    //window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
+    window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
 })
 
 $("#ver_eliminados").click(function (e) {
