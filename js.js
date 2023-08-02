@@ -8,7 +8,7 @@ $(document).ready(function () {
         paging: true,
         lengthChange: true,
         lengthMenu: [5, 10, 25, 50, 100],
-	pageLength: 100,
+        pageLength: 100,
         language: {
             emptyTable: "No hay datos disponibles en la tabla",
             search: '<i class="bi bi-search search-icon"></i>',
@@ -34,7 +34,10 @@ $(document).ready(function () {
         bSort: false,
         aaSorting: []
     });
-    create_email_button();
+    if(!location.href.includes("desactivate.php")){
+        create_email_button();
+    }
+    create_delete_button();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -123,10 +126,10 @@ $(".btn-edit-get").click(function (e) {
             $("#edit_nombre_wifi").val(response.cliente.nombre_wifi).prop("disabled", false)
             $("#edit_contra_wifi").val(response.cliente.contra_wifi).prop("disabled", false)
             $("#edit_fecha_instalacion").val(response.cliente.fecha_instalacion).prop("disabled", false)
-            $("#edit_monto_instalacion").val(response.cliente.monto_instalacion).prop("disabled", false)
-            $("#edit_abono_instalacion").val(response.cliente.abono_instalacion).prop("disabled", false)
+            $("#edit_monto_instalacion").val(response.cliente.monto_instalacion ?? 0).prop("disabled", false)
+            $("#edit_abono_instalacion").val(response.cliente.abono_instalacion ?? 0).prop("disabled", false)
             $("#edit_moneda").val(response.cliente.moneda).prop("disabled", false)
-            $("#edit_mensualidad").val(response.cliente.mensualidad).prop("disabled", false)
+            $("#edit_mensualidad").val(response.cliente.mensualidad ?? 0).prop("disabled", false)
             $("#edit_fecha_cobro").val(response.cliente.fecha_cobro).prop("disabled", false)
             $("#edit_fecha_corte").val(response.cliente.fecha_corte).prop("disabled", false)
             $("#edit_TMU").val(response.cliente.TMU).prop("disabled", false)
@@ -171,9 +174,9 @@ $(".btn-details-get").click(function (e) {
             $("#edit_nombre_wifi").val(response.cliente.nombre_wifi).prop("disabled", true)
             $("#edit_contra_wifi").val(response.cliente.contra_wifi).prop("disabled", true)
             $("#edit_fecha_instalacion").val(response.cliente.fecha_instalacion).prop("disabled", true)
-            $("#edit_monto_instalacion").val(response.cliente.monto_instalacion).prop("disabled", true)
-            $("#edit_abono_instalacion").val(response.cliente.abono_instalacion).prop("disabled", true)
-            $("#edit_mensualidad").val(response.cliente.mensualidad).prop("disabled", true)
+            $("#edit_monto_instalacion").val(response.cliente.monto_instalacion ?? 0).prop("disabled", true)
+            $("#edit_abono_instalacion").val(response.cliente.abono_instalacion ?? 0).prop("disabled", true)
+            $("#edit_mensualidad").val(response.cliente.mensualidad ?? 0).prop("disabled", true)
             $("#edit_moneda").val(response.cliente.moneda).prop("disabled", true)
             $("#edit_fecha_cobro").val(response.cliente.fecha_cobro).prop("disabled", true)
             $("#edit_fecha_corte").val(response.cliente.fecha_corte).prop("disabled", true)
@@ -243,6 +246,7 @@ $("#btn-pay").click(function (e) {
 
 
 var email_candidates = [];
+var id_candidates = []
 
 const get_all_checked_candidates = () => {
     var oTable = $('#table_candidates').DataTable({
@@ -263,30 +267,33 @@ const get_all_checked_candidates = () => {
         checked_inputs.each(function (i, checkbox) {
             let checkbox_id = checkbox[0].id;
             let id = parseInt(checkbox_id.substring(9));
-
+            let email = checkbox[0].classList[2]
             var row = checkbox[0].parentNode.parentNode;
-            let candidate = { "email": row.cells[6].innerText };
+            let candidate = { "email": email != undefined ? email : '' };
+            let id_candidate = {"id": id}
             const matching_candidates = email_candidates.filter(obj => obj.email === candidate.email);
-
             if (matching_candidates.length > 0) {
                 email_candidates = email_candidates.filter(obj => obj.email !== candidate.email);
             }
-
             email_candidates = email_candidates.filter(function (candidate) {
                 return checked_inputs.toArray().some(function (checkbox) {
                     var row = checkbox[0].parentNode.parentNode;
-                    let email = row.cells[2].innerText;
+                    let email = row.cells[4].innerText;
                     return candidate.email === email;
                 });
             });
-
             email_candidates.push(candidate);
+            id_candidates.push(id_candidate);
             $("#btn_email").prop('disabled', false);
             $("#btn_email").removeClass('button_send_emails-disabled');
+            $("#btn_delete").prop('disabled', false);
+            $("#btn_delete").removeClass('button_send_emails-disabled');
         });
     } else {
         $("#btn_email").prop('disabled', true);
         $("#btn_email").addClass('button_send_emails-disabled');
+        $("#btn_delete").prop('disabled', false);
+        $("#btn_delete").removeClass('button_send_emails-disabled');
     }
 };
 
@@ -295,10 +302,8 @@ const check_candidates = () => {
         stateSave: true,
         retrieve: true,
     });
-
     var allPages = oTable.fnGetNodes();
     var checkBox = document.getElementById("checkAll");
-
     if (checkBox.checked) {
         $('input[type="checkbox"]', allPages).prop('checked', true);
     } else {
@@ -311,8 +316,14 @@ const check_candidates = () => {
 
 const create_email_button = () => {
     let search_container = $(".btn-wrapper");
-    let email_button = $(`<button  class="button_send_emails button_send_emails-disabled" disabled id="btn_email" data-bs-toggle="modal" data-bs-target="#email_modal"><i class="bi bi-envelope"></i> Enviar correo</button>`);
+    let email_button = $(`<button  class="button_send_emails button_send_emails-disabled me-2" disabled id="btn_email" data-bs-toggle="modal" data-bs-target="#email_modal"><i class="bi bi-envelope"></i> Enviar correo</button>`);
     search_container.append(email_button);
+}
+
+const create_delete_button = () => {
+    let search_container = $(".btn-wrapper");
+    let delete_button = $(`<button  class="button_send_emails button_send_emails-disabled" disabled id="btn_delete" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="bi bi-trash"></i> Eliminar</button>`);
+    search_container.append(delete_button);
 }
 
 $("#send_email").on("click", () => {
@@ -342,6 +353,27 @@ $("#send_email").on("click", () => {
         },
     });
 });
+
+$("#delete_candidates").on("click", () => {
+    id_candidates = [...new Set(id_candidates.map(item=>item.id))]
+    var idsJSON = JSON.stringify(id_candidates);
+    console.log(location.href)
+    $.ajax({
+        url: location.href,
+        method: "POST",
+        data:{
+            ids: idsJSON,
+            function: 'delete_multiple'
+        },
+        success: function(response){
+            console.log('Eliminacion exitosa');
+            location.reload();
+        },
+        error: function(error){
+            console.error('Error al eliminar: ', error)
+        }
+    })
+})
 
 const show_response_modal = () => {
     $("#btn-close-sending-modal").trigger("click");
