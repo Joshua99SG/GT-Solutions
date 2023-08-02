@@ -193,6 +193,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
     }
+    if ($_POST['function'] == 'delete_multiple') {
+        $idsJSON = $_POST['ids'];
+        $idsToDelete = json_decode($idsJSON);
+        $placeholders = implode(',', array_fill(0, count($idsToDelete), '?'));
+        $stmt = $conn->prepare("UPDATE contrato SET activo = 0 WHERE id_cliente IN ($placeholders)");
+        $stmt->execute($idsToDelete);
+    }
     $conn->close();
     header("Location: " . $_SERVER['PHP_SELF']);
 }
@@ -326,7 +333,6 @@ mysqli_close($conn);
                             </div>
                             <div class="card-body">
                                 <?php
-
                                 // Mostrar el resultado en la tarjeta de Bootstrap
                                 if ($row) {
                                     $sumatoria_mensualidades = $row['sumatoria_mensualidades'];
@@ -351,7 +357,6 @@ mysqli_close($conn);
                             </div>
                             <div class="card-body">
                                 <?php
-
                                 // Mostrar el resultado en la tarjeta de Bootstrap
                                 if ($row_dolares) {
                                     $sumatoria_mensualidades = $row_dolares['sumatoria_mensualidades'];
@@ -399,6 +404,7 @@ mysqli_close($conn);
                                                     <th class="no-sort">N° Facturacion</th>
                                                     <th class="no-sort">TMU</th>
                                                     <th class="no-sort">Nombre cliente</th>
+                                                    <th class="no-sort">Email</th>
                                                     <th class="no-sort">Teléfono</th>
                                                     <th class="no-sort">Localidad</th>
                                                     <th class="no-sort text-center">Velocidad</th>
@@ -411,7 +417,7 @@ mysqli_close($conn);
                                                     <?php foreach ($clientes as $cliente) : ?>
                                                         <tr>
                                                             <td <?php echo $cliente['debe_mensualidad'] == 1 ? "style='background-color: red;'" : ""; ?>>
-                                                                <input type="checkbox" class="form-check-input custom-checkbox" id="checkbox-<?php echo $cliente['nombre_cliente']; ?>" onclick="get_all_checked_candidates()">
+                                                                <input type="checkbox" class="form-check-input custom-checkbox <?php echo $cliente['email']; ?>" id="checkbox-<?php echo $cliente['id_cliente']; ?>" data-email="<?php echo $cliente['email']; ?>" onclick="get_all_checked_candidates()">
                                                             </td>
                                                             <td>
                                                                 <?php echo $cliente['numero_contrato']; ?>
@@ -424,6 +430,9 @@ mysqli_close($conn);
                                                             </td>
                                                             <td>
                                                                 <?php echo $cliente['nombre_cliente']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $cliente['email']; ?>
                                                             </td>
                                                             <td>
                                                                 <?php echo $cliente['telefono']; ?>
@@ -521,8 +530,25 @@ mysqli_close($conn);
                     </form>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn modal-close" id="close_email_modal" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn modal-primary" id="send_email">Enviar</button>
+                    <button type="button" class="btn btn-secondary" id="close_email_modal" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="send_email">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Confirmacion de eliminacion</h5>
+                    <button type="button" class="btn-close" id="btn-close-modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar?</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" id="close_email_modal" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="delete_candidates">Eliminar</button>
                 </div>
             </div>
         </div>
