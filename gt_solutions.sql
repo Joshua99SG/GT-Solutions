@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2023 at 07:35 PM
+-- Generation Time: Aug 04, 2023 at 08:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,26 +53,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagada
     SELECT sumatoria AS sumatoria_mensualidades, CURDATE() AS fecha_pago;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_cliente` (IN `contrato_id` INT)   BEGIN
-    DECLARE debe_mensualidad INT;
-    
-    SET debe_mensualidad = (
-        SELECT CASE
-            WHEN EXISTS (
-                SELECT 1
-                FROM registro_pago rp
-                WHERE rp.id_contrato = contrato_id
-                  AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
-            )
-            THEN 0
-            ELSE 1
-        END
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_cliente` (IN `p_id_contrato` INT)   BEGIN
+    UPDATE contrato
+    SET debe_mensualidad = 1
+    WHERE id_contrato = p_id_contrato
+      AND NOT EXISTS (
+        SELECT 1
+        FROM registro_pago rp
+        WHERE rp.id_contrato = contrato.id_contrato
+          AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
     );
 
     UPDATE contrato
-    SET debe_mensualidad = debe_mensualidad
-    WHERE id_contrato = contrato_id;
-    
+    SET debe_mensualidad = 0
+    WHERE id_contrato = p_id_contrato
+      AND EXISTS (
+        SELECT 1
+        FROM registro_pago rp
+        WHERE rp.id_contrato = contrato.id_contrato
+          AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+    );
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_clientes` ()   BEGIN
@@ -2648,7 +2648,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT for table `registro_pago`
 --
 ALTER TABLE `registro_pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `servicio`
