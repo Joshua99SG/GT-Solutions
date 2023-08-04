@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ));
         $context  = stream_context_create($opts);
         #-- Production
-        $res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
+        #$res_credits = json_decode(file_get_contents("http://172.17.0.1:7050/email_service", false, $context));
         #-- Develop
-        #$res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
+        $res_credits = json_decode(file_get_contents("http://host.docker.internal:7050/email_service", false, $context));
         echo json_encode($res_credits);
     }
     if ($_POST['function'] == 'delete') {
@@ -428,7 +428,7 @@ mysqli_close($conn);
                                                             <td>
                                                                 <?php echo $cliente['TMU']; ?>
                                                             </td>
-                                                            <td>
+                                                            <td class="text-truncate" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $cliente['nombre_cliente']; ?>">
                                                                 <?php echo $cliente['nombre_cliente']; ?>
                                                             </td>
                                                             <td hidden>
@@ -437,7 +437,7 @@ mysqli_close($conn);
                                                             <td>
                                                                 <?php echo $cliente['telefono']; ?>
                                                             </td>
-                                                            <td class="text-truncate">
+                                                            <td class="text-truncate" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $cliente['localidad']; ?>">
                                                                 <?php echo $cliente['localidad']; ?>
                                                             </td>
                                                             <td class="text-center">

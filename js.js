@@ -1,5 +1,6 @@
 // Inicializamos la tabla con DataTables
 $(document).ready(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip();
     $('#editarModal').on('show.bs.modal', function (e) {
         // Al abrir el modal, activar la pestaña "Cliente"
         $('#pasosFormularioEdit a[href="#pasoClienteEdit"]').tab('show');
@@ -7,6 +8,8 @@ $(document).ready(function () {
     $('#table_candidates').DataTable({
         paging: true,
         lengthChange: true,
+        autoWidth:true,
+        responsive:true,
         lengthMenu: [5, 10, 25, 50, 100],
         pageLength: 100,
         language: {
@@ -76,23 +79,23 @@ $(".export").click(function (e) {
     e.preventDefault();
     var id_cliente = $(this).data("id");
     //Develop
-    //window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente)
+    window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente)
     //Production
-    window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
+    //window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
 })
 
 $("#ver_eliminados").click(function (e) {
     //Develop
-    //window.location.href = "http://localhost/gt_solutions/desactivate.php"
+    window.location.href = "http://localhost/gt_solutions/desactivate.php"
     //Production
-    window.location.href = "http://178.128.155.183/desactivate.php"
+    //window.location.href = "http://178.128.155.183/desactivate.php"
 })
 
 $("#ver_activos").click(function (e) {
     //Develop
-    //window.location.href = "http://localhost/gt_solutions/index.php"
+    window.location.href = "http://localhost/gt_solutions/index.php"
     //Production
-    window.location.href = "http://178.128.155.183/index.php"
+    //window.location.href = "http://178.128.155.183/index.php"
 })
 
 $(".btn-edit-get").click(function (e) {

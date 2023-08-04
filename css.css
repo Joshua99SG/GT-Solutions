@@ -151,6 +151,18 @@ table.dataTable.no-footer {
   padding: 6px 10px;
 }
 
+#table_candidates{
+  width: 100% !important;
+}
+
+.text-truncate {
+    max-width: 200px; /* Ajusta este valor según tus necesidades */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 .bi-vertical-line::before {
   content: "\2212";
   transform: rotate(90deg);
