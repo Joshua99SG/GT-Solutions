@@ -15,9 +15,7 @@
             VALUES ($id_contrato, '$fecha_pago', $monto);";
             if ($conn->query($sql) === TRUE) {
                 echo "El pago ha sido registrado correctamente.";
-                $sql = 'call ActualizarDeudaClientes();';
-                $conn->query($sql);
-                $sql = "call actualizarFechasContrato($id_contrato);";
+                $sql = "call ps_actualizar_deuda_cliente($id_contrato);";
                 $conn->query($sql);
             } else {
                 echo "Error al registrar el pago: " . $conn->error;
