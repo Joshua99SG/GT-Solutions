@@ -404,7 +404,7 @@ mysqli_close($conn);
                                                     <th class="no-sort">N° Facturacion</th>
                                                     <th class="no-sort">TMU</th>
                                                     <th class="no-sort">Nombre cliente</th>
-                                                    <th class="no-sort">Email</th>
+                                                    <th hidden class="no-sort">Email</th>
                                                     <th class="no-sort">Teléfono</th>
                                                     <th class="no-sort">Localidad</th>
                                                     <th class="no-sort text-center">Velocidad</th>
@@ -431,7 +431,7 @@ mysqli_close($conn);
                                                             <td>
                                                                 <?php echo $cliente['nombre_cliente']; ?>
                                                             </td>
-                                                            <td>
+                                                            <td hidden>
                                                                 <?php echo $cliente['email']; ?>
                                                             </td>
                                                             <td>
