@@ -79,23 +79,23 @@ $(".export").click(function (e) {
     e.preventDefault();
     var id_cliente = $(this).data("id");
     //Develop
-    window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente)
+    //window.open("http://localhost/gt_solutions/export.php?id=" + id_cliente)
     //Production
-    //window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
+    window.open("http://178.128.155.183/export.php?id=" + id_cliente) 
 })
 
 $("#ver_eliminados").click(function (e) {
     //Develop
-    window.location.href = "http://localhost/gt_solutions/desactivate.php"
+    //window.location.href = "http://localhost/gt_solutions/desactivate.php"
     //Production
-    //window.location.href = "http://178.128.155.183/desactivate.php"
+    window.location.href = "http://178.128.155.183/desactivate.php"
 })
 
 $("#ver_activos").click(function (e) {
     //Develop
-    window.location.href = "http://localhost/gt_solutions/index.php"
+    //window.location.href = "http://localhost/gt_solutions/index.php"
     //Production
-    //window.location.href = "http://178.128.155.183/index.php"
+    window.location.href = "http://178.128.155.183/index.php"
 })
 
 $(".btn-edit-get").click(function (e) {
