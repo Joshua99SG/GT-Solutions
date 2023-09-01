@@ -16,6 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `gt_solutions`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gt_solutions` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `gt_solutions`;
+
+--
 -- Table structure for table `cliente`
 --
 
@@ -273,6 +281,189 @@ LOCK TABLES `wifi` WRITE;
 INSERT INTO `wifi` VALUES (2129,'Orlando','Dylan2009',2376),(2130,'Dj profe','Dajo2728',2377),(2131,'Familia Sibaja Blanco','mase2626',2378),(2132,'Familia Cruz Cruz','Ailana1820',2379),(2133,'Lic. M eugenia','maru2608',2380),(2134,'MILO','2518161714',2381),(2135,'Esquivel','Coco1234',2382),(2136,'Familia Gonzalez Vargas','recarguenlimpios',2383),(2137,'Vecosta','Meva4850',2384),(2138,'Familia Mendoza','Familiamendoza2020',2385),(2139,'Casa Abelina','123queso',2386),(2140,'FBC','Perla2003',2387),(2141,'Familia Vargas Carrillo','*vargas2002*Jimenezvar20',2388),(2142,'Familia Alfaro','26598194',2389),(2143,'Cascabel','Cscbl1999!',2390),(2144,'INTERNET CASA','M*VZ%g36&B$n',2391),(2145,'Luigi','luip2053',2392),(2146,'Castillo','Mari2430',2393),(2147,'Barboza Camacho','BarbozA2000*',2394),(2148,'Familia Sandoval Perez','facape2021',2395),(2149,'Familia Cortes Vega','19971993',2396),(2150,'Familia Carrillo Picado','199937368',2397),(2151,'Familia Elizondo Hernandez','Colo2018',2398),(2152,'Familia Chacon Vasques ','17112308',2399),(2153,'Finca el Angel\nMathias','alejandra1984\nalev1984',2400),(2154,'N/A','N/A',2401),(2155,'Familia Venegas B.','Fwkam849',2402),(2156,'Familia Vargas','DeVaAg1991!',2403),(2157,'SKE','sdxc4567',2404),(2158,'Casa DKS','luna4393',2405),(2159,'INALI','corrales2020',2406),(2160,'Familia Carrillo Gomez','Isai/2020',2407),(2161,'Escuela Los Angeles','Esc123456*',2408),(2162,'Pollera','Jorgillo21*',2409),(2163,'N/A','N/A',2410),(2164,'Familia Matarrita Salazar','2021FM59130',2411),(2165,'VENZU','Pita2021',2412),(2166,'Rojas Castillo\nCastillo','20122020\n20122021',2413),(2167,'Sanchez Cruz','Alex2021',2414),(2168,'Mary Angel','mary2021*',2415),(2169,'Hermanos','s18b26d17r3',2416),(2170,'TitaDennis internet','TatiTita2001@',2417),(2171,'','',2418),(2172,'Tango','Massri.11',2419),(2173,'Gutierrez  ','Massri.11',2420),(2174,'PINEDA','canelo15',2421),(2175,'Casa Huacas','Gemi2020',2422),(2176,'Leidy','cusa2014',2423),(2177,'Obando Sandoval','FAOSA1582',2424),(2178,'Familia Vargas Campos','2061992',2425),(2179,'Porras','porras2437',2426),(2180,'JB','Bradley0509',2427),(2181,'Fam Bermudez','Puravida23*',2428),(2182,'Hellen','504040108',2429),(2183,'Orozco','Santiago231',2430),(2184,'Rancho Cortez','lapita2020',2431),(2185,'Fam Barrantes','derian74',2432),(2186,'Familia Elizondo Perez','21031946',2433),(2187,'Newton','Abarca78',2434),(2188,'','',2435),(2189,'Super Huacas','MAHG0000',2436),(2190,'Axel','patricia15',2437),(2191,'GraCar HouseGraCar House 2','Solocree127ElianJose05',2438),(2192,'Esc Huacas','fonseca28',2439),(2193,'BMS','BMS1938*',2440),(2194,'Alanna','18011980*',2441),(2195,'DanielaNana','aleinad1429292303',2442),(2196,'Familia Perez','L19H17I23N19',2443),(2197,'Macela','mrcl1234',2444),(2198,'Mario','503530881',2445),(2199,'Familia Aguilar Hernandez','aguilar83*',2446),(2200,'','',2447),(2201,'N/A','N/A',2448),(2202,'Vasquez Ruiz','vasquez06*',2449),(2203,'Familia HP','20jeykey21',2450),(2204,'N/A','N/A',2451),(2205,'Family G','Jime0215*',2452),(2206,'Familia MYC','Alberto2898',2453),(2207,'Swedish Embasy','Sweden20',2454),(2208,'','',2455),(2209,'','',2456),(2210,'','',2457),(2211,'Familia Coto Carrillo','CotoC21*',2458),(2212,'Casa Daniela','88918731',2459),(2213,'Casa gostosa','jungleview',2460),(2214,'Casa Celeste','Halamadrid',2461),(2215,'ATHOS','pela3089',2462),(2216,'','',2463),(2217,'','',2464),(2218,'','',2465),(2219,'Sury','geroge1323',2466),(2220,'','',2467),(2221,'OBRECAR','123456789lexi',2468),(2222,'Familia Mendoza','Mendoza21*',2469),(2223,'Casa','Granados123',2470),(2224,'ThurRica','ThurRica28621',2471),(2225,'','',2472),(2226,'Casa Magna','cASAmAGNA',2473),(2227,'Maria','24245824',2474),(2228,'Lille 1','9854321',2475),(2229,'Yessica','1.03E+11',2476),(2230,'Casa Baoba','casabaoba007',2477),(2231,'MINORyA','malavista',2478),(2232,'Pura Vida','shama2022',2479),(2233,'Leandro','prendas2013',2480),(2234,'Oriyir','11047074',2481),(2235,'Eliecer Fabiana','pisotillo83',2482),(2236,'zopilote1','zopilote2',2483),(2237,'SIN WIFI','SIN WIFI',2484),(2238,'A.F.F.G','Gustavo2301',2485),(2239,'','',2486),(2240,'Familia JP','evans2007jp',2487),(2241,'Familia Artavia','Artavia01*',2488),(2242,'casa maquenco','sylvain01',2489),(2243,'THILE','thile0818',2490),(2244,'Fernanda','ferlv1409',2491),(2245,'harmonicconect','Harmonic',2492),(2246,'WG01','Andres01',2493),(2247,'Casa 2','barbieforest',2494),(2248,'Casa MACK','Ponedoras7',2495),(2249,'Jose Daniel','JDaniel0104',2496),(2250,'JOE','Q1W2E3R4T',2497),(2251,'Familia Diaz','Andres2014',2498),(2252,'','',2499),(2253,'Familia Hernandez Venegas','Hdezvene07',2500),(2254,'LEO','Ministerio03',2501),(2255,'Familia H.G','Gaitan1483',2502),(2256,'FGZ','senedama',2503),(2257,'Junior Quiros Vargas ','nuno2006qv',2504),(2258,'POCHO','pocho01142181',2505),(2259,'MUNOZ JIMENEZ','cholo259',2506),(2260,'Familia Barrantes','ValE2018@#',2507),(2261,'Yeimi','18311227',2508),(2262,'Familia Salazar','20212231',2509),(2263,'Lidieth Diaz','diaz1970',2510),(2264,'','',2511),(2265,'Casa Carina','44444444',2512),(2266,'Garcia','Pilsen1989',2513),(2267,'Familia-Rodriguez','deowwi1104',2514),(2268,'','',2515),(2269,'CNWEED','87654321',2516),(2270,'Casa Ora','msthomas57inc!',2517),(2271,'Nazareth','carrilloelizondo',2518),(2272,'Grace','jimenez89',2519),(2273,'Cielo','jane@home2022',2520),(2274,'Obregon Sanchez','YaDlirle763F',2521),(2275,'Bella Mar','20227314',2522),(2276,'House Colibri','1234dgvg4321',2523),(2277,'Familia Brenes','brenes2022',2524),(2278,'','',2525),(2279,'Familia Aguero Valverde','Aguero255524',2526),(2280,'','',2527),(2281,'Familia Salazar Gomez','Adriel1521*',2528),(2282,'Chamma','Mermaid2019!',2529),(2283,'Familia Kast Sanchez','123456789',2530),(2284,'Cabinas Olas','Surf7751',2531),(2285,'Familia Mendez Gusman','12345678Yu',2532),(2286,'Casa La Paz','22-Apr',2533),(2287,'Casa Silencio','Jorge2022',2534),(2288,'Casa Tranquila','Juanka2022',2535),(2289,'Super Bahia','n^Xu^6h9iU$&ddcB!*9vM@YiZc#QVu!3*5ZM*FhBwM$26Mqu@@g5tZ4EHnJh^RR',2536),(2290,'ANTON','123456789',2537),(2291,'Mono Loco','Pocoloco',2538),(2292,'','',2539),(2293,'Familia Rojas Batista','Maikel123',2540),(2294,'Jobel Pinea','5545jcyv',2541),(2295,'Casa Azul._Udo','NoelleEstelle2012',2542),(2296,'Casa Frank 1','12345678',2543),(2297,'','',2544),(2298,'','',2545),(2299,'Samarica','Cubera83',2546),(2300,'','',2547),(2301,'Garcia Perez','3121624',2548),(2302,'Casa Marina','casamarina2022',2549),(2303,'Jayda walt','22-Aug',2550),(2304,'Zeledon Nunez','18300104',2551),(2305,'Benjamin','maheva2022',2552),(2306,'C.D.R. Pilangosta','xfncdr2022',2553),(2307,'Casa Jungle','Jungle22',2554),(2308,'Casa Tranquila','esquivel22',2555),(2309,'Casa Jungle','Puravida',2556),(2310,'Coca Pan','Lolas1629',2557),(2311,'Casa Guarda Parques','mobulabirostris',2558),(2312,'Casa Ron','r1hr312973',2559),(2313,'Colibri','costarica',2560),(2314,'Fam Vegas Alcoocer','Granados1990',2561),(2315,'Salazar Mora','Gerardo5156114',2562),(2316,'Casa 2','28282828',2563),(2317,'Zeneida','229151110',2564),(2318,'','',2565),(2319,'','',2566),(2320,'Casa Max','135792468',2567),(2321,'','',2568),(2322,'Matarrita','',2569),(2323,'Casa  Fonseca','fonseca05',2570),(2324,'','',2571),(2325,'','',2572),(2326,'','',2573),(2327,'','',2574),(2328,'','',2575),(2329,'Familia Valverde','20737588',2576),(2330,'CasaSandra','Maurizio',2577),(2331,'Kelu','Todomayuscula',2578),(2332,'PIZZA FRNAK','lolita23',2579),(2333,'Fran Venegas','AniFer0804',2580),(2334,'SAS','sisi7669',2581),(2335,'Casa Vannesa','',2582),(2336,'116chapala','A((.P1us',2583),(2337,'','',2584),(2338,'Casa 1','12345678',2585),(2339,'','',2586),(2340,'','',2587),(2341,'','',2588),(2342,'NACHOINTERNET','1234567890',2589),(2343,'Casa ','pequena',2590),(2344,'Familia Gonzales Diaz','Valentina2018',2591),(2345,'Caliope PJ','caliopeatenea',2592),(2346,'Rancho Yellowstone','MRBAVH23',2593),(2347,'','',2594),(2348,'Rumina Come Tamales','M1mic1t428',2595),(2349,'Casa Q','delicias2023',2596),(2350,'Maribel','24041979',2597),(2351,'','',2598),(2352,'','',2599),(2353,'','',2600),(2354,'GSM','Sarita1799',2601),(2355,'Alanna','A070821*',2602),(2356,'Castrillo','87654321',2603),(2357,'Sara','12345678',2604),(2358,'Casa Cecilie','12345678',2605),(2359,'','',2606),(2360,'Casa Bliss','12345678',2607),(2361,'PROF ALLAN','katana1984',2608),(2362,'Mary','Ema243188',2609),(2363,'','',2610),(2364,'Tyson','Homerun09',2611),(2365,'Jefferson','kenai123',2612),(2366,'','',2613),(2367,'Familia Vega Mendoza','Mc14121$',2614),(2368,'The Yorringtons','Yorringtons2001',2615),(2369,'','',2616),(2370,'Filitico','Potrero0203',2617),(2371,'Los Antonio','Enjoy2022',2618),(2372,'Carlos','Carlos300!',2619),(2373,'','',2620),(2374,'Casagaia','shadow50',2621),(2375,'Casa Sandra','Timo2015',2622),(2376,'CarolMichael House','SAWG212023',2623),(2377,'','',2624),(2378,'Nadine','20021065',2625),(2379,'','',2626),(2380,'Familia Valverde Matarrita','mnbv1234',2627),(2381,'LORO1','DONALuisa1',2628),(2382,'Mendoza','LFMC1996',2629),(2383,'CASA  ','labebita19',2630),(2384,'YANINA','Yanina34',2631),(2385,'FAMILIA RUIZ','lila2023',2632),(2386,'CASA ESTRELLAS','CasaEstrellas2023',2633),(2387,'Familia Quiros Picado','FAQP1720',2634),(2388,'Holshe Jecke','Frieda2909',2635),(2389,'GENESIS','W31011655423X',2636),(2390,'Jose Angel Montiel','jamt1220',2637),(2391,'','',2638),(2392,'','',2639),(2393,'Ismael','18202102',2640),(2394,'','',2641),(2395,'sin wifi','sin wifi',2642),(2396,'Casita Iguana','Matilori23',2643),(2397,'Carazo','Brittany',2644),(2398,'JLCR','JLCR0411',2645),(2399,'Casa Marina','cabanamarina',2646),(2400,'Barrantes','MORTADELA01',2647),(2401,'Neyman','Victoria2019',2648),(2402,'ELECTRICOS','Yomar.1986',2649),(2403,'Soldadores','Nov-85',2650),(2404,'Familia Castillo','ODKJK2023',2651),(2405,'MARY','58590623',2652),(2406,'','',2653),(2407,'Familia Bustos Aguilar','mnstf13891',2654),(2408,'Fabi','Faby0514',2655),(2409,'Familia Rojas','061024RSQ',2656),(2410,'','',2657),(2411,'Turco','98765432',2658),(2412,'','',2659),(2413,'Butterfly House','SandaiwaSince2023',2660),(2414,'Repuestos Z','sofimZ26',2661),(2415,'','',2662),(2416,'SANCHEZ CASTRILLO','emily14.',2663),(2417,'Elena','12345678',2664),(2418,'Iguana','jaco2023',2665),(2419,'Familia Herrera Jimenez','Memosajo',2666),(2420,'Drago','j4s2M19v3821',2667),(2421,'Herrera Rojas','204071020',2668),(2422,'Familia RQ','Alejandro',2669),(2423,'Familia Gonzalez Alan','SamusyO13',2670),(2424,'Garden House','Tevy0210',2671),(2425,'Rustic cabin','Valechar18',2672),(2426,'los tres mosqueteros','Ianf2023',2673),(2427,'Casa JM','abramliam',2674),(2428,'Rojas','Evan04carmona20',2675),(2429,'Familia Matamoros','nina2023',2676),(2430,'Cruz Sanchez','CruzSanchez2023',2677),(2431,'jose','jmvr1962',2678),(2432,'Familia Matarrita','Hermanos2086',2679),(2433,'RIVUS','1040710',2680),(2434,'','',2681),(2435,'','',2682),(2436,'','',2683),(2437,'Fanny Maria','s@m@r@CR24',2684),(2438,'','',2685),(2439,'Karen','Darieth23',2686),(2440,'Familia Gomez','501800702',2687),(2441,'Familia Smith','Samara23',2688),(2442,'Rancho Valverde','vega0971',2689),(2443,'Rocio','toyotara',2690),(2444,'','',2691),(2445,'Fayramiya','fayramiya01',2692),(2446,'Joss','19891978',2693),(2447,'Mango','Josefina',2694),(2448,'Familia Marin ','FAFR3031',2695),(2449,'Cuesta Grande','Business',2733),(2450,'','',2734),(2451,'FISIOWELLNESS','Fisio2023',2735),(2452,'','',2736),(2453,'','',2737),(2454,'','',2738),(2455,'Integridad Estructural','Integridad2585',2739),(2456,'No Pasa Nada ','Loranger37',2740),(2457,'Samara Club','12345678',2741),(2458,'Valentina','12251899',2742),(2459,'Familia Obando','2104jlpz',2743),(2460,'Familia Obando','2104jlpz',2744),(2461,'Casa Loma ','12345678',2745),(2462,'','',2746),(2463,'','',2747),(2464,'','',2748),(2465,'Christine848','16041967',2749);
 /*!40000 ALTER TABLE `wifi` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'gt_solutions'
+--
+/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
+/*!50106 DROP EVENT IF EXISTS `sh_actualizar_fecha_contratos` */;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = '+00:00' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `sh_actualizar_fecha_contratos` ON SCHEDULE EVERY 1 MONTH STARTS '2023-09-04 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    CALL ps_actualizar_fecha_contratos();
+    CALL ps_actualizar_deuda_clientes();
+END */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+DELIMITER ;
+/*!50106 SET TIME_ZONE= @save_time_zone */ ;
+
+--
+-- Dumping routines for database 'gt_solutions'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `ObtenerSumatoriaMensualidadesPagadasColones` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadasColones`()
+BEGIN
+    DECLARE sumatoria DECIMAL(10, 2);
+    
+    SELECT SUM(rp.monto_pago) INTO sumatoria
+    FROM registro_pago rp
+    INNER JOIN contrato c ON rp.id_contrato = c.id_contrato
+    WHERE 
+        MONTH(rp.fecha_pago) = MONTH(CURDATE()) AND
+        YEAR(rp.fecha_pago) = YEAR(CURDATE()) AND
+        c.moneda = 'colones';
+
+    SELECT sumatoria AS sumatoria_mensualidades, CURDATE() AS fecha_pago;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ObtenerSumatoriaMensualidadesPagadasDolares` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadasDolares`()
+BEGIN
+    DECLARE sumatoria DECIMAL(10, 2);
+    
+    SELECT SUM(rp.monto_pago) INTO sumatoria
+    FROM registro_pago rp
+    INNER JOIN contrato c ON rp.id_contrato = c.id_contrato
+    WHERE 
+        MONTH(rp.fecha_pago) = MONTH(CURDATE()) AND
+        YEAR(rp.fecha_pago) = YEAR(CURDATE()) AND
+        c.moneda = 'dolares';
+
+    SELECT sumatoria AS sumatoria_mensualidades, CURDATE() AS fecha_pago;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ps_actualizar_deuda_cliente` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_cliente`(IN `p_id_contrato` INT)
+BEGIN
+    UPDATE contrato
+    SET debe_mensualidad = 1
+    WHERE id_contrato = p_id_contrato
+      AND NOT EXISTS (
+        SELECT 1
+        FROM registro_pago rp
+        WHERE rp.id_contrato = contrato.id_contrato
+          AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+    );
+
+    UPDATE contrato
+    SET debe_mensualidad = 0
+    WHERE id_contrato = p_id_contrato
+      AND EXISTS (
+        SELECT 1
+        FROM registro_pago rp
+        WHERE rp.id_contrato = contrato.id_contrato
+          AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+    );
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ps_actualizar_deuda_clientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_clientes`()
+BEGIN
+    UPDATE contrato
+SET debe_mensualidad = 1
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM registro_pago rp
+    WHERE rp.id_contrato = contrato.id_contrato
+      AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+);
+
+UPDATE contrato
+SET debe_mensualidad = 0
+WHERE EXISTS (
+    SELECT 1
+    FROM registro_pago rp
+    WHERE rp.id_contrato = contrato.id_contrato
+      AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
+);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ps_actualizar_fecha_contratos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_fecha_contratos`()
+BEGIN
+    UPDATE contrato
+    SET fecha_cobro = DATE_ADD(fecha_cobro, INTERVAL 1 MONTH),
+        fecha_corte = DATE_ADD(fecha_corte, INTERVAL 1 MONTH);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -283,4 +474,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-01 14:33:21
+-- Dump completed on 2023-09-01 14:39:43
