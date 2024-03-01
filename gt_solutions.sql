@@ -1,31 +1,330 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 01, 2023 at 05:12 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: gt_solutions
+-- ------------------------------------------------------
+-- Server version	8.0.36-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `gt_solutions`
+-- Current Database: `gt_solutions`
 --
 
-DELIMITER $$
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gt_solutions` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `gt_solutions`;
+
 --
--- Procedures
+-- Table structure for table `cliente`
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadasColones` ()   BEGIN
+
+DROP TABLE IF EXISTS `cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cliente` (
+  `id_cliente` int NOT NULL AUTO_INCREMENT,
+  `identificacion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nombre_cliente` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telefono` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `localidad` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `coordenadas` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_tipo_cliente` int NOT NULL,
+  PRIMARY KEY (`id_cliente`),
+  KEY `fk_cliente_tipo_cliente` (`id_tipo_cliente`),
+  CONSTRAINT `fk_cliente_tipo_cliente` FOREIGN KEY (`id_tipo_cliente`) REFERENCES `tipo_cliente` (`id_tipo_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=3566 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cliente`
+--
+
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (3097,'','luis Orlando Rojas','8640-3282','','Los Angeles','10.078495, -85.393794',3),(3098,'','Royner Rodriguez Castro','8462-0817','','Los Angeles','10.075522, -85.395664',3),(3099,'','Osvaldo Sibaja Soto','8413-1820','','Los Angeles','10.077236, -85.395953',3),(3100,'','Walter Cruz Fonseca','8345-7587','','Los Angeles','10.077117, -85.395427',3),(3101,'','Maria Eugenia Castro Villalobos','8812-5847','','Los Angeles','10.07577, -85.396372',3),(3102,'','Jorge Brayan Sandoval Vega','8698-2661','','Los Angeles','10.076816, -85.396693',3),(3103,'','Maria De los Angeles Esquivel','8924-7821','','Los Angeles','10.077003, -85.395554',3),(3104,'','Yesenia Gonzalez Vargas','8512-9170','','Pita rayada','10.038719, -85.383191',3),(3105,'','Enid Venegas Acosta','8916-9987','','Los Angeles','10.079589, -85.383626',3),(3106,'','Miguel Angel Mendoza Perez','2659-9321','','Los Angeles','10.078379, -85.393137',3),(3107,'','Christian Carrillo Torres','8832-4526','','Los Angeles','10.075202, -85.393416',3),(3108,'','Cristian Vega Carrillo','6070-0590','','Pita rayada','10.042111, -85.386683',3),(3109,'','Maikol Vargas Carrillo','8440-9535','','Pita rayada','10.039538, -85.383594',3),(3110,'','Rosa Irene Castillo Alfaro','8430-7777','','El Ceiba','',3),(3111,'','Francisco Mesen Fernandez','8313-1247','','Pita rayada','10.036105, -85.38759',3),(3112,'','Blanca Rosa Venegas ENID','8526-0091','','Los Angeles','10.079589, -85.383626',3),(3113,'','Luigi Pellegrini ','8416-4360','','Pita rayada','10.036723, -85.385772',3),(3114,'','Magaly Castillo Castillo','8486-7963','','Pita rayada','10.0363, -85.386855',3),(3115,'','Emilce Camacho Arquiar','8604-0074','','Huacas','10.023245, -85.356216',3),(3116,'','Gina Sandoval','6101-0096','','Pilangosta','10.032378, -85.409761',3),(3117,'','Leydi Carrillo cortes','84703211','','Pita rayada','10.042892, -85.386351',3),(3118,'','Jennifer Carrillo Picado','8681-2337','','Pita rayada','10.043642, -85.387284',3),(3119,'','Juan Carlos Elizondo Hernandez','8498-0782','','Pita rayada','10.042882, -85.386941',3),(3120,'','Mercedes Vasquez Rodriguez','8925-3271','','Huacas','10.029055, -85.367779',3),(3121,'','Alejandra Lara Vasquez','8370-1198','','Los Angeles','10.079977, -85.388486',3),(3122,'','Roger Cuesta Grande','REGALIA','','Cuesta Grande','10.002075, -85.512481',3),(3123,'','Keiryn Iveth Venegas Rodriguez','8520-4255','','Los Angeles','10.077695, -85.394178',3),(3124,'','Dennis Vargas Aguero','6006-0845','','Pita rayada','10.043473, -85.386882',3),(3125,'','Katiana Esquivel Venegas','8707-9129','','Los Angeles','10.077141, -85.396854',3),(3126,'','Diego Castro','8367-2326','','Los Angeles','10.077141, -85.396854',3),(3127,'','Israel Retana','7093-0626','','Pita rayada','10.048338, -85.388556',3),(3128,'','Jairo Carrillo Gomez','8399-7934','','Huacas','10.021417, -85.363563',3),(3129,'','Escuela Los Angeles','8536-0984','','Los Angeles','',3),(3130,'','Jorge Armando Esquivel','8701-2909','','Lapas','10.081059, -85.374652',3),(3131,'','Victor Culiyin','REGALIA','','Los Cerrillos','10.088789, -85.394264',3),(3132,'','Doris Salazar Barrantes','8759-8079','','Pita rayada','10.040632, -85.383674',3),(3133,'','Ruben Venegas Zu¤iga','8303-4138','','Pita rayada','10.042079, -85.382226',3),(3134,'','Jairo Rojas Vargas','8314-6543','','Lapas','10.08608, -85.377213',3),(3135,'','Danilo Sanchez Cruz','8302-1335','','Lapas','10.087152, -85.376832',3),(3136,'','Leida Cruz Moreno','8701-2456','','Lapas','10.083423, -85.376071',3),(3137,'','Flory Castillo Badilla','8989-2442','','Lapas','10.085329, -85.376376',3),(3138,'','Dennis Vargas Aguero','8910-4928','','Pita rayada','10.034451, -85.386088',3),(3139,'','','','','','',3),(3140,'','Alfonso Gutierrez Sibaja','8879-9227','','Huacas','10.0269, -85.373342',3),(3141,'','Adilio Gutierrez Ramirez','8821-4430','','Huacas','10.024106, -85.374876',3),(3142,'','Marcia Pineda Castrillo','8996-5931','','Arenas','10.048245, -85.397779',3),(3143,'','Melvin Fonseca Cruz','8378-0291','','Huacas','10.025157, -85.373589',3),(3144,'','Leydi Carrillo cortes','84703211','','Pita rayada','10.042385, -85.38479',3),(3145,'','Yanori Sandoval Perez','8436-0746','','Pilangosta','10.032357, -85.409176',3),(3146,'','Lilly Campos Garcia','8822-2622','','Arenas','10.055698, -85.402124',3),(3147,'','Yeimy Porras Boza','6036-7844','','Los Angeles','10.074978, -85.393848',3),(3148,'','Jhon Bradley','8702-4855','','Huacas','0.024438, -85.376356',3),(3149,'','Elena Bermudez Villalobos','8920-4610','','Los Angeles','10.074824, -85.392606',3),(3150,'','Ronaldo G¢mez espinoza','7079-9755','','La Libertad','10.064668, -85.430336',3),(3151,'','Julio Cesar Poveda Orozco','8914-1943','','Lapas','10.085752, -85.376379',3),(3152,'','Laura Mireya Corrales Vasquez','6041-0017','','Pita rayada','10.042174, -85.383449',3),(3153,'','Edwin Barrantes Elizondo','8372-9259','','Huacas','10.018088, -85.363943',3),(3154,'','Juan elizondo  Badilla','8850-9432','','huacas','10.01728, -85.363728',3),(3155,'','Diego Abarca Espinoza','8585-6130','','Huacas','',3),(3156,'','','','','','',3),(3157,'','Marcos Batista','8320-6234','','Huacas','10.019256, -85.3633',3),(3158,'','Gerardo Enrique Venegas Aguilar ','88028874','','Los Angeles','10.07685, -85.395696',3),(3159,'','Dixy Granados Cardenas','8333-1184','','Los Angeles','10.079913, -85.389902',3),(3160,'','Leonardo Fonseca Rodriguez','8751-4345','','Huacas','10.022737, -85.366033',3),(3161,'','Bernal Sanchez Umaña','8788-8856','','Los Angeles','10.074716, -85.397391',3),(3162,'','Rodney Villalobos Mu¤oz','8467-1110','','Los Angeles','10.078297, -85.393475',3),(3163,'','Adriana Perez Perez ','8410-2030','','Matambuguito','10.105071, -85.414049',3),(3164,'','Heilyn Perez Perez','6049-9740','','Matambuguito','10.10402, -85.41418',3),(3165,'','Marcela Elizondo  Prendas','8380-1124','','Huacas','10.024375, -85.359279',3),(3166,'','Mario Alberto Carrillo Vasquez','8656-6047','','Los Angeles','10.074505, -85.396007',3),(3167,'','Maria Yesenia Hernandez O.','8400-5154','','Matambuguito','10.105984, -85.413279',3),(3168,'','Terry Lewis Invernadero','','','Carillo','',3),(3169,'','Carlos Jimnez (ESTRADA)','REGALIA','','Carrillo ','9.889852, -85.452758',3),(3170,'','Karen Ruiz Zu¤iga','8552-2421','','Matambuguito','10.104413, -85.409347',3),(3171,'','Katia Hernandez','8801-6723','','Matambuguito','10.104844, -85.408864',3),(3172,'','Franz werkstetter','REGALIA','','Amaranta','9.908484, -85.530752',3),(3173,'','Maria del Carmen Gomez E.','8578-6258','','La Libertad','10.065175, -85.442658',3),(3174,'','Marina Mendoza Camacho','6342-7011','','La Libertad','10.062845, -85.439032',3),(3175,'','Johan Sandstrom','46705516200','','Huacas','10.0255, -85.377239',3),(3176,'','Diego Mendoza','8719-2108','','Esterones','9.88577,-85.56623',3),(3177,'','Rod  Bosse','864 2054054','','Carrillo','9.899502,-85.464761',3),(3178,'','Casey winn ( Antiguo pacho)','86137675','','Buena Vista','9.9137970, -85.5313466',3),(3179,'','Oscar Enrique Coto Carrillo','8741-2561','','Huacas','10.024243, -85.355892',3),(3180,'','Henry Garcia Jimenez','8891-8731','','Cuesta Grande','9.939694,-85.519158',3),(3181,'','Fotseu Marion Aude Murielle','.41 79 254 76 37.','','Amaranta','9.906668, -85.534419',3),(3182,'','Jordan Frances ','85238585','','Samara','9.891819,-85.54701',3),(3183,'','Filander Vasquez','8703-5970','','Los Angeles','10.077104, -85.390771',3),(3184,'','Carlos  Vargas','','','Buena Vista','9.9134082, -85.5323672',3),(3185,'','Alberto Pacho','6014-0402','','Buena Vista','9.9132699, -85.5325395',3),(3186,'','Jhon Noska','.+1(757)870-9062','','Samara','',3),(3187,'','Jorge Perez Rojas','8529-4277','','La Libertad','10.062322, -85.437788',3),(3188,'','francisco terciopelo','6472-4391','','terciopelo','9.9428703, -85.5205413',3),(3189,'','Jose alexis Obregon Carrillo','8546-8231','','HUacas','10.022764, -85.356621',3),(3190,'','Ivannia Mendoza Espinoza','8639-5565','','Esterones','9.88577,-85.56623',3),(3191,'','Omar josue Granados','8886-3239','','Los Angeles','10.079924, -85.389591',3),(3192,'','Dafina Thur','8758-7518','','Altos del socorro','9.95762,-85.402593',3),(3193,'','Joshep Young','8474-5793','','Camaronal','9.86978, -85.450328',3),(3194,'','Paulo Collar','8704-0027','','Camaronal','9.868633, -85.445904',3),(3195,'','Yordano Hernandez B','8632-3915','','La Libertad','',3),(3196,'','Brenda Amaranta','8706-7176','','Amaranta','9.908069, -85.532753',3),(3197,'','Jessica Lito Hernandez','8359-4474','','Pita Rayada','10.043017, -85.387306',3),(3198,'','Ridley buena vista casa baboa','8359-5045','','Buena Vista','9.9106085, -85.5381373',3),(3199,'','Roy Arias','8826-2524','','buena vista','9.909565,-85.53977',3),(3200,'','Martin  Lanz','8966-1136','','Altos del Socorro','9.958198,-85.398845',3),(3201,'','Leticia Villalobos Mu¤oz','8560-7983','','HUacas','10.029055, -85.367779',3),(3202,'','Carlos Navarro','8685-5833','','Pilangosta','10.02998, -85.404472',3),(3203,'','Simon Antonio Moreno','8927-1337','','Huacas','10.023208, -85.354103',3),(3204,'','Melissa sandoval','1 310 347 6431','','camaronal','9.867919, -85.452898',3),(3205,'','Finca Lucky','8736-1465','','Buena vista','9.911154,-85.536333',3),(3206,'','Gustavo Aguilera Castro','8719-8906','','HUacas','10.021792, -85.357327',3),(3207,'','Manfred Altos del Socorro','(+491786014016)','','Altos del socorro','9.957128,-85.399483',3),(3208,'','Steven Jimenez','61982020','','cuesta grande','10.001853, -85.504354',3),(3209,'','Cristel Artavia','6094-4079','','Buena Vista','9.91879,-85.537482',3),(3210,'','Sylvain Dostie','8982-8798','','Maquenco','9.962475,-85.521156',3),(3211,'','Joselyn Gutierrez Solis','8768-9948','','Mansion','10.108803, -85.374292',3),(3212,'','Maria Fernanda Lopez','8545-6269','','Matambuguito','',3),(3213,'','JOE','1 612 554 5120','joseph@harmonicfarms.com','Camaronal','9.86857,-85.447838',3),(3214,'','William Mejias Venegas','8386-5190','','San Gerardo','10.0493080, -85.4359710',3),(3215,'','Sophie Elvire Chepy','8546-1421','','Santo Domingo','9.890265,-85.510445',3),(3216,'','Mathew Gregory Mccormack','8553-8776','','Esterones','9.899973,-85.555036',3),(3217,'','Danny Ramirez Sibaja','8885-6187','','Los Angeles','10.078593, -85.394843',3),(3218,'','Joe CIANCIO','8514-9193','','Maquenco','9.963003,-85.520609',3),(3219,'','Deibin DIaz Carrillo','8461-2582','','Huacas','10.021961, -85.355277',3),(3220,'Sale de la casa de Brayan Sandoval','Karol Murillo Lopez','8991-0627','','LOs Angeles','10.077325, -85.39723',3),(3221,'','Milanda Hernandez Venegas','6227-5590','','Matambuguito','10.102335, -85.412099',3),(3222,'','Leonardo Araya Jimenez','8303-3064','','LOs Angeles','10.078215, -85.39366',3),(3223,'','Javier Hernandez Gaitan','8371-7706','','LOs Angeles','10.079702, -85.400095',3),(3224,'','Henry Garcia Jimenez','88918731','','Santa Elena','10.014652, -85.470738',3),(3225,'','Lorena Vargas','8915-9526','','Pita Rayada','10.043814, -85.387601',3),(3226,'','Greivin Rmirez Rodriguez','8597-3937','','Los Cerrillos','10.088937, -85.393092',3),(3227,'','Didier Mu¤oz Sequeira','8378-8015','','Los Cerrillos','10.088031, -85.393216',3),(3228,'','Abel Barrantes','6033-8389','','Los Cerrillos','10.089029, -85.393371',3),(3229,'','Yeimi Mu¤oz Carrillo','8611-2919','','Los Cerrillos','10.090033, -85.391885',3),(3230,'','karen Salazar Vasquez','6072-8655','','Huacas','10.021285, -85.363421',3),(3231,'','Ana Lidieth Mu¤oz','8993-7213','','Los Cerrillos','10.08993, -85.394224',3),(3232,'','Gabriel Thur','8966-1147','','Altos del socorro','9.96199,-85.405655',3),(3233,'','Carina Risi','6482-8415','','Altos del socorro','9.9525028,-85.4009271',3),(3234,'','ROberto Garcia Guevara','8822-7998','','Hojancha','10.056494, -85.423601',3),(3235,'','Dereck Rodriguez','6030-1104','','Pilangosta','10.035273, -85.407395',3),(3236,'','Ron Manuel Sporer','8601-3651','','San Gerardo','10.056503,-85.434975',3),(3237,'','James  Nick Weed','8932-9504','nick@propertiesincostarica.com','El carmen','9.881053, -85.424595',3),(3238,'','Michael Thomas Cabinas Rio Ora','6398-3825','','Buena Vista','9.915547,-85.526808',3),(3239,'','Joselyn Carrillo Elizondo','8410-0272','','Huacas','10.022423, -85.356911',3),(3240,'','Grace Jimenez ','8639-4833','','La libertad','10.064192, -85.430146',3),(3241,'','Jane collins camaronal','19144787855','','Camaronal','9.8692290, -85.4504408',3),(3242,'','Julio Obregon','8582-1627','','Polvazales','',3),(3243,'','Rogelio Rodriguez','8816-1316','','Carrilo','9.8988648, -85.4666815',3),(3244,'','vicent Geyer','8428-1759','','cuesta grande','9.993846, -85.50581',3),(3245,'','Adolfo Brenes','8596-1285','','LOs Angeles','10.080632, -85.393389',3),(3246,'','Magally Oviedo','70141185','','Gamalotal','10.054247,-85.522844',3),(3247,'','Asdrubal Aguero','8375-2869','','Pita Rayada','10.03476, -85.385686',3),(3248,'','Jean-Claude AZOULAY  Casa Ying Yang','83632176','','Carrillo','9.8949742, -85.4686359',3),(3249,'','Marta Arelys Gomez ','8549-6112','','La Libertad','10.063516, -85.441355',3),(3250,'','Channa santo domingo','85015624','','Carrillo','9.890265,-85.510445\n',3),(3251,'','Anthon Kast','8912-3968','','La Libertad','10.065169, -85.441199',3),(3252,'','Anita Camaronal','8431-6078','','Camaronal ','9.868786, -85.449041',3),(3253,'','Anderson Mendez','8321-5507','','San Gerardo','10.060611, -85.441894',3),(3254,'','Carlos Jimenez Estrada casa La Paz','83601950','','Estrada','9.889852, -85.452758',3),(3255,'','Carlos Jimenez Estrada casa silencio','83601950','','Estrada','9.889852, -85.452758',3),(3256,'','Carlos Jimenez Estrada casa TranquilaSarah Zirkel Casa Tranquila','83601950','','Estrada','9.889852, -85.452758',3),(3257,'','Gerber Edinson','6170-5107','','Dulce Nombre','10.081150,-85.493885',3),(3258,'','Anthon Kast  (pollera)','8912-3968','','La libertad','10.063432, -85.440947',3),(3259,'','Tara  jaeger','84481059','','camaronal','9.868998, -85.450559',3),(3260,'','Ricardo Alberto Granera','7075-3920','','Delicias Garza','9.9295783,-85.6149723',3),(3261,'','Guerin Rojas ','8452-6740','','Huacas','10.01643, -85.363104',3),(3262,'','Juan Carlos Pineda Alvarado','8978-2522','','La libertad','10.063569, -85.441924',3),(3263,'','Udo Ehrenfeuchter','4.92E+11','','Huacas','10.001998, -85.373291',3),(3264,'','Frank  Ruhl amaranta','84581103','clever-frank@gmx.de','Amaranta','9.906526, -85.534234',3),(3265,'','Juan Carlos Flores terciopelo','','','Terciopelo','9.942726,-85.520689',3),(3266,'','Flor Casa Brillasol','83866556','','Terciopelo','9.943043,-85.520212',3),(3267,'','Stephane Yves','33 6 20 34 19 37','Stephane.vanuxeem@wanadoo.fr','Buena Vista','9.9102224, -85.5381621',3),(3268,'','Nikole Neukirch amaranta','86473922','','Amaranta','9.908441, -85.53186',3),(3269,'','Maria Perez Mora','6020-0905','','LOs Angeles','10.076354, -85.396801',3),(3270,'','Marina Benso Osti (Casa Marina)','6136-1590','','Samara','',3),(3271,'','Susana Vargas Vargas','60084334','jayda27@gmail.com','Cuesta Grande','10ø00ï06.5/85ø30ï11.8',3),(3272,'5-328-428','Jose Luiz zeledon','88033698','Jose18063006@hotmail.com','Santa Elena','10.000362, -85.470083',3),(3273,'503930983','Dagnes orias rosales','50113610','Dagnesperez@gmail.com','Santa Elena','10.007969, -85.470963',3),(3274,'','Comite deportes Pilangosta','8315-2259','','Pilangosta','10.03265, -85.406182',3),(3275,'','Ivannia Mendoza Espinoza (Casa Jungle)','8639-5565','','Buena Vista','9.911165,-85.536788',3),(3276,'50265 0066','Vidal Esquivel Herrera','8619 2823','Casaventura2@hotmail.com','Nosarita','10.039131, -85.48768',3),(3277,'','Pierre Severac  antigua Casa Jungle (Tierry Mappas)','8785 9757','Lucimat2023@gmail.com','Buena Vista','9.909484,-85.538688',3),(3278,'','Ivannia Castro Castro','8543-7412','ivaniacastrocastro50@gmail.com','Huacas','10.022062,-85.357263',3),(3279,'','Refugio y Reserva Camaronal','84541376','','Camronal','9.863808,-85.444868',3),(3280,'','Ron Manuel Sporer','8601-3651','','San Gerardo','10.056503,-85.434975',3),(3281,'','James McGregor','1 (514) 927-0933','','Buen Vista','9.935107,-85.543587',3),(3282,'','Freiman Venegas Gran','6299-1952','','LOs Angeles','10.075294,-85.394523',3),(3283,'','Gerardo Salazar Picado','8851-8849','','Cuesta Blanca','10.040183,-85.425913',3),(3284,'','Agustin Hidalgo Morera (Ganaderia el comienzo)','8834-3095','Ibusesorotinafacturas@gmail.com','Terciopelo','9.936084,-85.521694',3),(3285,'','Zeneida Castro Castro','8429-0403','','Huacas','10.022189,-85.357215',3),(3286,'','John Noska  ( Las delicias)','1 202 999 0806','','Las delicias','9.923477,-85.627745',3),(3287,'','John Noska  ( Las delicias)','1 202 999 0806','','Las Delicias ','9.923477,-85.627745',3),(3288,'','Maxime Plessis Belair','1 819 570 8484','','Cuesta Grande','9.9938455, -85.5054146',3),(3289,'','Silvain Carrier','506 87801572','','Cuesta Grande','9.9937564, -85.5060399',3),(3290,'','Javier Humberto Matarrita Morera','8557-5378','','Pita Rayada','10.040863,-85.383771',3),(3291,'','William Fonseca Alvarado','(+1(951)602-0642','','Huacas','10.035803,-85.357975',3),(3292,'','Pierre Crespo','','','Naranjal','9.98149, -85.53475',3),(3293,'','Deborah Moss','','','Delicias Garza','9.9295783,-85.6149723',3),(3294,'603310192','Pablo Agustin Garita','8311-6437','','San Gerardo','10.055541,-85.436639',3),(3295,'660997510','Lucianne Selene Price','(+1 (808) 936-9988)','','BUENA Vista','9.9104873, -85.5377208',3),(3296,'','Josh Silver','(+1 (413)687-5584)','','Esterones','9.9008861, -85.5542376',3),(3297,'','Jose Angel Urbina','6068-3457','','San isidro ','9.9814163,-85.3958166',3),(3298,'','Maurizio Romanni','88369469','','Amaranta','9.9107211, -85.5325908',3),(3299,'','Luis Elias Vargas Valverde','','','San Gerardo','10.055541,-85.436639',3),(3300,'','Juana Rivas Mendoza','83767605','','LOs Angeles','10.080785,-85.393132',3),(3301,'','Franklin Venegas Castillo','8764-3808','','LOs Angeles','10.079974,-85.3847',3),(3302,'','Sasquia Quiros Batres','8627-1859','','Santa Martha','9.9214565, -85.4410849',3),(3303,'','Proyecto Hotel Cerro Azul  (Cura Blu)','8946-3019','','Cerro Azul','10.006712,-85.306903',3),(3304,'','Guillermo Angulo','6040-8023','','Altos del socorro','9.958173,-85.399354',3),(3305,'','FLAWLESS VIEW LIMITADA casa argudas','8611-8407','','Las delicias','',3),(3306,'','frank caba¤as Amaranta','Regalia','','amaranta','9.91202, -85.53013',3),(3307,'','Mauricio Castro Hernandes','83275492','','Santa Martha','9.9208699, -85.4427683',3),(3308,'','Karla Veronica  Carrillo Obando','8911-1887','','Los angeles','10.07558,-85.39511',3),(3309,'','Catherine suarez  (fabiola carvajal)','6225-0781','faby041208@gmail.com','San Fernando','9.91887, /85.53723',3),(3310,'','Joshua Broussard','8760-7570','J333@duck.com','Santa Martha','9.9220450, -85.4434470',3),(3311,'','ROO States Limitada   antigua (Cecile Colnaghi','6346-3590','grupojmg@rebabogados.com','Buena Vista','9.91202, -85.53516',3),(3312,'','Eddi Gonzales','8886-6828','','Santa Elena','10.007164, -85.471122',3),(3313,'503530884','Eduardo Pineda Barrantes','6015-0393','edkreator@hotmail.com','La Libertad','10.064525,-85.430482',3),(3314,'','Alexander Villagra Hernandez','84493040','','santa Martha','9.88343, -85.44314',3),(3315,'','Flor Guevara','8321-1331','','Amaranta','9.919728,-85.525979\n',3),(3316,'502540543','Fredy Obregon Aleman','8778-3774','','santa Martha','9.919605,-85.443381',3),(3317,'','ROBINSON - CATHCART SOCIEDAD DE RESPONSABILIDAD LIMITADA','6270-8511','','Las Delicias','10.087867,-85.391115',3),(3318,'','Wilfredo Matarrita Matarrita','7177-8137','','Pita Rayada','10.03514,-85.387403',3),(3319,'','Maria Kruse','8449-2525','','Cuesta Grande','',3),(3320,'','ASADA Buena Vista Tanque','','','Amaranta','',3),(3321,'','ASADA Buena Vista Pozo','','','Buena Vista','',3),(3322,'2-0553-0155','Angelica Delgado Madrigal','8814-2283','','La libertad','10.056612,-85.430176',3),(3323,'','Melany Venegas','8515-6164','','Pita Rayada','10.04124,-85.384313',3),(3324,'','Luis Adolfo Castrillo Fajardo','8788-9098','','San Gerardo','10.049445, -85.431734',3),(3325,'','Sara Maria Erb','41797770714','','Zapotal','9.997144,-85.316589',3),(3326,'','Cecile Colnaghi','6346-3590','','Buena Vista','9.91202, -85.53516',3),(3327,'','Rebeca Navarrte Noguera (Tj Jac Information)','8811-1968','monica','Garza','9.957722,-85.615180',3),(3328,'','Steve Bliss (Camaronal)','8658-4031','','Camaronal','',3),(3329,'503410703','Allan Obregon Lopez','8604-6917','','San Gerardo','10.052959,-85.429768',3),(3330,'','Mariana Mayorga Perez','6079-0703','','Matmabuguito','10.104732,-85.414536',3),(3331,'','Dafina Thur','','','Altos del socorro','9.957628,-85.402625',3),(3332,'','Dayanna barthley arce ','8690-7375','','Maquenco','9.96356,-85.51434',3),(3333,'','Dievy Ronaldo Carazo','8461-6814','','Pita Rayada','10.041279,-85.384337',3),(3334,'E4388332','Wolfgang con Stachelski','8984-9852','wolfgangvonstachelski@gmail.com','Altos del socorro','9.958354,-85.398472',3),(3335,'503190549','Manfred Ad n Vega Espinoza ','8644-0142','manfredvegaespinoza@gmail.com','La libertad','10.062168,-85.442467\n',3),(3336,'114270440','Mariana Madrigal Castillo','6284-7836','Madrigalcastillomari559@gmail.com','Samara','9.9155377,-85.526699',3),(3337,'3102867746','Cloudbird bonin  Nube','89240495','acturasvidaeclectico@gmail.com','samara','9.91990, -85.52607',3),(3338,'','Alejandro Arce Ulloa','8599-4352','','Buena vista','9.910871,-85.538338',3),(3339,'','Troy (Edith Zeledon)','8972-2929','','Cuesta Grande','9.9941381, -85.5060289',3),(3340,'','Charles Milner  ','1 250 320 3959','','cuesta grande','9.9956253, -85.5061348',3),(3341,'','Rudy Mendoza','87088403','','Esterones','9.8859666, -85.5660899',3),(3342,'','Robert Calhoun Grainger  Casa Gaia Lote 12','email','robcgrainger@msn.com','Garza','9.911376,-85.61369',3),(3343,'C4VW3KC36','Mike Schaefe','8656-0308','handelschaefer@gmail.com','Estrada','9.889168,-85.45307',3),(3344,'3-102-807060','Michael Keenan & Carol Guida (STEADY AS WE GO LLC SRL) casa 21','1 (860) 933-2027','casa 21','Garza','9.911376,-85.61364',3),(3345,'','Alexander Asada San Fernando','','','San Fernando','9.920791,-85.533432',3),(3346,'','Oldemar Matarrita Matarrita','6312-5943','','San Fernando','',3),(3347,'','Marjurie Miranda Matamoros','6347-0009','','Estrada','9.88162,-85.452393',3),(3348,'','Dixi Dayana Matarrita Salazar','8539-6615','','Pita Rayada','10.040268,-85.383397',3),(3349,'','Johanah Jade','86013079','','San Fernando','9.920087,-85.533801',3),(3350,'5-0411-0977','Luis Fernando Mendoza Centeno','6212-0426','','La libertad','10.062267,-85.44194',3),(3351,'502980039','Maria Custodia Carrillo Alem n','8554-0930','deliciasdelmaiz1977@gmail.com','La libertad','10.063834,-85.426575',3),(3352,'503680082','yanina Jimnez Fajardo','8777-6964','jimenezyani13@gmail.com','La libertad','10.064732,-85.42910',3),(3353,'','Jenny Maria Matarrita Moreno ',' 8549 9158','','San Fernando','9.928835,-85.536823',3),(3354,'','Jaykay samara','8328-0221','hillinkent@hotmail.com','buena vista','9.9057649,-85.5335147',3),(3355,'','David Alberto Quiros Solis','8372-2900','pepetravel85@hotmail.com','San Fernando','9.918288,-85.532896',3),(3356,'','Marco Gawehns','8797-1600','','Estrada','9.888861,-85.45163',3),(3357,'503200387','Feddy Centeno','8807-7811','','San Fernando','9.92077,-85.533524',3),(3358,'','Jose Angel Montiel Torres ','8832-6267','','Huacas','10.005968,-85.368627',3),(3359,'','Guillermo Angulo','6040-8023','','Altos del socorro','9.958173,-85.399354',3),(3360,'','Justin Miller','1 (317)797-3316','justrmil@gmail.com','Camaronal','9.868108,-85.44017',3),(3361,'5-318-779','Mar¡a del Rosio S nchez Porras','6008-3808','','La libertad','10.064023,-85.428436',3),(3362,'6-01540224','Manuel Chavez','8349-3462','','Estrada','9.8899064, -85.4534774',3),(3363,'','Andrew Weinstein','1 703 597 6175','','Guiones','9.9446728, -85.6615423',3),(3364,'','Victoria Rommelspacher','8984-0117','','Buena Vista ','9.9141400, -85.5329480',3),(3365,'206800040','Charles Fransisco Carazo Nu¤ez','71427500 (esposa Xiomara)','','Carrillo','9.87271, -85.49882',3),(3366,'','Luis Campos ','8422-3357','','Pilangosta','10.031751,-85.417085',3),(3367,'','Marina Benso Osti','6136-1590','','San Fernando','9.923403,-85.5322336',3),(3368,'','Neyman Barrantes Cespedes','64242806','','cuesta grande','10.001679,-85.511917',3),(3369,'','Eros Barrantes Castillo  (hijo Neyman)','62958597','','cuesta grande','10.001862,-85.512314',3),(3370,'112580760','Andrey Morales Castro','62342106','','San Juan Nosara','9.956373,-85.61567',3),(3371,'206130938','Geiner de Jes£s Espinoza Jarqu¡n','7018-4163','','San Juan','9.956373,-85.61567',3),(3372,'','Olber Matarrita Castillo','8862-8497','','Pita Rayada','10.049216,-85.388236',3),(3373,'105360076','Miguel ballesteros Marin','8815-9035','','San Fernando','9.921875,-85.534869',3),(3374,'','Martin TAIT','','','delicias Garza','',3),(3375,'','Austin Bustos Aguilar','8670-4382','','San Fernando','9.91917,-85.532837',3),(3376,'113930192','Fabiola Carvajal Mora','6225-0781','faby041208@gmail.com','San Fernando','9.9195304, -85.5361699',3),(3377,'','Allen Rojas Cano','86981172','','San Fernando','9.92094, -85.53599',3),(3378,'','CACO   (regalia)','','','San Fernando','',3),(3379,'','Erika Altamirano','8560-6508','erikaaltamisamara@gmail.com','San Fernando','9.919169,-85.532837',3),(3380,'','Adrian Garcia matarrita','8648-2767','','San Fernando',' 9.919167,-85.533278',3),(3381,'','Luna Centeno','6298-7709','','San Fernando','',3),(3382,'503950089','Oscar Zuniga Carrillo','8441-1192','repuestoszm391@gmail.com','San Fernando','9.9204048,-85.533272',3),(3383,'113980495','Seidy Valdez Mora','8607-2974','Mayelavaldezmo@gmail.com','San Fernando','9.9208407,-85.5352521',3),(3384,'','Yordi Sanches Matarrita','6140-7408','','San Fernando','',3),(3385,'','Elena','','','Bø Los Monos','',3),(3386,'9106150','Juan Jose Jimenez','7169-7156','','San Fernando','',3),(3387,'','Cira Jimenez','8647-3957','','San Fernando','',3),(3388,'','Marvin Jimenez','8301-0958','','San Fernando','9.920172,-85.534443',3),(3389,'5 354 391 ','Sileny Rojas Jimenez','6210-1162','','San Fernando','9.921883,-85.53482',3),(3390,'503440661','Jose Augusto Rodriguez Castillo','8421-6172','rodriguez2903@hotmail.com','San Gerardo','10.05385,-85.426511',3),(3391,'','Deiby Gonz lez Alvarado','8856-5755','deividg04@hotmail.com','San Fernando','9.921517,-85.533887',3),(3392,'','Ileana Matarrita Matarrita','6458-5229','','San fernando','9.921244,-85.534640',3),(3393,'','Olger Castrillo Centeno','8974-5669','','San fernando','9.921707,-85.534518',3),(3394,'',' Edel Centeno Castrillo ','8591-9197','','San fernando','9.922221,-85.534652',3),(3395,'1.84E+11','Barbara miller','8440-0459','Barbara@costaricatefl.com','San fernando','9.9217067,-85.5345184',3),(3396,'','Carlos Rojas Matarrita','8427-9096','','San FErnando','9.93936, -85.52046',3),(3397,'','Lidia Centeno Castrillo','6474-1046','','San Fernando','9.93936, -85.52046',3),(3398,'200190908','Uriel Cruz Gimenez','8713-5233','','San Fernando','9.921452,-85.534289',3),(3399,'','Victor Hugo Nuñez Castrillo ','86447472','','Huacas',' 10.030111,-85.382472',3),(3400,'','Melvin Matarrita','8460-7101','','Pita Rayada','10.038568,-85.385556',3),(3401,'','Ever Rojas ','6316-5661','','San Fernando','9.92078, -85.53496',3),(3402,'','Alfonso Diaz Fonseca','7111-1132','','San Fernando','9.920132,-85.532067',3),(3403,'','Melvin Roman espinoza castillo','8862-9893','','San Juan Nosara','9.955967,-85.615705',3),(3404,'','CUBO TRES CONSTRUCCIàN S.A ','8620-0245','','San Juan Nosara','9.955967,-85.615707',3),(3405,'','Luis Matarrita Jiron ','8815-0318','','San Fernando','9.918091,-85.541361',3),(3406,'','Steven ugarte henrriquez','6297-0231','','San Fernando','9.91588,-85.539192',3),(3407,'','Karen Carrillo Ruiz','6430-7152','','San Fernando','9.91588,-85.539192',3),(3408,'501800702','Maria Ines Lopez Gomez','8344-8914','','San Fernando','9.921435,-85.5344429',3),(3409,'','William Smith Quintero','8452-5656','','San Fernando','9.920455,-85.5292667',3),(3410,'','Celiam Valverde Vega','88231933','','San Fernando','9.90665, -85.53628',3),(3411,'105130824','Maria del Rocio Salas Porras','62260250','rocisalas29@gmail.com','San Fernando','9.9173906, -85.5337700',3),(3412,'','Andres Parajon','6441-5925','','Vista Royal','9.925711,-85.63875',3),(3413,'','Noriel Quesada Torres','62433017','','San Fernando','9.9200185, -85.5334612',3),(3414,'','Jocelyn Valencia Serrano','86693376','','San Fernando','9.92659, -85.53509',3),(3415,'HM436349','Michael schuler','8540-8484','Mschuler1@gmail.com','Camaronal ','9.869284,-85.444504',3),(3416,'502760515','Luz Meri Carrillo Castillo','6062-0805      8739-9850','','Pita Rayada','10.047075,-85.388501',3),(3417,'1.84E+11','Paula Annette White','83391131','nosarapaula@gmail.com','Vista al mar|Bosque Verde Lote #9, Nosara, Guanacaste','9,971633, -85,631050',4),(3418,'3101426301','MP-Gabiruski Corporation S.A','83981165','azultaxes@icloud.com','Mal pais|Puntarenas, C¢bano, de la Torre de Malpa¡s, 400 mts. camino hacia Malpa¡s, entrada a mano izquierda','9.611123,-85.13623',4),(3419,'3101635200','MAL PAIS BUSINESS ADMINISTRATION S.A (paga fabio casa biba)','72911222','fe@kubikodesign.com, acpcalderon@gmail.com','Mal pais|Mal Pais Del Restaurante Marys, 800 este y 800 este','9.602404,-85.133064',4),(3420,'3101613547','MAL PAIS MAINTENANCE COMPANY S.A.','83219900','kata@kubikodesign.com','Mal pais|Mal Pais Del Restaurante Marys, 800 este y 800 este nueva oficina','9.629889,-85.152435',4),(3421,'3102433849','Zodiac Mountain S.A.','83511208','brianredbeard@gmail.com','Mal pais|Cabuya rd , 50 meters past Mel Gibson on the left','9.609134,-85.130938',4),(3422,'3101401727','CASA TECAL','26400880','HBurnett@nksfb.com','Pausaleku|Puntarenas, C¢bano, Santa Teresa.','9.671904,-85.190180',4),(3423,'3102813878','RC Holdings LLC Limitada','26400611','service@ranchocielo.com','Pausaleku|Santa Teresa','9.672159, -85.194797',4),(3424,'3102612215','AKWABA LIMITADA','87295233','thomas.beaumel@gmail.com','|1.4 Km Noreste de la escuela de Panica','9.721884936901667,-85.04760300302028',4),(3425,'401760228','David Gonzalez Quesada','88304749','dav7gq@gmail.com','Panorama|500 mtrs oeste y 500 al sur del Tanque de agua de San Isidro Cobano','9.657501,-85.123029',4),(3426,'3102830017','Villa Forrest Veintiseis Limitada','9.73E+11','zevimontekyo@gmail.com','Panorama|Villa Montekyo, Santa Teresa, Costa Rica','9.648510167994555, -85.15635750934936',4),(3427,'3102707260','TRES CIENTO UNO SETECIENTOS SIETE MIL DOSCIENTOS SESENTA SOCIEDAD ANONIMA','88206261','lillynute11@gmail.com','Panorama|SAN ISIDRO DE COBANO, 200MTRS NORESTE DE PROYECTO FRITZ','9.6438,-85.1522',4),(3428,'3102739344','3-102-739344 LTDA','22888888','katie@rentnosara.com','Garza|Guanacaste, Nicoya, Vista Royal Lot #17, 500 mtrs sur del Delicias','9.925287,-85.639880',4),(3429,'4737465','Carole Priggione','85504670','heylinrf91@gmail.com','Garza|Playa Guiones Guanacaste','9.934767,-85.653130',4),(3430,'3-101-148086','SABOR Y SENTIMIENTO SOCIEDAD ANàNIMA  (cristopher loss)','2640 0045','usitter@gmail.com','|Puntarenas, Cobano, Manzanillo, 500mts Sur del Atardecer dorado','9.685786,-85.201043',4),(3431,'3102522216','ELI AND THE BOYS RETREAT SRL','87090089','petepaulh@yahoo.com','|Pen¡nsula de Nicoya, Guanacaste.','9.939434,-85.635544',4),(3432,'3102780418','FINCA CRIVELLI LIMITADA            (DANIEL PAGA EL SERVICIO)','c xz','despinoza@linealaw.com','Garza|Nicoya, Nosara, Las Delicias, 1.7 kil¢metros al Noroeste de Buceo Gavilana, entrada a mano izquierda','9.943471,-85.622423',4),(3433,'3102846730','HERN INDUSTRIES LLC SOCIEDAD DE RESPONSABILIDAD LIMITADA','83773066','nosaraazulproperties@gmail.com','|3 KM OE DE LA ANTIGUA ESCUELA SAN JUAN','9.607619195295358,-84.6207967895285',4),(3434,'134698755','MP-MARGOT WINTER (BOUGANBILIA)         ST THUNDER PAGA','88388911','maw@margotwinters.com','Garza|Vista Royal No 15','9.911484,-85.643872',4),(3435,'BA727589','Martin Tait','3455260286','martintait1955@gmail.com','Garza|Nosara','9.957564,-85.615748',4),(3436,'1.84E+11','Richard Bryant','83215132','rickdianebryant@gmail.com','Garza|Our address - lot 2 community paraiso San Juan de Nosara   Please come to Bario Los Arenales to the','9.956204,-85.631086',4),(3437,'3102678865','SHUKRANI INVESTMENT SRL','83114920','bkdegraaf@gmail.com','Garza|Casa Punta Vista III, fin de la carretera de Las Huacas, 200m contiguo a Tierra Magnifica, secci¢n E','9.9442,-85.6334',4),(3438,'549676509','Thomas Drummond Walker','17579991305','tdcwjcwb@yahoo.com','Garza|1.5 km al norte de la plaza de Playa Garza , Vista Royal lote 15b','9.9278,-85.5872',4),(3439,'3101320075','Venus de Garza','84115242','venusdegarza@gmail.com','Garza|Vista Royal 16','9.925507,-85.639060',4),(3440,'3101426257','Arenal Compuesto Zeta S.A.','87031561','nzcostarica@gmail.com','Tilaran |San Carlos, La Fortuna, 3 kms al oeste de la escuela, en El Castillo','10.428120, -84.763771',4),(3441,'3101402095','Rancho Margot S.A','89112108','payments@ranchomargot.org','Tilaran|3 km al O del caser¡o El Castillo, Pe¤as Blancas San Ramon','10.396729,-84.753808',4),(3442,'3102437439','MALA MUJER LIMITADA','88172816','facturamontealto@gmail.com','Cerro Azul|Nicoya','9.973155,-85.279679',4),(3443,'1.84E+11','Lloyd George Standish','40000977','lloyd@crnatural.net','cerro azul|2km  al norte de la iglesia de Zapotal de Nandayure, Guanacaste','10.010896,-85.302004',4),(3444,'1.38E+11','Carlotta Jovino','85166245','carlottajovino@gmail.com','Cerro Azul|Santiago Cobano, 200 mtrs al sur de la casa de Jorge Badilla','9.683289,-85.197905',4),(3445,'3102072631','HACIENDA VALLE SOLO SRL','87126519','tguzmanf@hotmail.com','Vista al Mar|','10.316726, -85.794111',4),(3446,'3002656894','Asociacion del Santo Nombre','87379595','Madhuvancostarica@gmail.com','Vista al Mar|De la plaza de deportes en Beln de Nosarita 500m Oeste, 5km al Noroeste, 1.5km al Oeste','10.001208,-85.535136',4),(3447,'506942204','Matias Pierre Henri Gary Chambers','83854080 / 84038326','garycmac@outlook.com','Garza|Royal Vista, Garza #10 vista real del mar (Villa costa del mar)','9.926266,-85.639872',4),(3448,'1.84E+11','MP-Scott Ford','89916832','fourfords@gmail.com','|fourfords@gmail.com','',4),(3449,'','Casa Gino Cortes¡a','','','|Tilaran, 700 metros norte de la entrada Vista Lago','10.5643083,-84.958477777779',4),(3450,'','','','','|','',4),(3451,'','','','','|','',4),(3452,'','','','','|','',4),(3453,'   ','','','','|','',4),(3454,'','Cindy Vásquez Sequeira','8710-8365','','Cuesta Grande','10.0029255,-85.5042426',3),(3455,'203290221','Eugenia Chaverri Quiros','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3456,'203290221','Eugenia Chaverri Quiros','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3457,'203290221','Eugenia Chaverri Quiros','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3458,'203290221','Eugenia Chaverri Quiros','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3459,'203290221','Eugenia Chaverri Quiros','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3460,'203290221','Eugenia Chaverri Quiros','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3461,'203290221','Eugenia Chaverri Quiros  (Modesto)','8479-2990','','Pita Rayada','10.0377371,-85.3836685',3),(3462,'503890312','Malixy Cordonero Espinoza','8303-5337','','SAN FERNANDO ','9.919873,-85.525973',3),(3463,'3-102-809689','VITA MIGLIORE LLC SRL','0000000','accounting@puravidamgmt.com','Vista Royal','',3),(3464,'','RIDLEY SAMARA Casa Pochote','8359-5045','','SAMARA','',3),(3465,' 517751387','John M Torrens','+1 (315) 427-0500','john.m.torrens@gmail.com','San Juan Nosara','9.9555365,-85.6153015',3),(3466,'','Andres Parajon #2','6441-5925','','Vista Royal','9.925711,-85.63875',3),(3467,'3102827306','Loranger Investments LLC   (asley)  casa 37','','','San Juan Nosara','9.952527,-85.6204711',3),(3468,'20230224','Jordan frances Mall Samara','','','San Fernando','',4),(3469,'504310341','Kimberly Matarrita Castro','84444592','','San Fernando','9.9285025,-85.5367499',3),(3470,'603270224','Veronica Obando Perez','60572118','','Buena Vista','9.913259,-85.5318541',3),(3471,'','Veronica Obando Perez','60572118','','Buena Vista','9.913259,-85.5318541',3),(3472,'','societe Lomas Limitada','61415567','','Buena Vista','',3),(3473,'','Cabañas Franz buenas vista','','','BARRIO LOS MONOS','',3),(3474,'114060263','Jonnathan Arguello','88675736','jarguello576@gmail.com','ESTRADA','',3),(3475,'801500289','Joshua Michael Tablone Miller','61104769','nicoyamma@yahoo.com','Cuesta grande','10.02556,-85.5029',3),(3476,'801500289','Joshua Michael Tablone Miller','61104769','nicoyamma@yahoo.com','Cuesta Grande','10.02556,-85.5029',3),(3477,'','William Mejias Venegas  #2','83865190','','San Rafel, Hojancha','10.0094023,-85.4393504',3),(3478,'3-101-641195','CONSTRUCCIONES EDEKO E K SOCIEDAD ANONIMA','8895 2533','compras@lucida.cr','San Juan Nosara','9.9478817,-85.6211645',3),(3479,'3101641195','CONSTRUCCIONES EDEKO E K SOCIEDAD ANONIMA','8895 2533','compras@lucida.cr','San Juan Nosara','9.9478817 -85.6211645',3),(3480,'111990003','María Isabel serrano mora','84358971','marisapescr@gmail.com','Buena Vista','10.025560379028331,-85.50289916992188',3),(3481,'','Benjamin Pyper','87527865','','Cuesta Grande','10.025560379028331,-85.50289916992188',3),(3482,'','Bejamin Pyper','87527685','','Cuesta Grande','10.025560379028331,-85.50289916992188',3),(3483,'','Dunia Lopez Suazo','85641601','','Buena Vista','10.025560379028331,-85.50289916992188',3),(3484,'','Marlene carrillo alemán','61389385','','Buena Vista','10.025560379028331,-85.50289916992188',3),(3485,'','Marlene carrillo alemán','61389385','','Buena Vista','10.025560379028331,-85.50289916992188',3),(3486,'','Marlene carrillo alemán','61389385','','Buena Vista ',' 9.912718,-85.533198',3),(3487,'','Quetzal Tomartia Hernandez','83526856','','Buena Vista','',3),(3488,'','Ana Díaz Artavia','60140402','','Santa Elena','9.948103427013292,-85.51754304416085',3),(3489,'','Juan Luis Garcia Jimenez','60066303','','Pedernal','',3),(3490,'504080986','Joseth Vargas Venegas','62265978','','Pita rayada','10.0392197,-85.3828625',3),(3491,'','Myles Leverenz','88322919','','Buena Vista','9.948102951049798,-85.51753997802734',3),(3492,'','Sean Foerster ','','','Finca los Monos ','',3),(3493,'503920539','Marcos Matarrita Morera      regalia','84077852','','El Silencio','9.9431759,-85.5763093',3),(3494,'','','','','Pueblo Nuevo','',3),(3495,'503400043','Rovani Medina Matarrita','83666408','','Pueblo Nuevo','9.9444467,-85.575951',3),(3496,'','Olga','','','Pueblo Nuevo','',3),(3497,'3101326021','Mariam Villalobos','22005769','facturasmorote@gmail.com','Acoyapa','',3),(3498,'503620025','Richard Binette','8691-3127','','Pueblo Nuevo','9.9446967,-85.5764508',3),(3499,'3102810857','The RAF Realty Trust  ( Casa Magnolia)','85113367','','Nosara','9.9424095,-85.6442413',3),(3500,'','Nosara Villas & Homes SRL','','','Nosara','9.955435752868652,-85.63091278076172',4),(3501,'203970917','Eduardo Burgos','71621242','','San Fernando','9.9230063,-85.5326141',3),(3502,'3102574177','Nosara Villas & Homes SRL   (Rebeca Navarrete)','8811-1698.','nvhfacturacion@gmail.com','NOSARA','',4),(3503,'6 0328 0045','Jonathan Fonseca Porras ','87651255','','Pueblo Nuevo','9.948592,-85.574255',3),(3504,'','Gerardo Castrillo Zuñiga','89870036','','La Libertad','10.07082,-85.4335467',3),(3505,'','Aldemaro de Jesus Coca Garcia','85741519','','Delicias Garza','',3),(3506,'155820208605','Aldemaro de Jesús Coca Garcia','85741519','','San Juan Nosara','',3),(3507,'','Alejandro López Marin','88593314','','San Juan Nosara','',3),(3508,'','Rodolfo Frances','','','Pueblo Nuevo','',3),(3509,'18EH12811','Rodolphe Frederic Claude','','lejardindhelenenice@hotmail.com','Pueblo Nuevo','',3),(3510,'155816689517','Alex barrera mendoza','62022455','','San Juan Nosara','',3),(3511,'','Daniel Renauf','50262225','','ESTRADA','9.89207363128662,-85.54427337646484',3),(3512,'','Daniel Renaud','60260225','','ESTRADA','9.89207363128662,-85.54427337646484',3),(3513,'','Sebastien Thomassin','','Sebthomassin@gmail.com','Santa Martha','9.89207363128662,-85.54427337646484',3),(3514,'3101449369','Adrian Suarez   La roka','','','Cuesta Grande','',3),(3515,'','Jannette Bermudez Castrillo','62842447','','San Fernando','9.9205,-85.5285117',3),(3516,'5450134','Yehison José Hernández fajardo','60441547','','San Gerardo','10.0545259,-85.4560804',3),(3517,'3101511100','Decoacabados la Pampa S.A','8873-0524','inmoboliariacotopa@gmail.com','Huacas','',3),(3518,'','Patricia Castillo','63493267','','San Fernando','9.918248,-85.533185',3),(3519,'','Gerardo Villalobos Zeledon','85632277','','Santa Elena','9.89207363128662,-85.54427337646484',3),(3520,'','Gerardo Villalobos Zeledon','85632277','','Santa Elena','9.89207363128662,-85.54427337646484',3),(3521,'','Moises Lopez Castrillo','61137746','','Santa Elena','10.0189658,-85.4778632',3),(3522,'','Lammer Christine Therese','83202358','','Buena Vista',' 9.89207363128662,-85.54427337646484',3),(3523,'','Ernesto José Lainez Herrera','87693639','','San Juan Nosara','9.9538671,-85.6159181',3),(3524,'','Fanny González','63123635','','Santa Elena','10.0190804,-85.4781404',3),(3525,'','Ernesto López Castillo','84826501','','San Fernando','9.9211774,-85.5346247',3),(3526,'','Elmer García','85031701','','San Juan Nosara','9.89207363128662,-85.54427337646484',3),(3527,'','JOE #2','','','Camaronal','9.86857,-85.447838',3),(3528,'503370018','Rodolfo Fajardo Jiron ','86660901','','La Libertad',' 10.063564,-85.441666',3),(3529,'503670489','Wagner Briceño Perez','83200634','','Vista del Mar','9.994367,-85.285767',3),(3530,'','Douglas Paniagua','89202523','','rio oro',' 9.985877,-85.321657',3),(3531,'503250078','Johana Flores López','62773301','','Terciopelo','9.9423743,-85.5201372',3),(3532,'','Dina Pérez Briones','84695725','','San Fernando','9.9176422,-85.5338141',3),(3533,'','Daniel Cristoph Foertsch','71459385','','Santa Martha','',3),(3534,'402590024','Yimar Fernando Gómez Carrillo','87615440','','Pita Rayada','10.0386975,-85.386662',3),(3535,'','Blanca Noemi Chiclo ','89286426','','Buena Vista','',3),(3536,'503430350','Jannette Obregón Jiménez','62887462','','San Fernando',' 9.929361,-85.537694',3),(3537,'3101526375','Monte De La Cruz Medical Center','6022-4747','factura.monte.cruz@gmail.com','San Fernando LA BOMBA','9.919354,-85.525905',3),(3538,'C4CZF14RV','Andreas Gleitsmann','8899-9007','don.rosso@me.com','Santa Martha','',3),(3539,'503420500','Aracely Juárez Montiel','86749772','','San Gerardo',' 10.051528,-85.440278',3),(3540,'','kevin Gerardo Lopez Vega','86214084','','San Juan Nosara',' 9.956583,-85.615583',3),(3541,'','JJ Elektric G Nosara Company S.A','','','San Fernando LA BOMBA','',3),(3542,'503210095','José Armando Zúñiga Hernández','87647489','','San Fernando',' 9.919139,-85.532528',3),(3543,'3101862785','JJ Elektric G Nosara Company S.A','40006869','facturasjjelektricgroup@gmail.com','Samara (Locales la bomba)','',3),(3544,'','Esteban Solano Solano','70799313','','San Juan Nosara',' 9.956389,-85.615639',3),(3545,'','kevin Gerardo Lopez Vega  n°2','86214084','','San Juan Nosara','',3),(3546,'800580188','Jaime Campos','88160631','','Samara',' 9.916111,-85.526278',3),(3547,'','Kendi Lopez Lopez','87795400','','Quebrada Bonita','9.999167,-85.477778',3),(3548,'','Igor','62172964','','Buena Vista',' 9.907806,-85.539389',3),(3549,'D01920228','Marianne McMurrin','','','Bocas del toro ','',3),(3550,'503200828','Yessenia María López Jiménez','89831865','yesenialoji81@gmail.com','Santa Elena','',3),(3551,'502880583','Maríanería Pérez Hernández','63696886','','terciopelo','9.936972,-85.517472',3),(3552,' 503590966','Leidy Suazo Suazo ','87188210','lmslei22@gmail.com','Buena Vista','',3),(3553,'502880583','Maríanería Pérez Hernández','63696886','','Terciopelo','',3),(3554,'502760040','Luis esquivel Jimenez','86316910','','Miramar','10.036639,-85.568861',3),(3555,'502490714','Guillermo Esquivel Jimenez  (Regalia)','84681358 - 86805141','','Miramar','10.036639,-85.568861',3),(3556,'1-999-926','Alejandro Salazar Alpizar','89781108','','Miramar','',3),(3557,'503640050','Wagner Delgado Herrera','63722814','','MIRAMAR',' 10.055417,-85.491333',3),(3558,'502910283','Maria yisel Gutierrez Mendoza','83798160','','Miramar','10.03775,-85.572611',3),(3559,'5 360 168','Cindy Duarte Mendoza','86293480','','Miramar',' 10.049417,-85.568806',3),(3560,'','Dennis Alberto Briones Arce','85639534','','Miramar',' 10.047694,-85.565722',3),(3561,'503960926','Javier hernandez Lopez','88060867','','Matambuguito',' 10.105944,-85.413917',3),(3562,'504470359','Gonzalo Rojas Lopez','61610573','','Santa Elena',' 10.017972,-85.474917',3),(3563,'504470359','Gonzalo Rojas Lopez','61610573','','Santa Elena',' 10.017972,-85.474917',3),(3564,'','Andrey Garcia Gomez ','86326686','','Lajas Quiriman','10.081694,-85.534472',3),(3565,'','Maritza Auxiliadora Obando','83078795','','Miramar',' 10.018583,-85.585056',3);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contrato`
+--
+
+DROP TABLE IF EXISTS `contrato`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contrato` (
+  `id_contrato` int NOT NULL AUTO_INCREMENT,
+  `numero_contrato` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `numero_facturacion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TMU` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fecha_instalacion` date DEFAULT NULL,
+  `monto_instalacion` double DEFAULT NULL,
+  `abono_instalacion` double DEFAULT NULL,
+  `mensualidad` double DEFAULT NULL,
+  `moneda` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fecha_cobro` date DEFAULT NULL,
+  `fecha_corte` date DEFAULT NULL,
+  `debe_mensualidad` tinyint(1) DEFAULT '1',
+  `id_cliente` int NOT NULL,
+  `activo` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id_contrato`),
+  KEY `id_cliente` (`id_cliente`),
+  CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2832 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contrato`
+--
+
+LOCK TABLES `contrato` WRITE;
+/*!40000 ALTER TABLE `contrato` DISABLE KEYS */;
+INSERT INTO `contrato` VALUES (2379,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3097,0),(2380,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3098,0),(2381,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3099,0),(2382,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3100,0),(2383,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3101,0),(2384,'20201206','','','2020-01-05',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3102,1),(2385,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3103,0),(2386,'20201208','','','2020-01-01',0,0,15000,'colones','2024-03-01','2024-03-15',1,3104,1),(2387,'20201209','','','2020-01-01',90000,90000,20000,'colones','2024-03-01','2024-03-15',1,3105,1),(2388,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3106,0),(2389,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3107,0),(2390,'20210102','','','2021-10-12',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3108,1),(2391,'20210103','','','2020-01-19',30000,30000,29900,'colones','2024-03-01','2024-03-15',1,3109,1),(2392,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3110,0),(2393,'20210105','','','2021-11-08',60000,60000,30000,'colones','2024-02-01','2024-02-15',1,3111,1),(2394,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3112,0),(2395,'20210107','','','2021-02-17',60000,60000,25900,'colones','2024-01-01','2024-01-15',0,3113,1),(2396,'20210108','','','2021-02-01',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3114,1),(2397,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3115,0),(2398,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3116,0),(2399,'20210111','','','2021-02-10',60000,60000,29900,'colones','2024-03-01','2024-03-15',0,3117,1),(2400,'20210112','','','2021-02-01',30000,30000,25900,'colones','2024-03-01','2024-03-15',1,3118,1),(2401,'20210113','','','2021-02-10',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3119,1),(2402,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3120,0),(2403,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3121,0),(2404,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3122,0),(2405,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3123,0),(2406,'20210118','','','2021-02-10',37700,37700,25000,'colones','2024-03-01','2024-03-15',1,3124,1),(2407,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3125,0),(2408,NULL,'1031','127',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3126,0),(2409,'20210121','','','2021-02-01',60000,60000,10000,'colones','2024-02-01','2024-02-15',1,3127,1),(2410,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3128,0),(2411,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3129,0),(2412,'20210124','','','2022-03-16',60000,40000,20000,'colones','2023-08-01','2023-08-15',1,3130,0),(2413,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3131,0),(2414,'20210126','','','2021-02-28',60000,40000,20000,'colones','2024-03-01','2024-03-15',1,3132,1),(2415,'20210127','1030','129','2021-03-10',60000,60000,34900,'colones','2024-03-01','2024-03-15',1,3133,1),(2416,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3134,0),(2417,'20210128','','','2021-01-23',60000,60000,22000,'colones','2023-08-01','2023-08-15',1,3135,1),(2418,'20210129','','','2021-03-24',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3136,1),(2419,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3137,0),(2420,'20210131','','','2021-04-04',60000,60000,30000,'colones','2024-03-01','2024-03-15',1,3138,1),(2421,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3139,0),(2422,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3140,0),(2423,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3141,0),(2424,'20210135','','','2021-04-17',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3142,1),(2425,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3143,0),(2426,'20210137','','','2021-04-24',60000,60000,25900,'colones','2024-03-01','2024-03-15',0,3144,1),(2427,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3145,0),(2428,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3146,0),(2429,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3147,0),(2430,'20210141','','','2021-05-30',60000,60000,39900,'colones','2024-02-01','2024-02-15',0,3148,1),(2431,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3149,0),(2432,'20210143','','','2021-06-01',60000,60000,20000,'colones','2023-08-01','2023-08-15',1,3150,0),(2433,'20210144','','','2021-06-01',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3151,1),(2434,'20210145','','','2021-07-03',60000,60000,299900,'colones','2024-02-01','2024-02-15',0,3152,1),(2435,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3153,0),(2436,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3154,0),(2437,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3155,0),(2438,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3156,0),(2439,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3157,0),(2440,'20210151','','','2021-07-10',60000,60000,15000,'colones','2024-01-01','2024-01-15',1,3158,1),(2441,'20210152','1054','187','2021-07-18',126400,126400,15000,'colones','2024-03-01','2024-03-15',1,3159,1),(2442,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3160,0),(2443,'20210154','','','2021-07-28',60000,45000,20000,'colones','2023-08-01','2023-08-15',1,3161,0),(2444,'20210155','','','2021-08-02',25000,25000,15000,'colones','2024-03-01','2024-03-15',1,3162,1),(2445,'20210158','','','2021-08-06',60000,60000,15000,'colones','2023-08-01','2023-08-15',1,3163,0),(2446,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3164,0),(2447,'20210158','','','2021-08-06',60000,60000,17500,'colones','2024-03-01','2024-03-15',1,3165,1),(2448,'20210159','','','2021-08-07',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3166,1),(2449,'20210160','','','2021-08-07',60000,60000,20000,'colones','2023-08-01','2023-08-15',1,3167,0),(2450,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3168,0),(2451,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3169,0),(2452,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3170,0),(2453,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3171,0),(2454,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3172,0),(2455,'20210166','','','2021-10-02',60000,0,15000,'colones','2023-11-01','2023-11-15',1,3173,0),(2456,'20210167','1033','187','2021-10-02',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3174,1),(2457,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3175,0),(2458,'20210169','','','2021-10-15',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3176,1),(2459,'20210170','','','2021-10-15',60000,60000,29900,'colones','2024-02-01','2024-02-15',1,3177,0),(2460,'20210171','','','2022-10-18',60000,60000,29900,'colones','2023-12-01','2023-12-15',1,3178,1),(2461,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3179,0),(2462,'20210173','1034','130','2021-11-12',100000,90000,39900,'colones','2024-03-01','2024-03-15',1,3180,1),(2463,'20210174','','','2021-11-15',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3181,1),(2464,'20210175','','','2021-12-01',0,0,30000,'colones','2024-01-01','2024-01-15',1,3182,1),(2465,'20210176','','','2021-11-22',64500,64500,15000,'colones','2023-10-01','2023-10-15',1,3183,0),(2466,'20210177','','','2021-11-13',60000,60000,30000,'colones','2024-03-01','2024-03-15',1,3184,0),(2467,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3185,0),(2468,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3186,0),(2469,'20210180','','','2021-11-28',60000,60000,20000,'colones','2023-08-01','2023-08-15',1,3187,0),(2470,'20210181','','','2021-11-28',100000,100000,20000,'colones','2024-03-01','2024-03-15',1,3188,1),(2471,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3189,0),(2472,'20210183','','','2021-12-11',74628,74628,39900,'colones','2024-03-01','2024-03-15',1,3190,1),(2473,'20210184','','','2021-12-12',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3191,1),(2474,'20210185','','','2021-12-15',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3192,1),(2475,'20210186','1061','158','2021-12-18',60000,60000,29900,'colones','2024-01-01','2024-01-15',0,3193,1),(2476,'20210187','','','2021-12-18',146000,146000,39900,'colones','2023-12-01','2023-12-15',0,3194,1),(2477,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3195,0),(2478,'20210189','1037','130','2021-12-27',63450,63450,39900,'colones','2024-03-01','2024-03-15',1,3196,1),(2479,'20210190','','','2021-01-03',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3197,1),(2480,'20220101','','','2022-01-04',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3198,1),(2481,'20220102','','','2022-01-09',40000,40000,25000,'colones','2024-03-01','2024-03-15',1,3199,1),(2482,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3200,0),(2483,'20220104','','','2022-01-16',60000,60000,15000,'colones','2024-01-01','2024-01-15',0,3201,1),(2484,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3202,0),(2485,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3203,0),(2486,'20220107','','','2022-01-26',63750,63750,49900,'colones','2024-03-01','2024-03-15',1,3204,1),(2487,'20220108','1070','132','2022-01-27',60000,60000,59900,'colones','2024-03-01','2024-03-15',1,3205,1),(2488,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3206,0),(2489,'20220110','','','2022-02-04',268598,268598,15000,'colones','2024-03-01','2024-03-15',1,3207,1),(2490,'20220111','','','2022-02-06',80000,30000,29900,'colones','2024-02-01','2024-02-15',0,3208,1),(2491,'20220112','1093','128','2022-02-12',60000,60000,30000,'colones','2024-03-01','2024-03-15',1,3209,1),(2492,'20220113','','','2022-02-17',63000,63000,29900,'colones','2024-03-01','2024-03-15',1,3210,1),(2493,'20220114','','','2022-02-24',60000,48100,25900,'colones','2024-03-01','2024-03-15',1,3211,1),(2494,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3212,0),(2495,'20220116','1051','132','2022-02-27',65000,65000,59900,'colones','2024-03-01','2024-03-15',1,3213,1),(2496,'20220117','','','2022-03-03',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3214,1),(2497,'20220118','','','2022-03-24',60000,60000,40000,'colones','2024-03-01','2024-03-15',1,3215,1),(2498,'20220119','','190','2022-03-26',60000,60000,42500,'colones','2024-03-01','2024-03-15',1,3216,1),(2499,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3217,0),(2500,'20220121','','','2022-03-31',60000,60000,29900,'colones','2023-12-01','2023-12-15',1,3218,1),(2501,'20220122','','','2022-03-31',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3219,1),(2502,NULL,'1045','126',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3220,0),(2503,NULL,'1035','127',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3221,0),(2504,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3222,0),(2505,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3223,0),(2506,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3224,0),(2507,'20220128','','','2022-04-19',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3225,1),(2508,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3226,0),(2509,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3227,0),(2510,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3228,0),(2511,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3229,0),(2512,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3230,0),(2513,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3231,0),(2514,'20220135','','','2022-05-04',60000,60000,29900,'colones','2023-08-01','2023-08-15',1,3232,0),(2515,'20220136','','','2022-05-04',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3233,1),(2516,NULL,'1036','130',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3234,0),(2517,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3235,0),(2518,'20220139','','','2022-05-10',60000,60000,25000,'colones','2024-03-01','2024-03-15',1,3236,1),(2519,'20220140','','','2022-05-20',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3237,1),(2520,'20220141','','','2022-05-20',60000,60000,49900,'colones','2024-03-01','2024-03-15',1,3238,1),(2521,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3239,0),(2522,'20220143','','','2022-05-31',60000,60000,29900,'colones','2023-08-01','2023-08-15',1,3240,0),(2523,'20220144','','','2022-06-02',60000,60000,29000,'colones','2024-03-01','2024-03-15',1,3241,1),(2524,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3242,0),(2525,'20220146','','','2022-06-17',65000,65000,29900,'colones','2024-03-01','2024-03-15',1,3243,1),(2526,'20220147','1055','128','2022-06-23',70000,70000,29900,'colones','2024-03-01','2024-03-15',1,3244,1),(2527,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3245,0),(2528,NULL,'1038','131',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3246,0),(2529,'20220150','','','2022-07-20',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3247,1),(2530,'20220151','1032','129','2022-07-28',66769,66769,35000,'colones','2024-03-01','2024-03-15',1,3248,1),(2531,'20220152','','','2022-07-28',60000,0,15000,'colones','2024-03-01','2024-03-15',1,3249,1),(2532,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3250,0),(2533,'20220154','','','2022-07-28',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3251,1),(2534,'20220155','','','2022-08-01',90000,90000,29900,'colones','2024-03-01','2024-03-15',1,3252,1),(2535,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3253,0),(2536,'20220158','','','2022-08-05',201000,201000,29900,'colones','2024-02-01','2024-02-15',1,3254,1),(2537,'20220157','','','2022-08-05',201000,201000,69900,'colones','2024-03-01','2024-03-15',1,3255,1),(2538,'20220159','','','2022-08-05',201000,201000,10000,'colones','2024-03-01','2024-03-15',1,3256,1),(2539,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3257,0),(2540,'20220161','','','2022-08-10',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3258,1),(2541,'20220162','','','2022-08-13',95000,95000,29900,'colones','2023-09-01','2023-09-15',0,3259,1),(2542,'20220163','','','2022-08-27',140000,140000,49900,'colones','2024-03-01','2024-03-15',1,3260,1),(2543,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3261,0),(2544,'20220165','','','2022-08-27',60000,0,20000,'colones','2023-08-01','2023-08-15',1,3262,0),(2545,'20220166','','','2022-09-05',60000,60000,35000,'colones','2024-03-01','2024-03-15',0,3263,1),(2546,'20220167','','','2022-08-26',80000,80000,39900,'colones','2024-01-01','2024-01-15',0,3264,1),(2547,'20220168','','','2022-08-31',97087,97087,29900,'colones','2024-02-01','2024-02-15',0,3265,1),(2548,'20220169','1076','128','2022-08-31',97087,97087,29900,'colones','2024-03-01','2024-03-15',1,3266,1),(2549,'20220170','1050','128','2023-05-11',154810,154810,29900,'colones','2024-03-01','2024-03-15',1,3267,1),(2550,'20220171','','','2022-09-16',111875,111875,59900,'colones','2024-03-01','2024-03-15',1,3268,1),(2551,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3269,0),(2552,'20220173','','','2022-10-07',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3270,1),(2553,'20220174','','','2022-10-17',60000,60000,30000,'colones','2024-03-01','2024-03-15',1,3271,1),(2554,'20220175','','','2022-10-26',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3272,1),(2555,'20220176','','','2022-10-26',60000,0,20000,'colones','2024-03-01','2024-03-15',1,3273,1),(2556,'20220177','','','2022-10-27',60000,0,39900,'colones','2023-08-01','2023-08-15',1,3274,0),(2557,'20220178','','','2022-10-27',0,0,39900,'colones','2024-03-01','2024-03-15',1,3275,1),(2558,'20220179','','','2022-10-26',130000,130000,25900,'colones','2024-03-01','2024-03-15',1,3276,1),(2559,'20220180','','132','2022-10-28',70000,70000,59900,'colones','2024-03-01','2024-03-15',1,3277,1),(2560,'20220181','','','2022-11-25',60000,0,15000,'colones','2023-08-01','2023-08-15',1,3278,0),(2561,'20220182','','','2022-11-02',203400,203400,49900,'colones','2024-02-01','2024-02-15',1,3279,1),(2562,'20220183','','127','2022-11-03',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3280,1),(2563,NULL,'Fact','128',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3281,0),(2564,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3282,0),(2565,'20220186','','','2022-11-15',60000,60000,20000,'colones','2023-11-01','2023-11-15',1,3283,0),(2566,'20220187','1047','132','2022-11-18',60000,60000,59900,'colones','2024-03-01','2024-03-15',1,3284,1),(2567,'20220188','','','2022-11-22',60000,0,15000,'colones','2024-03-01','2024-03-15',1,3285,1),(2568,'20220189','1046','131','2022-11-25',60000,60000,49900,'colones','2024-03-01','2024-03-15',1,3286,1),(2569,'20220190','1046','131','2022-11-25',60000,60000,49900,'colones','2024-03-01','2024-03-15',1,3287,1),(2570,'20220191','','','2022-11-29',75000,75000,29900,'colones','2023-11-01','2023-11-15',1,3288,1),(2571,'20220192','1112','128','2022-11-29',75000,75000,29900,'colones','2023-12-01','2023-12-15',0,3289,1),(2572,'20220193','','','2022-12-06',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3290,1),(2573,'20220194','','','2022-12-05',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3291,1),(2574,'20220195','','','2022-12-07',60000,60000,30000,'colones','2024-03-01','2024-03-15',1,3292,1),(2575,'20220196','','','2022-12-09',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3293,1),(2576,'20220197','','','2022-12-20',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3294,1),(2577,'20220198','1057','128','2022-12-15',58200,58200,29900,'colones','2024-03-01','2024-03-15',1,3295,1),(2578,'20220199','1052','130','2022-12-23',280000,0,39900,'colones','2024-03-01','2024-03-15',0,3296,1),(2579,'20220200','','','2022-12-23',60000,30000,29900,'colones','2023-10-01','2023-10-15',1,3297,1),(2580,'20220201','','','2022-12-25',70000,70000,29900,'colones','2024-03-01','2024-03-15',1,3298,1),(2581,'20220202','','','2022-12-28',0,0,25900,'colones','2024-02-01','2024-02-15',1,3299,0),(2582,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3300,0),(2583,'20230101','','','2023-01-04',60000,60000,15000,'colones','2024-03-01','2024-03-15',1,3301,1),(2584,'20230102','','','2023-01-04',90000,90000,29900,'colones','2024-03-01','2024-03-15',1,3302,1),(2585,'20230103','1079','128','2023-01-06',60000,0,29900,'colones','2024-03-01','2024-03-15',1,3303,1),(2586,'20230104','1060','130','2023-01-07',60000,60000,20000,'colones','2024-01-01','2024-01-15',1,3304,0),(2587,'20230105','1078','128','2023-04-27',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3305,1),(2588,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3306,1),(2589,'20230106','','','2023-01-17',95000,95000,29900,'colones','2024-03-01','2024-03-15',1,3307,1),(2590,'20230107','1064','187','2023-01-18',60000,20000,15000,'colones','2024-03-01','2024-03-15',1,3308,1),(2591,'20230108','1063','127','2023-01-24',124700,124700,25900,'colones','2024-03-01','2024-03-15',1,3309,1),(2592,'20230109','','','2023-01-24',60000,0,29000,'colones','2024-03-01','2024-03-15',1,3310,1),(2593,'20230110','1118','131','2023-01-24',85000,85000,49900,'colones','2024-03-01','2024-03-15',1,3311,1),(2594,'20230111','','','2023-01-25',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3312,1),(2595,NULL,'1065','128',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3313,0),(2596,'20230113','','','2023-01-26',65000,65000,30000,'colones','2024-03-01','2024-03-15',1,3314,1),(2597,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3315,0),(2598,'20230115','','','2023-02-05',0,0,29900,'colones','2024-03-01','2024-03-15',1,3316,1),(2599,'20230116','1089','128','2023-02-07',60000,60000,29900,'colones','2024-01-01','2024-01-15',0,3317,1),(2600,'20230117','','','2023-02-16',60000,0,0,'colones','2023-11-01','2023-11-15',1,3318,1),(2601,NULL,'1069','128',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3319,0),(2602,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3320,0),(2603,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3321,0),(2604,'20230121','','','2023-02-15',0,0,15000,'colones','2024-03-01','2024-03-15',0,3322,1),(2605,'20230122','','','2023-02-16',0,0,15000,'colones','2024-02-01','2024-02-15',0,3323,1),(2606,'20230123','','','2023-02-18',0,0,0,'colones','2023-12-01','2023-12-15',0,3324,1),(2607,'20230124','','','2023-02-19',60000,60000,39000,'colones','2024-02-01','2024-02-15',1,3325,1),(2608,'20230125','','131','2023-02-20',60000,0,39900,'colones','2024-02-01','2024-02-15',0,3326,1),(2609,'20230126','1068','120','2023-02-27',60000,60000,114.75,'dolares','2024-02-01','2024-02-15',1,3327,1),(2610,'20230127','1067','130','2023-02-28',60000,60000,39900,'colones','2024-01-01','2024-01-15',0,3328,1),(2611,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3329,0),(2612,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3330,0),(2613,'20230130','','','2023-03-04',60000,60000,0,'colones','2023-10-01','2023-10-15',0,3331,1),(2614,'20230131','','','2023-03-06',60000,60000,49000,'colones','2024-03-01','2024-03-15',1,3332,1),(2615,'20230132','','','2023-03-09',0,0,20000,'colones','2023-10-01','2023-10-15',1,3333,1),(2616,NULL,'1071','128',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3334,0),(2617,NULL,'1072','128',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3335,0),(2618,'20230135','','','2023-03-20',54600,54600,40000,'colones','2024-03-01','2024-03-15',1,3336,1),(2619,'20230136','1074','128','2023-03-22',75000,75000,29900,'colones','2024-01-01','2024-01-15',1,3337,1),(2620,'20230137','','','2023-03-28',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3338,1),(2621,'20230138','','','2023-03-30',106000,106000,49900,'colones','2024-03-01','2024-03-15',1,3339,1),(2622,'20230139','','','2023-04-03',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3340,1),(2623,'20230140','','','2023-03-31',0,0,25000,'colones','2024-03-01','2024-03-15',1,3341,1),(2624,'20230141','1083','184','2023-03-31',60000,60000,136,'dolares','2024-02-01','2024-02-15',0,3342,1),(2625,'20230142','1075','131','2023-04-02',139800,139800,49900,'colones','2023-10-01','2023-10-15',1,3343,0),(2626,'20230143','1080','120','2023-04-13',65000,65000,114.75,'dolares','2024-02-01','2024-02-15',0,3344,1),(2627,'20230144','','','2023-04-14',0,0,20000,'colones','2024-02-01','2024-02-15',0,3345,1),(2628,'20230145','','','2023-04-17',60000,8200,25900,'colones','2024-03-01','2024-03-15',1,3346,1),(2629,'20230146','','','2023-04-18',60000,0,25900,'colones','2023-08-01','2023-08-15',1,3347,0),(2630,'20230147','','','2023-04-15',0,0,20000,'colones','2023-11-01','2023-11-15',1,3348,1),(2631,'20230148','','','2023-04-24',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3349,1),(2632,'20230149','','','2023-04-25',0,0,39900,'colones','2023-08-01','2023-08-15',1,3350,0),(2633,'20230150','','','2023-04-25',0,0,20000,'colones','2023-08-01','2023-08-15',1,3351,0),(2634,'20230151','','','2023-04-25',0,0,15000,'colones','2024-03-01','2024-03-15',1,3352,1),(2635,'20230152','','','2023-04-26',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3353,1),(2636,'20230153','','','2023-04-26',60000,60000,39000,'colones','2024-02-01','2024-02-15',1,3354,0),(2637,'20230154','1077','130','2023-04-26',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3355,1),(2638,'20230155','1081','131','2023-04-29',213100,213100,49900,'colones','2024-03-01','2024-03-15',1,3356,1),(2639,'20230156   REGALIA','1082','225','2023-04-29',0,0,10000,'colones','2023-12-01','2023-12-15',0,3357,1),(2640,'20230157','','','2023-04-29',0,0,39000,'colones','2024-02-01','2024-02-15',0,3358,1),(2641,'20230158','1060','126','2023-04-29',60000,60000,39900,'colones','2024-01-01','2024-01-15',1,3359,0),(2642,'20230159','1067','130','2023-05-03',60000,60000,39900,'colones','2024-01-01','2024-01-15',0,3360,1),(2643,'20230160','','','2023-05-03',0,0,25900,'colones','2023-09-01','2023-09-15',1,3361,0),(2644,'20230161','','','2023-05-06',160000,160000,29900,'colones','2024-03-01','2024-03-15',1,3362,1),(2645,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3363,0),(2646,'20230163','','','2023-05-11',110000,0,25900,'colones','2024-03-01','2024-03-15',1,3364,1),(2647,'20230164','','','2023-05-12',60000,0,25900,'colones','2024-03-01','2024-03-15',0,3365,1),(2648,'20230165','','','2023-05-13',60000,20000,29900,'colones','2024-03-01','2024-03-15',1,3366,1),(2649,'20230166','','','2023-05-15',0,0,29900,'colones','2024-03-01','2024-03-15',1,3367,1),(2650,'20230167','','','2023-05-20',50000,50000,29900,'colones','2023-08-01','2023-08-15',1,3368,1),(2651,'20230168','','','2023-05-20',50000,50000,29900,'colones','2024-02-01','2024-02-15',1,3369,1),(2652,'20230169','','','2023-05-29',0,0,29900,'colones','2024-02-01','2024-02-15',0,3370,1),(2653,'20230170','','','2023-06-02',0,0,39900,'colones','2023-11-01','2023-11-15',1,3371,1),(2654,'20230171','','','2023-06-03',0,0,25900,'colones','2024-03-01','2024-03-15',1,3372,1),(2655,'20230172','1084','127','2023-06-08',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3373,1),(2656,'20230173','1040','131','2023-06-09',60000,0,49900,'colones','2024-03-01','2024-03-15',1,3374,1),(2657,'20230174','','','2023-06-12',90000,90000,39900,'colones','2024-03-01','2024-03-15',1,3375,1),(2658,'20230175','1087','127','2023-06-12',60000,20000,25900,'colones','2024-03-01','2024-03-15',1,3376,1),(2659,'20230176','','','2023-06-12',0,0,29900,'colones','2024-03-01','2024-03-15',1,3377,1),(2660,'','','','2023-07-06',0,0,0,'colones','2024-01-01','2024-01-15',0,3378,1),(2661,'20230178','','128','2023-06-13',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3379,1),(2662,'20230179','','','2023-06-13',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3380,1),(2663,'20230180','','','2023-06-16',90000,90000,25900,'colones','2024-03-01','2024-03-15',1,3381,1),(2664,'20230181','1085','128','2023-06-16',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3382,1),(2665,'20230182','','','2023-06-17',30000,30000,25900,'colones','2024-03-01','2024-03-15',1,3383,1),(2666,'20230183','','','2023-06-17',30000,30000,25900,'colones','2024-03-01','2024-03-15',1,3384,1),(2667,'20230184','','','2023-06-17',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3385,1),(2668,'20230185','','','2023-06-07',60000,32000,25900,'colones','2024-03-01','2024-03-15',1,3386,1),(2669,'20230186','','','2023-06-19',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3387,1),(2670,'20230187','','','2023-06-19',90000,0,39900,'colones','2024-02-01','2024-02-15',1,3388,0),(2671,'20230188','','','2023-06-19',60000,22100,25900,'colones','2024-03-01','2024-03-15',1,3389,1),(2672,NULL,'','',NULL,NULL,NULL,NULL,'colones','2023-08-01','2023-08-15',1,3390,0),(2673,'20230190','','','2023-06-20',60000,0,25900,'colones','2024-03-01','2024-03-15',1,3391,1),(2674,'20230191','','','2023-06-20',60000,20000,25900,'colones','2024-03-01','2024-03-15',1,3392,1),(2675,'20230192','','','2023-06-21',60000,0,25900,'colones','2024-03-01','2024-03-15',1,3393,1),(2676,'20230193','','','2023-06-21',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3394,1),(2677,'20230194','','','2023-06-23',0,0,25900,'colones','2024-03-01','2024-03-15',1,3395,1),(2678,'20230195','1105','128','2023-06-23',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3396,1),(2679,'20230196','','','2023-06-24',0,0,20000,'colones','2024-03-01','2024-03-15',1,3397,1),(2680,'20230197','','','2023-06-26',60000,37300,25900,'colones','2024-03-01','2024-03-15',1,3398,1),(2681,'20230198','','','2023-06-28',0,0,20000,'colones','2024-02-01','2024-02-15',0,3399,1),(2682,'20230199','','','2023-06-28',0,0,25900,'colones','2024-03-01','2024-03-15',1,3400,1),(2683,'20230200','','','2023-05-02',60000,0,20000,'colones','2024-03-01','2024-03-15',1,3401,1),(2684,'20230201','','','2023-07-04',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3402,1),(2685,'20230202','1095','130','2023-07-07',30000,30000,39900,'colones','2024-02-01','2024-02-15',1,3403,1),(2686,'20230203','1088','128','2023-07-04',60000,60000,39900,'colones','2024-03-01','2024-03-15',1,3404,1),(2687,'20230204','','','2023-07-04',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3405,1),(2688,'20230205','','','2023-07-04',0,0,25900,'colones','2024-03-01','2024-03-15',1,3406,1),(2689,'20230206','','','2023-07-04',60000,0,25900,'colones','2024-03-01','2024-03-15',1,3407,1),(2690,'20230207','','','2023-07-10',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3408,1),(2691,'20230208','','','2023-07-11',60000,10000,29900,'colones','2024-03-01','2024-03-15',1,3409,1),(2692,'20230209','','','2023-07-12',60000,35000,29900,'colones','2024-03-01','2024-03-15',1,3410,1),(2693,'20230210','1090','126','2023-07-18',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3411,1),(2694,'20230211','1103','131','2023-07-18',60000,20000,49900,'colones','2024-03-01','2024-03-15',1,3412,1),(2695,'20230212','','','2023-07-19',60000,20000,29900,'colones','2023-11-01','2023-11-15',0,3413,1),(2696,'20230213','','','2023-07-20',60000,23000,29900,'colones','2024-03-01','2024-03-15',1,3414,1),(2697,'20230214','1091','128','2023-07-21',74070,74070,29900,'colones','2024-03-01','2024-03-15',1,3415,1),(2698,'20230215','','','2023-07-22',0,0,20000,'colones','2024-03-01','2024-03-15',1,3416,1),(2699,'20221001','1002','120','2022-10-01',0,0,114.75,'dolares','2024-03-01','2024-03-15',1,3417,1),(2700,'20221010','1001','136','2022-10-01',0,0,203.1,'dolares','2024-02-01','2024-02-15',1,3418,1),(2701,'20221002','1003','137','2022-10-01',0,0,242.5,'dolares','2023-09-01','2023-09-15',1,3419,0),(2702,'','','',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3420,0),(2703,'2022100320221006','1043','135','2022-10-01',0,0,252.45,'dolares','2023-11-01','2023-11-15',1,3421,0),(2704,'20221004','1005','134','2022-10-01',0,0,355.42,'dolares','2024-03-01','2024-03-15',1,3422,1),(2705,'20221005','','',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3423,0),(2706,'20221006','','123',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3424,0),(2707,'20221007','1008','122','2022-10-01',0,0,172.13,'dolares','2023-09-01','2023-09-15',1,3425,0),(2708,'20221008','1009','121','2022-10-01',0,0,517,'dolares','2024-02-01','2024-02-15',1,3426,0),(2709,'20221009','1010','120','2022-10-01',0,0,114.75,'dolares','2023-09-01','2023-09-15',1,3427,1),(2710,'20221011','1011','101','2022-10-01',0,0,269.66,'dolares','2024-02-01','2024-02-15',0,3428,1),(2711,'20221012','1012','119','2022-10-01',0,0,201.81,'dolares','2024-02-01','2024-02-15',1,3429,1),(2712,'20221013','1029','102','2022-10-01',0,0,177.71,'dolares','2024-03-01','2024-03-15',1,3430,1),(2713,'20221014','1014','118','2022-10-01',0,0,201.81,'dolares','2024-02-01','2024-02-15',1,3431,0),(2714,'20221015','1062','117','2022-10-01',0,0,218.03,'dolares','2024-03-01','2024-03-15',1,3432,1),(2715,'20221016','1016','116','2022-10-01',0,0,170.98,'dolares','2024-01-01','2024-01-15',1,3433,1),(2716,'20221017','1039','103','2000-10-01',0,0,143.44,'dolares','2024-01-01','2024-01-15',0,3434,1),(2717,'20221018','1040','115','2022-10-01',0,0,80000,'colones','2024-01-01','2024-01-15',0,3435,1),(2718,'20221019','1027','114','2022-10-01',0,0,172.55,'dolares','2024-03-01','2024-03-15',1,3436,1),(2719,'20221020','1026','114',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3437,0),(2720,'20221021','1041','113','2022-10-01',0,0,143.44,'dolares','2024-02-01','2024-02-15',0,3438,1),(2721,'20221022','1025','112','2022-10-01',0,0,154.91,'dolares','2024-03-01','2024-03-15',1,3439,1),(2722,'20221023','1024','111','2022-10-01',0,0,102,'dolares','2024-03-01','2024-03-15',1,3440,1),(2723,'20221024','1023','110',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3441,0),(2724,'20221025','1022','109','2022-10-01',0,0,172.13,'dolares','2024-01-01','2024-01-15',1,3442,0),(2725,'20221026','1021','133',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3443,0),(2726,'20221027','1020','108',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3444,0),(2727,'20221028','1019','107','2022-10-01',0,0,315.56,'dolares','2024-03-01','2024-03-15',1,3445,1),(2728,'20221029','1018','106','2022-10-01',0,0,150,'dolares','2024-02-01','2024-02-15',1,3446,1),(2729,'20221030','1116','130','2022-10-01',0,0,39900,'colones','2023-11-01','2023-11-15',0,3447,1),(2730,'20221031','1017','104','2022-10-01',0,0,167.56,'dolares','2024-03-01','2024-03-15',1,3448,1),(2731,'20221032','','','2022-10-01',0,0,0,'dolares','2023-11-01','2023-11-15',1,3449,0),(2732,'','','',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3450,0),(2733,'','','',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3451,0),(2734,'','','',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3452,0),(2735,'','','',NULL,NULL,NULL,0,'dolares','2023-08-01','2023-08-15',1,3453,0),(2736,'20230216','','','2023-07-22',50000,10000,25900,'colones','2024-03-01','2024-03-15',1,3454,1),(2737,'20230217','','','2023-07-31',60000,0,20000,'colones','2024-03-01','2024-03-15',1,3461,1),(2738,'20230218','','','2023-07-31',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3462,1),(2739,'20230220','1096','131','2023-08-01',60000,60000,49900,'colones','2024-02-01','2024-02-15',0,3463,1),(2740,'20210179','','','2022-01-14',6000,60000,39900,'colones','2024-03-01','2024-03-15',1,3464,1),(2741,'20230221','1097','131','2023-08-01',60000,60000,49900,'colones','2024-03-01','2024-03-15',1,3465,1),(2742,'20230223','1103','131','2023-08-07',35000,15000,49900,'colones','2024-03-01','2024-03-15',1,3466,1),(2743,'20230222','1098','131','2023-08-07',60000,60000,49900,'colones','2023-11-01','2023-11-08',0,3467,1),(2744,'20230224','1111','132','2023-08-08',60000,0,59900,'colones','2023-08-01','2023-08-15',1,3468,1),(2745,'20230225','','','2023-08-08',30000,0,25000,'colones','2023-09-01','2023-09-15',1,3469,0),(2746,'20230226','','','2023-08-08',60000,0,29900,'colones','2023-08-01','2023-08-15',1,3470,0),(2747,'20230226','','','2023-08-09',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3471,1),(2748,'20230227','','','2023-08-15',60000,0,39900,'colones','2024-02-01','2024-02-15',0,3472,1),(2749,'20230228','','','2023-08-15',0,0,0,'colones','2023-09-01','2023-09-16',1,3473,1),(2750,'20230229','1099','130','2023-08-15',60000,0,39900,'colones','2024-03-01','2024-03-16',1,3474,1),(2751,'20230231','1100','130','2023-08-29',60000,0,39900,'colones','2024-03-01','2024-03-15',1,3476,1),(2752,'20230230','','','2023-09-01',60000,60000,20000,'colones','2024-03-01','2024-03-15',1,3477,1),(2753,'20230232','1101','128','2023-09-01',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3479,1),(2754,'20230233','','','2023-09-01',60000,20300,39900,'colones','2024-03-01','2024-03-15',1,3480,1),(2755,'20230234','','','2023-09-01',60000,60000,29900,'colones','2024-03-02','2024-03-15',1,3482,1),(2756,'20230235','','','2023-09-04',60000,0,29900,'colones','2024-03-05','2024-03-15',1,3483,1),(2757,'20230236','','','2023-09-02',60000,60000,25900,'colones','2024-03-03','2024-03-15',1,3486,1),(2758,'20230237','','','2023-09-04',60000,60000,29900,'colones','2024-03-06','2024-03-15',1,3487,1),(2759,'20230238','','','2023-09-07',85000,85000,29900,'colones','2024-03-08','2024-03-15',1,3488,1),(2760,'20230239','','','2023-09-08',60000,0,20000,'colones','2024-03-09','2024-03-15',1,3489,1),(2761,'20230240','1104','126','2023-09-12',30000,30000,20000,'colones','2024-02-13','2024-02-15',0,3490,1),(2762,'20230242','','','2023-09-14',60000,60000,39900,'colones','2024-02-01','2024-02-15',1,3491,1),(2763,'20230241','','','2023-09-14',60000,0,29900,'colones','2023-09-01','2023-09-15',1,3492,1),(2764,'20230245    regalia','','','2023-09-22',0,0,0,'colones','2023-11-01','2023-11-15',1,3493,0),(2765,'20230246','','','2023-09-22',60000,10000,25900,'colones','2024-03-01','2024-03-15',1,3495,1),(2766,'20230244','','','2023-09-22',60000,0,29900,'colones','2024-03-01','2024-03-15',1,3496,1),(2767,'20230243','1114','128','2023-09-21',60000,60000,29900,'colones','2024-02-01','2024-02-15',0,3497,1),(2768,'20230247','1117','127','2023-09-22',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3498,1),(2769,'20230248','1106','128','2023-09-25',60000,60000,29900,'colones','2024-01-01','2024-01-15',1,3499,1),(2770,'20230249','1107','','2023-09-25',60000,0,136,'dolares','2023-10-01','2023-10-15',1,3500,0),(2771,'20230250','','','2023-09-26',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3501,1),(2772,'20230249','1107','184','2023-09-26',60000,0,136,'dolares','2024-01-01','2024-01-15',1,3502,1),(2773,'20230251','','','2023-09-29',60000,0,20000,'colones','2024-03-01','2024-03-15',1,3503,1),(2774,'20230252','','','2023-10-02',0,0,15000,'colones','2024-02-03','2024-02-15',0,3504,1),(2775,'20230253','','','2023-10-11',30000,15000,29900,'colones','2024-02-13','2024-02-15',1,3506,1),(2776,'20230254','','','2023-10-11',30000,0,29900,'colones','2024-01-11','2024-01-15',1,3507,1),(2777,'20230255','1109','128','2023-10-01',60000,60000,29900,'colones','2024-02-12','2024-02-15',0,3509,1),(2778,'20230257','','','2023-10-14',30000,30000,29900,'colones','2024-03-16','2024-03-17',1,3510,1),(2779,'20230259','1113','131','2023-10-17',60000,60000,49900,'colones','2023-11-17','2023-11-15',0,3512,1),(2780,'20230258','','','2023-10-17',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3513,1),(2781,'20230256','1110','128','2023-10-12',60000,0,29900,'colones','2024-03-01','2024-03-15',1,3514,1),(2782,'20230260','','','2023-11-01',60000,0,25000,'colones','2023-11-02','2023-11-15',1,3515,1),(2783,'20230261','','','2023-11-01',0,0,15000,'colones','2024-02-07','2024-02-15',0,3516,1),(2784,'20230262','1115','187','2023-11-07',0,0,15000,'colones','2024-03-10','2024-03-15',1,3517,1),(2785,'20230263','','','2023-11-09',60000,60000,39900,'colones','2024-03-10','2024-03-15',1,3518,1),(2786,'20230264','','','2023-11-14',60000,0,10000,'colones','2024-02-15','2024-02-15',0,3520,1),(2787,'20230265','','','2023-11-14',0,0,20000,'colones','2024-02-15','2024-02-15',1,3521,1),(2788,'20230266','','','2023-11-15',75000,70450,25900,'colones','2024-02-15','2024-02-15',0,3522,1),(2789,'20230267','','','2023-11-15',0,0,29900,'colones','2024-03-15','2024-03-18',1,3523,1),(2790,'20230268','','','2023-11-14',60000,0,25900,'colones','2024-02-17','2024-02-17',0,3524,1),(2791,'20230269','','','2023-11-20',60000,30000,25900,'colones','2024-03-01','2024-03-15',1,3525,1),(2792,'20230270','','','2023-11-22',0,0,29900,'colones','2023-12-01','2023-12-15',1,3526,1),(2793,'20230271','1051','131','2023-11-23',60000,60000,49900,'colones','2024-03-01','2024-03-15',1,3527,1),(2794,'20230272','','','2023-11-27',0,0,15000,'colones','2024-02-01','2024-02-15',1,3528,1),(2795,'20230274','','','2023-12-01',0,0,17000,'colones','2024-03-01','2024-03-15',1,3529,1),(2796,'20230273','','','2023-12-01',0,0,22000,'colones','2024-03-01','2024-03-15',1,3530,1),(2797,'20230275','','','2023-12-01',60000,0,24900,'colones','2024-03-01','2024-03-15',1,3531,1),(2798,'20230276','','','2023-12-07',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3532,1),(2799,'20230277','','','2023-12-07',60000,60000,29900,'colones','2024-02-01','2024-02-15',1,3533,1),(2800,'20230278','','','2023-12-11',60000,60000,29900,'colones','2024-03-01','2024-03-15',1,3534,1),(2801,'20230279','','','2023-12-23',75000,75000,29900,'colones','2024-03-23','2024-03-24',1,3535,1),(2802,'20240102','','','2024-01-03',60000,34100,25900,'colones','2024-03-01','2024-03-15',1,3536,1),(2803,'20240103','1120','128','2024-01-03',60000,0,29900,'colones','2024-02-01','2024-02-15',0,3537,1),(2804,'20240101','1121','128','2024-01-02',60000,60000,29900,'colones','2024-02-03','2024-02-15',1,3538,1),(2805,'20240104','','','2024-01-05',0,0,15000,'colones','2024-03-05','2024-03-15',1,3539,1),(2806,'20240105','','','2024-01-06',30000,0,17500,'colones','2024-03-15','2024-03-15',1,3540,1),(2807,'20240106','','','2024-01-08',60000,60000,29940,'colones','2024-02-08','2024-02-15',1,3541,0),(2808,'20240107','','','2024-01-08',60000,22600,25900,'colones','2024-03-08','2024-03-15',1,3542,1),(2809,'20240106','1122','131','2024-01-09',60000,60000,29940,'colones','2024-03-12','2024-03-15',1,3543,1),(2810,'20240109','','','2024-01-17',30000,5000,39900,'colones','2024-03-17','2024-03-18',1,3544,1),(2811,'20240110','','','2024-01-23',30000,0,8000,'colones','2024-03-24','2024-03-24',1,3545,1),(2812,'20240111','','','2024-01-26',60000,60000,25900,'colones','2024-03-01','2024-03-15',1,3546,1),(2813,'20240112','','','2024-01-30',0,0,29900,'colones','2024-03-01','2024-03-15',1,3547,1),(2814,'20240115','','','2024-02-01',60000,0,39900,'colones','2024-02-01','2024-02-15',1,3548,1),(2815,'20240114','1125','130','2024-02-01',60000,0,39900,'colones','2024-03-01','2024-03-15',1,3549,1),(2816,'20240113','','','2024-02-01',0,0,20000,'colones','2024-03-01','2024-03-15',1,3550,1),(2817,'20240117','','','2024-02-02',0,0,20000,'colones','2024-03-02','2024-03-15',1,3551,1),(2818,'20240116','1126','126','2024-02-01',60000,20000,20000,'colones','2024-03-01','2024-03-15',1,3552,1),(2819,'20240117','','','2024-02-01',0,0,20000,'colones','2024-03-01','2024-03-15',1,3553,1),(2820,'20240118','','','2024-02-16',30000,30000,22000,'colones','2024-03-01','2024-03-15',1,3554,1),(2821,'20240119','','','2024-02-16',0,0,0,'colones','2024-02-16','2024-02-16',1,3555,1),(2822,'20240120','','','2024-02-17',0,0,25900,'colones','2024-02-17','2024-02-17',1,3556,1),(2823,'20240122','','','2024-02-17',0,0,25900,'colones','2024-02-19','2024-02-22',1,3557,1),(2824,'20240123','','','2024-02-22',0,0,20000,'colones','2024-03-01','2024-03-15',1,3558,1),(2825,'20240124','','','2024-02-22',0,0,25900,'colones','2024-03-01','2024-03-15',1,3559,1),(2826,'20240125','','','2024-02-24',0,0,20000,'colones','2024-03-01','2024-03-15',1,3560,1),(2827,'202400126','','','2024-02-24',0,0,20000,'colones','2024-03-01','2024-03-10',1,3561,1),(2828,'20240127','','','2024-02-24',60000,0,29900,'colones','2024-03-01','2024-03-10',1,3562,1),(2829,'20240127','','','2024-03-01',60000,0,29900,'colones','2024-03-01','2024-03-15',1,3563,1),(2830,'20240129','','','2024-03-01',60000,0,29900,'colones','2024-03-01','2024-03-15',1,3564,1),(2831,'20240128','','','2024-03-01',0,0,20000,'colones','2024-03-01','2024-03-15',1,3565,1);
+/*!40000 ALTER TABLE `contrato` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipo`
+--
+
+DROP TABLE IF EXISTS `equipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `equipo` (
+  `id_equipo` int NOT NULL AUTO_INCREMENT,
+  `equipo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mac_address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `serie` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_servicio` int DEFAULT NULL,
+  PRIMARY KEY (`id_equipo`),
+  KEY `fk_equipo_servicio` (`id_servicio`),
+  CONSTRAINT `fk_equipo_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6574 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipo`
+--
+
+LOCK TABLES `equipo` WRITE;
+/*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
+INSERT INTO `equipo` VALUES (5501,'NBE-5AC-Gen2','E063DAF205E9','20044104612',2376),(5502,'hAP ac lite','48:8F:5A:BF:67:4B/42','20044104612',2376),(5503,'ETH-SP-G2','','20044104612',2376),(5504,'NBE-5AC-Gen2','E063DAF20B08','20044104643',2377),(5505,'hAP ac lite','48:8F:5A:BF:68:4D/53','20044104643',2377),(5506,'ETH-SP-G2','','20044104643',2377),(5507,'LBE-5AC-Gen2','','20044104626',2378),(5508,'hAP ac lite','48:8F:5A:BF:68:F8/FE','20044104626',2378),(5509,'ETH-SP-G2','','20044104626',2378),(5510,'NBE-5AC-Gen2','E063DAF20A4A','',2379),(5511,'hAP ac lite','48:8F:5A:BF:67:90/96','',2379),(5512,'ETH-SP-G2','','',2379),(5513,'NBE-5AC-Gen2','E063DAF20B3E','20044104664',2380),(5514,'hAP ac lite','48:8F:5A:BF:66:F9/FF','20044104664',2380),(5515,'ETH-SP-G2','','20044104664',2380),(5516,'LBE-5AC-Gen2','24:5A:4C:B4:79:64','21074123508',2381),(5517,'hAP lite','','21074123508',2381),(5518,'LBE-5AC-Gen2','','21074123508',2381),(5519,'LBE-5AC-Gen2','68:D7:9A:A8:50:D3','20044104602',2382),(5520,'hAP ac lite','48:8F:5A:BF:66:AA/B0','20044104602',2382),(5521,'ETH-SP-G2','','20044104602',2382),(5522,'LBE-M5-23','74ACB9F2B2A8','',2383),(5523,'hAP ac lite','','',2383),(5524,'LBE-M5-23','','',2383),(5525,'NBE-5AC-Gen2','E063DAF2061E','20044103809',2384),(5526,'CISCO ','','20044103809',2384),(5527,'NBE-5AC-Gen2','','20044103809',2384),(5528,'NBE-5AC-Gen2','E0:63:DA:F2:04:D0','',2385),(5529,'hAP mini','48:8F:5A:BF:67:9E/A4','',2385),(5530,'ETH-SP-G2','','',2385),(5531,'NBE-5AC-Gen2','E063DAD45580','20044104634',2386),(5532,'hAP lite','08:55:31:14:14:4F/54','20044104634',2386),(5533,'ETH-SP-G2','','20044104634',2386),(5534,'LBE-5AC-Gen2','68:D7:9A:B2:39:AE','20044123097',2387),(5535,'hAP lite','','20044123097',2387),(5536,'LBE-5AC-Gen2','','20044123097',2387),(5537,'LBE-M5-23','74ACB9F2B2A9','',2388),(5538,'hAP litehAp mini','','',2388),(5539,'LBE-M5-23','','',2388),(5540,'NBE-5AC-Gen2','E063DAD45512','',2389),(5541,'hAP lite','08:55:31:14:1D:2A/2F','',2389),(5542,'ETH-SP-G2','','',2389),(5543,'NANO LOCO','24:5A:4C:34:45:3B','20044104612',2390),(5544,'hAP lite','','20044104612',2390),(5545,'NANO LOCO','','20044104612',2390),(5546,'NBE-5AC-Gen2','E063DAF2061E','',2391),(5547,'hAP lite','08:55:31:16:0E:D7:DC','',2391),(5548,'ETH-SP-G2','','',2391),(5549,'LBE-M5-23','74ACB9F2B453','',2392),(5550,'hAP lite','','',2392),(5551,'LBE-M5-23','','',2392),(5552,'LBE-5AC-Gen2','F492BF4222F8','',2393),(5553,'hAP lite','','',2393),(5554,'LBE-5AC-Gen2','','',2393),(5555,'NBE-5AC-Gen2','E063DAF20639','20074113709',2394),(5556,'hAP mini','08:55:31:65:8B:6D/r2','20074113709',2394),(5557,'ETH-SP-G2','','20074113709',2394),(5558,'NBE-5AC-Gen2','E063DAD0C018','20074113845',2395),(5559,'hAP mini','08:55:31:65:8D:31/35','20074113845',2395),(5560,'ETH-SP-G2','','20074113845',2395),(5561,'LBE-M5-23','74ACB9F2B0F2','20044104645',2396),(5562,'hAP mini','','20044104645',2396),(5563,'LBE-M5-23','','20044104645',2396),(5564,'NBE-5AC-Gen2','E063DAD0BF98','20044104619',2397),(5565,'hAP lite','','20044104619',2397),(5566,'NBE-5AC-Gen2','','20044104619',2397),(5567,'LBE-M5-23','74ACB9F2851D','20044103925',2398),(5568,'hAP lite','','20044103925',2398),(5569,'LBE-M5-23','','20044103925',2398),(5570,'LBE-M5-23','74ACB9F2B0AF','20044103963',2399),(5571,'hAP lite','08:55:31:73:A7:73/78','20044103963',2399),(5572,'ETH-SP-G2','','20044103963',2399),(5573,'NBE-5AC-Gen2','E063EDAF20B3F','20044103967',2400),(5574,'hAP lite\nhAP mini','08:55:31:14:24:D0/D5\n08:55:31:65:90:E4:/E8','20044103967',2400),(5575,'ETH-SP-G2','','20044103967',2400),(5576,'LBE-5AC-Gen2','68:D7:9A:B2:3C:C5','N/A',2401),(5577,'N/A','N/A','N/A',2401),(5578,'N/A','','N/A',2401),(5579,'NBE-5AC-Gen2','E0:63:DA:F2:07:95','20044104211',2402),(5580,'hAP lite','08:55:31:71:0C:97/9C','20044104211',2402),(5581,'ETH-SP-G2','','20044104211',2402),(5582,'','','',2403),(5583,'','','',2403),(5584,'NBE-5AC-Gen2','E063DAF205ED','20044103826',2404),(5585,'hAP lite','08:55:31:73:A4:2F/34','20044103826',2404),(5586,'ETH-SP-G2','','20044103826',2404),(5587,'NBE-5AC-Gen2','E063DAF205ED','',2405),(5588,'hAP lite','08:55:31:71:0C:30/35','',2405),(5589,'NBE-5AC-Gen2','E063DAD0C1EA','20074113879',2406),(5590,'hAP mini','','20074113879',2406),(5591,'NBE-5AC-Gen2','','20074113879',2406),(5592,'NBE-5AC-Gen2','E063DA969D71','20074113843',2407),(5593,'hAP mini','08:55:31:65:8D:02/06','20074113843',2407),(5594,'ETH-SP-G2','','20074113843',2407),(5595,'NBE-5AC-Gen2','68:D7:9A:B2:6A:C8','',2408),(5596,'LBE-5AC-Gen2','68:D7:9A:B6:6C:16','',2409),(5597,'hAP lite','','',2409),(5598,'LBE-5AC-Gen2','','',2409),(5599,'N/A','N/A','N/A',2410),(5600,'N/A','N/A','N/A',2410),(5601,'N/A','','N/A',2410),(5602,'NBE-5AC-Gen2','F492BF420741','20044103823',2411),(5603,'hAP mini','','20044103823',2411),(5604,'NBE-5AC-Gen2','','20044103823',2411),(5605,'LBE-5AC-Gen2','F492BF423729','20074113922',2412),(5606,'hAP mini','','20074113922',2412),(5607,'LBE-5AC-Gen2','','20074113922',2412),(5608,'LBE-5AC-Gen2','68D79AA453C6','20074113677',2413),(5609,'hAP mini','08:55:31:65:8F:18/1C\n08:55:31:65:86:21/25','20074113677',2413),(5610,'ETH-SP-G2','','20074113677',2413),(5611,'','','',2414),(5612,'','','',2414),(5613,'LBE-5AC-Gen2','60:22:32:C6:FE:40','20074113849',2415),(5614,'hAP ac lite','','20074113849',2415),(5615,'LBE-5AC-Gen2','','20074113849',2415),(5616,'NANO STATION','F492BFD83B84\nF492BFD85010','20074113568',2416),(5617,'hAP mini','08:55:31:65:8D:36/3A','20074113568',2416),(5618,'ETH-SP-G2','','20074113568',2416),(5619,'LBE-5AC-Gen2','F492BF423EAC','20074113865',2417),(5620,'hAP mini','','20074113865',2417),(5621,'LBE-5AC-Gen2','','20074113865',2417),(5622,'NBE-5AC-Gen2','E063DAD4542A','20074113751',2419),(5623,'hAP mini','08:55:31:66:FF:9E/A2','20074113751',2419),(5624,'ETH-SP-G2','','20074113751',2419),(5625,'LBE-M5-23\nLBE-5AC-Gen2','74ACB9F2AEAA\nF49BF423CDE','',2420),(5626,'LINKSYS','PROPIO','',2420),(5627,'Loco5ACLoco5AC','F492BFD84C23F49BFD83E7F','20074120675',2421),(5628,'hAP mini','','20074120675',2421),(5629,'Loco5ACLoco5AC','','20074120675',2421),(5630,'NBE-5AC-Gen2','E0:63:DA:D4:55:71','',2422),(5631,'hAP mini','08:55:31:66:0D:C2/C6','',2422),(5632,'','','',2423),(5633,'','','',2423),(5634,'NBE-5AC-Gen2','E063DAD0C018','20074113743',2424),(5635,'hAP mini','08:55:31:66:0C:E7/EB','20074113743',2424),(5636,'ETH-SP-G2','','20074113743',2424),(5637,'LBE-5AC-Gen2','F492BF422C36','20044104261',2425),(5638,'hAP mini','08:55:31:65:83:E4/E8','20044104261',2425),(5639,'ETH-SP-G2','','20044104261',2425),(5640,'LBE-5AC-Gen2','F492BFDA2A0B','20074120531',2426),(5641,'hAP mini','08:55:31:66:F0:E0/E4','20074120531',2426),(5642,'ETH-SP-G2','','20074120531',2426),(5643,'NANO STATIONNANO STATION','F492BFEED44DF492BFEED33F','20074120674',2427),(5644,'hAP mini','','20074120674',2427),(5645,'NANO STATIONNANO STATION','','20074120674',2427),(5646,'LBE-5AC-Gen2','F492BF4CB750','2.00E+11',2428),(5647,'hAP mini','48:8F:5A:E0:06:52/56','2.00E+11',2428),(5648,'ETH-SP-G2','','2.00E+11',2428),(5649,'LBE-5AC-Gen2','F492BFDA281A','20074113671',2429),(5650,'hAP mini','','20074113671',2429),(5651,'LBE-5AC-Gen2','','20074113671',2429),(5652,'LBE-5AC-Gen2','68:D7:9A:90:1F:A2','20074120425',2430),(5653,'hAP mini','','20074120425',2430),(5654,'LBE-5AC-Gen2','','20074120425',2430),(5655,'LBE-5AC-Gen2','68D79AA453C6','20114117341',2431),(5656,'hAP mini','','20114117341',2431),(5657,'LBE-5AC-Gen2','','20114117341',2431),(5658,'NBE-5AC-Gen2 loco 5AC','E063DAF0FDEE F492BFD845AB','20124123866',2432),(5659,'hAP mini','08:55:31:1E:15:F4/F8','20124123866',2432),(5660,'ETH-SP-G2','','20124123866',2432),(5661,'NBE-5AC-Gen2 LBE-5AC-Gen2','E63DAD4542B\n68D79AA456C6','20124123766',2433),(5662,'hAP mini','08:55:31:1E:16:9B/9F','20124123766',2433),(5663,'ETH-SP-G2','','20124123766',2433),(5664,'LBE-5AC-Gen2','F4:92:BF:42:22:36','20124123855',2434),(5665,'hAP mini','08:55:31:1E:16:88/8C','20124123855',2434),(5666,'ETH-SP-G2','','20124123855',2434),(5667,'LBE-5AC-Gen2','68D79AA86078','20124124089',2436),(5668,'hAP mini','08:55:31:4F:D1:4B/4F','20124124089',2436),(5669,'ETH-SP-G2','','20124124089',2436),(5670,'LBE-5AC-Gen2','68D79AA869D5','20114117658',2437),(5671,'hAP mini','','20114117658',2437),(5672,'LBE-5AC-Gen2','','20114117658',2437),(5673,'NBE-5AC-Gen2','E0:63:DA:F0:16:17','20114116885',2438),(5674,'hAP mini','','20114116885',2438),(5675,'NBE-5AC-Gen2','','20114116885',2438),(5676,'LBE-5AC-Gen2','68D79AA86A06','20124123734',2439),(5677,'hAP mini','08:55.31:4F:D0:F0/F4','20124123734',2439),(5678,'ETH-SP-G2','','20124123734',2439),(5679,'LBE-5AC-Gen2','68D79AA8683D','20124123848',2440),(5680,'hAP mini','','20124123848',2440),(5681,'LBE-5AC-Gen2','','20124123848',2440),(5682,'','','',2441),(5683,'','','',2441),(5684,'','','',2442),(5685,'','','',2442),(5686,'LBE-5AC-Gen2','68D79AA86888','20114117365',2443),(5687,'hAP mini','2C:C8:1B:75:B0:BB/BF','20114117365',2443),(5688,'ETH-SP-G2','','20114117365',2443),(5689,'LBE-5AC-Gen2','68D79AA86A88','20114116927',2444),(5690,'hAP mini','','20114116927',2444),(5691,'LBE-5AC-Gen2','','20114116927',2444),(5692,'LBE-5AC-Gen2','68:D7:9A:A8:6A:C2','20114116897',2445),(5693,'hAP mini','','20114116897',2445),(5694,'LBE-5AC-Gen2','','20114116897',2445),(5695,'NBE-5AC-Gen2','E0:63:DA:D4:55:77','20114116906',2446),(5696,'hAP mini','','20114116906',2446),(5697,'NBE-5AC-Gen2','','20114116906',2446),(5698,'ETH-SP-G2','','20114116889',2447),(5699,'N/A','N/A','N/A',2448),(5700,'N/A','N/A','N/A',2448),(5701,'N/A','','N/A',2448),(5702,'NBE-5AC-Gen2','E0:63:DA:D0:C1:92','20114116922',2449),(5703,'hAP mini','08:55:31:4F:D1:09/0D','20114116922',2449),(5704,'ETH-SP-G2','','20114116922',2449),(5705,'NBE-5AC-Gen2','E0:63:DA:D0:BF:59','20114116922',2450),(5706,'hAP mini','2C:C8:1B:0A:AF:CD/D1','20114116922',2450),(5707,'ETH-SP-G2','','20114116922',2450),(5708,'N/A','N/A','N/A',2451),(5709,'N/A','N/A','N/A',2451),(5710,'N/A','','N/A',2451),(5711,'LBE-5AC-Gen2','68:D7:9A:B2:7A:93','20114116915',2452),(5712,'hAP lite','','20114116915',2452),(5713,'LBE-5AC-Gen2','','20114116915',2452),(5714,'LBE-5AC-Gen2','68:D7:9A:B4:AC:76','20114116899',2453),(5715,'hAP lite','','20114116899',2453),(5716,'LBE-5AC-Gen2','','20114116899',2453),(5717,'LBE-5AC-Gen2','68:D7:9A:A8:5C:23','20044104650',2454),(5718,'hAP lite','08:55:31:14:1D:03','20044104650',2454),(5719,'ETH-SP-G2','','20044104650',2454),(5720,'','','',2455),(5721,'','','',2455),(5722,'','','',2456),(5723,'','','',2456),(5724,'','','',2457),(5725,'LBE-5AC-Gen2','68:D7:9A:B2:3C:46','21014130678',2458),(5726,'hAP lite','DC:2C:6E:04:52:A7/AC','21014130678',2458),(5727,'ETH-SP-G2','','21014130678',2458),(5728,'','','',2459),(5729,'','','',2459),(5730,'','','',2460),(5731,'','','',2460),(5732,'','','',2461),(5733,'','','',2461),(5734,'NANO STATION','24:5A:4C:34:3F:B8','2004056467',2462),(5735,'hAP mini','','2004056467',2462),(5736,'NANO STATION','','2004056467',2462),(5737,'','','',2463),(5738,'LBE-5AC-Gen2','68:D7:9A:A8:5F:3D','',2464),(5739,'LBE-5AC-Gen2','68:D7:9A:B2:40:56','',2465),(5740,'CUBE','74ACB9F03C','',2465),(5741,'LBE-5AC-Gen2','F4:92:BF:DA:2A:0B','21014130682',2466),(5742,'hAP mini','','21014130682',2466),(5743,'LBE-5AC-Gen2','','21014130682',2466),(5744,'','','',2467),(5745,'','','',2467),(5746,'LBE-5AC-Gen2','68:D7:9A:A8:61:39','21014130692',2468),(5747,'HAP mini','2C:C8:1B:0A:BE:E5/E9','21014130692',2468),(5748,'ETH-SP-G2','','21014130692',2468),(5749,'LiteBeam M5','70:A7:41:22:C8:BA','21014130977',2469),(5750,'HAP mini','','21014130977',2469),(5751,'LiteBeam M5','','21014130977',2469),(5752,'LBE-5AC-Gen2','68:D7:9A:B6:6C:B9','21014131001',2470),(5753,'HAP mini','','21014131001',2470),(5754,'LBE-5AC-Gen2','','21014131001',2470),(5755,'LBE-5AC-Gen2','68:D7:9A:B4:A3:B9','20114116955',2471),(5756,'HAP mini','','20114116955',2471),(5757,'LBE-5AC-Gen2','','20114116955',2471),(5758,'','','',2472),(5759,'','','',2473),(5760,'','','',2473),(5761,'LBE-5AC-Gen2','68:D7:9A:B6:6A:3C','20114116968',2474),(5762,'hAP lite','2C:C8:1B:D9:91:50','20114116968',2474),(5763,'ETH-SP-G2','','20114116968',2474),(5764,'NANO STATION','68:D7:9A:A2:34:51','',2475),(5765,'HAP mini','','',2475),(5766,'NANO STATION','','',2475),(5767,'LBE-5AC-Gen2','68:D7:9A:B8:32:D4','21014131003',2476),(5768,'hAP lite','','21014131003',2476),(5769,'LBE-5AC-Gen2','','21014131003',2476),(5770,'','','',2477),(5771,'','','',2477),(5772,'','','',2478),(5773,'','','',2478),(5774,'PowerBeam 5AC-Gen2','24:5A:4C:DE:08:58','',2479),(5775,'hAP lite','08:55:31:78:BA:5F','',2479),(5776,'ETH-SP-G2','','',2479),(5777,'LBE-5AC-Gen2','68:D7:9A:B2:36:C9','21014140991',2480),(5778,'hAP lite','','21014140991',2480),(5779,'LBE-5AC-Gen2','','21014140991',2480),(5780,'NANO STATION','68:D7:9A:A2:34:30','21014140879',2481),(5781,'hAP lite','DC:2C:6E:61:DA:7E','21014140879',2481),(5782,'ETH-SP-G2','','21014140879',2481),(5783,'LBE-5AC-Gen2','68:D7:9A:B2:74:BE','21014141219',2482),(5784,'hAP lite','08:55:31:79:0A:07','21014141219',2482),(5785,'ETH-SP-G2','','21014141219',2482),(5786,'LBE-5AC-Gen2','68:D7:9A:B8:32:C8','',2483),(5787,'hAP lite','','',2483),(5788,'LBE-5AC-Gen2','','',2483),(5789,'NANO STATION','24:5A:4C:34:3B:54','',2484),(5790,'hAP lite','','',2484),(5791,'NANO STATION','','',2484),(5792,'LBE-5AC-Gen2','68:D7:9A:B2:7C:79','21014141239',2485),(5793,'hAP lite','2C:C8:1B:08:14:DB','21014141239',2485),(5794,'ETH-SP-G2','','21014141239',2485),(5795,'PowerBeam 5AC-ISO','24:5A:4C:0A:2E:B8','21014141337',2486),(5796,'hAP lite','','21014141337',2486),(5797,'PowerBeam 5AC-ISO','','21014141337',2486),(5798,'LBE-5AC-Gen2','68:D7:9A:B2:34:94','',2487),(5799,'hAP lite','','',2487),(5800,'LBE-5AC-Gen2','','',2487),(5801,'LBE-5AC-Gen2','68:D7:9A:B2:36:C9','21014141292',2488),(5802,'hAP lite','','21014141292',2488),(5803,'LBE-5AC-Gen2','','21014141292',2488),(5804,'LBE-5AC-Gen2','68:D7:9A:B6:6E:63','21014141251',2489),(5805,'hAP lite','','21014141251',2489),(5806,'LBE-5AC-Gen2','','21014141251',2489),(5807,'LBE-5AC-Gen2','68:D7:9A:B6:6E:6C','21044567341',2490),(5808,'hAP lite','','21044567341',2490),(5809,'LBE-5AC-Gen2','','21044567341',2490),(5810,'LBE-5AC-Gen2','24:5A:4C:30:32:8D','2.10E+11',2491),(5811,'HAP mini','2C:C8:1B:0A:B5:84','2.10E+11',2491),(5812,'ETH-SP-G2','','2.10E+11',2491),(5813,'LBE-5AC-Gen2','68:D7:9A:B6:6E:C6','',2492),(5814,'hAP lite','','',2492),(5815,'LBE-5AC-Gen2','','',2492),(5816,'LBE-5AC-Gen2','24:5A:4C:30:BA:AC','',2493),(5817,'HAP mini','','',2493),(5818,'LBE-5AC-Gen2','','',2493),(5819,'LBE-5AC-Gen2','68:D7:9A:B6:6D:90','',2494),(5820,'hAP lite','','',2494),(5821,'LBE-5AC-Gen2','','',2494),(5822,'LBE-5AC-Gen2','68:D7:9A:B2:75:4E','',2495),(5823,'hAP lite','','',2495),(5824,'LBE-5AC-Gen2','','',2495),(5825,'LBE-5AC-Gen2','24:5A:4C:B4:7E:08','20014141341',2496),(5826,'hAP lite','DC:2C:6E:61:CC:44','20014141341',2496),(5827,'ETH-SP-G2','','20014141341',2496),(5828,'NBE-5AC-Gen2','24:5A:4C:06:91:81','21044116117',2497),(5829,'hAP lite','','21044116117',2497),(5830,'NBE-5AC-Gen2','','21044116117',2497),(5831,'LBE-5AC-Gen2','24:5A:4C:B6:0A:42','21044116107',2498),(5832,'hAP lite','','21044116107',2498),(5833,'LBE-5AC-Gen2','','21044116107',2498),(5834,'NANO STATION M5','24:5A:4C:B6:06:0A','21104140368',2499),(5835,'hAP lite','DC:2C:6E:F4:F9:3E','21104140368',2499),(5836,'ETH-SP-G2','','21104140368',2499),(5837,'LBE-5AC-Gen2','24:5A:4C:B2:3C:5B','21014141210',2500),(5838,'hAP lite','DC:2C:6E:61:CB:BA','21014141210',2500),(5839,'ETH-SP-G2','','21014141210',2500),(5840,'LBE-5AC-Gen2','24:5A:4C:B4:7F:FE','21074123373',2501),(5841,'hAP lite','DC:2C:6E:61:CB:B9','21074123373',2501),(5842,'ETH-SP-G2','','21074123373',2501),(5843,'LBE-5AC-Gen2','24:5A:4C:B4:70:7E','',2502),(5844,'hAP lite','08:55:31:77:35:29','',2502),(5845,'ETH-SP-G2','','',2502),(5846,'NANO STATION','68:D7:9A:9E:86:2E','',2503),(5847,'hAP lite','08:55:31:77:18:FE','',2503),(5848,'ETH-SP-G2','','',2503),(5849,'LBE-5AC-Gen2','24:5A:4C:B6:0B:F6','21074123499',2504),(5850,'hAP lite','','21074123499',2504),(5851,'LBE-5AC-Gen2','','21074123499',2504),(5852,'NBE-5AC-Gen2','24:54:4C:06:8A:28','21074115967',2505),(5853,'hAP lite','DC:2C:6E:67:18:40','21074115967',2505),(5854,'ETH-SP-G2','','21074115967',2505),(5855,'LBE-5AC-Gen2','24:5A:4C:B6:0A:45','',2506),(5856,'hAP lite','DC:2C:6E:67:18:E2','',2506),(5857,'ETH-SP-G2','','',2506),(5858,'LBE-5AC-Gen2','24:5A:4C:B4:7B:7A','',2507),(5859,'hAP lite','DC:2C:6E:67:18:9A','',2507),(5860,'ETH-SP-G2','','',2507),(5861,'LBE-5AC-Gen2','24:5A:4C:B4:79:42','',2508),(5862,'hAP lite','DC:2C:6E:67:18:70','',2508),(5863,'ETH-SP-G2','','',2508),(5864,'LBE-5AC-Gen2','24:5A:4C:B4:72:71','21074116030',2509),(5865,'hAP lite','DC:2C:6E:67:18:41','21074116030',2509),(5866,'ETH-SP-G2','','21074116030',2509),(5867,'LBE-5AC-Gen2','24:5A:4C:B4:7C:3B','',2510),(5868,'hAP lite','DC.:2C:6E:68:69:D8','',2510),(5869,'ETH-SP-G2','','',2510),(5870,'LBE-5AC-Gen2','24:5A:4C:30:39:E2','21074115826',2511),(5871,'hAP lite','','21074115826',2511),(5872,'LBE-5AC-Gen2','','21074115826',2511),(5873,'LBE-5AC-Gen2','68:D7:9A:B4:B7:E6','',2512),(5874,'hAP lite','','',2512),(5875,'LBE-5AC-Gen2','','',2512),(5876,'LBE-5AC-Gen2','24:5A:4C:B4:79:EB','',2513),(5877,'hAP lite','DC:2C:6E:68:6A:C3','',2513),(5878,'ETH-SP-G2','','',2513),(5879,'LiteBeam M5','68:D7:9A:A0:18:74','',2514),(5880,'hAP lite','DC:2C:6E:68:6A:4A','',2514),(5881,'ETH-SP-G2','','',2514),(5882,'LiteBeam M5','68:D7:9A:A0:23:FF','21074122596',2515),(5883,'hAP lite','','21074122596',2515),(5884,'LiteBeam M5','','21074122596',2515),(5885,'LiteBeam M5','68:D7:9A:A0:2E:CC','21074113723',2516),(5886,'hAP lite','','21074113723',2516),(5887,'LiteBeam M5','','21074113723',2516),(5888,'NANO STATION','68:D7:9A:A2:1A:3C','21074124614',2517),(5889,'hAP lite','','21074124614',2517),(5890,'NANO STATION','','21074124614',2517),(5891,'NANO STATION','24:5A:4C:34:3C:5A','21074114292',2518),(5892,'hAP lite','DC:2C:6E:61:CE:17','21074114292',2518),(5893,'ETH-SP-G2','','21074114292',2518),(5894,'LBE-5AC-Gen2','24:5A:4C:B6:0A:42','21014140150',2519),(5895,'hAP lite','','21014140150',2519),(5896,'LBE-5AC-Gen2','','21014140150',2519),(5897,'LBE-5AC-Gen2','24:5A:4C:B4:7D:9B','21074114138',2520),(5898,'hAP lite','','21074114138',2520),(5899,'LBE-5AC-Gen2','','21074114138',2520),(5900,'LiteBeam M5','68:D7:9A:A0:2F:00','21074114342',2521),(5901,'hAP lite','08:55:31:78:C0:5F','21074114342',2521),(5902,'ETH-SP-G2','','21074114342',2521),(5903,'NANO STATION','68:D7:9A:A2:19:47','21074114144',2522),(5904,'hAP lite','','21074114144',2522),(5905,'','','',2571),(5906,'LiteBeam M5','24:5A:4C:DC:17:95','21074122347',2523),(5907,'hAP lite','','21074122347',2523),(5908,'LiteBeam M5','','21074122347',2523),(5909,'LiteBeam M5','24:5A:4C:DC:08:36','21074123788',2524),(5910,'hAP lite','DC:2C:6E:EC:60:33','21074123788',2524),(5911,'ETH-SP-G2','','21074123788',2524),(5912,'Powerbeam M5','68:D7:9A:AA:B3:FB','',2525),(5913,'hAP lite','','',2525),(5914,'ETH-SP-G2','','',2525),(5915,'NANO STATION','24:5A:4C:34:3D:DF','',2526),(5916,'hAP lite','','',2526),(5917,'NANO STATION','','',2526),(5918,'NANO STATION','68:D7:9A:9E:86:2E','',2527),(5919,'hAP lite','','',2527),(5920,'NANO STATION','','',2527),(5921,'LiteBeam M5','68:D7:9A:A8:69:CE','21044115540',2528),(5922,'hAP lite','','21044115540',2528),(5923,'LiteBeam M5','','21044115540',2528),(5924,'LBE-5AC-Gen2','68:D7:9A:B6:6D:90','N/A',2529),(5925,'Linksys ','58EF6848BBGF','N/A',2529),(5926,'N/A','','N/A',2529),(5927,'LBE-5AC-Gen2','70:A7:41:12:E0:0B','21044109783',2530),(5928,'Linksys ','','21044109783',2530),(5929,'LBE-5AC-Gen2','','21044109783',2530),(5930,'LiteBeam M5','24:5A:4C:34:48:35','',2531),(5931,'Linksys  E2500','','',2531),(5932,'LiteBeam M5','','',2531),(5933,'LBE-5AC-Gen2','70:A7:41:12:E2:66','',2532),(5934,'hAP lite','08:55:31:77:17:83','',2532),(5935,'ETH-SP-G2','','',2532),(5936,'LBE-5AC-Gen2','70:A7:41:12:E8:06','N/A',2533),(5937,'Linksys  E2500','','N/A',2533),(5938,'LBE-5AC-Gen2','','N/A',2533),(5939,'LBE-5AC-Gen2','70:A7:41:12:E8:06','N/A',2534),(5940,'Hap ac rd','','N/A',2534),(5941,'LBE-5AC-Gen2','','N/A',2534),(5942,'LBE-5AC-Gen2','70:A7:41:12:E8:06','N/A',2535),(5943,'Linksys  E2500','','N/A',2535),(5944,'LBE-5AC-Gen2','','N/A',2535),(5945,'LiteBeam M5','24:5A:4C:B6:06:0A','',2536),(5946,'hAP lite','08:55:31:77:47:81','',2536),(5947,'ETH-SP-G2','','',2536),(5948,'LiteBeam M5','68:D7:9A:A8:5E:CB','',2537),(5949,'hAP lite','','',2537),(5950,'LiteBeam M5','','',2537),(5951,'LiteBeam M5','24:5A:4C:DC:26:2A','',2538),(5952,'hAP lite','','',2538),(5953,'LiteBeam M5','','',2538),(5954,'LBE-5AC-Gen2','70:A7:41:12:E1:34','21044115525',2539),(5955,'hAP lite','','21044115525',2539),(5956,'LBE-5AC-Gen2','','21044115525',2539),(5957,'NANOSTATION','24:5A:4C:34:3C:01','',2540),(5958,'hAP lite','18:FD:74:5F:FE:81','',2540),(5959,'ETH-SP-G2','','',2540),(5960,'LiteBeam M5','24:5A:4C:DC:08:36','',2541),(5961,'Linksys  E2500','','',2541),(5962,'LiteBeam M5','','',2541),(5963,'LBE-5AC-Gen2','70:A7:41:12:E0:38','',2542),(5964,'hAP lite','','',2542),(5965,'LBE-5AC-Gen2','','',2542),(5966,'','','',2543),(5967,'','','',2543),(5968,'','','',2544),(5969,'','','',2544),(5970,'','','',2544),(5971,'','','',2545),(5972,'','','',2545),(5973,'LBE-5AC-Gen2','68:D7:9A:B2:39:E3','',2546),(5974,'hAP lite','','',2546),(5975,'LBE-5AC-Gen2','','',2546),(5976,'ETHERNET','ETHERNET','ETHERNET',2547),(5977,'ETHERNET','','ETHERNET',2547),(5978,'ETHERNET','','ETHERNET',2547),(5979,'LBE-5AC-Gen2','24:54:4C:C0:71:56','21014130966',2548),(5980,'hAP lite','DC:2C:6E:F4:F9:5B','21014130966',2548),(5981,'ETH-SP-G2','','21014130966',2548),(5982,'LBE-5AC-Gen2','70:A7:41:12:E2:83','',2549),(5983,'hAP lite','','',2549),(5984,'LBE-5AC-Gen2','','',2549),(5985,'LBE-5AC-Gen2','74:AC:B9:F4:D9:B8','',2550),(5986,'hAP lite','','',2550),(5987,'LBE-5AC-Gen2','','',2550),(5988,'LBE-5AC-Gen2','70:A7:41:12:E1:7F','',2551),(5989,'hAP lite','','',2551),(5990,'LBE-5AC-Gen2','','',2551),(5991,'LBE-5AC-Gen2','70:A7:41:12:E4:BD','',2552),(5992,'hAP lite','','',2552),(5993,'LBE-5AC-Gen2','','',2552),(5994,'LBE-5AC-Gen2','24:5A:4C:C0:75:6E','',2553),(5995,'hAP lite','','',2553),(5996,'LBE-5AC-Gen2','','',2553),(5997,'LBE-5AC-Gen2','74:AC:B9:86:FB:0C','',2554),(5998,'hAP lite','','',2554),(5999,'LBE-5AC-Gen2','','',2554),(6000,'LBE-5AC-Gen2','24:5A:4C:C0:85:72','',2555),(6001,'hAP lite','','',2555),(6002,'LBE-5AC-Gen2','','',2555),(6003,'LBE-5AC-Gen2','24:5A:4C:C0:7E:78','',2556),(6004,'AP PROPIO','','',2556),(6005,'LBE-5AC-Gen2','','',2556),(6006,'LBE-5AC-Gen2','24:5A:4C:C0:72:5B','',2557),(6007,'hAP lite','','',2557),(6008,'LBE-5AC-Gen2','','',2557),(6009,'LBE-5AC-Gen2','24:5A:4C:C0:7E:F2','',2558),(6010,'hAP lite','','',2558),(6011,'LBE-5AC-Gen2','','',2558),(6012,'LBE-5AC-Gen2','24:5A:4C:C0:7C:C0','',2559),(6013,'hAP lite','','',2559),(6014,'LBE-5AC-Gen2','','',2559),(6015,'LBE-5AC-Gen2','F4:92:BF:42:22:36','',2560),(6016,'AP PROPIO','AP PROPIO','',2560),(6017,'ETH-SP-G2','','',2560),(6018,'LBE-5AC-Gen2','70:A7:41:1A:A2:77','',2561),(6019,'hAP lite','2C:C8:1B:56:56:5D','',2561),(6020,'ETH-SP-G2','','',2561),(6021,'LBE-5AC-Gen2','FC:EC:DA:C4:89:68','',2562),(6022,'hAP lite','','',2562),(6023,'LBE-5AC-Gen2','','',2562),(6024,'LBE-5AC-Gen2','70:A7:41:12:E5:D9','',2563),(6025,'hAP lite','','',2563),(6026,'LBE-5AC-Gen2','','',2563),(6027,'LBE-5AC-Gen2','70:A7:41:1A:E3:AA','',2564),(6028,'hAP lite','','',2564),(6029,'LBE-5AC-Gen2','','',2564),(6030,'Powerebeam 2AC 400','24:5A:4C:F0:2B:30','',2565),(6031,'hAP lite','','',2565),(6032,'Powerebeam 2AC 400','','',2565),(6033,'','','',2566),(6034,'','','',2566),(6035,'LBE-5AC-Gen2','70:A7:41:1A:EC:A9','',2567),(6036,'hap lite','','',2567),(6037,'LBE-5AC-Gen2','','',2567),(6038,'NANO STATION M2','68:D7:9A:BE:CC:A3','',2568),(6039,'hap lite','','',2568),(6040,'NANO STATION M2','','',2568),(6041,'LBE-5AC-Gen2','70:A7:41:1A:EC:C1','',2569),(6042,'hap lite','','',2569),(6043,'LBE-5AC-Gen2','','',2569),(6044,'LiteBeam M5','68:D7:9A:A1:18:74','',2570),(6045,'Hap Mini','','',2570),(6046,'LiteBeam M5','','',2570),(6047,'','','',2571),(6048,'','','',2571),(6049,'LBE-5AC-Gen2','68:D7:9A:B2:39:D9','',2572),(6050,'ROUTER PROPIO','','',2572),(6051,'LBE-5AC-Gen2','','',2572),(6052,'','','',2573),(6053,'','','',2573),(6054,'','','',2574),(6055,'','','',2574),(6056,'LBE-5AC-Gen2','F4:92:BF:E0:51:B2','',2575),(6057,'ROUTER PROPIO','','',2575),(6058,'LBE-5AC-Gen2','','',2575),(6059,'LBE-5AC-Gen2','70:A7:41:1C:84:CF','',2576),(6060,'hap lite','','',2576),(6061,'LBE-5AC-Gen2','','',2576),(6062,'LBE-5AC-Gen2','70:A7:41:1C:82:81','',2577),(6063,'hap lite','','',2577),(6064,'LBE-5AC-Gen2','','',2577),(6065,'LBE-5AC-Gen2','70:A7:41:1C:C3:16','',2578),(6066,'hap lite','','',2578),(6067,'LBE-5AC-Gen2','','',2578),(6068,'LBE-5AC-Gen2','70:A7:41:1C:85:E5','',2579),(6069,'hap lite','DC:2C:6E:AE:39:63','',2579),(6070,'ETH-SP-G4','','',2579),(6071,'','','',2580),(6072,'','','',2580),(6073,'','','',2581),(6074,'','','',2581),(6075,'','','',2582),(6076,'','','',2583),(6077,'','','',2583),(6078,'','','',2587),(6079,'','','',2744),(6080,'','','',2588),(6081,'','','',2588),(6082,'','','',2589),(6083,'','','',2589),(6084,'','','',2590),(6085,'','','',2590),(6086,'','','',2591),(6087,'','','',2591),(6088,'LBE-5AC-Gen2','70:A7:41:28:3F:40','',2592),(6089,'hap lite','18:FD:74:8A:8C:D1','',2592),(6090,'','','',2593),(6091,'','','',2593),(6092,'PBE-2AC-400','24:5A:4C:F0:27:5A','',2594),(6093,'hap lite','','',2594),(6094,'','','',2595),(6095,'','','',2595),(6096,'','','',2596),(6097,'','','',2596),(6098,'','','',2597),(6099,'','','',2597),(6100,'LBE-5AC','70:A7:41:28:84:DF','',2598),(6101,'hap lite','','',2598),(6102,'','','',2601),(6103,'','','',2601),(6104,'','','',2602),(6105,'','','',2602),(6106,'','','',2603),(6107,'','','',2603),(6108,'','','',2604),(6109,'','','',2604),(6110,'','','',2605),(6111,'','','',2605),(6112,'','','',2606),(6113,'','','',2606),(6114,'','','',2607),(6115,'','','',2607),(6116,'LBE-5AC-Gen2','68:D7:9A:B4:B7:E6','',2608),(6117,'hap lite','08:55:31:71:0C:35','',2608),(6118,'LBE-5AC-Gen2','70:A7:41:28:85:BB','',2609),(6119,'hap lite','DC:2C:6E:68:73:55','',2609),(6120,'','','',2610),(6121,'','','',2610),(6122,'','','',2611),(6123,'','','',2611),(6124,'','','',2612),(6125,'','','',2612),(6126,'PBE-M5-400','68:D7:9A:96:26:D6','',2613),(6127,'hap lite','','',2613),(6128,'LBE-5AC ','70:A7:41:1C:24:9D','',2614),(6129,'hap lite','08:55:31:78:C1:79','',2614),(6130,'','','',2615),(6131,'','','',2615),(6132,'','','',2616),(6133,'','','',2616),(6134,'','','',2617),(6135,'','','',2617),(6136,'','','',2618),(6137,'','','',2618),(6138,'PBE-2AC-400','24:5A:4C:F0:27:E8','',2619),(6139,'Hap lite','18:FD:74:A8:85:99','',2619),(6140,'','','',2620),(6141,'','','',2620),(6142,'','','',2621),(6143,'','','',2621),(6144,'','','',2622),(6145,'','','',2622),(6146,'','','',2623),(6147,'','','',2623),(6148,'','','',2625),(6149,'','','',2625),(6150,'','','',2626),(6151,'','','',2626),(6152,'','','',2627),(6153,'','','',2627),(6154,'','','',2628),(6155,'','','',2628),(6156,'','','',2629),(6157,'','','',2629),(6158,'','','',2630),(6159,'','','',2630),(6160,'','','',2631),(6161,'','','',2631),(6162,'','','',2632),(6163,'','','',2632),(6164,'','','',2633),(6165,'','','',2633),(6166,'','','',2634),(6167,'','','',2634),(6168,'','','',2635),(6169,'','','',2635),(6170,'','','',2636),(6171,'','','',2636),(6172,'','','',2637),(6173,'','','',2637),(6174,'','','',2638),(6175,'','','',2638),(6176,'','','',2639),(6177,'','','',2639),(6178,'','','',2640),(6179,'','','',2640),(6180,'','','',2641),(6181,'','','',2641),(6182,'LBE-5AC','70:A7:41:1C:1C:AA','',2642),(6183,'hAP lite','','',2642),(6184,'','','',2643),(6185,'','','',2643),(6186,'','','',2644),(6187,'','','',2644),(6188,'','','',2645),(6189,'','','',2645),(6190,'','','',2646),(6191,'','','',2646),(6192,'','','',2647),(6193,'','','',2647),(6194,'','','',2648),(6195,'','','',2648),(6196,'','','',2649),(6197,'','','',2649),(6198,'','','',2650),(6199,'','','',2650),(6200,'','','',2651),(6201,'','','',2651),(6202,'','','',2652),(6203,'','','',2652),(6204,'','','',2653),(6205,'','','',2654),(6206,'','','',2654),(6207,'','','',2655),(6208,'','','',2655),(6209,'','','',2656),(6210,'','','',2656),(6211,'','','',2658),(6212,'','','',2658),(6213,'','','',2659),(6214,'','','',2659),(6215,'','','',2660),(6216,'','','',2660),(6217,'','','',2661),(6218,'','','',2661),(6219,'','','',2662),(6220,'','','',2662),(6221,'','','',2663),(6222,'','','',2663),(6223,'','','',2664),(6224,'','','',2664),(6225,'','','',2665),(6226,'','','',2665),(6227,'','','',2666),(6228,'','','',2666),(6229,'','','',2667),(6230,'','','',2667),(6231,'','','',2668),(6232,'','','',2668),(6233,'LBE-5AC','F4:92:BF:42:2C:36','',2669),(6234,'hAP lite','18:FD:74:A9:4A:61','',2669),(6235,'','','',2670),(6236,'','','',2670),(6237,'','','',2671),(6238,'','','',2671),(6239,'','','',2672),(6240,'','','',2672),(6241,'','','',2673),(6242,'','','',2673),(6243,'','','',2674),(6244,'','','',2674),(6245,'','','',2675),(6246,'','','',2675),(6247,'','','',2676),(6248,'','','',2676),(6249,'','','',2677),(6250,'','','',2677),(6251,'','','',2678),(6252,'','','',2678),(6253,'','','',2679),(6254,'','','',2679),(6255,'','','',2680),(6256,'','','',2680),(6257,'','','',2681),(6258,'','','',2681),(6259,'','','',2682),(6260,'','','',2682),(6261,'','','',2683),(6262,'','','',2683),(6263,'','','',2684),(6264,'','','',2684),(6265,'','','',2685),(6266,'','','',2686),(6267,'','','',2686),(6268,'','','',2687),(6269,'','','',2687),(6270,'','','',2688),(6271,'','','',2688),(6272,'','','',2689),(6273,'','','',2689),(6274,'','','',2690),(6275,'','','',2690),(6276,'','','',2691),(6277,'','','',2691),(6278,'','','',2692),(6279,'','','',2692),(6280,'','','',2693),(6281,'','','',2693),(6282,'','','',2694),(6283,'','','',2694),(6284,'','','',2695),(6285,'','','',2695),(6286,'LBE-5AC','60:22:32:DC:B8:7A','',2733),(6287,'hAP lite','','',2733),(6288,'LBE-5AC','','',2733),(6289,'LBE-M5','70:A7:41:26:D2:5B','',2734),(6290,'hAP lite','','',2734),(6291,'LBE-M5','','',2734),(6292,'LBE-5AC','60:22:32:DC:B5:48','',2735),(6293,'hAP lite','','',2735),(6294,'LBE-5AC','','',2735),(6295,'LBE-5AC','60:22:32:C6:F0:E9','',2736),(6296,'hAP lite','','',2736),(6297,'LBE-5AC','','',2736),(6298,'LBE-5AC','68:D7:9A:B2:40:56','',2737),(6299,'CUBE','','',2737),(6300,'LBE-5AC','','',2737),(6301,'LBE-5AC','60:22:32:DC:B5:E7','',2738),(6302,'hAP lite','','',2738),(6303,'LBE-5AC','','ap unifi propio',2738),(6304,'LBE-5AC','60:22:32:C6:FF:4E','',2739),(6305,'hAP lite','','',2739),(6306,'LBE-5AC','','',2739),(6307,'','','',2740),(6308,'','','',2740),(6309,'','','',2623),(6310,'LBE-5AC','60:22:32:DC:B5:B8','',2741),(6311,'hAP lite','','',2741),(6312,'LBE-5AC','','',2741),(6313,'LBE-5AC','70:A7:41:26:D5:64','',2742),(6314,'hAP lite','','',2742),(6315,'','','',2740),(6316,'LBE-5AC','60:22:32:CE:16:CA','',2743),(6317,'hAP lite','48:A9:8A:FB:53:69','',2743),(6318,'','','',2743),(6319,'','','',2744),(6320,'','','',2698),(6321,'','','',2698),(6322,'LBE-5AC','60:22:32:DC:BB:DE','',2745),(6323,'hAP lite','','',2745),(6324,'LBE-5AC','','',2745),(6325,'LBE-M5','70:A7:41:2A:CD:4B','',2746),(6326,'hAP lite','','',2746),(6327,'LBE-M5','','',2746),(6328,'LBE-M5','70:A7:41:2A:D4:FC','',2747),(6329,'Hap lite','08:55:31:77:17:83','',2747),(6330,'LBE-M5','','',2747),(6331,'LBE-5AC','68:D7:9A:B4:D0:3C','',2748),(6332,'ROUTER PROPIO','','',2748),(6333,'LBE-5AC','','',2748),(6334,'LBE-5AC','70:A7:41:12:E2:66','',2749),(6335,'hAP lite','','',2749),(6336,'LBE-5AC','','',2749),(6337,'LBE-5AC','60:22:32:C6:FE:40','',2750),(6338,'hAP lite','','',2750),(6339,'','','',2649),(6340,'LBE-M5','70:A7:41:26:DA:07','',2751),(6341,'hAP lite','','',2751),(6342,'LBE-M5','','',2751),(6343,'LBE-5AC','60:22:32:C6:FF:4A','',2752),(6344,'hAP lite','','',2752),(6345,'LBE-5AC','','',2752),(6346,'LBE-M5','70:A7:41:26:D5:A5','',2753),(6347,'hAP lite','18:FD:74:A8:9C:7E','',2753),(6348,'','','',2753),(6349,'LBE-M5','70:A7:41:26:D0:33','',2754),(6350,'hAP lite','','',2754),(6351,'LBE-M5','','',2754),(6352,'MEDIA F.O','','',2755),(6353,'','','',2755),(6354,'MEDIA F.O','','',2755),(6355,'LBE-M5','70:A7:41:26:D4:A2','',2756),(6356,'Hap lite','','',2756),(6357,'LBE-M5','','',2756),(6358,'LBE-5AC','60:22:32:CE:18:70','',2757),(6359,'hAP lite','48:A9:8A:FB:53:C9','',2757),(6360,'','','',2757),(6361,'LBE-5AC','FC:EC:DA:C4:89:68','',2758),(6362,'PROPIO','','',2758),(6363,'LBE-5AC','','',2758),(6364,'F.O','F.O','',2759),(6365,'Hap lite','','',2759),(6366,'F.O','','',2759),(6367,'LBE-5AC','68:D7:9A:B6:6F:08','',2760),(6368,'hAP lite','78:9A:18:2F:B6:B2','',2760),(6369,'LBE-5AC','','',2760),(6370,'HaP Lite','78:9A:18:06:28:47','',2761),(6371,'','','',2761),(6372,'HaP Lite','','',2761),(6373,'LBE-M5','70:A7:41:26:C7:C5','',2762),(6374,'hAP lite','','',2762),(6375,'LBE-M5','','',2762),(6376,'LBE-5AC','68:D7:9A:A8:69:8E','',2763),(6377,'hAP lite','78:9A:18:2F:B9:E5','',2763),(6378,'','','',2763),(6379,'PBE-M5-400','24:5A:4C:F6:DA:4E','',2764),(6380,'hAP lite','','',2764),(6381,'PBE-M5-400','','',2764),(6382,'LBE-5AC','70:A7:41:1A:BB:9C','',2765),(6383,'hAP lite','','',2765),(6384,'LBE-5AC','','',2765),(6385,'LBE-5AC','60:22:32:DC:BA:9C','',2766),(6386,'hAP lite','','',2766),(6387,'LBE-5AC','','',2766),(6388,'LBE-5AC','60:22:32:CE:18:2A','',2767),(6389,'hAP lite','','',2767),(6390,'LBE-5AC','','',2767),(6391,'LBE-5AC','60:22:32:CE:1A:DA','',2768),(6392,'hAP lite','','',2768),(6393,'LBE-5AC','','',2768),(6394,'LBE-5AC','60:22:32:CE:18:2A','',2769),(6395,'hAP lite','','',2769),(6396,'LBE-5AC','','',2769),(6397,'hAP Mini','48:A9:8A:98:86:EC','',2770),(6398,'','','',2770),(6399,'hAP Mini','','',2770),(6400,'LBE-5AC','F4:92:BF:42:2F:0F','',2771),(6401,'hAP lite','','',2771),(6402,'LBE-5AC','','',2771),(6403,'PBE-5AC','24:5A:4C:DE:0D:74','',2772),(6404,'hAP lite','','',2772),(6405,'PBE-5AC','','',2772),(6406,'','','',2773),(6407,'','','',2773),(6408,'','','',2773),(6409,'F.O','','',2774),(6410,'hAP lite','','',2774),(6411,'F.O','','',2774),(6412,'HaP Lite','','',2775),(6413,'','','',2775),(6414,'HaP Lite','','',2775),(6415,'LBE-5AC','F4:92:BF:42:2C:36','',2776),(6416,'hAP lite','','',2776),(6417,'LBE-5AC','','',2776),(6418,'LBE-5AC','100.64.13.209','',2777),(6419,'hAP lite','','',2777),(6420,'LBE-5AC','','',2777),(6421,'LBE-5AC','68:D7:9A:B4:B7:E6','',2778),(6422,'hAP lite','','',2778),(6423,'','','',2778),(6424,'LBE-5AC','68:D7:9A:B6:6A:3C','',2779),(6425,'Hap lite','','',2779),(6426,'LBE-5AC','','',2779),(6427,'LBE-5AC','70:A7:41:28:75:CD','',2780),(6428,'hAP lite','','',2780),(6429,'LBE-5AC','','',2780),(6430,'LBE-5AC','60:22:32:C6:EF:CB','',2781),(6431,'hAP lite','','',2781),(6432,'LBE-5AC','','',2781),(6433,'SIN ANTENA ','','',2782),(6434,'hAP lite','','',2782),(6435,'SIN ANTENA ','','',2782),(6436,'LBE-5AC','24:5A:4C:B6:0A:42','',2783),(6437,'','','',2783),(6438,'LBE-5AC','','',2783),(6439,'LBE-5AC','68:D7:9A:B2:7A:93','',2784),(6440,'hAP lite','','',2784),(6441,'LBE-5AC','','',2784),(6442,'HaP Lite','2C:C8:1B:DC:C3:77','',2785),(6443,'','','',2785),(6444,'HaP Lite','','',2785),(6445,'LBE-5AC','60:22:32:C4:FF:D4','',2786),(6446,'hAP lite','','',2786),(6447,'LBE-5AC','','',2786),(6448,'HaP Lite','78:9A:18:86:87:FD','',2787),(6449,'','','',2787),(6450,'HaP Lite','','',2787),(6451,'LBE-5AC','60:22:32:C6:0B:7D','',2788),(6452,'hAP lite','','',2788),(6453,'LBE-5AC','','',2788),(6454,'HaP Lite','','',2789),(6455,'','','',2789),(6456,'','','',2789),(6457,'LBE-5AC','70:A7:41:1A:E2:4C','',2790),(6458,'hAP lite','','',2790),(6459,'LBE-5AC','','',2790),(6460,'LBE-5AC','70:A7:41:28:86:F3','',2791),(6461,'hAP lite','','',2791),(6462,'LBE-5AC','','',2791),(6463,'LBE-5AC','60:22:32:C4:E9:71','',2792),(6464,'hAP lite','','',2792),(6465,'LBE-5AC','','',2792),(6466,'LBE-5AC','60:22:32:C6:08:9C','',2793),(6467,'hAP lite','','',2793),(6468,'LBE-5AC','','',2793),(6469,'LBE-5AC','70:A7:41:2A:58:15','',2794),(6470,'hAP lite','','',2794),(6471,'LBE-5AC','','',2794),(6472,'LBE-5AC','68:D7:9A:B6:67:E5','',2795),(6473,'hAP lite','','',2795),(6474,'LBE-5AC','','',2795),(6475,'LBE-5AC','E4:38:83:AE:37:7E','',2796),(6476,'hAP lite','','',2796),(6477,'LBE-5AC','','',2796),(6478,'','','',2797),(6479,'','','',2797),(6480,'','','',2654),(6481,'PBE<2AC<400','24:5A:4C:F0:27:5A','',2798),(6482,'hAP lite','','',2798),(6483,'PBE<2AC<400','','',2798),(6484,'LBE-5AC','60:22:32:C4:FA:3B','',2799),(6485,'HapLite','','',2799),(6486,'LBE-5AC','','',2799),(6487,'LBE-5AC','E4:38:83:AE:49:92','',2800),(6488,'HapLite','','',2800),(6489,'','','',2800),(6490,'LBE-5AC','E4:38:83:AE:4A:95','',2801),(6491,'HapLite','','',2801),(6492,'LBE-5AC','','',2801),(6493,'LBE-5AC','E4:38:83:AE:40:8D','',2802),(6494,'HapLite','','',2802),(6495,'LBE-5AC','','',2802),(6496,'HapLite','78:9A:18:A6:16:3D','',2803),(6497,'','','',2803),(6498,'HapLite','','',2803),(6499,'LBE-5AC','E4:38:83:AE:47:6D','',2804),(6500,'HapLite','','',2804),(6501,'LBE-5AC','','',2804),(6502,'LBE-5AC','E4:38:83:AE:28:EB','',2805),(6503,'','','',2805),(6504,'LBE-5AC','','',2805),(6505,'LBE-5AC','E4:38:83:AE:47:6D','',2806),(6506,'','','',2806),(6507,'LBE-5AC','','',2806),(6508,'HapLite','','',2807),(6509,'','','',2807),(6510,'HapLite','','',2807),(6511,'HapLite','','',2808),(6512,'','','',2808),(6513,'','','',2808),(6514,'Nano Station M2','E4:38:83:C8:71:C4','',2809),(6515,'','','',2809),(6516,'Nano Station M2','','',2809),(6517,'LBE-5AC','60:22:32:C4:C9:1A','',2810),(6518,'','','',2810),(6519,'','','',2810),(6520,'Nano Station M2','F4:E2:C6:80:47:96','',2811),(6521,'','','',2811),(6522,'Nano Station M2','','',2811),(6523,'LBE-5AC','E4:38:83:B0:03:34','',2812),(6524,'','','',2812),(6525,'LBE-5AC','','',2812),(6526,'LBE-5AC','','',2813),(6527,'','','',2813),(6528,'LBE-5AC','','',2813),(6529,'LBE-5AC','68:D7:9A:B2:6A:C8','',2814),(6530,'','','',2814),(6531,'','','',2814),(6532,'Nano Station M5','F4:E2:C6:82:C3:E7','',2815),(6533,'','','',2815),(6534,'Nano Station M5','','',2815),(6535,'LBE-5AC','68:D7:9A:B2:6A:C8','',2816),(6536,'','','',2816),(6537,'','','',2816),(6538,'LBE-5AC','E4:38:83:AE:A6:F1','',2817),(6539,'','','',2817),(6540,'LBE-5AC','','',2817),(6541,'LBE-5AC','E4:38:83:AE:48:28','',2818),(6542,'','','',2818),(6543,'','','',2818),(6544,'LBE-5AC','E4:38:83:AE:A6:F0','',2819),(6545,'','','',2819),(6546,'','','',2819),(6547,'PBE-M5-400','24:5A:4C:F6:A4:98','',2820),(6548,'','','',2820),(6549,'','','',2820),(6550,'LBE-5AC','100.64.21.213','',2821),(6551,'','','',2821),(6552,'','','',2821),(6553,'PBE-M5-300','24:5A:4C:EC:3A:0B','',2822),(6554,'','','',2822),(6555,'','','',2822),(6556,'Nano Station M5','F4:E2:C6:82:C0:9F','',2823),(6557,'','','',2823),(6558,'Nano Station M5','','',2823),(6559,'LBE-5AC','E4:38:83:B0:02:D7','',2824),(6560,'','','',2824),(6561,'','','',2824),(6562,'LBE-5AC','E4:38:83:AE:88:A4','',2825),(6563,'','','',2825),(6564,'','','',2825),(6565,'LBE-5AC','E4:38:83:AE:88:A4','',2826),(6566,'','','',2826),(6567,'','','',2826),(6568,'LBE-5AC','60:22:32:D8:F4:90','',2827),(6569,'','','',2827),(6570,'','','',2827),(6571,'LBE-5AC','60:22:32:D8:EF:04','',2828),(6572,'','','',2828),(6573,'','','',2828);
+/*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registro_pago`
+--
+
+DROP TABLE IF EXISTS `registro_pago`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registro_pago` (
+  `id_pago` int NOT NULL AUTO_INCREMENT,
+  `id_contrato` int NOT NULL,
+  `fecha_pago` date DEFAULT NULL,
+  `monto_pago` double DEFAULT NULL,
+  PRIMARY KEY (`id_pago`),
+  KEY `fk_registro_pago_servicio` (`id_contrato`),
+  CONSTRAINT `fk_registro_pago_servicio` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2021 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro_pago`
+--
+
+LOCK TABLES `registro_pago` WRITE;
+/*!40000 ALTER TABLE `registro_pago` DISABLE KEYS */;
+INSERT INTO `registro_pago` VALUES (24,2399,'2023-08-01',29900),(25,2559,'2023-08-01',59900),(26,2578,'2023-08-01',39900),(27,2491,'2023-08-01',30000),(29,2584,'2023-08-03',29900),(30,2492,'2023-08-03',29900),(31,2736,'2023-08-03',25900),(32,2699,'2023-08-03',114.75),(33,2685,'2023-08-03',39900),(34,2679,'2023-08-03',20000),(35,2542,'2023-08-03',49900),(36,2738,'2023-08-03',25900),(37,2671,'2023-08-03',25900),(38,2592,'2023-08-03',29900),(39,2465,'2023-08-03',15000),(41,2440,'2023-08-03',15000),(42,2697,'2023-08-03',29900),(43,2646,'2023-08-03',25900),(44,2496,'2023-08-03',29900),(45,2640,'2023-08-03',39900),(46,2652,'2023-08-03',29900),(47,2565,'2023-08-03',20000),(48,2472,'2023-08-03',39900),(49,2557,'2023-08-03',39900),(52,2574,'2023-08-03',30000),(53,2656,'2023-08-03',49900),(54,2576,'2023-08-03',25900),(55,2466,'2023-08-03',30000),(56,2686,'2023-08-03',39900),(57,2548,'2023-08-03',29900),(58,2677,'2023-08-03',25900),(59,2667,'2023-08-03',39900),(60,2691,'2023-08-03',29900),(62,2487,'2023-08-03',59900),(63,2703,'2023-08-03',252.45),(64,2478,'2023-08-03',39900),(65,2713,'2023-08-03',201.81),(66,2655,'2023-08-03',25900),(67,2620,'2023-08-03',29900),(68,2642,'2023-08-03',39900),(69,2693,'2023-08-03',20000),(70,2594,'2023-08-03',29900),(71,2554,'2023-08-03',20000),(72,2401,'2023-08-03',29900),(73,2596,'2023-08-03',30000),(74,2495,'2023-08-03',59900),(75,2533,'2023-08-03',20000),(76,2540,'2023-08-03',15000),(77,2498,'2023-08-03',42500),(78,2474,'2023-08-03',29900),(79,2665,'2023-08-03',25900),(80,2607,'2023-08-03',39000),(81,2586,'2023-08-03',39900),(82,2641,'2023-08-03',39900),(83,2718,'2023-08-03',172.55),(84,2716,'2023-08-03',143.44),(86,2426,'2023-08-01',25900),(87,2545,'2023-08-03',35000),(88,2558,'2023-08-03',29900),(90,2583,'2023-08-03',20000),(91,2604,'2023-08-03',15000),(94,2678,'2023-08-04',29900),(95,2593,'2023-08-04',49900),(96,2608,'2023-08-04',39900),(97,2418,'2023-08-04',29900),(98,2681,'2023-08-04',29900),(99,2434,'2023-08-04',29900),(100,2573,'2023-08-04',15000),(101,2687,'2023-08-04',20000),(102,2515,'2023-08-04',29900),(103,2692,'2023-08-04',25000),(104,2470,'2023-08-04',20000),(105,2631,'2023-08-04',29900),(106,2552,'2023-08-04',39900),(107,2649,'2023-08-04',29900),(108,2577,'2023-08-04',29900),(109,2710,'2023-08-04',269.66),(110,2624,'2023-08-04',136),(111,2476,'2023-08-04',39900),(112,2730,'2023-08-04',167.56),(113,2390,'2023-08-04',25900),(114,2406,'2023-08-04',25900),(115,2420,'2023-08-04',29900),(116,2534,'2023-08-06',29900),(117,2694,'2023-08-06',29900),(118,2673,'2023-08-06',25900),(119,2529,'2023-08-06',25900),(120,2536,'2023-08-06',10000),(121,2538,'2023-08-06',10000),(122,2669,'2023-08-06',0),(123,2393,'2023-08-06',29900),(124,2479,'2023-08-06',29900),(125,2501,'2023-08-06',15000),(126,2662,'2023-08-06',25900),(127,2614,'2023-08-06',49900),(128,2683,'2023-08-06',20000),(129,2670,'2023-08-06',39900),(130,2525,'2023-08-06',29900),(131,2638,'2023-08-06',49900),(132,2657,'2023-08-06',29900),(133,2634,'2023-08-06',15000),(134,2666,'2023-08-06',25900),(135,2395,'2023-08-06',25900),(136,2387,'2023-08-06',20000),(137,2526,'2023-08-06',29900),(138,2580,'2023-08-06',29900),(139,2587,'2023-08-06',29900),(140,2704,'2023-08-06',355.42),(141,2621,'2023-08-06',56.15),(142,2727,'2023-08-06',315.56),(143,2700,'2023-08-06',203.1),(144,2722,'2023-08-06',131),(145,2625,'2023-08-06',49900),(146,2644,'2023-08-06',29900),(147,2566,'2023-08-06',59900),(148,2636,'2023-08-06',39900),(149,2668,'2023-08-06',30000),(150,2562,'2023-08-06',25000),(151,2518,'2023-08-06',35000),(152,2523,'2023-08-06',29900),(153,2575,'2023-08-06',29900),(154,2459,'2023-08-06',29900),(155,2627,'2023-08-06',20000),(156,2486,'2023-08-06',49900),(157,2480,'2023-08-06',40450),(158,2740,'2023-08-06',40450),(159,2568,'2023-08-06',49900),(160,2569,'2023-08-06',49900),(161,2463,'2023-08-07',39900),(162,2497,'2023-08-07',39900),(163,2661,'2023-08-07',29900),(164,2567,'2023-08-07',15000),(165,2537,'2023-08-07',69900),(166,2674,'2023-08-08',25900),(167,2689,'2023-08-08',25900),(168,2433,'2023-08-08',29900),(169,2684,'2023-08-08',20000),(170,2386,'2023-08-08',15000),(171,2688,'2023-08-09',25900),(172,2609,'2023-08-09',114.75),(173,2519,'2023-08-09',39900),(174,2721,'2023-08-09',154.91),(175,2712,'2023-08-09',177.71),(176,2618,'2023-08-09',40000),(177,2424,'2023-08-10',29900),(178,2711,'2023-08-10',201.81),(179,2396,'2023-08-10',15000),(180,2690,'2023-08-10',20000),(181,2400,'2023-08-10',25900),(182,2585,'2023-08-10',29900),(183,2696,'2023-08-10',29900),(184,2623,'2023-08-11',25000),(185,2590,'2023-08-11',15000),(186,2659,'2023-08-11',29900),(187,2550,'2023-08-11',59900),(188,2458,'2023-08-11',29900),(189,2648,'2023-08-14',29900),(190,2675,'2023-08-14',25900),(191,2581,'2023-08-14',25900),(192,2651,'2023-08-14',29900),(193,2455,'2023-08-15',15000),(194,2456,'2023-08-15',15000),(195,2658,'2023-08-15',25900),(196,2591,'2023-08-15',25900),(197,2441,'2023-08-15',15000),(198,2391,'2023-08-15',29900),(199,2630,'2023-08-15',20000),(200,2682,'2023-08-15',25900),(201,2698,'2023-08-15',20000),(202,2572,'2023-08-15',20000),(203,2462,'2023-08-15',39900),(204,2570,'2023-08-15',29900),(205,2553,'2023-09-15',30000),(206,2481,'2023-08-15',25000),(207,2701,'2023-08-15',242.5),(208,2473,'2023-08-15',15000),(209,2549,'2023-08-15',29900),(210,2414,'2023-08-15',20000),(211,2737,'2023-08-15',20000),(212,2626,'2023-08-15',114.75),(213,2448,'2023-08-15',20000),(214,2654,'2023-08-15',25900),(215,2664,'2023-08-15',29900),(216,2680,'2023-08-15',25900),(217,2676,'2023-08-15',25900),(218,2430,'2023-08-07',39900),(219,2741,'2023-08-15',49900),(220,2745,'2023-08-15',25000),(221,2598,'2023-08-16',29900),(222,2530,'2023-08-16',35000),(223,2547,'2023-08-16',29900),(224,2555,'2023-08-16',20000),(225,2384,'2023-08-16',15000),(226,2483,'2023-08-16',15000),(227,2553,'2023-08-16',30000),(228,2589,'2023-08-16',29900),(229,2731,'2023-08-16',0),(230,2660,'2023-08-16',0),(231,2415,'2023-08-16',32500),(232,2546,'2023-08-16',39900),(233,2520,'2023-08-16',49900),(234,2750,'2023-08-16',39900),(235,2637,'2023-08-16',39900),(236,2628,'2023-08-16',25900),(237,2622,'2023-08-16',39900),(238,2444,'2023-08-16',15000),(239,2605,'2023-08-16',15000),(240,2507,'2023-08-17',25900),(241,2531,'2023-08-17',15000),(242,2635,'2023-08-17',29900),(243,2447,'2023-08-17',15000),(244,2493,'2023-08-18',25900),(245,2707,'2023-08-21',172.13),(246,2489,'2023-08-21',15000),(247,2475,'2023-08-21',29900),(248,2724,'2023-08-21',172.13),(249,2643,'2023-08-22',25900),(250,2663,'2023-08-22',25900),(251,2728,'2023-08-22',304.65),(252,2619,'2023-08-22',29200),(253,2715,'2023-08-22',170.98),(254,2717,'2023-08-22',80000),(255,2742,'2023-08-22',49900),(256,2647,'2023-08-23',25900),(257,2490,'2023-08-24',29900),(258,2653,'2023-08-24',39900),(259,2720,'2023-08-25',143.44),(260,2751,'2023-09-01',39900),(261,2752,'2023-09-01',20000),(262,2714,'2023-08-29',218.03),(263,2714,'2023-09-29',218.03),(264,2749,'2023-08-30',0),(265,2708,'2023-08-31',517),(266,2610,'2023-08-31',39900),(267,2610,'2023-09-01',39900),(268,2604,'2023-09-01',15000),(269,2627,'2023-09-01',20000),(270,2399,'2023-09-01',29900),(271,2426,'2023-09-01',25900),(272,2583,'2023-09-01',20000),(273,2491,'2023-09-01',30000),(274,2554,'2023-09-01',20000),(275,2478,'2023-09-01',39900),(276,2487,'2023-09-01',49900),(277,2465,'2023-09-01',15000),(278,2525,'2023-09-01',29900),(279,2699,'2023-09-01',114.75),(280,2691,'2023-09-01',29900),(281,2576,'2023-09-01',25900),(282,2748,'2023-09-01',39900),(283,2545,'2023-09-01',35000),(284,2538,'2023-09-01',10000),(285,2709,'2023-08-31',114.75),(286,2748,'2023-09-01',39900),(287,2578,'2023-09-01',39900),(288,2585,'2023-09-01',29900),(289,2481,'2023-09-01',25000),(290,2476,'2023-09-01',39900),(291,2441,'2023-09-01',15000),(292,2587,'2023-09-01',29900),(293,2748,'2023-09-01',39900),(294,2695,'2023-09-02',29900),(295,2695,'2023-08-29',0),(296,2743,'2023-08-30',49900),(297,2594,'2023-09-02',29900),(298,2472,'2023-09-02',39900),(299,2557,'2023-09-02',39900),(300,2620,'2023-09-02',29900),(301,2496,'2023-09-02',15000),(302,2752,'2023-09-02',20000),(303,2615,'2023-08-31',0),(304,2615,'2023-09-02',29900),(305,2573,'2023-09-02',15000),(306,2624,'2023-09-02',136),(307,2498,'2023-09-02',42500),(308,2636,'2023-09-02',39000),(309,2668,'2023-09-02',25900),(310,2474,'2023-09-02',29900),(311,2621,'2023-09-02',29900),(312,2440,'2023-09-04',15000),(313,2665,'2023-09-04',25900),(314,2470,'2023-09-04',20000),(315,2515,'2023-09-04',29900),(316,2679,'2023-09-04',20000),(317,2671,'2023-09-04',25900),(318,2584,'2023-09-04',29900),(319,2531,'2023-09-04',15000),(320,2542,'2023-09-04',49900),(321,2713,'2023-09-04',201.81),(322,2523,'2023-09-04',29000),(323,2599,'2023-09-04',29900),(324,2599,'2023-08-31',29900),(325,2738,'2023-09-04',25900),(326,2462,'2023-09-04',39900),(327,2678,'2023-09-04',29900),(328,2694,'2023-09-04',49900),(329,2742,'2023-09-04',49900),(330,2559,'2023-09-04',59900),(331,2687,'2023-09-04',20000),(332,2565,'2023-09-04',20000),(333,2655,'2023-09-04',25900),(334,2607,'2023-09-04',39000),(335,2716,'2023-09-04',143.44),(336,2480,'2023-09-04',39900),(337,2740,'2023-09-04',39900),(338,2520,'2023-09-04',39200),(339,2519,'2023-09-04',39900),(340,2497,'2023-09-04',39900),(341,2479,'2023-09-04',29900),(342,2609,'2023-09-04',114.75),(343,2406,'2023-09-05',25000),(344,2420,'2023-09-05',30000),(345,2657,'2023-09-05',29900),(346,2390,'2023-09-05',25900),(347,2466,'2023-09-05',30000),(348,2495,'2023-09-05',59900),(349,2677,'2023-09-05',25900),(350,2747,'2023-09-05',29900),(351,2631,'2023-09-05',29900),(352,2596,'2023-09-05',30000),(353,2540,'2023-09-05',15000),(354,2533,'2023-09-05',20000),(355,2548,'2023-09-05',29900),(356,2663,'2023-09-05',25900),(357,2751,'2023-09-05',39900),(358,2736,'2023-09-05',25900),(359,2757,'2023-09-05',25900),(360,2669,'2023-09-05',25900),(361,2727,'2023-09-05',315.56),(362,2534,'2023-09-05',29900),(363,2670,'2023-09-05',39900),(364,2662,'2023-09-05',25900),(365,2577,'2023-09-05',29900),(366,2618,'2023-09-05',40000),(367,2638,'2023-09-05',49900),(368,2586,'2023-09-05',39900),(369,2641,'2023-09-05',39900),(370,2642,'2023-09-05',39900),(371,2659,'2023-09-05',29900),(372,2683,'2023-09-06',20000),(373,2501,'2023-09-06',15000),(374,2673,'2023-09-06',25900),(375,2614,'2023-09-06',49000),(376,2666,'2023-09-06',25900),(377,2580,'2023-09-06',29900),(378,2455,'2023-09-06',15000),(379,2739,'2023-08-30',29900),(380,2730,'2023-09-06',167.56),(381,2430,'2023-09-06',39900),(382,2568,'2023-09-06',49900),(383,2569,'2023-09-06',49900),(384,2703,'2023-09-06',252.45),(385,2704,'2023-09-06',355.42),(386,2608,'2023-09-06',49900),(387,2661,'2023-09-06',29900),(388,2401,'2023-09-06',29900),(389,2758,'2023-09-06',29900),(390,2692,'2023-09-06',25000),(391,2755,'2023-09-06',29900),(392,2634,'2023-09-07',15000),(393,2689,'2023-09-07',25900),(394,2550,'2023-09-07',59900),(395,2537,'2023-09-07',69900),(396,2649,'2023-09-07',29900),(397,2552,'2023-09-07',39900),(398,2387,'2023-09-07',20000),(399,2680,'2023-09-07',25900),(400,2658,'2023-09-07',25900),(401,2566,'2023-09-08',59900),(402,2567,'2023-09-08',15000),(403,2682,'2023-09-08',25900),(404,2685,'2023-09-08',39900),(405,2424,'2023-09-08',29900),(406,2710,'2023-09-08',269.66),(407,2475,'2023-09-08',29900),(408,2590,'2023-09-08',15000),(409,2391,'2023-09-08',29900),(410,2698,'2023-09-08',20000),(411,2400,'2023-09-08',25900),(412,2737,'2023-09-08',20000),(413,2625,'2023-09-08',49900),(414,2688,'2023-09-08',25900),(415,2741,'2023-09-08',49900),(416,2562,'2023-09-08',20000),(417,2518,'2023-09-08',25000),(418,2558,'2023-09-08',20000),(419,2635,'2023-09-08',29900),(420,2433,'2023-09-09',29900),(421,2444,'2023-09-09',15000),(422,2646,'2023-09-11',25900),(423,2396,'2023-09-11',15000),(424,2676,'2023-09-11',25900),(425,2652,'2023-09-11',29900),(426,2458,'2023-09-11',29900),(427,2591,'2023-09-11',25900),(428,2561,'2023-09-11',49900),(429,2690,'2023-09-11',20000),(430,2644,'2023-09-12',29900),(431,2418,'2023-09-12',29900),(432,2459,'2023-09-12',29900),(433,2561,'2023-09-12',49900),(434,2561,'2023-08-12',49900),(435,2507,'2023-09-12',25900),(436,2660,'2023-09-12',0),(437,2630,'2023-09-12',20000),(438,2593,'2023-09-12',49900),(439,2728,'2023-09-12',304.65),(440,2721,'2023-09-12',154.91),(441,2681,'2023-09-12',29900),(442,2712,'2023-09-12',177.71),(443,2492,'2023-09-12',29900),(444,2640,'2023-09-12',39900),(445,2664,'2023-09-12',29900),(446,2756,'2023-09-12',29900),(447,2751,'2023-09-12',39900),(448,2575,'2023-09-12',29900),(449,2718,'2023-09-12',172.55),(450,2722,'2023-09-12',131),(451,2711,'2023-09-12',201.81),(452,2530,'2023-09-13',35000),(453,2463,'2023-09-13',39900),(454,2529,'2023-09-13',25900),(455,2696,'2023-09-13',29900),(456,2623,'2023-09-13',25000),(457,2486,'2023-09-13',49900),(458,2717,'2023-09-13',80000),(459,2656,'2023-09-13',49900),(460,2759,'2023-09-13',29900),(461,2762,'2023-09-14',29900),(462,2619,'2023-09-14',29900),(463,2592,'2023-09-14',29900),(464,2697,'2023-09-14',29900),(465,2651,'2023-09-14',29900),(466,2464,'2023-09-14',30000),(467,2464,'2023-08-15',30000),(468,2667,'2023-09-14',39900),(469,2648,'2023-09-14',29900),(470,2686,'2023-09-14',39900),(471,2760,'2023-09-15',20000),(472,2572,'2023-09-15',20000),(473,2473,'2023-09-15',15000),(474,2579,'2023-09-15',29900),(475,2555,'2023-09-15',20000),(476,2589,'2023-09-15',29900),(477,2448,'2023-09-15',20000),(478,2750,'2023-09-15',39900),(479,2598,'2023-09-15',29900),(480,2622,'2023-09-15',39900),(481,2393,'2023-09-15',0),(482,2414,'2023-09-15',20000),(483,2415,'2023-09-15',34900),(484,2570,'2023-09-15',29900),(485,2581,'2023-09-15',25900),(486,2751,'2023-09-15',39900),(487,2731,'2023-09-15',0),(488,2456,'2023-09-16',15000),(489,2674,'2023-09-16',25900),(490,2579,'2023-08-16',29900),(491,2637,'2023-09-16',39900),(492,2654,'2023-09-16',25900),(493,2754,'2023-09-16',39900),(494,2747,'2023-09-16',29900),(495,2434,'2023-09-16',29900),(496,2748,'2023-09-15',39900),(497,2748,'2023-08-16',39900),(498,2549,'2023-09-16',29900),(499,2574,'2023-09-16',30000),(500,2526,'2023-09-16',29900),(501,2384,'2023-09-16',15000),(502,2386,'2023-09-16',15000),(503,2447,'2023-09-16',15000),(504,2606,'2023-09-16',15000),(505,2460,'2023-09-17',29900),(506,2547,'2023-09-17',29900),(507,2605,'2023-09-17',15000),(508,2493,'2023-09-18',25900),(509,2647,'2023-09-18',25900),(510,2747,'2023-09-18',29900),(511,2628,'2023-09-18',25900),(512,2743,'2023-10-01',49900),(513,2693,'2023-09-20',20000),(514,2653,'2023-09-21',39900),(515,2675,'2023-09-23',25900),(516,2700,'2023-09-23',203.1),(517,2409,'2023-09-24',10000),(518,2409,'2023-08-24',0),(519,2490,'2023-09-25',29900),(520,2720,'2023-09-28',143.44),(521,2489,'2023-09-28',15000),(522,2684,'2023-09-28',20000),(523,2606,'2023-09-28',15000),(524,2753,'2023-09-15',29900),(525,2751,'2023-09-28',39900),(526,2751,'2023-09-28',39900),(527,2751,'2023-08-28',0),(528,2747,'2023-09-28',29900),(529,2747,'2023-09-28',29900),(530,2751,'2023-09-28',39900),(531,2626,'2023-09-29',114.75),(532,2724,'2023-09-29',172.13),(533,2699,'2023-10-02',114.75),(534,2491,'2023-10-02',30000),(535,2678,'2023-10-02',29900),(536,2545,'2023-10-02',35000),(537,2533,'2023-10-02',20000),(538,2540,'2023-10-02',15000),(539,2497,'2023-10-02',39900),(540,2478,'2023-10-02',39900),(541,2470,'2023-10-02',20000),(542,2768,'2023-10-02',25900),(543,2554,'2023-10-02',20000),(544,2496,'2023-10-02',15000),(545,2752,'2023-10-02',20000),(546,2573,'2023-10-02',15000),(547,2459,'2023-10-02',29900),(548,2661,'2023-10-02',29900),(549,2594,'2023-10-02',29900),(550,2441,'2023-10-02',15000),(551,2604,'2023-10-02',15000),(552,2487,'2023-10-02',49900),(553,2620,'2023-10-02',29900),(554,2610,'2023-10-02',39900),(555,2578,'2023-10-01',39900),(556,2570,'2023-10-02',29900),(557,2472,'2023-10-02',39900),(558,2495,'2023-10-02',59900),(559,2755,'2023-10-02',29900),(560,2557,'2023-10-02',39900),(561,2636,'2023-10-02',39000),(562,2542,'2023-10-02',49900),(563,2575,'2023-10-02',29900),(564,2762,'2023-10-02',29900),(565,2584,'2023-10-02',29900),(566,2536,'2023-10-02',10000),(567,2538,'2023-10-02',10000),(568,2536,'2023-09-18',10000),(569,2583,'2023-10-02',20000),(570,2399,'2023-10-02',29900),(571,2426,'2023-10-02',25900),(572,2466,'2023-10-02',30000),(573,2713,'2023-10-03',201.81),(574,2741,'2023-10-03',49900),(575,2655,'2023-10-03',25900),(576,2693,'2023-10-03',20000),(577,2758,'2023-10-03',29900),(578,2631,'2023-10-03',29900),(579,2773,'2023-10-03',20000),(580,2574,'2023-10-03',30000),(581,2418,'2023-10-03',29900),(582,2679,'2023-10-03',20000),(583,2525,'2023-10-03',29900),(584,2480,'2023-10-03',39900),(585,2740,'2023-10-03',39900),(586,2520,'2023-10-03',49900),(587,2697,'2023-10-03',29900),(588,2530,'2023-10-03',35000),(589,2665,'2023-10-03',25900),(590,2498,'2023-10-03',42500),(591,2677,'2023-10-03',25900),(592,2559,'2023-10-03',59900),(593,2587,'2023-10-03',29900),(594,2739,'2023-10-03',49900),(595,2668,'2023-10-03',25900),(596,2592,'2023-10-03',29000),(597,2716,'2023-10-03',143.44),(598,2718,'2023-10-03',172.55),(599,2714,'2023-10-03',218.03),(600,2730,'2023-10-03',167.56),(601,2486,'2023-10-03',49900),(602,2586,'2023-10-03',39900),(603,2641,'2023-10-03',39900),(604,2481,'2023-10-01',25000),(605,2566,'2023-10-03',59900),(606,2670,'2023-10-03',39900),(607,2753,'2023-10-03',29900),(608,2475,'2023-09-30',29900),(609,2492,'2023-10-03',29900),(610,2529,'2023-10-04',25900),(611,2576,'2023-10-04',25900),(612,2681,'2023-10-04',20000),(613,2523,'2023-10-04',29000),(614,2739,'2023-10-04',49900),(615,2568,'2023-10-04',49900),(616,2569,'2023-10-04',49900),(617,2390,'2023-10-04',25900),(618,2577,'2023-10-04',29900),(619,2537,'2023-10-04',69900),(620,2593,'2023-10-04',49900),(621,2608,'2023-10-04',49900),(622,2765,'2023-10-04',25900),(623,2607,'2023-10-04',39000),(624,2662,'2023-10-05',25900),(625,2657,'2023-10-05',29900),(626,2406,'2023-10-05',25000),(627,2420,'2023-10-05',30000),(628,2581,'2023-10-05',25900),(629,2434,'2023-10-05',29900),(630,2531,'2023-10-05',15000),(631,2761,'2023-10-05',20000),(632,2552,'2023-10-05',39900),(633,2649,'2023-10-05',29900),(634,2387,'2023-10-05',20000),(635,2565,'2023-10-05',20000),(636,2669,'2023-10-05',25900),(637,2659,'2023-10-05',29900),(638,2772,'2023-10-05',136),(639,2519,'2023-10-05',39900),(640,2688,'2023-10-05',25900),(641,2704,'2023-10-05',355.42),(642,2721,'2023-10-05',154.91),(643,2515,'2023-10-06',29900),(644,2479,'2023-10-06',29900),(645,2547,'2023-10-06',29900),(646,2683,'2023-10-06',20000),(647,2747,'2023-10-06',29900),(648,2614,'2023-10-06',49000),(649,2727,'2023-10-06',315.56),(650,2590,'2023-10-07',15000),(651,2580,'2023-10-07',29900),(652,2462,'2023-10-07',39900),(653,2463,'2023-10-07',39900),(654,2687,'2023-10-07',20000),(655,2676,'2023-10-07',25900),(656,2635,'2023-10-07',29900),(657,2391,'2023-10-07',29900),(658,2634,'2023-10-07',15000),(659,2460,'2023-10-07',29900),(660,2738,'2023-10-07',25900),(661,2638,'2023-10-07',49900),(662,2518,'2023-10-07',25000),(663,2562,'2023-10-07',20000),(664,2710,'2023-10-07',269.66),(665,2646,'2023-10-07',25900),(666,2621,'2023-10-11',29900),(667,2675,'2023-10-11',25900),(668,2675,'2023-10-11',25900),(669,2501,'2023-10-11',15000),(670,2692,'2023-10-11',25000),(671,2654,'2023-10-11',25900),(672,2558,'2023-10-11',20000),(673,2754,'2023-10-11',39900),(674,2386,'2023-10-11',15000),(675,2690,'2023-10-11',20000),(676,2736,'2023-10-11',25900),(677,2673,'2023-10-11',25900),(678,2689,'2023-10-11',25900),(679,2685,'2023-10-11',39900),(680,2424,'2023-10-11',29900),(681,2396,'2023-10-11',15000),(682,2759,'2023-10-11',29900),(683,2766,'2023-10-11',29900),(684,2550,'2023-10-11',59900),(685,2526,'2023-10-11',29900),(686,2619,'2023-10-11',29900),(687,2444,'2023-10-11',15000),(688,2458,'2023-10-11',29900),(689,2414,'2023-10-11',20000),(690,2430,'2023-10-11',39900),(691,2630,'2023-10-11',20000),(692,2698,'2023-10-11',20000),(693,2400,'2023-10-11',25900),(694,2682,'2023-10-11',25900),(695,2737,'2023-10-11',20000),(696,2771,'2023-10-11',29900),(697,2644,'2023-10-11',29900),(698,2507,'2023-10-11',25900),(699,2609,'2023-10-12',114.75),(700,2757,'2023-10-12',25900),(701,2696,'2023-10-12',29900),(702,2760,'2023-10-12',20000),(703,2433,'2023-10-12',29900),(704,2775,'2023-10-12',15000),(705,2775,'2023-10-12',15000),(706,2492,'2023-11-01',29900),(707,2585,'2023-10-12',29900),(708,2666,'2023-10-12',25900),(709,2656,'2023-10-13',49900),(710,2651,'2023-10-14',29900),(711,2623,'2023-10-14',25000),(712,2384,'2023-10-14',15000),(713,2596,'2023-10-16',30000),(714,2750,'2023-10-16',39900),(715,2415,'2023-10-16',34900),(716,2555,'2023-10-16',20000),(717,2658,'2023-10-16',25900),(718,2591,'2023-10-16',25900),(719,2674,'2023-10-16',25900),(720,2473,'2023-10-16',15000),(721,2598,'2023-10-16',29900),(722,2637,'2023-10-16',39900),(723,2622,'2023-10-16',39900),(724,2648,'2023-10-16',29900),(725,2489,'2023-10-16',15000),(726,2393,'2023-10-16',0),(727,2778,'2023-10-16',15000),(728,2456,'2023-10-16',15000),(729,2490,'2023-10-16',29900),(730,2548,'2023-10-16',29900),(731,2401,'2023-10-16',29900),(732,2553,'2023-10-16',30000),(733,2589,'2023-10-16',29900),(734,2684,'2023-10-16',20000),(735,2455,'2023-10-16',15000),(736,2627,'2023-10-16',20000),(737,2660,'2023-10-16',0),(738,2664,'2023-10-16',29900),(739,2761,'2023-10-05',20000),(740,2761,'2023-09-06',0),(741,2751,'2023-10-16',39900),(742,2667,'2023-10-16',39900),(743,2728,'2023-10-16',304.65),(744,2663,'2023-10-16',25900),(745,2731,'2023-10-16',0),(746,2720,'2023-10-16',143.44),(747,2711,'2023-10-16',201.81),(748,2567,'2023-10-16',15000),(749,2700,'2023-10-16',203.1),(750,2691,'2023-10-16',29900),(751,2722,'2023-10-16',102),(752,2756,'2023-10-16',29900),(753,2694,'2023-10-16',49900),(754,2742,'2023-10-16',49900),(755,2572,'2023-10-17',20000),(756,2624,'2023-10-17',136),(757,2743,'2023-10-17',49900),(758,2739,'2023-10-17',49900),(759,2739,'2023-09-06',49900),(760,2606,'2023-10-17',15000),(761,2606,'2023-10-17',15000),(762,2606,'2023-09-08',15000),(763,2606,'2023-08-17',15000),(764,2769,'2023-10-17',29900),(765,2549,'2023-10-17',29900),(766,2628,'2023-10-17',25900),(767,2605,'2023-10-17',15000),(768,2626,'2023-10-17',114.75),(769,2534,'2023-10-18',29900),(770,2493,'2023-10-18',25900),(771,2447,'2023-10-18',15000),(772,2618,'2023-10-18',40000),(773,2686,'2023-10-18',39900),(774,2712,'2023-10-18',177.71),(775,2460,'2023-10-18',29900),(776,2671,'2023-10-19',25900),(777,2653,'2023-10-19',39900),(778,2708,'2023-10-20',517),(779,2708,'2023-09-20',517),(780,2448,'2023-10-20',20000),(781,2571,'2023-09-24',0),(782,2571,'2023-10-24',29900),(783,2571,'2023-08-24',0),(784,2474,'2023-10-24',29900),(785,2764,'2023-10-24',0),(786,2545,'2023-11-01',35000),(787,2776,'2023-10-26',29900),(788,2780,'2023-10-27',17000),(789,2441,'2023-11-01',15000),(790,2545,'2023-11-01',35000),(791,2399,'2023-11-01',29900),(792,2426,'2023-11-01',25900),(793,2680,'2023-10-30',25900),(794,2476,'2023-10-30',39900),(795,2647,'2023-10-30',25900),(796,2460,'2023-10-30',29900),(797,2640,'2023-10-30',39000),(798,2715,'2023-09-30',170.98),(799,2703,'2023-10-30',252.45),(800,2481,'2023-11-01',25000),(801,2709,'2023-10-31',114.75),(802,2717,'2023-10-31',80000),(803,2699,'2023-11-01',114.75),(804,2478,'2023-11-01',39900),(805,2401,'2023-11-01',29900),(806,2496,'2023-11-01',15000),(807,2418,'2023-11-01',29900),(808,2730,'2023-11-01',167.56),(809,2430,'2023-11-01',39900),(810,2575,'2023-11-01',29900),(811,2583,'2023-11-01',20000),(812,2693,'2023-11-01',20000),(813,2679,'2023-11-01',20000),(814,2768,'2023-11-01',25900),(815,2752,'2023-11-01',20000),(816,2604,'2023-11-01',15000),(817,2554,'2023-11-01',20000),(818,2636,'2023-11-01',39000),(819,2620,'2023-11-01',29900),(820,2755,'2023-11-01',29900),(821,2497,'2023-11-01',40000),(822,2780,'2023-11-01',49900),(823,2487,'2023-11-01',59900),(824,2724,'2023-11-01',172.13),(825,2724,'2023-10-31',172.13),(826,2542,'2023-11-02',49900),(827,2474,'2023-11-02',29900),(828,2655,'2023-11-02',25900),(829,2491,'2023-11-02',30000),(830,2614,'2023-11-02',49000),(831,2594,'2023-11-02',29900),(832,2498,'2023-11-02',42500),(833,2736,'2023-11-02',25900),(834,2495,'2023-11-02',59900),(835,2713,'2023-11-02',201.81),(836,2459,'2023-11-02',29900),(837,2758,'2023-11-02',29900),(838,2573,'2023-11-02',15000),(839,2627,'2023-11-02',20000),(840,2762,'2023-11-02',39900),(841,2578,'2023-11-02',39900),(842,2641,'2023-11-02',39900),(843,2586,'2023-11-02',20000),(844,2470,'2023-11-02',20000),(845,2466,'2023-11-02',30000),(846,2592,'2023-11-02',29000),(847,2779,'2023-11-02',49900),(848,2580,'2023-11-02',29900),(849,2472,'2023-11-03',39900),(850,2557,'2023-11-03',39900),(851,2525,'2023-11-03',29900),(852,2577,'2023-11-03',29900),(853,2718,'2023-11-03',172.55),(854,2480,'2023-11-03',39900),(855,2740,'2023-11-03',39900),(856,2520,'2023-11-03',49900),(857,2681,'2023-11-03',20000),(858,2559,'2023-11-03',59900),(859,2523,'2023-11-03',29000),(860,2665,'2023-11-03',25900),(861,2692,'2023-11-03',25000),(862,2526,'2023-11-03',29900),(863,2462,'2023-11-03',39900),(864,2668,'2023-11-03',25900),(865,2753,'2023-11-03',29900),(866,2675,'2023-11-03',25900),(867,2691,'2023-11-05',29900),(868,2642,'2023-10-31',39900),(869,2507,'2023-11-05',25900),(870,2751,'2023-11-05',39900),(871,2747,'2023-11-05',29900),(872,2634,'2023-11-05',15000),(873,2529,'2023-11-05',25900),(874,2590,'2023-11-05',15000),(875,2533,'2023-11-05',20000),(876,2540,'2023-11-05',15000),(877,2657,'2023-11-05',29900),(878,2548,'2023-11-05',29900),(879,2618,'2023-11-05',40000),(880,2741,'2023-11-05',49900),(881,2406,'2023-11-05',25000),(882,2420,'2023-11-05',30000),(883,2775,'2023-11-05',29900),(884,2649,'2023-11-05',29900),(885,2552,'2023-11-05',39900),(886,2631,'2023-11-05',29900),(887,2678,'2023-11-05',29900),(888,2607,'2023-11-05',39000),(889,2670,'2023-11-05',39900),(890,2774,'2023-10-30',0),(891,2774,'2023-11-05',15000),(892,2536,'2023-11-05',10000),(893,2538,'2023-11-05',10000),(894,2515,'2023-11-06',29900),(895,2684,'2023-11-06',20000),(896,2581,'2023-11-06',25900),(897,2596,'2023-11-06',30000),(898,2690,'2023-11-06',20000),(899,2534,'2023-11-06',29900),(900,2463,'2023-11-06',39900),(901,2661,'2023-11-06',29900),(902,2714,'2023-11-06',218.03),(903,2662,'2023-11-06',25900),(904,2387,'2023-11-06',20000),(905,2765,'2023-11-06',25900),(906,2568,'2023-11-06',49900),(907,2569,'2023-11-06',49900),(908,2537,'2023-11-06',69900),(909,2518,'2023-11-06',25000),(910,2562,'2023-11-06',20000),(911,2738,'2023-11-07',25900),(912,2669,'2023-11-07',25900),(913,2444,'2023-11-07',15000),(914,2638,'2023-11-07',49900),(915,2778,'2023-11-07',29900),(916,2486,'2023-11-07',49900),(917,2644,'2023-11-07',29900),(918,2720,'2023-11-07',143.44),(919,2460,'2023-11-07',29900),(920,2519,'2023-11-07',39900),(921,2621,'2023-11-07',29900),(922,2424,'2023-11-07',29900),(923,2689,'2023-11-07',25900),(924,2673,'2023-11-07',25900),(925,2771,'2023-11-07',29900),(926,2460,'2023-11-07',29900),(927,2460,'2023-10-07',29900),(928,2460,'2023-09-07',29900),(929,2460,'2023-08-07',29900),(930,2561,'2023-11-07',49900),(931,2593,'2023-11-07',39900),(932,2777,'2023-11-07',29900),(933,2777,'2023-10-31',15000),(934,2584,'2023-11-07',29900),(935,2646,'2023-11-07',25900),(936,2677,'2023-11-07',25900),(937,2587,'2023-11-07',29900),(938,2558,'2023-11-07',20000),(939,2479,'2023-11-07',29900),(940,2549,'2023-11-07',29900),(941,2651,'2023-11-07',29900),(942,2553,'2023-11-07',30000),(943,2391,'2023-11-07',29900),(944,2683,'2023-11-07',20000),(945,2773,'2023-11-07',20000),(946,2483,'2023-10-07',0),(947,2483,'2023-09-07',0),(948,2501,'2023-11-07',15000),(949,2666,'2023-11-07',25900),(950,2576,'2023-11-07',25900),(951,2686,'2023-11-07',39900),(952,2396,'2023-11-07',15000),(953,2687,'2023-11-08',20000),(954,2754,'2023-11-08',39900),(955,2667,'2023-11-08',39900),(956,2500,'2023-11-08',29900),(957,2500,'2023-10-08',0),(958,2500,'2023-09-08',0),(959,2500,'2023-08-08',0),(960,2748,'2023-11-08',39900),(961,2748,'2023-11-08',39900),(962,2748,'2023-10-08',39900),(963,2395,'2023-11-08',25900),(964,2395,'2023-10-08',0),(965,2395,'2023-09-08',0),(966,2737,'2023-11-08',20000),(967,2698,'2023-11-08',20000),(968,2682,'2023-11-08',25900),(969,2400,'2023-11-08',25900),(970,2599,'2023-11-08',29900),(971,2727,'2023-11-09',315.56),(972,2639,'2023-10-09',0),(973,2639,'2023-09-09',0),(974,2639,'2023-08-09',0),(975,2635,'2023-11-09',29900),(976,2572,'2023-11-09',20000),(977,2685,'2023-11-09',39900),(978,2574,'2023-11-09',30000),(979,2658,'2023-11-10',25900),(980,2550,'2023-11-10',59900),(981,2390,'2023-11-10',25900),(982,2767,'2023-11-10',29900),(983,2566,'2023-11-10',59900),(984,2493,'2023-11-10',25900),(985,2721,'2023-11-10',154.91),(986,2623,'2023-11-11',25000),(987,2785,'2023-11-11',39900),(988,2757,'2023-11-11',25900),(989,2458,'2023-11-11',29900),(990,2710,'2023-11-11',269.66),(991,2715,'2023-11-11',170.98),(992,2659,'2023-11-12',29900),(993,2704,'2023-11-13',355.42),(994,2750,'2023-11-13',39900),(995,2567,'2023-11-14',15000),(996,2464,'2023-11-14',30000),(997,2547,'2023-11-14',29900),(998,2696,'2023-11-14',29900),(999,2433,'2023-11-14',29900),(1000,2489,'2023-11-14',15000),(1001,2456,'2023-11-15',15000),(1002,2648,'2023-11-15',29900),(1003,2473,'2023-11-15',15000),(1004,2415,'2023-11-15',34900),(1005,2674,'2023-11-15',25900),(1006,2579,'2023-11-16',29900),(1007,2591,'2023-11-16',25900),(1008,2555,'2023-11-16',20000),(1009,2784,'2023-11-16',15000),(1010,2781,'2023-11-16',29900),(1011,2546,'2023-10-16',39900),(1012,2546,'2023-11-16',39900),(1013,2546,'2023-09-16',39900),(1014,2561,'2023-11-16',49900),(1015,2561,'2023-10-16',49900),(1016,2660,'2023-11-16',0),(1017,2711,'2023-11-16',201.81),(1018,2767,'2023-11-16',29900),(1019,2767,'2023-10-16',0),(1020,2664,'2023-11-16',29900),(1021,2680,'2023-11-16',25900),(1022,2628,'2023-11-16',25900),(1023,2447,'2023-11-16',15000),(1024,2434,'2023-11-16',29900),(1025,2760,'2023-11-16',20000),(1026,2626,'2023-11-16',114.75),(1027,2624,'2023-11-16',136),(1028,2759,'2023-11-16',29900),(1029,2637,'2023-11-16',39900),(1030,2585,'2023-11-16',29900),(1031,2756,'2023-11-16',29900),(1032,2530,'2023-11-16',35000),(1033,2676,'2023-11-16',25900),(1034,2654,'2023-11-16',25900),(1035,2615,'2023-11-16',20000),(1036,2384,'2023-11-16',15000),(1037,2448,'2023-11-16',20000),(1038,2609,'2023-11-16',114.75),(1039,2647,'2023-11-16',25900),(1040,2743,'2023-11-16',49900),(1041,2688,'2023-11-17',25900),(1042,2414,'2023-11-17',20000),(1043,2598,'2023-11-17',29900),(1044,2742,'2023-11-17',49900),(1045,2694,'2023-11-17',49900),(1046,2663,'2023-11-17',25900),(1047,2589,'2023-11-17',29900),(1048,2671,'2023-11-17',25900),(1049,2789,'2023-11-17',29900),(1050,2697,'2023-11-17',29900),(1051,2712,'2023-11-17',177.71),(1052,2722,'2023-11-17',102),(1053,2622,'2023-11-17',39900),(1054,2531,'2023-11-17',15000),(1055,2700,'2023-11-20',203.1),(1056,2766,'2023-11-20',29900),(1057,2728,'2023-11-20',304.65),(1058,2409,'2023-11-20',0),(1059,2791,'2023-11-22',6000),(1060,2545,'2023-12-01',35000),(1061,2627,'2023-12-22',20000),(1062,2605,'2023-11-22',15000),(1063,2656,'2023-11-23',49900),(1064,2441,'2023-12-01',15000),(1065,2652,'2023-11-27',0),(1066,2652,'2023-12-01',29900),(1067,2652,'2023-10-27',29900),(1068,2409,'2023-11-24',0),(1069,2409,'2023-11-27',15000),(1070,2409,'2023-10-20',0),(1071,2386,'2023-11-27',15000),(1072,2708,'2023-11-27',517),(1073,2490,'2023-11-28',29900),(1074,2604,'2023-12-01',15000),(1075,2695,'2023-11-30',29900),(1076,2600,'2023-10-18',0),(1077,2600,'2023-09-22',0),(1078,2600,'2023-08-23',0),(1079,2558,'2023-12-01',25900),(1080,2507,'2023-12-04',25900),(1081,2393,'2023-11-17',0),(1082,2393,'2023-12-04',30000),(1083,2594,'2023-12-04',29900),(1084,2575,'2023-12-04',29900),(1085,2554,'2023-12-04',20000),(1086,2497,'2023-12-04',40000),(1087,2699,'2023-12-04',114.75),(1088,2584,'2023-12-04',29900),(1089,2542,'2023-12-04',49900),(1090,2578,'2023-12-04',39900),(1091,2785,'2023-12-04',39900),(1092,2752,'2023-12-04',20000),(1093,2496,'2023-12-04',15000),(1094,2620,'2023-12-04',29900),(1095,2713,'2023-12-04',201.81),(1096,2459,'2023-12-04',29900),(1097,2787,'2023-12-04',15000),(1098,2787,'2023-11-24',0),(1099,2658,'2023-12-04',25900),(1100,2585,'2023-12-04',29900),(1101,2478,'2023-12-04',39900),(1102,2573,'2023-12-04',15000),(1103,2783,'2023-12-04',15000),(1104,2783,'2023-11-23',0),(1105,2577,'2023-12-04',29900),(1106,2580,'2023-12-04',29900),(1107,2636,'2023-12-04',39000),(1108,2525,'2023-12-04',29900),(1109,2621,'2023-12-04',29900),(1110,2480,'2023-12-04',39900),(1111,2740,'2023-12-04',39900),(1112,2520,'2023-12-04',49900),(1113,2693,'2023-12-04',20000),(1114,2523,'2023-12-04',29000),(1115,2631,'2023-12-04',29900),(1116,2399,'2023-12-04',29900),(1117,2426,'2023-12-04',25900),(1118,2474,'2023-12-04',29900),(1119,2748,'2023-12-04',39900),(1120,2738,'2023-12-04',25900),(1121,2462,'2023-12-04',39900),(1122,2679,'2023-12-04',20000),(1123,2768,'2023-12-04',25900),(1124,2680,'2023-12-04',25900),(1125,2576,'2023-12-04',25900),(1126,2747,'2023-12-04',29900),(1127,2587,'2023-12-04',29900),(1128,2778,'2023-12-04',29900),(1129,2655,'2023-12-04',25900),(1130,2757,'2023-12-04',25900),(1131,2470,'2023-12-04',20000),(1132,2780,'2023-12-04',49900),(1133,2657,'2023-12-04',29900),(1134,2424,'2023-12-04',29900),(1135,2769,'2023-12-04',29900),(1136,2769,'2023-12-04',29900),(1137,2710,'2023-12-04',269.66),(1138,2678,'2023-12-04',29900),(1139,2498,'2023-12-04',42500),(1140,2661,'2023-12-04',29900),(1141,2533,'2023-12-04',20000),(1142,2540,'2023-12-04',15000),(1143,2526,'2023-12-04',29900),(1144,2529,'2023-12-04',25900),(1145,2583,'2023-12-04',20000),(1146,2466,'2023-12-04',30000),(1147,2515,'2023-12-04',29900),(1148,2671,'2023-12-05',25900),(1149,2491,'2023-12-05',30000),(1150,2665,'2023-12-05',25900),(1151,2483,'2023-12-05',15000),(1152,2614,'2023-12-05',49000),(1153,2751,'2023-12-05',39900),(1154,2776,'2023-12-05',29900),(1155,2662,'2023-12-05',25900),(1156,2434,'2023-12-05',29900),(1157,2537,'2023-12-05',69900),(1158,2538,'2023-12-05',10000),(1159,2607,'2023-12-05',39000),(1160,2697,'2023-12-05',29900),(1161,2755,'2023-12-05',29900),(1162,2519,'2023-12-05',39900),(1163,2722,'2023-12-05',102),(1164,2406,'2023-12-05',25000),(1165,2420,'2023-12-05',30000),(1166,2741,'2023-12-05',49900),(1167,2773,'2023-12-05',20000),(1168,2684,'2023-12-05',20000),(1169,2789,'2023-12-05',29900),(1170,2753,'2023-12-05',29900),(1171,2644,'2023-12-05',29900),(1172,2492,'2023-12-05',29900),(1173,2586,'2023-12-05',20000),(1174,2641,'2023-12-05',39900),(1175,2537,'2023-12-05',69900),(1176,2762,'2023-12-05',39900),(1177,2486,'2023-12-05',49900),(1178,2666,'2023-12-05',25900),(1179,2691,'2023-12-06',29900),(1180,2552,'2023-12-06',39900),(1181,2384,'2023-12-06',15000),(1182,2472,'2023-12-06',39900),(1183,2557,'2023-12-06',39900),(1184,2775,'2023-12-06',29900),(1185,2758,'2023-12-06',29900),(1186,2664,'2023-12-06',29900),(1187,2686,'2023-12-06',39900),(1188,2670,'2023-12-06',39900),(1189,2666,'2023-12-06',25900),(1190,2495,'2023-12-06',59900),(1191,2550,'2023-12-06',59900),(1192,2418,'2023-12-06',29900),(1193,2795,'2023-12-06',20000),(1194,2730,'2023-12-06',167.56),(1195,2599,'2023-12-06',29900),(1196,2724,'2023-12-06',172.13),(1197,2720,'2023-12-06',143.44),(1198,2736,'2023-12-06',25900),(1199,2667,'2023-12-06',39900),(1200,2618,'2023-12-06',40000),(1201,2640,'2023-12-06',39000),(1202,2788,'2023-12-06',25900),(1203,2675,'2023-12-06',25900),(1204,2669,'2023-12-06',25900),(1205,2646,'2023-12-06',25900),(1206,2685,'2023-12-07',39900),(1207,2479,'2023-12-07',29900),(1208,2786,'2023-12-07',10000),(1209,2786,'2023-11-29',0),(1210,2727,'2023-12-07',315.56),(1211,2481,'2023-12-07',25000),(1212,2688,'2023-12-07',25900),(1213,2619,'2023-12-07',29900),(1214,2640,'2023-12-07',39000),(1215,2566,'2023-12-07',59900),(1216,2668,'2023-12-07',25900),(1217,2592,'2023-12-07',29000),(1218,2673,'2023-12-07',25900),(1219,2518,'2023-12-07',25000),(1220,2562,'2023-12-07',20000),(1221,2721,'2023-12-07',154.91),(1222,2638,'2023-12-07',49900),(1223,2548,'2023-12-07',29900),(1224,2590,'2023-12-07',15000),(1225,2531,'2023-12-07',15000),(1226,2712,'2023-12-07',177.71),(1227,2654,'2023-12-08',25900),(1228,2692,'2023-12-08',29900),(1229,2677,'2023-12-08',25900),(1230,2391,'2023-12-08',29900),(1231,2501,'2023-12-08',15000),(1232,2761,'2023-12-08',20000),(1233,2791,'2023-12-08',25900),(1234,2635,'2023-12-08',29900),(1235,2608,'2023-12-08',49900),(1236,2634,'2023-12-11',15000),(1237,2390,'2023-12-11',25900),(1238,2765,'2023-12-11',25900),(1239,2694,'2023-12-11',49900),(1240,2742,'2023-12-11',49900),(1241,2790,'2023-12-11',25900),(1242,2639,'2023-12-11',10000),(1243,2458,'2023-12-11',29900),(1244,2687,'2023-12-11',20000),(1245,2396,'2023-12-11',15000),(1246,2487,'2023-12-11',59900),(1247,2444,'2023-12-11',15000),(1248,2772,'2023-12-11',136),(1249,2754,'2023-12-11',39900),(1250,2574,'2023-12-11',30000),(1251,2463,'2023-12-11',39900),(1252,2696,'2023-12-12',29900),(1253,2433,'2023-12-12',29900),(1254,2781,'2023-12-12',29900),(1255,2464,'2023-12-12',30000),(1256,2689,'2023-12-12',25900),(1257,2729,'2023-12-12',75),(1258,2729,'2023-11-02',0),(1259,2729,'2023-10-05',0),(1260,2729,'2023-09-12',0),(1261,2729,'2023-08-16',0),(1262,2659,'2023-12-12',29900),(1263,2750,'2023-12-13',39900),(1264,2464,'2023-11-13',30000),(1265,2464,'2023-10-13',30000),(1266,2790,'2023-11-13',13000),(1267,2766,'2023-12-13',29900),(1268,2549,'2023-12-13',29900),(1269,2623,'2023-12-14',25000),(1270,2682,'2023-12-14',25900),(1271,2737,'2023-12-14',20000),(1272,2698,'2023-12-14',20000),(1273,2400,'2023-12-14',25900),(1274,2648,'2023-12-14',29900),(1275,2456,'2023-12-14',15000),(1276,2589,'2023-12-15',29900),(1277,2489,'2023-12-15',15000),(1278,2608,'2023-12-15',49900),(1279,2608,'2023-11-15',49900),(1280,2619,'2023-12-15',29900),(1281,2619,'2023-11-15',29900),(1282,2559,'2023-12-15',59900),(1283,2690,'2023-12-15',20000),(1284,2704,'2023-12-15',355.42),(1285,2715,'2023-12-15',170.98),(1286,2715,'2023-11-15',170.98),(1287,2715,'2023-10-04',170.98),(1288,2761,'2023-12-08',20000),(1289,2761,'2023-11-17',20000),(1290,2772,'2023-12-15',136),(1291,2772,'2023-11-10',136),(1292,2776,'2023-12-15',29900),(1293,2776,'2023-11-10',29900),(1294,2788,'2023-12-15',25900),(1295,2788,'2023-11-17',25900),(1296,2448,'2023-12-15',20000),(1297,2415,'2023-12-15',34900),(1298,2711,'2023-12-15',201.81),(1299,2640,'2023-12-15',39000),(1300,2640,'2023-11-17',39000),(1301,2769,'2023-11-15',29900),(1302,2581,'2023-12-15',25900),(1303,2530,'2023-12-15',35000),(1304,2649,'2023-11-15',29900),(1305,2649,'2023-12-06',29900),(1306,2534,'2023-12-15',29900),(1307,2674,'2023-12-15',25900),(1308,2414,'2023-12-15',20000),(1309,2555,'2023-12-15',20000),(1310,2717,'2023-12-15',80000),(1311,2591,'2023-12-15',25900),(1312,2753,'2023-12-15',29900),(1313,2771,'2023-12-18',29900),(1314,2622,'2023-12-18',39900),(1315,2759,'2023-12-18',29900),(1316,2547,'2023-12-18',29900),(1317,2663,'2023-12-18',25900),(1318,2473,'2023-12-18',15000),(1319,2760,'2023-12-18',20000),(1320,2796,'2023-12-18',22000),(1321,2637,'2023-12-18',39900),(1322,2683,'2023-12-18',20000),(1323,2401,'2023-12-18',29900),(1324,2628,'2023-12-18',25900),(1325,2777,'2024-01-15',29900),(1326,2777,'2024-02-15',29900),(1327,2777,'2024-03-15',29900),(1328,2777,'2024-04-15',29900),(1329,2777,'2024-05-15',29900),(1330,2387,'2023-12-18',20000),(1331,2440,'2023-12-15',7500),(1332,2440,'2023-11-15',0),(1333,2440,'2023-10-12',0),(1334,2599,'2023-12-18',29900),(1335,2599,'2023-11-09',29900),(1336,2599,'2023-10-18',29900),(1337,2447,'2023-12-18',15000),(1338,2493,'2023-12-18',25900),(1339,2572,'2023-12-18',20000),(1340,2798,'2023-12-18',17000),(1341,2756,'2023-12-18',29900),(1342,2656,'2023-12-18',49900),(1343,2676,'2023-12-18',25900),(1344,2568,'2023-12-18',49900),(1345,2569,'2023-12-18',49900),(1346,2784,'2023-12-18',15000),(1347,2567,'2023-12-19',15000),(1348,2598,'2023-12-19',29900),(1349,2596,'2023-12-19',30000),(1350,2797,'2023-12-19',24900),(1351,2800,'2023-12-20',12000),(1352,2743,'2023-12-21',49900),(1353,2386,'2023-12-21',15000),(1354,2647,'2023-12-22',25900),(1355,2585,'2024-01-01',29900),(1356,2545,'2024-01-01',35000),(1357,2399,'2024-01-01',29900),(1358,2426,'2023-12-22',25900),(1359,2700,'2023-12-23',203.1),(1360,2553,'2023-12-23',30000),(1361,2593,'2023-12-20',49900),(1362,2703,'2023-12-23',252.45),(1363,2475,'2023-11-23',29900),(1364,2475,'2023-12-23',29900),(1365,2475,'2023-10-23',29900),(1366,2475,'2024-01-01',29900),(1367,2718,'2023-12-23',172.55),(1368,2801,'2023-12-24',6900),(1369,2801,'2023-12-25',6900),(1370,2739,'2023-12-18',49900),(1371,2739,'2023-11-18',49900),(1372,2610,'2023-12-27',39900),(1373,2642,'2023-12-27',39900),(1374,2714,'2023-12-28',218.03),(1375,2714,'2024-01-01',218.03),(1376,2642,'2023-12-29',39900),(1377,2610,'2024-01-05',39900),(1378,2487,'2024-01-03',59900),(1379,2441,'2024-01-01',15000),(1380,2426,'2024-01-02',25900),(1381,2472,'2024-01-02',39900),(1382,2459,'2024-01-01',29900),(1383,2554,'2024-01-02',20000),(1384,2470,'2024-01-01',20000),(1385,2780,'2024-01-02',29900),(1386,2575,'2024-01-02',29900),(1387,2699,'2024-01-02',114.75),(1388,2497,'2024-01-02',40000),(1389,2594,'2024-01-02',29900),(1390,2655,'2024-01-02',25900),(1391,2393,'2024-01-02',30000),(1392,2573,'2024-01-02',15000),(1393,2476,'2023-12-27',39900),(1394,2610,'2023-11-02',39900),(1395,2498,'2024-01-02',42500),(1396,2478,'2024-01-02',39900),(1397,2753,'2024-01-02',29900),(1398,2636,'2024-01-02',39000),(1399,2620,'2024-01-02',29900),(1400,2558,'2024-01-02',25900),(1401,2679,'2024-01-02',20000),(1402,2775,'2024-01-02',29900),(1403,2583,'2024-01-02',15000),(1404,2755,'2024-01-02',29900),(1405,2785,'2024-01-02',39900),(1406,2721,'2024-01-02',154.91),(1407,2481,'2024-01-02',25000),(1408,2604,'2024-01-02',15000),(1409,2418,'2024-01-02',29900),(1410,2631,'2024-01-02',29900),(1411,2523,'2024-01-02',29000),(1412,2605,'2023-12-29',15000),(1413,2798,'2024-01-02',25900),(1414,2590,'2024-01-02',15000),(1415,2542,'2024-01-02',49900),(1416,2529,'2024-01-02',25900),(1417,2741,'2024-01-02',49900),(1418,2608,'2024-01-02',39900),(1419,2466,'2024-01-02',30000),(1420,2730,'2024-01-02',167.56),(1421,2664,'2024-01-02',29900),(1422,2584,'2024-01-02',29900),(1423,2713,'2024-01-03',201.81),(1424,2474,'2024-01-03',29900),(1425,2578,'2024-01-03',39900),(1426,2515,'2024-01-03',29900),(1427,2795,'2024-01-03',17000),(1428,2576,'2024-01-03',25900),(1429,2496,'2024-01-03',15000),(1430,2752,'2024-01-03',20000),(1431,2492,'2024-01-03',29900),(1432,2665,'2024-01-03',25900),(1433,2667,'2024-01-03',39900),(1434,2491,'2024-01-03',30000),(1435,2525,'2024-01-03',29900),(1436,2550,'2024-01-03',59900),(1437,2577,'2024-01-03',29900),(1438,2697,'2024-01-03',29900),(1439,2787,'2024-01-03',15000),(1440,2687,'2024-01-03',20000),(1441,2693,'2024-01-03',20000),(1442,2526,'2024-01-03',29900),(1443,2793,'2024-01-03',49900),(1444,2793,'2023-12-27',49900),(1445,2406,'2024-01-03',25000),(1446,2420,'2024-01-03',30000),(1447,2552,'2024-01-03',39900),(1448,2649,'2024-01-03',29900),(1449,2758,'2024-01-03',29900),(1450,2533,'2024-01-04',20000),(1451,2540,'2024-01-04',15000),(1452,2718,'2024-01-04',172.55),(1453,2548,'2024-01-04',29900),(1454,2557,'2024-01-04',39900),(1455,2778,'2024-01-04',29900),(1456,2618,'2024-01-04',40000),(1457,2768,'2024-01-04',25900),(1458,2768,'2024-01-04',25900),(1459,2729,'2024-01-04',39900),(1460,2680,'2024-01-04',25900),(1461,2553,'2024-01-04',30000),(1462,2673,'2024-01-04',25900),(1463,2635,'2024-01-04',29900),(1464,2691,'2024-01-04',29900),(1465,2688,'2024-01-04',25900),(1466,2559,'2024-01-05',59900),(1467,2802,'2024-01-05',25900),(1468,2670,'2024-01-05',39900),(1469,2479,'2024-01-05',29900),(1470,2657,'2024-01-05',39900),(1471,2587,'2024-01-05',29900),(1472,2480,'2024-01-05',39900),(1473,2740,'2024-01-05',39900),(1474,2520,'2024-01-05',49900),(1475,2668,'2024-01-05',25900),(1476,2592,'2024-01-05',29000),(1477,2762,'2024-01-05',39900),(1478,2519,'2024-01-05',39900),(1479,2462,'2024-01-05',39900),(1480,2675,'2024-01-05',25900),(1481,2677,'2024-01-05',25900),(1482,2390,'2024-01-05',25900),(1483,2799,'2024-01-05',29900),(1484,2537,'2024-01-05',69900),(1485,2661,'2024-01-05',29900),(1486,2738,'2024-01-05',25900),(1487,2747,'2024-01-06',29900),(1488,2662,'2024-01-06',25900),(1489,2566,'2024-01-06',59900),(1490,2621,'2024-01-06',29900),(1491,2580,'2024-01-06',29900),(1492,2534,'2024-01-06',29900),(1493,2790,'2024-01-06',25900),(1494,2646,'2024-01-06',25900),(1495,2751,'2024-01-08',39900),(1496,2654,'2024-01-08',25900),(1497,2678,'2024-01-08',29900),(1498,2391,'2024-01-08',29900),(1499,2501,'2024-01-08',15000),(1500,2574,'2024-01-08',30000),(1501,2460,'2024-01-08',29900),(1502,2669,'2024-01-08',25900),(1503,2800,'2024-01-08',29900),(1504,2761,'2024-01-08',20000),(1505,2634,'2024-01-08',15000),(1506,2396,'2024-01-08',15000),(1507,2684,'2024-01-08',20000),(1508,2518,'2024-01-08',25000),(1509,2562,'2024-01-08',20000),(1510,2536,'2024-01-08',29900),(1511,2538,'2024-01-08',10000),(1512,2593,'2024-01-08',49900),(1513,2638,'2024-01-08',49900),(1514,2640,'2024-01-08',39000),(1515,2788,'2024-01-08',25900),(1516,2599,'2024-01-08',29900),(1517,2430,'2024-01-08',39900),(1518,2463,'2024-01-08',39900),(1519,2622,'2024-01-08',39900),(1520,2433,'2024-01-08',29900),(1521,2704,'2024-01-08',355.42),(1522,2696,'2024-01-09',29900),(1523,2808,'2024-01-09',17500),(1524,2754,'2024-01-09',39900),(1525,2765,'2024-01-09',25900),(1526,2458,'2024-01-10',29900),(1527,2444,'2024-01-10',15000),(1528,2676,'2024-01-10',25900),(1529,2581,'2024-01-11',25900),(1530,2757,'2024-01-11',25900),(1531,2644,'2024-01-11',29900),(1532,2736,'2024-01-11',25900),(1533,2698,'2024-01-11',20000),(1534,2737,'2024-01-11',20000),(1535,2400,'2024-01-11',25900),(1536,2395,'2024-01-11',25900),(1537,2766,'2024-01-11',29900),(1538,2614,'2024-01-12',49000),(1539,2598,'2024-01-12',29900),(1540,2771,'2024-01-12',29900),(1541,2781,'2024-01-12',29900),(1542,2716,'2023-11-01',143.44),(1543,2716,'2023-12-12',143.44),(1544,2716,'2024-01-12',143.44),(1545,2708,'2024-01-12',517),(1546,2708,'2023-12-12',517),(1547,2424,'2024-01-12',29900),(1548,2483,'2024-01-12',15000),(1549,2483,'2024-01-12',15000),(1550,2767,'2024-01-12',29900),(1551,2767,'2023-12-12',29900),(1552,2728,'2024-01-12',304.65),(1553,2495,'2023-12-14',59900),(1554,2495,'2024-01-14',59900),(1555,2773,'2024-01-14',20000),(1556,2447,'2024-01-15',17500),(1557,2801,'2024-01-15',29900),(1558,2567,'2024-01-15',15000),(1559,2651,'2024-01-15',29900),(1560,2651,'2023-12-15',29900),(1561,2483,'2023-10-19',0),(1562,2483,'2023-09-15',0),(1563,2483,'2023-11-15',0),(1564,2637,'2024-01-15',39900),(1565,2694,'2024-01-15',49900),(1566,2742,'2024-01-15',49900),(1567,2384,'2024-01-15',15000),(1568,2784,'2024-01-15',15000),(1569,2805,'2024-01-15',10000),(1570,2415,'2024-01-15',34900),(1571,2414,'2024-01-15',20000),(1572,2648,'2024-01-15',29900),(1573,2456,'2024-01-15',15000),(1574,2536,'2024-01-15',29900),(1575,2536,'2023-12-15',29900),(1576,2448,'2024-01-15',15000),(1577,2674,'2024-01-16',25900),(1578,2591,'2024-01-16',25900),(1579,2658,'2024-01-16',25900),(1580,2589,'2024-01-16',29900),(1581,2666,'2024-01-16',25900),(1582,2797,'2024-01-16',24900),(1583,2682,'2024-01-16',25900),(1584,2789,'2024-01-16',29900),(1585,2555,'2024-01-16',20000),(1586,2656,'2024-01-16',49900),(1587,2717,'2024-01-16',80000),(1588,2717,'2023-12-16',80000),(1589,2717,'2024-01-16',80000),(1590,2717,'2023-11-16',80000),(1591,2796,'2024-01-16',22000),(1592,2806,'2024-01-16',17500),(1593,2387,'2024-01-16',20000),(1594,2430,'2024-01-16',39900),(1595,2430,'2023-12-16',39900),(1596,2486,'2023-12-16',49900),(1597,2486,'2024-01-16',49900),(1598,2489,'2024-01-16',15000),(1599,2507,'2024-01-16',25900),(1600,2561,'2024-01-16',49900),(1601,2561,'2023-12-16',49900),(1602,2568,'2024-01-16',49900),(1603,2569,'2024-01-16',49900),(1604,2530,'2024-01-16',35000),(1605,2623,'2024-01-16',25000),(1606,2607,'2024-01-16',39000),(1607,2473,'2024-01-16',15000),(1608,2691,'2024-01-16',29900),(1609,2804,'2024-01-16',29900),(1610,2799,'2024-01-16',29900),(1611,2799,'2023-12-14',29900),(1612,2777,'2024-01-16',29900),(1613,2777,'2023-12-16',29900),(1614,2728,'2024-01-16',304.65),(1615,2728,'2023-12-15',304.65),(1616,2712,'2024-01-16',177.71),(1617,2779,'2024-01-16',49900),(1618,2700,'2024-01-16',203.1),(1619,2663,'2024-01-16',25900),(1620,2791,'2024-01-16',25900),(1621,2686,'2024-01-16',39900),(1622,2759,'2024-01-17',29900),(1623,2750,'2024-01-17',39900),(1624,2689,'2024-01-17',25900),(1625,2683,'2024-01-17',20000),(1626,2722,'2024-01-17',102),(1627,2779,'2024-01-17',49900),(1628,2572,'2024-01-17',20000),(1629,2386,'2024-01-17',15000),(1630,2810,'2024-01-17',15000),(1631,2596,'2024-01-17',30000),(1632,2743,'2024-01-17',49900),(1633,2571,'2024-01-17',29900),(1634,2760,'2024-01-17',20000),(1635,2531,'2024-01-17',15000),(1636,2711,'2024-01-17',201.81),(1637,2659,'2024-01-18',29900),(1638,2756,'2024-01-18',29900),(1639,2685,'2024-01-18',39900),(1640,2782,'2024-01-18',25900),(1641,2779,'2023-12-14',49900),(1642,2690,'2024-01-18',20000),(1643,2774,'2024-01-19',15000),(1644,2490,'2024-01-19',29900),(1645,2490,'2023-12-26',29900),(1646,2671,'2024-01-19',25900),(1647,2493,'2024-01-19',25900),(1648,2809,'2024-01-22',29940),(1649,2642,'2024-01-22',39900),(1650,2642,'2023-12-22',39900),(1651,2642,'2023-11-22',39900),(1652,2409,'2024-01-23',10000),(1653,2409,'2023-12-21',0),(1654,2545,'2024-02-01',35000),(1655,2607,'2024-01-25',39000),(1656,2401,'2024-01-25',29900),(1657,2628,'2024-01-25',25900),(1658,2639,'2024-01-25',10000),(1659,2692,'2024-01-25',29900),(1660,2681,'2023-12-25',0),(1661,2549,'2024-01-25',29900),(1662,2609,'2024-01-26',114.75),(1663,2609,'2023-12-26',114.75),(1664,2811,'2024-01-29',8000),(1665,2624,'2024-01-29',136),(1666,2626,'2024-01-29',114.75),(1667,2624,'2023-12-29',136),(1668,2626,'2023-12-29',114.75),(1669,2613,'2024-01-29',0),(1670,2613,'2023-12-29',0),(1671,2613,'2023-11-29',0),(1672,2613,'2023-10-29',0),(1673,2613,'2023-09-29',0),(1674,2613,'2023-09-29',0),(1675,2613,'2023-08-29',0),(1676,2807,'2024-01-29',29940),(1677,2807,'2024-01-29',29940),(1678,2774,'2024-01-29',15000),(1679,2774,'2023-12-29',15000),(1680,2743,'2024-01-29',49900),(1681,2743,'2023-12-29',49900),(1682,2743,'2023-11-29',49900),(1683,2743,'2023-10-29',49900),(1684,2743,'2023-11-29',49900),(1685,2743,'2023-09-29',49900),(1686,2727,'2024-01-29',315.56),(1687,2794,'2024-01-29',15000),(1688,2794,'2023-12-29',15000),(1689,2474,'2024-02-01',29900),(1690,2441,'2024-02-01',15000),(1691,2545,'2024-02-01',35000),(1692,2498,'2024-02-01',42500),(1693,2709,'2024-01-31',114.75),(1694,2476,'2024-01-31',39900),(1695,2399,'2024-02-01',29900),(1696,2426,'2024-02-01',25900),(1697,2808,'2024-02-01',25900),(1698,2627,'2024-02-01',20000),(1699,2627,'2024-01-31',20000),(1700,2800,'2024-02-01',29900),(1701,2554,'2024-02-01',20000),(1702,2699,'2024-02-01',114.75),(1703,2523,'2024-02-01',29000),(1704,2584,'2024-02-01',29900),(1705,2472,'2024-02-01',39900),(1706,2497,'2024-02-01',40000),(1707,2780,'2024-02-01',29900),(1708,2573,'2024-02-01',15000),(1709,2559,'2024-02-01',59900),(1710,2755,'2024-02-01',29900),(1711,2647,'2024-02-01',25900),(1712,2647,'2024-01-18',0),(1713,2525,'2024-02-01',29900),(1714,2478,'2024-02-01',39900),(1715,2594,'2024-02-01',29900),(1716,2487,'2024-02-01',59900),(1717,2492,'2024-02-01',29900),(1718,2558,'2024-02-01',25900),(1719,2526,'2024-02-01',29900),(1720,2470,'2024-02-01',20000),(1721,2785,'2024-02-01',39900),(1722,2575,'2024-02-01',29900),(1723,2440,'2024-02-01',15000),(1724,2486,'2024-02-01',49900),(1725,2571,'2024-02-01',29900),(1726,2583,'2024-02-02',15000),(1727,2614,'2024-02-02',49000),(1728,2741,'2024-02-02',49900),(1729,2578,'2024-02-02',39900),(1730,2548,'2024-02-02',29900),(1731,2533,'2024-02-02',20000),(1732,2540,'2024-02-02',15000),(1733,2557,'2024-02-02',39900),(1734,2620,'2024-02-02',29900),(1735,2500,'2024-02-02',29900),(1736,2466,'2024-02-02',30000),(1737,2496,'2024-02-01',15000),(1738,2752,'2024-02-02',20000),(1739,2542,'2024-02-02',49900),(1740,2604,'2024-02-02',15000),(1741,2801,'2024-02-02',29900),(1742,2655,'2024-02-02',25900),(1743,2748,'2024-02-02',39900),(1744,2693,'2024-02-02',20000),(1745,2577,'2024-02-02',29900),(1746,2515,'2024-02-02',29900),(1747,2798,'2024-02-02',25900),(1748,2812,'2024-02-02',25900),(1749,2748,'2024-02-02',39900),(1750,2748,'2024-01-19',39900),(1751,2634,'2024-02-02',15000),(1752,2634,'2024-02-02',15000),(1753,2679,'2024-02-02',20000),(1754,2491,'2024-02-02',30000),(1755,2593,'2024-02-02',49900),(1756,2753,'2024-02-02',29900),(1757,2644,'2024-02-02',29900),(1758,2718,'2024-02-02',172.55),(1759,2730,'2024-02-02',167.56),(1760,2571,'2024-01-02',29900),(1761,2571,'2024-02-02',29900),(1762,2571,'2023-12-02',29900),(1763,2571,'2023-11-03',0),(1764,2547,'2024-01-17',0),(1765,2547,'2024-02-02',29900),(1766,2576,'2024-02-02',25900),(1767,2782,'2024-02-02',25000),(1768,2781,'2024-02-02',29900),(1769,2768,'2024-02-04',25900),(1770,2631,'2024-02-04',29900),(1771,2678,'2024-02-04',29900),(1772,2621,'2024-02-04',29900),(1773,2716,'2024-02-04',143.44),(1774,2580,'2024-02-04',29900),(1775,2462,'2024-02-04',39900),(1776,2529,'2024-02-04',25900),(1777,2418,'2024-02-04',29900),(1778,2574,'2024-02-04',30000),(1779,2686,'2024-02-04',39900),(1780,2758,'2024-02-04',29900),(1781,2664,'2024-02-04',29900),(1782,2665,'2024-02-04',25900),(1783,2809,'2024-02-04',29940),(1784,2818,'2024-02-04',20000),(1785,2818,'2024-02-04',20000),(1786,2622,'2024-02-04',39900),(1787,2638,'2024-02-04',49900),(1788,2566,'2024-02-04',59900),(1789,2722,'2024-02-04',102),(1790,2795,'2024-02-05',17000),(1791,2434,'2024-02-05',0),(1792,2434,'2024-02-05',29900),(1793,2434,'2023-12-05',29900),(1794,2434,'2024-02-05',29900),(1795,2434,'2024-01-05',0),(1796,2406,'2024-02-05',25000),(1797,2420,'2024-02-05',30000),(1798,2778,'2024-02-05',29900),(1799,2649,'2024-02-05',29900),(1800,2552,'2024-02-05',39900),(1801,2739,'2024-02-05',49900),(1802,2739,'2024-01-05',49900),(1803,2767,'2024-02-05',29900),(1804,2715,'2024-02-05',170.98),(1805,2480,'2024-02-05',39900),(1806,2740,'2024-02-05',39900),(1807,2520,'2024-02-05',49900),(1808,2568,'2024-02-05',49900),(1809,2569,'2024-02-05',49900),(1810,2608,'2024-02-05',39900),(1811,2751,'2024-02-05',39900),(1812,2680,'2024-02-05',25900),(1813,2738,'2024-02-06',25900),(1814,2662,'2024-02-06',25900),(1815,2657,'2024-02-06',39900),(1816,2661,'2024-02-06',29900),(1817,2805,'2024-02-06',15000),(1818,2747,'2024-02-06',29900),(1819,2646,'2024-02-06',25900),(1820,2495,'2024-02-06',59900),(1821,2793,'2024-02-06',49900),(1822,2669,'2024-02-06',25900),(1823,2619,'2024-02-06',29900),(1824,2519,'2024-02-06',39900),(1825,2668,'2024-02-06',25900),(1826,2788,'2024-02-06',25900),(1827,2553,'2024-02-06',30000),(1828,2721,'2024-02-06',154.91),(1829,2479,'2024-02-07',29900),(1830,2761,'2024-02-07',20000),(1831,2813,'2024-02-07',29900),(1832,2390,'2024-02-07',25900),(1833,2640,'2024-02-07',39000),(1834,2673,'2024-02-07',25900),(1835,2391,'2024-02-07',29900),(1836,2684,'2024-02-07',20000),(1837,2501,'2024-02-08',15000),(1838,2518,'2024-02-08',25000),(1839,2562,'2024-02-08',20000),(1840,2687,'2024-02-08',20000),(1841,2590,'2024-02-08',15000),(1842,2667,'2024-02-08',39900),(1843,2618,'2024-02-08',40000),(1844,2587,'2024-02-08',29900),(1845,2430,'2024-02-08',39900),(1846,2791,'2024-02-08',25900),(1847,2635,'2024-02-09',25900),(1848,2481,'2024-02-09',25000),(1849,2771,'2024-02-09',29900),(1850,2605,'2024-02-09',15000),(1851,2605,'2024-01-10',0),(1852,2444,'2024-02-09',15000),(1853,2696,'2024-02-09',29900),(1854,2710,'2024-02-09',269.66),(1855,2816,'2024-02-12',20000),(1856,2754,'2024-02-12',39900),(1857,2666,'2024-02-12',25900),(1858,2765,'2024-02-12',25900),(1859,2790,'2024-02-12',25900),(1860,2555,'2024-02-12',20000),(1861,2757,'2024-02-12',25900),(1862,2797,'2024-02-12',24900),(1863,2675,'2024-02-12',25900),(1864,2396,'2024-02-12',15000),(1865,2483,'2024-02-12',15000),(1866,2458,'2024-02-12',29900),(1867,2714,'2024-01-12',218.03),(1868,2714,'2024-02-12',218.03),(1869,2796,'2024-02-12',22000),(1870,2463,'2024-02-12',39900),(1871,2712,'2024-02-12',177.71),(1872,2724,'2024-02-12',172.13),(1873,2704,'2024-02-12',355.42),(1874,2710,'2024-02-12',269.66),(1875,2550,'2024-02-12',59900),(1876,2671,'2024-02-13',25900),(1877,2690,'2024-02-13',20000),(1878,2546,'2024-01-13',39900),(1879,2546,'2024-02-13',39900),(1880,2546,'2023-12-13',39900),(1881,2698,'2024-02-13',20000),(1882,2737,'2024-02-13',20000),(1883,2400,'2024-02-13',25900),(1884,2395,'2024-02-13',25900),(1885,2786,'2024-02-13',10000),(1886,2591,'2024-02-14',25900),(1887,2658,'2024-02-14',25900),(1888,2387,'2024-02-14',20000),(1889,2395,'2024-01-14',25900),(1890,2395,'2024-02-14',25900),(1891,2395,'2023-11-14',0),(1892,2395,'2023-10-14',0),(1893,2395,'2023-12-14',0),(1894,2489,'2024-02-14',15000),(1895,2720,'2024-02-14',143.44),(1896,2806,'2024-02-14',17500),(1897,2811,'2024-02-14',8000),(1898,2819,'2024-02-14',20000),(1899,2623,'2024-02-14',25000),(1900,2637,'2024-02-15',39900),(1901,2808,'2024-02-15',25900),(1902,2456,'2024-02-15',15000),(1903,2541,'2024-01-15',0),(1904,2541,'2023-12-15',0),(1905,2541,'2023-11-15',0),(1906,2541,'2023-10-15',0),(1907,2541,'2023-09-15',0),(1908,2541,'2023-08-15',0),(1909,2541,'2024-02-15',29900),(1910,2773,'2024-02-15',20000),(1911,2760,'2024-02-15',20000),(1912,2648,'2024-02-16',29900),(1913,2674,'2024-02-16',25900),(1914,2473,'2024-02-16',15000),(1915,2784,'2024-02-16',15000),(1916,2538,'2024-02-16',10000),(1917,2537,'2024-02-16',69900),(1918,2619,'2024-02-16',29900),(1919,2697,'2024-02-16',29900),(1920,2710,'2024-02-16',269.66),(1921,2710,'2024-01-16',269.66),(1922,2720,'2024-02-16',143.44),(1923,2720,'2024-01-16',143.44),(1924,2727,'2024-02-16',315.56),(1925,2750,'2024-02-15',39900),(1926,2786,'2024-02-16',10000),(1927,2786,'2024-01-16',10000),(1928,2817,'2024-02-16',20000),(1929,2415,'2024-02-16',34900),(1930,2683,'2024-02-16',20000),(1931,2572,'2024-02-16',20000),(1932,2803,'2024-02-16',29900),(1933,2585,'2024-02-16',29900),(1934,2803,'2024-01-23',29900),(1935,2567,'2024-02-16',15000),(1936,2447,'2024-02-16',17500),(1937,2688,'2024-02-16',25900),(1938,2549,'2024-02-16',29900),(1939,2534,'2024-02-16',29900),(1940,2677,'2024-02-16',25900),(1941,2424,'2024-02-16',29900),(1942,2433,'2024-02-16',29900),(1943,2384,'2024-02-16',15000),(1944,2789,'2024-02-16',29900),(1945,2676,'2024-02-16',25900),(1946,2769,'2024-02-16',29900),(1947,2598,'2024-02-16',29900),(1948,2689,'2024-02-16',25900),(1949,2401,'2024-02-16',29900),(1950,2448,'2024-02-16',15000),(1951,2782,'2024-02-16',25000),(1952,2530,'2024-02-16',35000),(1953,2692,'2024-02-16',29900),(1954,2414,'2024-02-16',20000),(1955,2682,'2024-02-16',25900),(1956,2783,'2024-02-16',15000),(1957,2589,'2024-02-17',29900),(1958,2694,'2024-02-17',49900),(1959,2742,'2024-02-17',49900),(1960,2815,'2024-02-17',39900),(1961,2802,'2024-02-17',25900),(1962,2774,'2024-02-17',15000),(1963,2691,'2024-02-18',29900),(1964,2736,'2024-02-19',25900),(1965,2820,'2024-02-19',22000),(1966,2596,'2024-02-19',30000),(1967,2759,'2024-02-19',29900),(1968,2766,'2024-02-19',29900),(1969,2627,'2024-02-20',20000),(1970,2663,'2024-02-20',25900),(1971,2756,'2024-02-20',29900),(1972,2592,'2024-02-21',29000),(1973,2681,'2024-02-21',20000),(1974,2810,'2024-02-22',39900),(1975,2493,'2024-02-23',25900),(1976,2507,'2024-02-23',25900),(1977,2531,'2024-02-23',15000),(1978,2681,'2024-02-23',20000),(1979,2681,'2024-01-23',0),(1980,2660,'2024-02-23',0),(1981,2660,'2024-01-23',0),(1982,2660,'2023-12-23',0),(1983,2628,'2024-02-24',25900),(1984,2626,'2024-02-24',114.75),(1985,2624,'2024-02-24',136),(1986,2695,'2024-02-26',29900),(1987,2695,'2024-01-26',0),(1988,2695,'2023-12-26',0),(1989,2695,'2023-11-26',0),(1990,2695,'2023-10-11',0),(1991,2652,'2024-02-26',29900),(1992,2606,'2024-01-26',0),(1993,2606,'2023-12-26',0),(1994,2606,'2023-11-26',0),(1995,2652,'2024-02-26',29900),(1996,2652,'2024-01-26',29900),(1997,2743,'2024-02-29',49900),(1998,2783,'2024-02-16',15000),(1999,2783,'2024-01-18',15000),(2000,2654,'2024-02-16',25900),(2001,2659,'2024-02-29',29900),(2002,2656,'2024-02-16',49900),(2003,2386,'2024-02-29',15000),(2004,2476,'2024-02-29',39900),(2005,2476,'2024-01-29',39900),(2006,2476,'2024-02-29',39900),(2007,2476,'2023-12-26',39900),(2008,2476,'2023-11-29',39900),(2009,2639,'2024-02-01',10000),(2010,2639,'2024-01-12',10000),(2011,2639,'2023-12-21',0),(2012,2639,'2023-11-22',0),(2013,2604,'2024-03-01',15000),(2014,2399,'2024-03-01',29900),(2015,2426,'2024-02-01',25900),(2016,2426,'2024-03-01',25900),(2017,2545,'2024-02-29',35000),(2018,2545,'2024-03-01',35000),(2019,2490,'2024-02-28',29900),(2020,2578,'2024-03-01',39900);
+/*!40000 ALTER TABLE `registro_pago` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `servicio`
+--
+
+DROP TABLE IF EXISTS `servicio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `servicio` (
+  `id_servicio` int NOT NULL AUTO_INCREMENT,
+  `velocidad_contratada` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `sector_anclado` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contra_ppoe` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_contrato` int NOT NULL,
+  PRIMARY KEY (`id_servicio`),
+  KEY `id_contrato` (`id_contrato`),
+  CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2829 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servicio`
+--
+
+LOCK TABLES `servicio` WRITE;
+/*!40000 ALTER TABLE `servicio` DISABLE KEYS */;
+INSERT INTO `servicio` VALUES (2376,'10','GT1','ZK7sRxuZ',2379),(2377,'10','GT3','HZVddU7j',2380),(2378,'6','GT3','eZJTXo83',2381),(2379,'10','GT1','MvP9Ng7i',2382),(2380,'6','GT1','aTO3PkyY',2383),(2381,'6','GT3','GbKa4HmY',2384),(2382,'10','GT3','x4U8NwWj',2385),(2383,'10','GT10','iA1MoPSY',2386),(2384,'10','GT1','tJwJ3UYL',2387),(2385,'10','GT1','akK9LIQ3',2388),(2386,'20','GT3','tgbgxa3N',2389),(2387,'6','GT3','pwXvpJ4F',2390),(2388,'20','GT10','WVRuWoc1',2391),(2389,'6','GT3','0bt0UMvj',2392),(2390,'10','GT1','uykD2hPj',2393),(2391,'10','GT1','4k5c7CpR',2394),(2392,'6','GT10','bhAmFbN1',2395),(2393,'6','GT10','zj27EfA7',2396),(2394,'6','GT2','Ggc719F7',2397),(2395,'6','GT5','jdp8IV0Z',2398),(2396,'10','GT1','A3ZikDAp',2399),(2397,'6','GT1','b6Pv1mPe',2400),(2398,'10','GT3','nDE59umC',2401),(2399,'10','GT2','6AthZvpI',2402),(2400,'6','GT1','Z687cFsj',2403),(2401,'3','SEGT1','UIAkn43s',2404),(2402,'10','GT3','TO5hVu2v',2405),(2403,'6','GT1','AvrqzG3j',2406),(2404,'10','GT1','SrMax1ph',2407),(2405,'6','GT1','OtrRJUF9',2408),(2406,'3','GT1','XupVr8tz',2409),(2407,'10','GT2','J7ob2yYK',2410),(2408,'6','GT3','jHSTT1gN',2411),(2409,'3','GT1','rozYA7rF',2412),(2410,'2','N/A','zvzSOSui',2413),(2411,'3','GT10','HFkCQs65',2414),(2412,'15','GT1','ASUR6y2U',2415),(2413,'10','GT3','POc29Bxh',2416),(2414,'6','','POc29Bxh',2417),(2415,'10','GT1','4CrCqKbp',2418),(2416,'6','GT1','XHy7viSs',2419),(2417,'10','GT10','vzpYPG1s',2420),(2418,'6','','CVT6jo9O',2421),(2419,'20','GT2','Lut6rfE5D',2422),(2420,'10','GT2','GYUkvt5e',2423),(2421,'10','NANO','loi78ft4DA',2424),(2422,'20','GT2','JUt67Rtfc',2425),(2423,'6','GT10','ml2OR49C',2426),(2424,'6','GT5','0CDf6as7A',2427),(2425,'10','GT1','CbLp0t6Y3',2428),(2426,'20','GT3','NBH7i9opl',2429),(2427,'20','GT2','TRY0nfa7',2430),(2428,'3','GT3','pOU7Btc46',2431),(2429,'10','GT4','POL5tv3W',2432),(2430,'10','GT3','Vbnz45RQ',2433),(2431,'10','GT1','gfr5DR3E',2434),(2432,'10','GT2','CVM09iFt',2435),(2433,'3','GT2','p¤lQ2vtr',2436),(2434,'6','GT2','ERT78gqe',2437),(2435,'6','','lpNAS56q',2438),(2436,'3','GT2','cMv345RT',2439),(2437,'6','GT3','PnAQ234R',2440),(2438,'10','GT1','90gty43s',2441),(2439,'3','GT2','HJB5Aqw8',2442),(2440,'3','GT3','ZXCVQ3Qw',2443),(2441,'6','GT1','765Yucre',2444),(2442,'6','FREE','MAQEr502',2445),(2443,'10','MGT1','lcer098I',2446),(2444,'6','GT2','90FTU12S',2447),(2445,'3','GT3','cvbnz45R',2448),(2446,'3','MGT3','BV456as5',2449),(2447,'3','','ploAS46H',2450),(2448,'3','N/A','MNB2345c',2451),(2449,'3','MGT1','kLT67Yvm',2452),(2450,'3','MGT1','qwea345sf',2453),(2451,'10','N/A','plmnvcr7',2454),(2452,'3','GT4','890aczvE',2455),(2453,'10','GT4','COPB78fr',2456),(2454,'20','GT2','Vy89cR3G',2457),(2455,'10','','Drt56Dcv',2458),(2456,'10','','MyuFR34s',2459),(2457,'10','','plo435Sw',2460),(2458,'10','GT2','UGTvc21g',2461),(2459,'20','SEGT2','bnzx90oP',2462),(2460,'20','BVGT2','0PNM31w9',2463),(2461,'10','','67GHTSc4',2464),(2462,'6','PGT1','mnae321q',2465),(2463,'10','BVGT6','098ipmfrr',2466),(2464,'6','','TYUr43Aq',2467),(2465,'10','','KVe4321S',2468),(2466,'3','GT4','678Gr21S',2469),(2467,'10','SEGT2','frzv60L1',2470),(2468,'3','GT2','LOTC56Re',2471),(2469,'20','SGT','GHJ4r32t',2472),(2470,'10','GT3','NVZD134A',2473),(2471,'10','GT JAO','120KAFX6',2474),(2472,'20','','GFT5621Z',2475),(2473,'20','CAPGT1','KYQZ43Qs',2476),(2474,'3','GT4','sg6OP01Q',2477),(2475,'20','BVGT2','Npxcr5DW',2478),(2476,'10','GT3','986Dr5ac',2479),(2477,'20','BVGT3','aJK4582M',2480),(2478,'10','BVGT3','Am4829f5',2481),(2479,'20','CGT3','48sJFw04',2482),(2480,'3','GT2','Ja31Ca9n',2483),(2481,'10','GT5 PIL','CV56rt11',2484),(2482,'3','GT2','67ftMPKA',2485),(2483,'30','CGT2','vbze456W',2486),(2484,'50','BVGT4','NBY6fR34',2487),(2485,'3','GT2','0OARt31A',2488),(2486,'30','CGT3','Bcfz46qw',2489),(2487,'10','SEGT1','LKi8Gcrt',2490),(2488,'10','BVGT5','AZer890u',2491),(2489,'10','SEGT2','BGT5eQaX',2492),(2490,'6','GT3','CVre45Sw',2493),(2491,'6','MGT1','0ag45vcR',2494),(2492,'50','CAPGT1','L4cv43aS',2495),(2493,'10','GT4','Dxj789tv',2496),(2494,'20','CGT1','1ZC4fj7M',2497),(2495,'10','CGT2','6CFVm8Qr',2498),(2496,'10','GT1','VB65sa12',2499),(2497,'10','SEGT2','67VCe12L',2500),(2498,'6','GT2','tyzvc3Sw',2501),(2499,'3','SANDOVAL','Brayan Sandoval',2502),(2500,'6','MGT1','Gtyu45h',2503),(2501,'3','GT3','XT6cgt17',2504),(2502,'6','GT3','TyVcxW90',2505),(2503,'10','3011 SEGT','GvuiAS3C',2506),(2504,'6','GT3','Ytas13CV',2507),(2505,'6','cerrilllos 1','65TGc98',2508),(2506,'6','Cerrillos 2','0of41asV',2509),(2507,'6','ceririllos 2','Ytcv54AS',2510),(2508,'6','cerrillos 3','MNLK89e',2511),(2509,'3','GT2','TY5ds21a',2512),(2510,'6','Cerrillos 1','Vcxz3as2',2513),(2511,'10','SEGT3','PLMN45ai',2514),(2512,'10','SEGT3','PLBX43sf',2515),(2513,'20','GT4','ln45ds24',2516),(2514,'3','GT5','VBHGsd32',2517),(2515,'15','GT4','TYU7fCrd3',2518),(2516,'20','CGT4','CFDAd45a',2519),(2517,'30','BVGT6','ZXCP09fd',2520),(2518,'3','CGT2-2','BvcRfD4R',2521),(2519,'10','GT4','YUTvcfr5',2522),(2520,'10','CGT','cvgtDrf2',2523),(2521,'20','Cerrillos 4','Frt725DG',2524),(2522,'10','SGT2','cvtR41We',2525),(2523,'10','SEGT1','BNMre321',2526),(2524,'1','GT1','0pnc23ER',2527),(2525,'30','','78VXEqwa',2528),(2526,'6','GT4','asxc67ty',2529),(2527,'20','CGT6','67T87Yvc',2530),(2528,'6','GT4','yu5ratW',2531),(2529,'30','CGT1','zc123R56',2532),(2530,'10','GT4','bgtrs23a',2533),(2531,'10','PGT1','GFtc345a',2534),(2532,'10','SEGT4','zx5rToP0',2535),(2533,'10','CGT6','mku76sA1',2536),(2534,'100','CGT6','1AS1PLUt',2537),(2535,'4','CGT6','sd23jy67',2538),(2536,'10','SEGT6','SGvg234R',2539),(2537,'3','GT4','MBZXre33',2540),(2538,'10','CGT2','cay567r4',2541),(2539,'30','GGT2','Frh67Yu8',2542),(2540,'3','GT2','MNb65ERd',2543),(2541,'3','GT4','O7Yush34',2544),(2542,'15','GT7','nas67Ytd',2545),(2543,'20','BVGT2','SUPu78sd',2546),(2544,'10','','A234dfTU',2547),(2545,'10','','Daqw45Hj',2548),(2546,'10','BVGT3','rty890AS',2549),(2547,'50','3011 PRINC','ert234AS',2550),(2548,'6','GT3','TYUbv45f',2551),(2549,'20','CGT1','020FRTa3',2552),(2550,'10','SEGT1','sdxz5678',2553),(2551,'3','GT8','ert56POP',2554),(2552,'3','GT8','Dbvt569O',2555),(2553,'20','GT5','mnbty65E',2556),(2554,'20','BVGT4','89hRtvcK',2557),(2555,'6','SEGT13','890NMR34',2558),(2556,'50','BVGT3','iopBr567',2559),(2557,'6','GT2','jyuTB56F',2560),(2558,'30','CGT2','mnBE1234',2561),(2559,'6','GT4','NbcRtg6r',2562),(2560,'10','BVGT5','LOP7yr3s',2563),(2561,'6','GT3','BvFrtuJ9',2564),(2562,'3','GT4','Tyhgcer4',2565),(2563,'50','BVGT7','20agtYdd',2566),(2564,'3','GT2','Nmuy67rC',2567),(2565,'30','GGT2','VCDS234r',2568),(2566,'30','GGT2','VC54RtCv',2569),(2567,'10','SEGT1','78UIrfte',2570),(2568,'10','','45fdertY',2571),(2569,'3','','0opijnm8',2572),(2570,'3','GT2','UIY765cx',2573),(2571,'10','SEGT12','hgt56gcG',2574),(2572,'10','','p096Rdxc',2575),(2573,'6','GT4','jvR43sDB',2576),(2574,'10','BVGT3','BVCX12QW',2577),(2575,'20','SGT','nbhy76ds',2578),(2576,'10','SEGT14','097hgvcr',2579),(2577,'10','BVGT7','Jy56uh23',2580),(2578,'6','GT4','HT254yus',2581),(2579,'3','GT3','JNT56rSA',2582),(2580,'10','GT3','fnmr6Gvc',2583),(2581,'10','ASGT1','oTVfr1qu',2584),(2582,'10','AZGT1','12XMN7u3',2585),(2583,'20','CGT3','vFfT56dn',2586),(2584,'10','','NMLser45',2587),(2585,'15','AGT1','NMLser45',2588),(2586,'10','','GTY56saq',2589),(2587,'6','GT3','Retcd340',2590),(2588,'6','BVGT3','NMY67Sad',2591),(2589,'10','ASGT1','yhu65vcd',2592),(2590,'30','BVGT1','pmn123qA',2593),(2591,'10','GT8','nbvcr54D',2594),(2592,'20','GT4','MNu7yFSe',2595),(2593,'10','ASGT1','nm789poG',2596),(2594,'10','BVGT8','po90Ngr1',2597),(2595,'10','ASGT1','cvbxERT1',2598),(2596,'10','GGT1','BNTDF312',2599),(2597,'6','GT10','mnad43er3',2600),(2598,'10','','vbnyt78y',2601),(2599,'3','','HBt43QWo',2602),(2600,'3','','MKNB5tDc',2603),(2601,'10','GT4','nby645E3',2604),(2602,'3','GT10','9uyW12Xd',2605),(2603,'6','GT4','bvT98U76',2606),(2604,'20','GT2.','cv31EAfry',2607),(2605,'20','BVGT7','cG5rt12S',2608),(2606,'20','','fgt6ybd4',2609),(2607,'20','','89DTr2AH',2610),(2608,'10','GT4','vnm4tig9',2611),(2609,'6','MGT2','89UJGdsr',2612),(2610,'20','CGT3','Lu67DXC5',2613),(2611,'10','SEGT2','lY6543Sv',2614),(2612,'3','GT10','FT23QW1',2615),(2613,'10','CGT3','09HT12as',2616),(2614,'10','SEGT4','Vbzsa12A',2617),(2615,'20','BVGT6','MLOc56Fb',2618),(2616,'10','SFGT8','Jai4tyq1',2619),(2617,'10','BVGT3','JusvR4da',2620),(2618,'10','SEGT1','657Hvfre',2621),(2619,'20','SEGT7','LpobRe34',2622),(2620,'10','Enlace-Esterones-GT','Bvc1a2wu',2623),(2621,'30','GRZ-B-DAT-1768-001','Nbt56fdVH',2624),(2622,'30','CGT2','mnHt56De',2625),(2623,'30','GRZ-B-DAT-1768-001','cv45R3SE',2626),(2624,'10','','NJK9df2E',2627),(2625,'6','SFGT1','vgty67As',2628),(2626,'6','','HJy67FCA',2629),(2627,'3','GT1.','SqwVBHjk',2630),(2628,'10','SFGT1','De678Lp0',2631),(2629,'10','SEGT4','Aq23Sqop',2632),(2630,'3','GT4','25DswQ1e',2633),(2631,'3','GT4','67uLogtY',2634),(2632,'6','SFGT3','25KJUasY',2635),(2633,'20','BGT7','21BNtYC',2636),(2634,'20','SFGT2','BVGT5QW',2637),(2635,'30','CGT8','Nvgty6zx',2638),(2636,'6','SFGT4','mnhyr4E2',2639),(2637,'20','GT JAO','nbVcd321',2640),(2638,'20','','bGt50Pdq',2641),(2639,'20','','xZswq1T5',2642),(2640,'6','GT4','nILpfg53',2643),(2641,'10','Swicht Carlos Jim','nBGtdsz3',2644),(2642,'50','GGT3','6y7U89Vp',2645),(2643,'6','BVGT10','fr2sr56x',2646),(2644,'6','CGT1','56Potyvs',2647),(2645,'6','GT5','rt543esC',2648),(2646,'10','SFGT5','3edrt56yb',2649),(2647,'10','SEGT1','xswqa2QA',2650),(2648,'10','SEGT1','ASE345up',2651),(2649,'10','GRZ-B-DAT-1768','puygT56a',2652),(2650,'20','GRZ-B-DAT-1768','25fgT4sE',2653),(2651,'6','GT1.','JUOgCR4',2654),(2652,'6','SFGT1','09WSaq12',2655),(2653,'50','','Ygfae34f',2656),(2654,'20','SFGT2','LCSKNIhg',2657),(2655,'6','SFGT1','dhY67gxc',2658),(2656,'10','SFGT1','pL87uhgt',2659),(2657,'6','SFGT2','nbvgt54RE',2660),(2658,'10','SFGT2','GHt5321',2661),(2659,'6','SFGT2','SFgt4FSA',2662),(2660,'6','SFGT4','BGty6AD1',2663),(2661,'10','SFGT2','21LJKuhs',2664),(2662,'6','','78gatrde3',2665),(2663,'6','SFGT5','1dsfgthfd',2666),(2664,'20','BVGT2','hjyt54Rs',2667),(2665,'6','SFGT7','SDfggjreq',2668),(2666,'6','SFGT7','Jyut6rde',2669),(2667,'20','SFGT1','JFOKuyt5',2670),(2668,'6','SFGT4','3sERvc3h',2671),(2669,'10','GT4','fCgae4RA',2672),(2670,'6','','8uFrty2E',2673),(2671,'6','SFGT4','Ty34jkt5',2674),(2672,'6','SFGT4','FgtersdX',2675),(2673,'6','SFGT4','fRgt54DG',2676),(2674,'6','SFGT2','Lmnu7yt5',2677),(2675,'10','SFGT2','3eDRfecv',2678),(2676,'3','SFGT5','BvcsE4sg',2679),(2677,'6','SFGT4','dHyuLv46',2680),(2678,'3','GT2','SDg54Rtv',2681),(2679,'6','GT10','pHjHGA56',2682),(2680,'3','SFGT7','ascHyt56U',2683),(2681,'3','SFGT7','Xvbgt40L',2684),(2682,'20','GGT4','58POyt4f',2685),(2683,'20','GGT4','VBn789m4',2686),(2684,'3','SFGT2','WkLphy67',2687),(2685,'6','','Ert54sqw',2688),(2686,'6','SFGT4','0nm2Ljup',2689),(2687,'3','SFGT4','fgdhttj4',2690),(2688,'10','SFGT9','0nm2Ljup',2691),(2689,'10','SFGT1','Ljkgfdg43',2692),(2690,'3MB','SFGT2','dsetr30f',2693),(2691,'30','GGT4','AA1234Bs',2694),(2692,'10','SFGT2','dtetr35g',2695),(2693,'10','SFGT10','ljkgfdg45',2696),(2694,'10','CAPGT2','duetr36f',2697),(2695,'3','GT1.','21jUYGtF',2698),(2696,'20','DAT-320','Aght25Ty',2699),(2697,'20','DAT-313-001','',2700),(2698,'20','DAT-3096','JG92drf6',2701),(2699,'20','DAT-3322-001','',2702),(2700,'20','ELC-354-001','Jyt5diY6',2703),(2701,'20','DAT-1606-001','',2704),(2702,'20','DAT-4083-001','',2705),(2703,'10','ELC-1542-001','',2706),(2704,'10','ELC-1495-001','',2707),(2705,'50','DAT-4872-001','',2708),(2706,'20','DAT-5437-001','',2709),(2707,'5','ELC-1516-001','htayugdr7',2710),(2708,'20','DAT-5041-001','',2711),(2709,'20','DAT-1585-001','',2712),(2710,'40','DAT-3481-001','',2713),(2711,'20','DAT-1868-001','',2714),(2712,'5','DAT-5276-001','',2715),(2713,'20','DAT-467','',2716),(2714,'30','DAT-1159-001','',2717),(2715,'20','ELC-1426-001','',2718),(2716,'20','DAT-1768-001','',2719),(2717,'10','ELC-1488-001','Hju45T128a',2720),(2718,'20','DAT-580-001','f!1n5WEHr4',2721),(2719,'20','<','HR567jup',2722),(2720,'20','DAT-587-001','',2723),(2721,'15','DAT-1815-001','WX458art',2724),(2722,'10','DAT-456-001','Ty8578Uj',2725),(2723,'15','DAT-809-001','JH685Ytr',2726),(2724,'30','DAT-4214-001','THms631A',2727),(2725,'20','DAT-855-001','Dr6514kl',2728),(2726,'30','ELC-1569-001','',2729),(2727,'3','DAT-322-001','',2730),(2728,'10','DAT-3689-001','',2731),(2729,'','','',2732),(2730,'','','',2733),(2731,'','','',2734),(2732,'','','',2735),(2733,'6MB','SEGT1','hbvFTR45',2736),(2734,'3','GT10','MnJYTgfd',2737),(2735,'6','SFGT8','NBvasdg6',2738),(2736,'30','GGT3','Hygtr3So',2739),(2737,'20','GGT1','KVe4321S',2740),(2738,'30','GGT4','JHYU78iJ',2741),(2739,'30','GGT4','gHTYS45u',2742),(2740,'30','GGT4','Pou8ytfV',2743),(2741,'50','SFGT8','TYre236N',2744),(2742,'6','SFGT3','25cbhFGf',2745),(2743,'','BVGT6','degdfa34',2746),(2744,'10','BVGT6','degdfa34',2747),(2745,'20','BVGT7','dawe32qA',2748),(2746,'20','BVGT4','SLOP098U',2749),(2747,'20','EGT1','VBN6CXVz',2750),(2748,'20','SEGT1','12VMNAHT',2751),(2749,'3','SEGT14','1P09Uy65',2752),(2750,'10','GGT4','POyu7dxc',2753),(2751,'20','BVGT10','NhyT6SsD',2754),(2752,'10','SEGT1','LoHBCd58',2755),(2753,'10','BVGT1','25ghbSd',2756),(2754,'6','BVGT1','dcf78Sdr',2757),(2755,'10','ENLACE F.O','1Bsr56Fc',2758),(2756,'10','SEGT15','ZXC56srL',2759),(2757,'3','gt3','Ou7yFDca',2760),(2758,'3','GT10','QWE098Lo',2761),(2759,'10','fibra optica pacho ','876YU56t',2762),(2760,'10','SWGT2','FGxcer11',2763),(2761,'3','PNGT1','NBVGT65S',2764),(2762,'6','Saerty7Qs','PNGT2',2765),(2763,'10','PNGT1','aqS675xx',2766),(2764,'10','CAZ-B-DAT-1815-001','Fcvt5thO',2767),(2765,'6','PNGT2','Asedr54D',2768),(2766,'10','GGT3','HABSJDKG',2769),(2767,'30/30','GGT4','asfD345D',2770),(2768,'10','SFGT5','d23erfSa',2771),(2769,'30/30','GGT4','asfD345D',2772),(2770,'3','F.O PNGT1','fgsav54f',2773),(2771,'3','GT4','Fser233',2774),(2772,'10','GGT4','Hj87gt67',2775),(2773,'10','GGT4','56tygTDS',2776),(2774,'10','BVGT11','nbvC34Ew',2777),(2775,'10','GGT4','KMNJgfrt',2778),(2776,'30','CGT9','fASZXC45',2779),(2777,'10','ASGT1','3edFCVG6',2780),(2778,'10','SEGT1','GFTrfr4s',2781),(2779,'6','SFGT8','fLPOuYT5',2782),(2780,'3','GT4','FgcVTERA',2783),(2781,'3','GT2','YUtGF54P',2784),(2782,'20','SFGT2','HGt56rED',2785),(2783,'2','SEGT15','098YFd34',2786),(2784,'10','SEGT15','SDcd53ds',2787),(2785,'6','F.O','dfgcAq23',2788),(2786,'10','GGT4','sdcfEd42',2789),(2787,'6','SEGT15','fcVXa123',2790),(2788,'6','SFGT4','LJNBg6tF',2791),(2789,'10','GGT4','tYre3wqs',2792),(2790,'30','CAPGT1','5rtyHuse',2793),(2791,'3','GT4','sajdigF5',2794),(2792,'6','CAGT3','5MNVfREf',2795),(2793,'10','CAGT2','KJlnBGV4',2796),(2794,'10','SEGT16','dfrt4RdE',2797),(2795,'6','SFGT2','Fser12as',2798),(2796,'10','ASGT1','UbGV45gs',2799),(2797,'10','GT1.','asGVBN7e',2800),(2798,'10','BVGT16','op0ScfRT',2801),(2799,'6','SWGT3','cvbnT56a',2802),(2800,'10','SWGT3','hGt569J',2803),(2801,'10','ASGT1','54jkUgbp',2804),(2802,'3','GT4','Ljkuyf12',2805),(2803,'10','GGT4','nbVG56TS',2806),(2804,'30','SWGT3','ewQASZ32',2807),(2805,'6','SFGT2','GFy657gt',2808),(2806,'30','SWGT3','ewQASZ32',2809),(2807,'20','GGT4','JUy67fCV',2810),(2808,'10','GGT4','GTSY56Gs',2811),(2809,'6','BVGT18','GTrfd23as',2812),(2810,'10','SEGT17','Aqwert78',2813),(2811,'20','bvgt18','78uYTVSA',2814),(2812,'20','CGT6','sEPLi67s',2815),(2813,'3','SEGT17','NBCVxrt1',2816),(2814,'3','TGT2','12ERTcds',2817),(2815,'3','BVGT1','tVCRE34s',2818),(2816,'3','TGT2','12ERTcds',2819),(2817,'30','MGT1','Shgt54qsQ',2820),(2818,'20240119','MGT1','Bvgt67YH',2821),(2819,'6','MGT1','SD34hg67',2822),(2820,'6','MGT4','Vgrft45e',2823),(2821,'','MGT1','As37Fgy6',2824),(2822,'6','MGT5','AZXd435T',2825),(2823,'3','MGT5','CVBn54Sa',2826),(2824,'3','GT3','09Oiun56',2827),(2825,'10','SEGT15','uyt65gby',2828),(2826,'10','segt15','uyt65gby',2829),(2827,'10','MGT3','2qwe4VDa',2830),(2828,'3','MGT2','MNV7rcs3',2831);
+/*!40000 ALTER TABLE `servicio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipo_cliente`
+--
+
+DROP TABLE IF EXISTS `tipo_cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tipo_cliente` (
+  `id_tipo_cliente` int NOT NULL AUTO_INCREMENT,
+  `descripcion_tipo_cliente` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id_tipo_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_cliente`
+--
+
+LOCK TABLES `tipo_cliente` WRITE;
+/*!40000 ALTER TABLE `tipo_cliente` DISABLE KEYS */;
+INSERT INTO `tipo_cliente` VALUES (3,'Residencial'),(4,'Empresarial');
+/*!40000 ALTER TABLE `tipo_cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipo_usuario`
+--
+
+DROP TABLE IF EXISTS `tipo_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tipo_usuario` (
+  `id_tipo_usuario` int NOT NULL AUTO_INCREMENT,
+  `nombre_tipo_usuario` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id_tipo_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_usuario`
+--
+
+LOCK TABLES `tipo_usuario` WRITE;
+/*!40000 ALTER TABLE `tipo_usuario` DISABLE KEYS */;
+INSERT INTO `tipo_usuario` VALUES (1,'super_admin'),(2,'administrador'),(3,'solo_vista');
+/*!40000 ALTER TABLE `tipo_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `nombre_usuario` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `correo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_tipo_usuario` int NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (2,'Joshua Sandi Guevara','joshuasg99@gmail.com','$2y$10$O0xKhy563EvvdQs7.reFveZL2u.uaSLJ88I2sffV8VumBrKMu4I2u',1),(4,'GT-Solutions','gtsolutionscr@gmail.com','$2y$10$upY1rp6702NJ7vWI8I9LbubcpbV2Q1ZK1qAYqnHVaukzyJoUKmqo6',2);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wifi`
+--
+
+DROP TABLE IF EXISTS `wifi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `wifi` (
+  `id_wifi` int NOT NULL AUTO_INCREMENT,
+  `nombre_wifi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contra_wifi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_servicio` int NOT NULL,
+  PRIMARY KEY (`id_wifi`),
+  KEY `fk_wifi_servicio` (`id_servicio`),
+  CONSTRAINT `fk_wifi_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2545 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wifi`
+--
+
+LOCK TABLES `wifi` WRITE;
+/*!40000 ALTER TABLE `wifi` DISABLE KEYS */;
+INSERT INTO `wifi` VALUES (2129,'Orlando','Dylan2009',2376),(2130,'Dj profe','Dajo2728',2377),(2131,'Familia Sibaja Blanco','mase2626',2378),(2132,'Familia Cruz Cruz','Ailana1820',2379),(2133,'Lic. M eugenia','maru2608',2380),(2134,'MILO','2518161714',2381),(2135,'Esquivel','Coco1234',2382),(2136,'Familia Gonzalez Vargas','recarguenlimpios',2383),(2137,'Vecosta','Meva4850',2384),(2138,'Familia Mendoza','Familiamendoza2020',2385),(2139,'Casa Abelina','123queso',2386),(2140,'FBC','Perla2003',2387),(2141,'Familia Vargas Carrillo','*vargas2002*Jimenezvar20',2388),(2142,'Familia Alfaro','26598194',2389),(2143,'Cascabel','Cscbl1999!',2390),(2144,'INTERNET CASA','M*VZ%g36&B$n',2391),(2145,'Luigi','luip2053',2392),(2146,'Castillo','Mari2430',2393),(2147,'Barboza Camacho','BarbozA2000*',2394),(2148,'Familia Sandoval Perez','facape2021',2395),(2149,'Familia Cortes Vega','19971993',2396),(2150,'Familia Carrillo Picado','199937368',2397),(2151,'Familia Elizondo Hernandez','Colo2018',2398),(2152,'Familia Chacon Vasques ','17112308',2399),(2153,'Finca el Angel\nMathias','alejandra1984\nalev1984',2400),(2154,'N/A','N/A',2401),(2155,'Familia Venegas B.','Fwkam849',2402),(2156,'Familia Vargas','DeVaAg1991!',2403),(2157,'SKE','sdxc4567',2404),(2158,'Casa DKS','luna4393',2405),(2159,'INALI','corrales2020',2406),(2160,'Familia Carrillo Gomez','Isai/2020',2407),(2161,'Escuela Los Angeles','Esc123456*',2408),(2162,'Pollera','Jorgillo21*',2409),(2163,'N/A','N/A',2410),(2164,'Familia Matarrita Salazar','2021FM59130',2411),(2165,'VENZU','Pita2021',2412),(2166,'Rojas Castillo\nCastillo','20122020\n20122021',2413),(2167,'Sanchez Cruz','Alex2021',2414),(2168,'Mary Angel','mary2021*',2415),(2169,'Hermanos','s18b26d17r3',2416),(2170,'TitaDennis internet','TatiTita2001@',2417),(2171,'','',2418),(2172,'Tango','Massri.11',2419),(2173,'Gutierrez  ','Massri.11',2420),(2174,'PINEDA','canelo15',2421),(2175,'Casa Huacas','Gemi2020',2422),(2176,'Leidy','cusa2014',2423),(2177,'Obando Sandoval','FAOSA1582',2424),(2178,'Familia Vargas Campos','2061992',2425),(2179,'Porras','porras2437',2426),(2180,'JB','Bradley0509',2427),(2181,'Fam Bermudez','Puravida23*',2428),(2182,'Hellen','504040108',2429),(2183,'Orozco','Santiago231',2430),(2184,'Rancho Cortez','lapita2020',2431),(2185,'Fam Barrantes','derian74',2432),(2186,'Familia Elizondo Perez','21031946',2433),(2187,'Newton','Abarca78',2434),(2188,'','',2435),(2189,'Super Huacas','MAHG0000',2436),(2190,'Axel','patricia15',2437),(2191,'GraCar HouseGraCar House 2','Solocree127ElianJose05',2438),(2192,'Esc Huacas','fonseca28',2439),(2193,'BMS','BMS1938*',2440),(2194,'Alanna','18011980*',2441),(2195,'DanielaNana','aleinad1429292303',2442),(2196,'Familia Perez','L19H17I23N19',2443),(2197,'Macela','mrcl1234',2444),(2198,'Mario','503530881',2445),(2199,'Familia Aguilar Hernandez','aguilar83*',2446),(2200,'','',2447),(2201,'N/A','N/A',2448),(2202,'Vasquez Ruiz','vasquez06*',2449),(2203,'Familia HP','20jeykey21',2450),(2204,'N/A','N/A',2451),(2205,'Family G','Jime0215*',2452),(2206,'Familia MYC','Alberto2898',2453),(2207,'Swedish Embasy','Sweden20',2454),(2208,'','',2455),(2209,'','',2456),(2210,'','',2457),(2211,'Familia Coto Carrillo','CotoC21*',2458),(2212,'Casa Daniela','88918731',2459),(2213,'Casa gostosa','jungleview',2460),(2214,'Casa Celeste','Halamadrid',2461),(2215,'ATHOS','pela3089',2462),(2216,'','',2463),(2217,'','',2464),(2218,'','',2465),(2219,'Sury','geroge1323',2466),(2220,'','',2467),(2221,'OBRECAR','123456789lexi',2468),(2222,'Familia Mendoza','Mendoza21*',2469),(2223,'Casa','Granados123',2470),(2224,'ThurRica','ThurRica28621',2471),(2225,'','',2472),(2226,'Casa Magna','cASAmAGNA',2473),(2227,'Maria','24245824',2474),(2228,'Lille 1','9854321',2475),(2229,'Yessica','1.03E+11',2476),(2230,'Casa Baoba','casabaoba007',2477),(2231,'MINORyA','malavista',2478),(2232,'Pura Vida','shama2022',2479),(2233,'Leandro','prendas2013',2480),(2234,'Oriyir','11047074',2481),(2235,'Eliecer Fabiana','pisotillo83',2482),(2236,'zopilote1','zopilote2',2483),(2237,'SIN WIFI','SIN WIFI',2484),(2238,'A.F.F.G','Gustavo2301',2485),(2239,'','',2486),(2240,'Familia JP','evans2007jp',2487),(2241,'Familia Artavia','Artavia01*',2488),(2242,'casa maquenco','sylvain01',2489),(2243,'THILE','thile0818',2490),(2244,'Fernanda','ferlv1409',2491),(2245,'harmonicconect','Harmonic',2492),(2246,'WG01','Andres01',2493),(2247,'Casa 2','barbieforest',2494),(2248,'Casa MACK','Ponedoras7',2495),(2249,'Jose Daniel','JDaniel0104',2496),(2250,'JOE','Q1W2E3R4T',2497),(2251,'Familia Diaz','Andres2014',2498),(2252,'','',2499),(2253,'Familia Hernandez Venegas','Hdezvene07',2500),(2254,'LEO','Ministerio03',2501),(2255,'Familia H.G','Gaitan1483',2502),(2256,'FGZ','senedama',2503),(2257,'Junior Quiros Vargas ','nuno2006qv',2504),(2258,'POCHO','pocho01142181',2505),(2259,'MUNOZ JIMENEZ','cholo259',2506),(2260,'Familia Barrantes','ValE2018@#',2507),(2261,'Yeimi','18311227',2508),(2262,'Familia Salazar','20212231',2509),(2263,'Lidieth Diaz','diaz1970',2510),(2264,'','',2511),(2265,'Casa Carina','44444444',2512),(2266,'Garcia','Pilsen1989',2513),(2267,'Familia-Rodriguez','deowwi1104',2514),(2268,'','',2515),(2269,'CNWEED','87654321',2516),(2270,'Casa Ora','msthomas57inc!',2517),(2271,'Nazareth','carrilloelizondo',2518),(2272,'Grace','jimenez89',2519),(2273,'Cielo','jane@home2022',2520),(2274,'Obregon Sanchez','YaDlirle763F',2521),(2275,'Bella Mar','20227314',2522),(2276,'House Colibri','1234dgvg4321',2523),(2277,'Familia Brenes','brenes2022',2524),(2278,'','',2525),(2279,'Familia Aguero Valverde','Aguero255524',2526),(2280,'','',2527),(2281,'Familia Salazar Gomez','Adriel1521*',2528),(2282,'Chamma','Mermaid2019!',2529),(2283,'Familia Kast Sanchez','123456789',2530),(2284,'Cabinas Olas','Surf7751',2531),(2285,'Familia Mendez Gusman','12345678Yu',2532),(2286,'Casa La Paz','22-Apr',2533),(2287,'Casa Silencio','Jorge2022',2534),(2288,'Casa Tranquila','Juanka2022',2535),(2289,'Super Bahia','n^Xu^6h9iU$&ddcB!*9vM@YiZc#QVu!3*5ZM*FhBwM$26Mqu@@g5tZ4EHnJh^RR',2536),(2290,'ANTON','123456789',2537),(2291,'Mono Loco','Pocoloco',2538),(2292,'','',2539),(2293,'Familia Rojas Batista','Maikel123',2540),(2294,'Jobel Pinea','5545jcyv',2541),(2295,'Casa Azul._Udo','NoelleEstelle2012',2542),(2296,'Casa Frank 1','12345678',2543),(2297,'','',2544),(2298,'','',2545),(2299,'Samarica','Cubera83',2546),(2300,'','',2547),(2301,'Garcia Perez','3121624',2548),(2302,'Casa Marina','casamarina2022',2549),(2303,'Jayda walt','22-Aug',2550),(2304,'Zeledon Nunez','18300104',2551),(2305,'Benjamin','maheva2022',2552),(2306,'C.D.R. Pilangosta','xfncdr2022',2553),(2307,'Casa Jungle','Jungle22',2554),(2308,'Casa Tranquila','esquivel22',2555),(2309,'Casa Jungle','Puravida',2556),(2310,'Coca Pan','Lolas1629',2557),(2311,'Casa Guarda Parques','mobulabirostris',2558),(2312,'Casa Ron','r1hr312973',2559),(2313,'Colibri','costarica',2560),(2314,'Fam Vegas Alcoocer','Granados1990',2561),(2315,'Salazar Mora','Gerardo5156114',2562),(2316,'Casa 2','28282828',2563),(2317,'Zeneida','229151110',2564),(2318,'','',2565),(2319,'','',2566),(2320,'Casa Max','135792468',2567),(2321,'','',2568),(2322,'Matarrita','',2569),(2323,'Casa  Fonseca','fonseca05',2570),(2324,'','',2571),(2325,'','',2572),(2326,'','',2573),(2327,'','',2574),(2328,'','',2575),(2329,'Familia Valverde','20737588',2576),(2330,'CasaSandra','Maurizio',2577),(2331,'Kelu','Todomayuscula',2578),(2332,'PIZZA FRNAK','lolita23',2579),(2333,'Fran Venegas','AniFer0804',2580),(2334,'SAS','sisi7669',2581),(2335,'Casa Vannesa','',2582),(2336,'116chapala','A((.P1us',2583),(2337,'','',2584),(2338,'Casa 1','12345678',2585),(2339,'','',2586),(2340,'','',2587),(2341,'','',2588),(2342,'NACHOINTERNET','1234567890',2589),(2343,'Casa ','pequena',2590),(2344,'Familia Gonzales Diaz','Valentina2018',2591),(2345,'Caliope PJ','caliopeatenea',2592),(2346,'Rancho Yellowstone','MRBAVH23',2593),(2347,'','',2594),(2348,'Rumina Come Tamales','M1mic1t428',2595),(2349,'Casa Q','delicias2023',2596),(2350,'Maribel','24041979',2597),(2351,'','',2598),(2352,'','',2599),(2353,'','',2600),(2354,'GSM','Sarita1799',2601),(2355,'Alanna','A070821*',2602),(2356,'Castrillo','87654321',2603),(2357,'Sara','12345678',2604),(2358,'Casa Cecilie','12345678',2605),(2359,'','',2606),(2360,'Casa Bliss','12345678',2607),(2361,'PROF ALLAN','katana1984',2608),(2362,'Mary','Ema243188',2609),(2363,'','',2610),(2364,'Tyson','Homerun09',2611),(2365,'Jefferson','kenai123',2612),(2366,'','',2613),(2367,'Familia Vega Mendoza','Mc14121$',2614),(2368,'The Yorringtons','Yorringtons2001',2615),(2369,'','',2616),(2370,'Filitico','Potrero0203',2617),(2371,'Los Antonio','Enjoy2022',2618),(2372,'Carlos','Carlos300!',2619),(2373,'','',2620),(2374,'Casagaia','shadow50',2621),(2375,'Casa Sandra','Timo2015',2622),(2376,'CarolMichael House','SAWG212023',2623),(2377,'','',2624),(2378,'Nadine','20021065',2625),(2379,'','',2626),(2380,'Familia Valverde Matarrita','mnbv1234',2627),(2381,'LORO1','DONALuisa1',2628),(2382,'Mendoza','LFMC1996',2629),(2383,'CASA  ','labebita19',2630),(2384,'YANINA','Yanina34',2631),(2385,'FAMILIA RUIZ','lila2023',2632),(2386,'CASA ESTRELLAS','CasaEstrellas2023',2633),(2387,'Familia Quiros Picado','FAQP1720',2634),(2388,'Holshe Jecke','Frieda2909',2635),(2389,'GENESIS','W31011655423X',2636),(2390,'Jose Angel Montiel','jamt1220',2637),(2391,'','',2638),(2392,'','',2639),(2393,'Ismael','18202102',2640),(2394,'','',2641),(2395,'sin wifi','sin wifi',2642),(2396,'Casita Iguana','Matilori23',2643),(2397,'Carazo','Brittany',2644),(2398,'JLCR','JLCR0411',2645),(2399,'Casa Marina','cabanamarina',2646),(2400,'Barrantes','MORTADELA01',2647),(2401,'Neyman','Victoria2019',2648),(2402,'ChotChot','Matheo13',2649),(2403,'Soldadores','Nov-85',2650),(2404,'Familia Castillo','ODKJK2023',2651),(2405,'MARY','58590623',2652),(2406,'','',2653),(2407,'Familia Bustos Aguilar','mnstf13891',2654),(2408,'Fabi','Faby0514',2655),(2409,'Familia Rojas','061024RSQ',2656),(2410,'','',2657),(2411,'Turco','98765432',2658),(2412,'','',2659),(2413,'Butterfly House','SandaiwaSince2023',2660),(2414,'Repuestos Z','sofimZ26',2661),(2415,'','',2662),(2416,'SANCHEZ CASTRILLO','emily14.',2663),(2417,'Elena','12345678',2664),(2418,'Iguana','jaco2023',2665),(2419,'Familia Herrera Jimenez','Memosajo',2666),(2420,'Drago','j4s2M19v3821',2667),(2421,'Herrera Rojas','204071020',2668),(2422,'Familia RQ','Alejandro',2669),(2423,'Familia Gonzalez Alan','SamusyO13',2670),(2424,'Garden House','Tevy0210',2671),(2425,'Rustic cabin','Valechar18',2672),(2426,'los tres mosqueteros','Ianf2023',2673),(2427,'Casa JM','abramliam',2674),(2428,'Rojas','Evan04carmona20',2675),(2429,'Familia Matamoros','nina2023',2676),(2430,'Cruz Sanchez','CruzSanchez2023',2677),(2431,'jose','jmvr1962',2678),(2432,'Familia Matarrita','Hermanos2086',2679),(2433,'RIVUS','1040710',2680),(2434,'','',2681),(2435,'','',2682),(2436,'','',2683),(2437,'Fanny Maria','s@m@r@CR24',2684),(2438,'','',2685),(2439,'Karen','Darieth23',2686),(2440,'Familia Gomez','501800702',2687),(2441,'Familia Smith','Samara23',2688),(2442,'Rancho Valverde','vega0971',2689),(2443,'Rocio','toyotara',2690),(2444,'','',2691),(2445,'Fayramiya','fayramiya01',2692),(2446,'Joss','19891978',2693),(2447,'Mango','Josefina',2694),(2448,'Familia Marin ','FAFR3031',2695),(2449,'Cuesta Grande','Business',2733),(2450,'','',2734),(2451,'FISIOWELLNESS','Fisio2023',2735),(2452,'','',2736),(2453,'','',2737),(2454,'','',2738),(2455,'Integridad Estructural','Integridad2585',2739),(2456,'No Pasa Nada ','Loranger37',2740),(2457,'Samara Club','12345678',2741),(2458,'Valentina','12251899',2742),(2459,'Familia Obando','2104jlpz',2743),(2460,'Familia Obando','2104jlpz',2744),(2461,'Casa Loma ','12345678',2745),(2462,'','',2746),(2463,'','',2747),(2464,'','',2748),(2465,'Christine848','16041967',2749),(2466,'EDECO','12345678',2750),(2467,'Serrano','geturown',2751),(2468,'Casa del Viento','casadelviento',2752),(2469,'Lulu','Castrillo0890',2753),(2470,'Marlene Carrillo Aleman','62244366',2754),(2471,'','',2755),(2472,'Mateo','yadimir21',2756),(2473,'Garcia Avellan','JLCA0823',2757),(2474,'','',2758),(2475,'GT','michitsch',2759),(2476,'Sean Foerster ','12345678',2760),(2477,'Vinicio ','Fiorella',2761),(2478,'Aron','61871610',2762),(2479,'Olga','12345678',2763),(2480,'','',2764),(2481,'La Tigra','Clrg62910687',2765),(2482,'Magnolia 2','Magnolia2023',2766),(2483,'Casa San Juan ','nidodeaguila',2767),(2484,'Burgos Morales','manuel03',2768),(2485,'Casa San Juan ','nidodeaguila',2769),(2486,'Familia Fonseca','Porras1483',2770),(2487,'Aylen','jacobdavid',2771),(2488,'','',2772),(2489,'','',2773),(2490,'Louna','puravidadelsol',2774),(2491,'','',2775),(2492,'','',2776),(2493,'','',2777),(2494,'','',2778),(2495,'Jeannete','JeanVO1014',2779),(2496,'Hernandez','987654321',2780),(2497,'','',2781),(2498,'','',2782),(2499,'','',2783),(2500,'Familia Lopez Castrillo','Familia7482',2784),(2501,'Tropical Garden Cooking School','comida2024',2785),(2502,'kerry','kerry0671',2786),(2503,'Familia Jarquin Gonzalez','Jarquing9294',2787),(2504,'Familia Gomez','Dixie2025',2788),(2505,'','',2789),(2506,'Green House','12345678',2790),(2507,'Camila','Fajardo13',2791),(2508,'Familia Briceno Moreno','03118688',2792),(2509,'Douglas Paniagua','d89202523',2793),(2510,'Ps4220604','kv546382',2794),(2511,'Familia Jimenez','12101986',2795),(2512,'','',2796),(2513,'','',2797),(2514,'','',2798),(2515,'','',2799),(2516,'','',2800),(2517,'','',2801),(2518,'','',2802),(2519,'Cocina','oscarkevin2024',2803),(2520,'','',2804),(2521,'','',2805),(2522,'','',2806),(2523,'','',2807),(2524,'','',2808),(2525,'','',2809),(2526,'','',2810),(2527,'','',2811),(2528,'','',2812),(2529,'','',2813),(2530,'','',2814),(2531,'','',2815),(2532,'','',2816),(2533,'','',2817),(2534,'','',2818),(2535,'','',2819),(2536,'','',2820),(2537,'','',2821),(2538,'','',2822),(2539,'','',2823),(2540,'','',2824),(2541,'','',2825),(2542,'','',2826),(2543,'','',2827),(2544,'','',2828);
+/*!40000 ALTER TABLE `wifi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'gt_solutions'
+--
+/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
+/*!50106 DROP EVENT IF EXISTS `sh_actualizar_fecha_contratos` */;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = '+00:00' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `sh_actualizar_fecha_contratos` ON SCHEDULE EVERY 1 MONTH STARTS '2023-10-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    CALL ps_actualizar_fecha_contratos();
+    CALL ps_actualizar_deuda_clientes();
+END */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+DELIMITER ;
+/*!50106 SET TIME_ZONE= @save_time_zone */ ;
+
+--
+-- Dumping routines for database 'gt_solutions'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `ObtenerSumatoriaMensualidadesPagadasColones` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadasColones`()
+BEGIN
     DECLARE sumatoria DECIMAL(10, 2);
     
     SELECT SUM(rp.monto_pago) INTO sumatoria
@@ -37,9 +336,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagada
         c.moneda = 'colones';
 
     SELECT sumatoria AS sumatoria_mensualidades, CURDATE() AS fecha_pago;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadasDolares` ()   BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ObtenerSumatoriaMensualidadesPagadasDolares` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagadasDolares`()
+BEGIN
     DECLARE sumatoria DECIMAL(10, 2);
     
     SELECT SUM(rp.monto_pago) INTO sumatoria
@@ -51,9 +365,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerSumatoriaMensualidadesPagada
         c.moneda = 'dolares';
 
     SELECT sumatoria AS sumatoria_mensualidades, CURDATE() AS fecha_pago;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_cliente` (IN `p_id_contrato` INT)   BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ps_actualizar_deuda_cliente` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_cliente`(IN `p_id_contrato` INT)
+BEGIN
     UPDATE contrato
     SET debe_mensualidad = 1
     WHERE id_contrato = p_id_contrato
@@ -73,9 +402,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_cliente` (IN `p
         WHERE rp.id_contrato = contrato.id_contrato
           AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
     );
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_clientes` ()   BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ps_actualizar_deuda_clientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_deuda_clientes`()
+BEGIN
     UPDATE contrato
 SET debe_mensualidad = 1
 WHERE NOT EXISTS (
@@ -93,2919 +437,42 @@ WHERE EXISTS (
     WHERE rp.id_contrato = contrato.id_contrato
       AND EXTRACT(YEAR_MONTH FROM rp.fecha_pago) = EXTRACT(YEAR_MONTH FROM contrato.fecha_cobro)
 );
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_fecha_contratos` ()   BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ps_actualizar_fecha_contratos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_actualizar_fecha_contratos`()
+BEGIN
     UPDATE contrato
     SET fecha_cobro = DATE_ADD(fecha_cobro, INTERVAL 1 MONTH),
         fecha_corte = DATE_ADD(fecha_corte, INTERVAL 1 MONTH)
 WHERE debe_mensualidad = 0;
-END$$
-
+END ;;
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cliente`
---
-
-CREATE TABLE `cliente` (
-  `id_cliente` int(11) NOT NULL,
-  `identificacion` varchar(255) DEFAULT NULL,
-  `nombre_cliente` varchar(255) DEFAULT NULL,
-  `telefono` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `localidad` varchar(255) DEFAULT NULL,
-  `coordenadas` varchar(255) DEFAULT NULL,
-  `id_tipo_cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cliente`
---
-
-INSERT INTO `cliente` (`id_cliente`, `identificacion`, `nombre_cliente`, `telefono`, `email`, `localidad`, `coordenadas`, `id_tipo_cliente`) VALUES
-(3097, '', 'luis Orlando Rojas', '8640-3282', '', 'Los Angeles', '10.078495, -85.393794', 3),
-(3098, '', 'Royner Rodriguez Castro', '8462-0817', '', 'Los Angeles', '10.075522, -85.395664', 3),
-(3099, '', 'Osvaldo Sibaja Soto', '8413-1820', '', 'Los Angeles', '10.077236, -85.395953', 3),
-(3100, '', 'Walter Cruz Fonseca', '8345-7587', '', 'Los Angeles', '10.077117, -85.395427', 3),
-(3101, '', 'Maria Eugenia Castro Villalobos', '8812-5847', '', 'Los Angeles', '10.07577, -85.396372', 3),
-(3102, '', 'Jorge Brayan Sandoval Vega', '8698-2661', '', 'Los Angeles', '10.076816, -85.396693', 3),
-(3103, '', 'Maria De los Angeles Esquivel', '8924-7821', '', 'Los Angeles', '10.077003, -85.395554', 3),
-(3104, '', 'Yesenia Gonzalez Vargas', '8512-9170', '', 'Pita rayada', '10.038719, -85.383191', 3),
-(3105, '', 'Enid Venegas Acosta', '8916-9987', '', 'Los Angeles', '10.079589, -85.383626', 3),
-(3106, '', 'Miguel Angel Mendoza Perez', '2659-9321', '', 'Los Angeles', '10.078379, -85.393137', 3),
-(3107, '', 'Christian Carrillo Torres', '8832-4526', '', 'Los Angeles', '10.075202, -85.393416', 3),
-(3108, '', 'Cristian Vega Carrillo', '6070-0590', '', 'Pita rayada', '10.042111, -85.386683', 3),
-(3109, '', 'Maikol Vargas Carrillo', '8440-9535', '', 'Pita rayada', '10.039538, -85.383594', 3),
-(3110, '', 'Rosa Irene Castillo Alfaro', '8430-7777', '', 'El Ceiba', '', 3),
-(3111, '', 'Francisco Mesen Fernandez', '8313-1247', '', 'Pita rayada', '10.036105, -85.38759', 3),
-(3112, '', 'Blanca Rosa Venegas ENID', '8526-0091', '', 'Los Angeles', '10.079589, -85.383626', 3),
-(3113, '', 'Luigi Pellegrini ', '8416-4360', '', 'Pita rayada', '10.036723, -85.385772', 3),
-(3114, '', 'Magaly Castillo Castillo', '8486-7963', '', 'Pita rayada', '10.0363, -85.386855', 3),
-(3115, '', 'Emilce Camacho Arquiar', '8604-0074', '', 'Huacas', '10.023245, -85.356216', 3),
-(3116, '', 'Gina Sandoval', '6101-0096', '', 'Pilangosta', '10.032378, -85.409761', 3),
-(3117, '', 'Leydi Carrillo cortes', '84703211', '', 'Pita rayada', '10.042892, -85.386351', 3),
-(3118, '', 'Jennifer Carrillo Picado', '8681-2337', '', 'Pita rayada', '10.043642, -85.387284', 3),
-(3119, '', 'Antony Elizondo Hernandez', '8498-0782', '', 'Pita rayada', '10.042882, -85.386941', 3),
-(3120, '', 'Mercedes Vasquez Rodriguez', '8925-3271', '', 'Huacas', '10.029055, -85.367779', 3),
-(3121, '', 'Alejandra Lara Vasquez', '8370-1198', '', 'Los Angeles', '10.079977, -85.388486', 3),
-(3122, '', 'Roger Cuesta Grande', 'REGALIA', '', 'Cuesta Grande', '10.002075, -85.512481', 3),
-(3123, '', 'Keiryn Iveth Venegas Rodriguez', '8520-4255', '', 'Los Angeles', '10.077695, -85.394178', 3),
-(3124, '', 'Dennis Vargas Aguero', '6006-0845', '', 'Pita rayada', '10.043473, -85.386882', 3),
-(3125, '', 'Katiana Esquivel Venegas', '8707-9129', '', 'Los Angeles', '10.077141, -85.396854', 3),
-(3126, '', 'Diego Castro', '8367-2326', '', 'Los Angeles', '10.077141, -85.396854', 3),
-(3127, '', 'Israel Retana', '7093-0626', '', 'Pita rayada', '10.048338, -85.388556', 3),
-(3128, '', 'Jairo Carrillo Gomez', '8399-7934', '', 'Huacas', '10.021417, -85.363563', 3),
-(3129, '', 'Escuela Los Angeles', '8536-0984', '', 'Los Angeles', '', 3),
-(3130, '', 'Jorge Armando Esquivel', '8701-2909', '', 'Lapas', '10.081059, -85.374652', 3),
-(3131, '', 'Victor Culiyin', 'REGALIA', '', 'Los Cerrillos', '10.088789, -85.394264', 3),
-(3132, '', 'Doris Salazar Barrantes', '8759-8079', '', 'Pita rayada', '10.040632, -85.383674', 3),
-(3133, '', 'Ruben Venegas Zu¤iga', '8303-4138', '', 'Pita rayada', '10.042079, -85.382226', 3),
-(3134, '', 'Jairo Rojas Vargas', '8314-6543', '', 'Lapas', '10.08608, -85.377213', 3),
-(3135, '', 'Danilo Sanchez Cruz', '8302-1335', '', 'Lapas', '10.087152, -85.376832', 3),
-(3136, '', 'Leida Cruz Moreno', '8701-2456', '', 'Lapas', '10.083423, -85.376071', 3),
-(3137, '', 'Flory Castillo Badilla', '8989-2442', '', 'Lapas', '10.085329, -85.376376', 3),
-(3138, '', 'Dennis Vargas Aguero', '8910-4928', '', 'Pita rayada', '10.034451, -85.386088', 3),
-(3139, '', '', '', '', '', '', 3),
-(3140, '', 'Alfonso Gutierrez Sibaja', '8879-9227', '', 'Huacas', '10.0269, -85.373342', 3),
-(3141, '', 'Adilio Gutierrez Ramirez', '8821-4430', '', 'Huacas', '10.024106, -85.374876', 3),
-(3142, '', 'Marcia Pineda Castrillo', '8996-5931', '', 'Arenas', '10.048245, -85.397779', 3),
-(3143, '', 'Melvin Fonseca Cruz', '8378-0291', '', 'Huacas', '10.025157, -85.373589', 3),
-(3144, '', 'Leydi Carrillo cortes', '84703211', '', 'Pita rayada', '10.042385, -85.38479', 3),
-(3145, '', 'Yanori Sandoval Perez', '8436-0746', '', 'Pilangosta', '10.032357, -85.409176', 3),
-(3146, '', 'Lilly Campos Garcia', '8822-2622', '', 'Arenas', '10.055698, -85.402124', 3),
-(3147, '', 'Yeimy Porras Boza', '6036-7844', '', 'Los Angeles', '10.074978, -85.393848', 3),
-(3148, '', 'Jhon Bradley', '8702-4855', '', 'Huacas', '0.024438, -85.376356', 3),
-(3149, '', 'Elena Bermudez Villalobos', '8920-4610', '', 'Los Angeles', '10.074824, -85.392606', 3),
-(3150, '', 'Ronaldo G¢mez espinoza', '7079-9755', '', 'La Libertad', '10.064668, -85.430336', 3),
-(3151, '', 'Julio Cesar Poveda Orozco', '8914-1943', '', 'Lapas', '10.085752, -85.376379', 3),
-(3152, '', 'Laura Mireya Corrales Vasquez', '6041-0017', '', 'Pita rayada', '10.042174, -85.383449', 3),
-(3153, '', 'Edwin Barrantes Elizondo', '8372-9259', '', 'Huacas', '10.018088, -85.363943', 3),
-(3154, '', 'Juan elizondo  Badilla', '8850-9432', '', 'huacas', '10.01728, -85.363728', 3),
-(3155, '', 'Diego Abarca Espinoza', '8585-6130', '', 'Huacas', '', 3),
-(3156, '', '', '', '', '', '', 3),
-(3157, '', 'Marcos Batista', '8320-6234', '', 'Huacas', '10.019256, -85.3633', 3),
-(3158, '', 'Luis Guillermo Bonilla Pizarro', '6012-4173', '', 'Los Angeles', '10.07685, -85.395696', 3),
-(3159, '', 'Dixy Granados Cardenas', '8333-1184', '', 'Los Angeles', '10.079913, -85.389902', 3),
-(3160, '', 'Leonardo Fonseca Rodriguez', '8751-4345', '', 'Huacas', '10.022737, -85.366033', 3),
-(3161, '', 'Bernal Sanchez Umaña', '8788-8856', '', 'Los Angeles', '10.074716, -85.397391', 3),
-(3162, '', 'Rodney Villalobos Mu¤oz', '8467-1110', '', 'Los Angeles', '10.078297, -85.393475', 3),
-(3163, '', 'Adriana Perez Perez ', '8410-2030', '', 'Matambuguito', '10.105071, -85.414049', 3),
-(3164, '', 'Heilyn Perez Perez', '6049-9740', '', 'Matambuguito', '10.10402, -85.41418', 3),
-(3165, '', 'Marcela Elizondo  Prendas', '8380-1124', '', 'Huacas', '10.024375, -85.359279', 3),
-(3166, '', 'Mario Alberto Carrillo Vasquez', '8656-6047', '', 'Los Angeles', '10.074505, -85.396007', 3),
-(3167, '', 'Maria Yesenia Hernandez O.', '8400-5154', '', 'Matambuguito', '10.105984, -85.413279', 3),
-(3168, '', 'Terry Lewis Invernadero', '', '', 'Carillo', '', 3),
-(3169, '', 'Carlos Jimnez (ESTRADA)', 'REGALIA', '', 'Carrillo ', '9.889852, -85.452758', 3),
-(3170, '', 'Karen Ruiz Zu¤iga', '8552-2421', '', 'Matambuguito', '10.104413, -85.409347', 3),
-(3171, '', 'Katia Hernandez', '8801-6723', '', 'Matambuguito', '10.104844, -85.408864', 3),
-(3172, '', 'Franz werkstetter', 'REGALIA', '', 'Amaranta', '9.908484, -85.530752', 3),
-(3173, '', 'Maria del Carmen Gomez E.', '8578-6258', '', 'La Libertad', '10.065175, -85.442658', 3),
-(3174, '', 'Marina Mendoza Camacho', '6342-7011', '', 'La Libertad', '10.062845, -85.439032', 3),
-(3175, '', 'Johan Sandstrom', '46705516200', '', 'Huacas', '10.0255, -85.377239', 3),
-(3176, '', 'Diego Mendoza', '8719-2108', '', 'Esterones', '9.88577,-85.56623', 3),
-(3177, '', 'Rod  Bosse', '864 2054054', '', 'Carrillo', '9.899502,-85.464761', 3),
-(3178, '', 'Casey winn ( Antiguo pacho)', '86137675', '', 'Buena Vista', '9.9137970, -85.5313466', 3),
-(3179, '', 'Oscar Enrique Coto Carrillo', '8741-2561', '', 'Huacas', '10.024243, -85.355892', 3),
-(3180, '', 'Henry Garcia Jimenez', '8891-8731', '', 'Cuesta Grande', '9.939694,-85.519158', 3),
-(3181, '', 'Fotseu Marion Aude Murielle', '.41 79 254 76 37.', '', 'Amaranta', '9.906668, -85.534419', 3),
-(3182, '', 'Jordan Frances ', '85238585', '', 'Samara', '9.891819,-85.54701', 3),
-(3183, '', 'Filander Vasquez', '8703-5970', '', 'Los Angeles', '10.077104, -85.390771', 3),
-(3184, '', 'Carlos  Vargas', '', '', 'Buena Vista', '9.9134082, -85.5323672', 3),
-(3185, '', 'Alberto Pacho', '6014-0402', '', 'Buena Vista', '9.9132699, -85.5325395', 3),
-(3186, '', 'Jhon Noska', '.+1(757)870-9062', '', 'Samara', '', 3),
-(3187, '', 'Jorge Perez Rojas', '8529-4277', '', 'La Libertad', '10.062322, -85.437788', 3),
-(3188, '', 'fransisco terciopelo', '6472-4391', '', 'terciopelo', '9.9428703, -85.5205413', 3),
-(3189, '', 'Jose alexis Obregon Carrillo', '8546-8231', '', 'HUacas', '10.022764, -85.356621', 3),
-(3190, '', 'Ivannia Mendoza Espinoza', '8639-5565', '', 'Esterones', '9.88577,-85.56623', 3),
-(3191, '', 'Omar josue Granados', '8886-3239', '', 'Los Angeles', '10.079924, -85.389591', 3),
-(3192, '', 'Dafina Thur', '8758-7518', '', 'Altos del socorro', '9.95762,-85.402593', 3),
-(3193, '', 'Joshep Young', '8474-5793', '', 'Camaronal', '9.86978, -85.450328', 3),
-(3194, '', 'Paulo Collar', '8704-0027', '', 'Camaronal', '9.868633, -85.445904', 3),
-(3195, '', 'Yordano Hernandez B', '8632-3915', '', 'La Libertad', '', 3),
-(3196, '', 'Brenda Amaranta', '8706-7176', '', 'Amaranta', '9.908069, -85.532753', 3),
-(3197, '', 'Jessica Lito Hernandez', '8359-4474', '', 'Pita Rayada', '10.043017, -85.387306', 3),
-(3198, '', 'Ridley buena vista', '8359-5045', '', 'Buena Vista', '9.9106085, -85.5381373', 3),
-(3199, '', 'Roy Arias', '8826-2524', '', 'buena vista', '9.909565,-85.53977', 3),
-(3200, '', 'Martin  Lanz', '8966-1136', '', 'Altos del Socorro', '9.958198,-85.398845', 3),
-(3201, '', 'Leticia Villalobos Mu¤oz', '8560-7983', '', 'HUacas', '10.029055, -85.367779', 3),
-(3202, '', 'Carlos Navarro', '8685-5833', '', 'Pilangosta', '10.02998, -85.404472', 3),
-(3203, '', 'Simon Antonio Moreno', '8927-1337', '', 'Huacas', '10.023208, -85.354103', 3),
-(3204, '', 'Melissa sandobal', '1 310 347 6431', '', 'camaronal', '9.867919, -85.452898', 3),
-(3205, '', 'Finca Lucky', '8736-1465', '', 'Buena vista', '9.911154,-85.536333', 3),
-(3206, '', 'Gustavo Aguilera Castro', '8719-8906', '', 'HUacas', '10.021792, -85.357327', 3),
-(3207, '', 'Manfred Altos del Socorro', '(+491786014016)', '', 'Altos del socorro', '9.957128,-85.399483', 3),
-(3208, '', 'Steven Jimenez', '61982020', '', 'cuesta grande', '10.001853, -85.504354', 3),
-(3209, '', 'Cristel Artavia', '6094-4079', '', 'Buena Vista', '9.91879,-85.537482', 3),
-(3210, '', 'Sylvain Dostie', '8982-8798', '', 'Maquenco', '9.962475,-85.521156', 3),
-(3211, '', 'Joselyn Gutierrez Solis', '8768-9948', '', 'Mansion', '10.108803, -85.374292', 3),
-(3212, '', 'Maria Fernanda Lopez', '8545-6269', '', 'Matambuguito', '', 3),
-(3213, '', 'JOE', '1 612 554 5120', 'joseph@harmonicfarms.com', 'Camaronal', '9.86857,-85.447838', 3),
-(3214, '', 'William Mejias Venegas', '8386-5190', '', 'San Gerardo', '10.049445, -85.431734', 3),
-(3215, '', 'Sophie Elvire Chepy', '8546-1421', '', 'Santo Domingo', '9.890265,-85.510445', 3),
-(3216, '', 'Mathew Gregory Mccormack', '8553-8776', '', 'Esterones', '9.899973,-85.555036', 3),
-(3217, '', 'Danny Ramirez Sibaja', '8885-6187', '', 'Los Angeles', '10.078593, -85.394843', 3),
-(3218, '', 'Joe CIANCIO', '8514-9193', '', 'Maquenco', '9.963003,-85.520609', 3),
-(3219, '', 'Deibin DIaz Carrillo', '8461-2582', '', 'Huacas', '10.021961, -85.355277', 3),
-(3220, 'Sale de la casa de Brayan Sandoval', 'Karol Murillo Lopez', '8991-0627', '', 'LOs Angeles', '10.077325, -85.39723', 3),
-(3221, '', 'Milanda Hernandez Venegas', '6227-5590', '', 'Matambuguito', '10.102335, -85.412099', 3),
-(3222, '', 'Leonardo Araya Jimenez', '8303-3064', '', 'LOs Angeles', '10.078215, -85.39366', 3),
-(3223, '', 'Javier Hernandez Gaitan', '8371-7706', '', 'LOs Angeles', '10.079702, -85.400095', 3),
-(3224, '', 'Henry Garcia Jimenez', '88918731', '', 'Santa Elena', '10.014652, -85.470738', 3),
-(3225, '', 'Lorena Vargas', '8915-9526', '', 'Pita Rayada', '10.043814, -85.387601', 3),
-(3226, '', 'Greivin Rmirez Rodriguez', '8597-3937', '', 'Los Cerrillos', '10.088937, -85.393092', 3),
-(3227, '', 'Didier Mu¤oz Sequeira', '8378-8015', '', 'Los Cerrillos', '10.088031, -85.393216', 3),
-(3228, '', 'Abel Barrantes', '6033-8389', '', 'Los Cerrillos', '10.089029, -85.393371', 3),
-(3229, '', 'Yeimi Mu¤oz Carrillo', '8611-2919', '', 'Los Cerrillos', '10.090033, -85.391885', 3),
-(3230, '', 'karen Salazar Vasquez', '6072-8655', '', 'Huacas', '10.021285, -85.363421', 3),
-(3231, '', 'Ana Lidieth Mu¤oz', '8993-7213', '', 'Los Cerrillos', '10.08993, -85.394224', 3),
-(3232, '', 'Gabriel Thur', '8966-1147', '', 'Altos del socorro', '9.96199,-85.405655', 3),
-(3233, '', 'Carina Risi', '6482-8415', '', 'Altos del socorro', '9.9525028,-85.4009271', 3),
-(3234, '', 'ROberto Garcia Guevara', '8822-7998', '', 'Hojancha', '10.056494, -85.423601', 3),
-(3235, '', 'Dereck Rodriguez', '6030-1104', '', 'Pilangosta', '10.035273, -85.407395', 3),
-(3236, '', 'Ron Manuel Sporer', '8601-3651', '', 'San Gerardo', '10.056503,-85.434975', 3),
-(3237, '', 'James  Nick Weed', '8932-9504', '', 'El carmen', '9.881053, -85.424595', 3),
-(3238, '', 'Michael Thomas Cabinas Rio Ora', '6398-3825', '', 'Buena Vista', '9.915547,-85.526808', 3),
-(3239, '', 'Joselyn Carrillo Elizondo', '8410-0272', '', 'Huacas', '10.022423, -85.356911', 3),
-(3240, '', 'Grace Jimenez ', '8639-4833', '', 'La libertad', '10.064192, -85.430146', 3),
-(3241, '', 'Jane collins camaronal', '19144787855', '', 'Camaronal', '9.8692290, -85.4504408', 3),
-(3242, '', 'Julio Obregon', '8582-1627', '', 'Polvazales', '', 3),
-(3243, '', 'Rogelio Rodriguez', '8816-1316', '', 'Carrilo', '9.8988648, -85.4666815', 3),
-(3244, '', 'vicent Geyer', '8428-1759', '', 'cuesta grande', '9.993846, -85.50581', 3),
-(3245, '', 'Adolfo Brenes', '8596-1285', '', 'LOs Angeles', '10.080632, -85.393389', 3),
-(3246, '', 'Magally Oviedo', '70141185', '', 'Gamalotal', '10.054247,-85.522844', 3),
-(3247, '', 'Asdrubal Aguero', '8375-2869', '', 'Pita Rayada', '10.03476, -85.385686', 3),
-(3248, '', 'Jean-Claude AZOULAY', '83632176', '', 'Carrillo', '9.8949742, -85.4686359', 3),
-(3249, '', 'Marta Arelys Gomez ', '8549-6112', '', 'La Libertad', '10.063516, -85.441355', 3),
-(3250, '', 'Channa santo domingo', '85015624', '', 'Carrillo', '9.890265,-85.510445\n', 3),
-(3251, '', 'Anthon Kast', '8912-3968', '', 'La Libertad', '10.065169, -85.441199', 3),
-(3252, '', 'Anita Camaronal', '8431-6078', '', 'Camaronal ', '9.868786, -85.449041', 3),
-(3253, '', 'Anderson Mendez', '8321-5507', '', 'San Gerardo', '10.060611, -85.441894', 3),
-(3254, '', 'Carlos Jimenez Estrada casa La Paz', '83601950', '', 'Estrada', '9.889852, -85.452758', 3),
-(3255, '', 'Carlos Jimenez Estrada casa silencio', '83601950', '', 'Estrada', '9.889852, -85.452758', 3),
-(3256, '', 'Carlos Jimenez Estrada casa TranquilaSarah Zirkel Casa Tranquila', '83601950', '', 'Estrada', '9.889852, -85.452758', 3),
-(3257, '', 'Gerber Edinson', '6170-5107', '', 'Dulce Nombre', '10.081150,-85.493885', 3),
-(3258, '', 'Anthon Kast  (pollera)', '8912-3968', '', 'La libertad', '10.063432, -85.440947', 3),
-(3259, '', 'Tara  jaeger', '84481059', '', 'camaronal', '9.868998, -85.450559', 3),
-(3260, '', 'Ricardo Alberto Granera', '7075-3920', '', 'Delicias Garza', '9.9295783,-85.6149723', 3),
-(3261, '', 'Guerin Rojas ', '8452-6740', '', 'Huacas', '10.01643, -85.363104', 3),
-(3262, '', 'Juan Carlos Pineda Alvarado', '8978-2522', '', 'La libertad', '10.063569, -85.441924', 3),
-(3263, '', 'Udo Ehrenfeuchter', '4.92E+11', '', 'Huacas', '10.001998, -85.373291', 3),
-(3264, '', 'Frank  Ruhl amaranta', '84581103', 'clever-frank@gmx.de', 'Amaranta', '9.906526, -85.534234', 3),
-(3265, '', 'Juan Carlos terciopelo', '', '', 'Terciopelo', '9.942726,-85.520689', 3),
-(3266, '', 'Flor Casa Brillasol', '83866556', '', 'Terciopelo', '9.943043,-85.520212', 3),
-(3267, '', 'Stephane Yves', '33 6 20 34 19 37', 'stephane.vanuxeem@wadoo.fr', 'Buena Vista', '9.9102224, -85.5381621', 3),
-(3268, '', 'Nikole Neukirch amaranta', '86473922', '', 'Amaranta', '9.908441, -85.53186', 3),
-(3269, '', 'Maria Perez Mora', '6020-0905', '', 'LOs Angeles', '10.076354, -85.396801', 3),
-(3270, '', 'Marina Benso Osti (Casa Marina)', '6136-1590', '', 'Samara', '', 3),
-(3271, '', 'Susana Vargas Vargas', '60084334', 'jayda27@gmail.com', 'Cuesta Grande', '10ø00ï06.5/85ø30ï11.8', 3),
-(3272, '5-328-428', 'Jose Luiz zeledon', '88033698', 'Jose18063006@hotmail.com', 'Santa Elena', '10.000362, -85.470083', 3),
-(3273, '503930983', 'Dagnes orias rosales', '50113610', 'Dagnesperez@gmail.com', 'Santa Elena', '10.007969, -85.470963', 3),
-(3274, '', 'Comite deportes Pilangosta', '8315-2259', '', 'Pilangosta', '10.03265, -85.406182', 3),
-(3275, '', 'Ivannia Mendoza Espinoza (Casa Jungle)', '8639-5565', '', 'Buena Vista', '9.911165,-85.536788', 3),
-(3276, '50265 0066', 'Vidal Esquivel Herrera', '8619 2823', 'Casaventura2@hotmail.com', 'Nosarita', '10.039131, -85.48768', 3),
-(3277, '', 'Casa Jungle (Tierry Mappas)', '8785 9757', '', 'Buena Vista', '9.909484,-85.538688', 3),
-(3278, '', 'Ivannia Castro Castro', '8543-7412', 'ivaniacastrocastro50@gmail.com', 'Huacas', '10.022062,-85.357263', 3),
-(3279, '', 'Refugio y Reserva Camaronal', '84541376', '', 'Camronal', '9.863808,-85.444868', 3),
-(3280, '', 'Ron Manuel Sporer', '8601-3651', '', 'San Gerardo', '10.056503,-85.434975', 3),
-(3281, '', 'James McGregor', '1 (514) 927-0933', '', 'Buen Vista', '9.935107,-85.543587', 3),
-(3282, '', 'Freiman Venegas Gran', '6299-1952', '', 'LOs Angeles', '10.075294,-85.394523', 3),
-(3283, '', 'Gerardo Salazar Picado', '8851-8849', '', 'Cuesta Blanca', '10.040183,-85.425913', 3),
-(3284, '', 'Agustin Hidalgo Morera (Ganaderia el comienzo)', '8834-3095', 'Ibusesorotinafacturas@gmail.com', 'Terciopelo', '9.936084,-85.521694', 3),
-(3285, '', 'Zeneida Castro Castro', '8429-0403', '', 'Huacas', '10.022189,-85.357215', 3),
-(3286, '', 'John Noska  ( Las delicias)', '1 202 999 0806', '', 'Las delicias', '9.923477,-85.627745', 3),
-(3287, '', 'John Noska  ( Las delicias)', '1 202 999 0806', '', 'Las Delicias ', '9.923477,-85.627745', 3),
-(3288, '', 'Maxime Plessis Belair', '1 819 570 8484', '', 'Cuesta Grande', '9.9938455, -85.5054146', 3),
-(3289, '', 'Silvain Carrier', '506 87801572', '', 'Cuesta Grande', '9.9937564, -85.5060399', 3),
-(3290, '', 'Javier Humberto Matarrita Morera', '8557-5378', '', 'Pita Rayada', '10.040863,-85.383771', 3),
-(3291, '', 'William Fonseca Alvarado', '(+1(951)602-0642', '', 'Huacas', '10.035803,-85.357975', 3),
-(3292, '', 'Pierre', '', '', 'Naranjal', '9.98149, -85.53475', 3),
-(3293, '', 'Deborah Moss', '', '', 'Delicias Garza', '9.9295783,-85.6149723', 3),
-(3294, '603310192', 'Pablo Garita', '8311-6437', '', 'San Gerardo', '10.055541,-85.436639', 3),
-(3295, '660997510', 'Luci Price', '(+1 (808) 936-9988)', '', 'BUENA Vista', '9.9104873, -85.5377208', 3),
-(3296, '', 'Josh Silver', '(+1 (413)687-5584)', '', 'Esterones', '9.9008861, -85.5542376', 3),
-(3297, '', 'Jose Angel Urbina', '6068-3457', '', 'San isidro ', '9.9814163,-85.3958166', 3),
-(3298, '', 'Maurizio Romanni', '88369469', '', 'Amaranta', '9.9107211, -85.5325908', 3),
-(3299, '', 'Luis Elias', '', '', 'San Gerardo', '10.055541,-85.436639', 3),
-(3300, '', 'Juana Rivas Mendoza', '83767605', '', 'LOs Angeles', '10.080785,-85.393132', 3),
-(3301, '', 'Franklin Venegas Castillo', '8764-3808', '', 'LOs Angeles', '10.079974,-85.3847', 3),
-(3302, '', 'Saskia Quiros Batres', '8627-1859', '', 'Santa Martha', '9.9214565, -85.4410849', 3),
-(3303, '', 'Proyecto Hotel Cerro Azul', '8946-3019', '', 'Cerro Azul', '10.006712,-85.306903', 3),
-(3304, '', 'Guillermo Angulo', '6040-8023', '', 'Altos del socorro', '9.958173,-85.399354', 3),
-(3305, '', 'FLAWLESS VIEW LIMITADA casa argudas', '8611-8407', '', 'Las delicias', '', 3),
-(3306, '', 'frank caba¤as Amaranta', 'Regalia', '', 'amaranta', '9.91202, -85.53013', 3),
-(3307, '', 'Mauricio Castro Hernandes', '83275492', '', 'Santa Martha', '9.9208699, -85.4427683', 3),
-(3308, '', 'Karla Veronica  Carrillo Obando', '8911-1887', '', 'Los angeles', '10.07558,-85.39511', 3),
-(3309, '', 'Catherine suarez  (fabiola carvajal)', '6225-0781', 'faby041208@gmail.com', 'San Fernando', '9.91887, /85.53723', 3),
-(3310, '', 'Joshua Broussard', '8760-7570', 'J333@duck.com', 'Santa Martha', '9.9220450, -85.4434470', 3),
-(3311, '', 'Cecile Colnaghi', '6346-3590', '', 'Buena Vista', '9.91202, -85.53516', 3),
-(3312, '', 'Eddi Gonzales', '8886-6828', '', 'Santa Elena', '10.007164, -85.471122', 3),
-(3313, '503530884', 'Eduardo Pineda Barrantes', '6015-0393', 'edkreator@hotmail.com', 'La Libertad', '10.064525,-85.430482', 3),
-(3314, '', 'Alexander Villagra Hernandez', '84493040', '', 'santa Martha', '9.88343, -85.44314', 3),
-(3315, '', 'Flor Guevara', '8321-1331', '', 'Amaranta', '9.919728,-85.525979\n', 3),
-(3316, '502540543', 'Fredy Obregon Aleman', '8778-3774', '', 'santa Martha', '9.919605,-85.443381', 3),
-(3317, '', 'ROBINSON - CATHCART SOCIEDAD DE RESPONSABILIDAD LIMITADA', '6270-8511', '', 'Las Delicias', '10.087867,-85.391115', 3),
-(3318, '', 'Wilfredo Matarrita Matarrita', '7177-8137', '', 'Pita Rayada', '10.03514,-85.387403', 3),
-(3319, '', 'Maria Kruse', '8449-2525', '', 'Cuesta Grande', '', 3),
-(3320, '', 'ASADA Buena Vista Tanque', '', '', 'Amaranta', '', 3),
-(3321, '', 'ASADA Buena Vista Pozo', '', '', 'Buena Vista', '', 3),
-(3322, '2-0553-0155', 'Angelica Delgado Madrigal', '8814-2283', '', 'La libertad', '10.056612,-85.430176', 3),
-(3323, '', 'Melany Venegas', '8515-6164', '', 'Pita Rayada', '10.04124,-85.384313', 3),
-(3324, '', 'Luis Adolfo Castrillo Fajardo', '8788-9098', '', 'San Gerardo', '10.049445, -85.431734', 3),
-(3325, '', 'Sara Maria Erb', '41797770714', '', 'Zapotal', '9.997144,-85.316589', 3),
-(3326, '', 'Cecile Colnaghi', '6346-3590', '', 'Buena Vista', '9.91202, -85.53516', 3),
-(3327, '', 'Rebeca Navarrte Noguera (Tj Jac Information)', '8811-1968', '', 'Garza', '9.957722,-85.615180', 3),
-(3328, '', 'Steve Bliss (Camaronal)', '8658-4031', '', 'Camaronal', '', 3),
-(3329, '503410703', 'Allan Obregon Lopez', '8604-6917', '', 'San Gerardo', '10.052959,-85.429768', 3),
-(3330, '', 'Mariana Mayorga Perez', '6079-0703', '', 'Matmabuguito', '10.104732,-85.414536', 3),
-(3331, '', 'Dafina Thur', '', '', 'Altos del socorro', '9.957628,-85.402625', 3),
-(3332, '', 'Dayanna barthley arce ', '8690-7375', '', 'Maquenco', '9.96356,-85.51434', 3),
-(3333, '', 'Dievy Ronaldo Carazo', '8461-6814', '', 'Pita Rayada', '10.041279,-85.384337', 3),
-(3334, 'E4388332', 'Wolfgang con Stachelski', '8984-9852', 'wolfgangvonstachelski@gmail.com', 'Altos del socorro', '9.958354,-85.398472', 3),
-(3335, '503190549', 'Manfred Ad n Vega Espinoza ', '8644-0142', 'manfredvegaespinoza@gmail.com', 'La libertad', '10.062168,-85.442467\n', 3),
-(3336, '114270440', 'Mariana Madrigal Castillo', '6284-7836', 'Madrigalcastillomari559@gmail.com', 'Samara', '9.9155377,-85.526699', 3),
-(3337, '3102867746', 'Cloudbird bonin  Nube', '89240495', 'acturasvidaeclectico@gmail.com', 'samara', '9.91990, -85.52607', 3),
-(3338, '', 'Alejandro Arce Ulloa', '8599-4352', '', 'Buena vista', '9.910871,-85.538338', 3),
-(3339, '', 'Troy (Edith Zeledon)', '8972-2929', '', 'Cuesta Grande', '9.9941381, -85.5060289', 3),
-(3340, '', 'Charles Milner  ', '1 250 320 3959', '', 'cuesta grande', '9.9956253, -85.5061348', 3),
-(3341, '', 'Rudy Mendoza', '87088403', '', 'Esterones', '9.8859666, -85.5660899', 3),
-(3342, '', 'Robert Calhoun Grainger  Casa Gaia', 'email', 'robcgrainger@msn.com', 'Garza', '9.911376,-85.61369', 3),
-(3343, 'C4VW3KC36', 'Mike Schaefe', '8656-0308', 'handelschaefer@gmail.com', 'Estrada', '9.889168,-85.45307', 3),
-(3344, '3-102-807060', 'Michael Keenan & Carol Guida (STEADY AS WE GO LLC SRL)', '1 (860) 933-2027', '', 'Garza', '9.911376,-85.61364', 3),
-(3345, '', 'Asada San Fernando', '', '', 'San Fernando', '9.920791,-85.533432', 3),
-(3346, '', 'Oldemar Matarrita Matarrita', '6312-5943', '', 'San Fernando', '', 3),
-(3347, '', 'Marjurie Miranda Matamoros', '6347-0009', '', 'Estrada', '9.88162,-85.452393', 3),
-(3348, '', 'Dixi Dayana Matarrita Salazar', '8539-6615', '', 'Pita Rayada', '10.040268,-85.383397', 3),
-(3349, '800930432', 'Luis Alberto Romero Borge', '8821-4792', '', 'San Fernando', '9.920087,-85.533801', 3),
-(3350, '5-0411-0977', 'Luis Fernando Mendoza Centeno', '6212-0426', '', 'La libertad', '10.062267,-85.44194', 3),
-(3351, '502980039', 'Maria Custodia Carrillo Alem n', '8554-0930', 'deliciasdelmaiz1977@gmail.com', 'La libertad', '10.063834,-85.426575', 3),
-(3352, '503680082', 'yanina Jimnez Fajardo', '8777-6964', 'jimenezyani13@gmail.com', 'La libertad', '10.064732,-85.42910', 3),
-(3353, '', 'Margaret Dunn', '8803-7700', '', 'San Fernando', '9.928835,-85.536823', 3),
-(3354, '', 'Jaykay samara', '8328-0221', 'hillinkent@hotmail.com', 'buena vista', '9.9057649,-85.5335147', 3),
-(3355, '', 'David Alberto Quiros Solis', '8372-2900', 'pepetravel85@hotmail.com', 'San Fernando', '9.918288,-85.532896', 3),
-(3356, '', 'Marco Gawehns', '8797-1600', '', 'Estrada', '9.888861,-85.45163', 3),
-(3357, '503200387', 'Greddy Centeno', '8807-7811', '', 'San Fernando', '9.92077,-85.533524', 3),
-(3358, '', 'Jose Angel Montiel Torres ', '8832-6267', '', 'Huacas', '10.005968,-85.368627', 3),
-(3359, '', 'Guillermo Angulo', '6040-8023', '', 'Altos del socorro', '9.958173,-85.399354', 3),
-(3360, '', 'Justin Miller', '1 (317)797-3316', 'justrmil@gmail.com', 'Camaronal', '9.868108,-85.44017', 3),
-(3361, '5-318-779', 'Mar¡a del Rosio S nchez Porras', '6008-3808', '', 'La libertad', '10.064023,-85.428436', 3),
-(3362, '6-01540224', 'Manuel Chavez', '8349-3462', '', 'Estrada', '9.8899064, -85.4534774', 3),
-(3363, '', 'Andrew Weinstein', '1 703 597 6175', '', 'Guiones', '9.9446728, -85.6615423', 3),
-(3364, '', 'Victoria Rommelspacher', '8984-0117', '', 'Buena Vista ', '9.9141400, -85.5329480', 3),
-(3365, '206800040', 'Charles Fransisco Carazo Nu¤ez', '71427500 (esposa Xiomara)', '', 'Carrillo', '9.87271, -85.49882', 3),
-(3366, '', 'Luis Campos ', '8422-3357', '', 'Pilangosta', '10.031751,-85.417085', 3),
-(3367, '', 'Marina Benso Osti', '6136-1590', '', 'San Fernando', '9.923403,-85.5322336', 3),
-(3368, '', 'Neyman Barrantes Cespedes', '64242806', '', 'cuesta grande', '10.001679,-85.511917', 3),
-(3369, '', 'Eros Barrantes Castillo  (hijo Neyman)', '62958597', '', 'cuesta grande', '10.001862,-85.512314', 3),
-(3370, '503530742', 'Yomar Aleman Gomez', '6458-7542', '', 'Garza ', '9.956373,-85.61567', 3),
-(3371, '206130938', 'Geiner de Jes£s Espinoza Jarqu¡n', '7018-4163', '', 'San Juan', '9.956373,-85.61567', 3),
-(3372, '', 'Olber Matarrita Castillo', '8862-8497', '', 'Pita Rayada', '10.049216,-85.388236', 3),
-(3373, '105360076', 'Miguel ballesteros Marin', '8815-9035', '', 'San Fernando', '9.921875,-85.534869', 3),
-(3374, '', 'Martin TAIT', '', '', 'delicias Garza', '', 3),
-(3375, '', 'Austin Bustos Aguilar', '8670-4382', '', 'San Fernando', '9.91917,-85.532837', 3),
-(3376, '113930192', 'Fabiola Carvajal Mora', '6225-0781', 'faby041208@gmail.com', 'San Fernando', '9.9195304, -85.5361699', 3),
-(3377, '', 'Allen Rojas Cano', '86981172', '', 'San Fernando', '9.92094, -85.53599', 3),
-(3378, '', 'CACO', '', '', 'San Fernando', '', 3),
-(3379, '', 'Erika Altamirano', '8560-6508', 'erikaaltamisamara@gmail.com', 'San Fernando', '9.919169,-85.532837', 3),
-(3380, '', 'Adrian Garcia matarrita', '8648-2767', '', 'San Fernando', '9.91017,-85.53944', 3),
-(3381, '', 'Luna Centeno', '6298-7709', '', 'San Fernando', '', 3),
-(3382, '503950089', 'Oscar Zuniga Carrillo', '8441-1192', 'repuestoszm391@gmail.com', 'San Fernando', '9.9204048,-85.533272', 3),
-(3383, '113980495', 'Seidy Valdez Mora', '8607-2974', 'Mayelavaldezmo@gmail.com', 'San Fernando', '9.9208407,-85.5352521', 3),
-(3384, '', 'Yordi Sanches Matarrita', '6140-7408', '', 'San Fernando', '', 3),
-(3385, '', 'Elena', '', '', 'Bø Los Monos', '', 3),
-(3386, '9106150', 'Juan Jos Jimnez', '7169-7156', '', 'San Fernando', '', 3),
-(3387, '', 'Cira Jimenez', '8647-3957', '', 'San Fernando', '', 3),
-(3388, '', 'Marvin Jimenez', '8301-0958', '', 'San Fernando', '9.920172,-85.534443', 3),
-(3389, '5 354 391 ', 'Sileny Rojas Jimenez', '6210-1162', '', 'San Fernando', '9.921883,-85.53482', 3),
-(3390, '503440661', 'Jose Augusto Rodriguez Castillo', '8421-6172', 'rodriguez2903@hotmail.com', 'San Gerardo', '10.05385,-85.426511', 3),
-(3391, '', 'Deiby Gonz lez Alvarado', '8856-5755', 'deividg04@hotmail.com', 'San Fernando', '9.921517,-85.533887', 3),
-(3392, '', 'Ileana Matarrita Matarrita', '6458-5229', '', 'San fernando', '9.921244,-85.534640', 3),
-(3393, '', 'Olger Castrillo Centeno', '8974-5669', '', 'San fernando', '9.921707,-85.534518', 3),
-(3394, '', ' Edel Centeno Castrillo ', '8591-9197', '', 'San fernando', '9.922221,-85.534652', 3),
-(3395, '1.84E+11', 'Barbara miller', '8440-0459', 'Barbara@costaricatefl.com', 'San fernando', '9.9217067,-85.5345184', 3),
-(3396, '', 'Carlos Rojas Matarrita', '8427-9096', '', 'San FErnando', '9.93936, -85.52046', 3),
-(3397, '', 'Lidia Centeno Castrillo', '6474-1046', '', 'San Fernando', '9.93936, -85.52046', 3),
-(3398, '200190908', 'Uriel Cruz Gimenez', '8713-5233', '', 'San Fernando', '9.921452,-85.534289', 3),
-(3399, '501990696', 'Jose Valverde Rodriguez', '6008-3318', '', 'San Gerardo', '10.053939,-85.426661', 3),
-(3400, '', 'Melvin Matarrita', '8460-7101', '', 'Pita Rayada', '10.038568,-85.385556', 3),
-(3401, '', 'Ever Rojas ', '6316-5661', '', 'San Fernando', '9.92078, -85.53496', 3),
-(3402, '', 'Alfonso Diaz Fonseca', '7111-1132', '', 'San Fernando', '9.920132,-85.532067', 3),
-(3403, '', 'Melvin Roman espinoza castillo', '8862-9893', '', 'San Juan Nosara', '9.955967,-85.615705', 3),
-(3404, '', 'CUBO TRES CONSTRUCCIàN S.A ', '8620-0245', '', 'San Juan Nosara', '9.955967,-85.615707', 3),
-(3405, '', 'Luis Matarrita Jiron ', '8815-0318', '', 'San Fernando', '9.918091,-85.541361', 3),
-(3406, '', 'Steven ugarte henrriquez', '6297-0231', '', 'San Fernando', '9.91588,-85.539192', 3),
-(3407, '', 'Karen Carrillo Ruiz', '6430-7152', '', 'San Fernando', '9.91588,-85.539192', 3),
-(3408, '501800702', 'Maria Ines Lopez Gomez', '8344-8914', '', 'San Fernando', '9.921435,-85.5344429', 3),
-(3409, '', 'William Smith Quintero', '8452-5656', '', 'San Fernando', '9.920455,-85.5292667', 3),
-(3410, '', 'Celian Valverde Vega', '88231933', '', 'San Fernando', '9.90665, -85.53628', 3),
-(3411, '105130824', 'Maria del Rocio Salas Porras', '62260250', 'rocisalas29@gmail.com', 'San Fernando', '9.9173906, -85.5337700', 3),
-(3412, '', 'Andres Parajon', '6441-5925', '', 'Vista Royal', '9.925711,-85.63875', 3),
-(3413, '', 'Noriel Quesada Torres', '62433017', '', 'San Fernando', '9.9200185, -85.5334612', 3),
-(3414, '', 'Jocelyn Valencia Serrano', '86693376', '', 'San Fernando', '9.92659, -85.53509', 3),
-(3415, 'HM436349', 'Michael schuler', '8540-8484', 'Mschuler1@gmail.com', 'Camaronal ', '9.869284,-85.444504', 3),
-(3416, '502760515', 'Luz Meri Carrillo Castillo', '6062-0805      8739-9850', '', 'Pita Rayada', '10.047075,-85.388501', 3),
-(3417, '1.84E+11', 'Paula Annette White', '83391131', 'nosarapaula@gmail.com', 'Vista al mar|Bosque Verde Lote #9, Nosara, Guanacaste', '9,971633, -85,631050', 4),
-(3418, '3101426301', 'MP-Gabiruski Corporation S.A', '83981165', 'azultaxes@icloud.com', 'Mal pais|Puntarenas, C¢bano, de la Torre de Malpa¡s, 400 mts. camino hacia Malpa¡s, entrada a mano izquierda', '9.611123,-85.13623', 4),
-(3419, '3101635200', 'MAL PAIS BUSINESS ADMINISTRATION S.A (paga fabio casa biba)', '72911222', 'fe@kubikodesign.com, acpcalderon@gmail.com', 'Mal pais|Mal Pais Del Restaurante Marys, 800 este y 800 este', '9.602404,-85.133064', 4),
-(3420, '3101613547', 'MAL PAIS MAINTENANCE COMPANY S.A.', '83219900', 'kata@kubikodesign.com', 'Mal pais|Mal Pais Del Restaurante Marys, 800 este y 800 este nueva oficina', '9.629889,-85.152435', 4),
-(3421, '3102433849', 'Zodiac Mountain S.A.', '83511208', 'brianredbeard@gmail.com', 'Mal pais|Cabuya rd , 50 meters past Mel Gibson on the left', '9.609134,-85.130938', 4),
-(3422, '3101401727', 'CASA TECAL', '26400880', 'HBurnett@nksfb.com', 'Pausaleku|Puntarenas, C¢bano, Santa Teresa.', '9.671904,-85.190180', 4),
-(3423, '3102813878', 'RC Holdings LLC Limitada', '26400611', 'service@ranchocielo.com', 'Pausaleku|Santa Teresa', '9.672159, -85.194797', 4),
-(3424, '3102612215', 'AKWABA LIMITADA', '87295233', 'thomas.beaumel@gmail.com', '|1.4 Km Noreste de la escuela de Panica', '9.721884936901667,-85.04760300302028', 4),
-(3425, '401760228', 'David Gonzalez Quesada', '88304749', 'dav7gq@gmail.com', 'Panorama|500 mtrs oeste y 500 al sur del Tanque de agua de San Isidro Cobano', '9.657501,-85.123029', 4),
-(3426, '3102830017', 'Villa Forrest Veintiseis Limitada', '9.73E+11', 'zevimontekyo@gmail.com', 'Panorama|Villa Montekyo, Santa Teresa, Costa Rica', '9.648510167994555, -85.15635750934936', 4),
-(3427, '3102707260', 'TRES CIENTO UNO SETECIENTOS SIETE MIL DOSCIENTOS SESENTA SOCIEDAD ANONIMA', '88206261', 'lillynute11@gmail.com', 'Panorama|SAN ISIDRO DE COBANO, 200MTRS NORESTE DE PROYECTO FRITZ', '9.6438,-85.1522', 4),
-(3428, '3102739344', '3-102-739344 LTDA', '22888888', 'katie@rentnosara.com', 'Garza|Guanacaste, Nicoya, Vista Royal Lot #17, 500 mtrs sur del Delicias', '9.925287,-85.639880', 4),
-(3429, '4737465', 'Carole Priggione', '85504670', 'heylinrf91@gmail.com', 'Garza|Playa Guiones Guanacaste', '9.934767,-85.653130', 4),
-(3430, '3-101-148086', 'SABOR Y SENTIMIENTO SOCIEDAD ANàNIMA  (cristopher loss)', '2640 0045', 'usitter@gmail.com', '|Puntarenas, Cobano, Manzanillo, 500mts Sur del Atardecer dorado', '9.685786,-85.201043', 4),
-(3431, '3102522216', 'ELI AND THE BOYS RETREAT SRL', '87090089', 'petepaulh@yahoo.com', '|Pen¡nsula de Nicoya, Guanacaste.', '9.939434,-85.635544', 4),
-(3432, '3102780418', 'FINCA CRIVELLI LIMITADA            (DANIEL PAGA EL SERVICIO)', 'c xz', 'despinoza@linealaw.com', 'Garza|Nicoya, Nosara, Las Delicias, 1.7 kil¢metros al Noroeste de Buceo Gavilana, entrada a mano izquierda', '9.943471,-85.622423', 4),
-(3433, '3102846730', 'HERN INDUSTRIES LLC SOCIEDAD DE RESPONSABILIDAD LIMITADA', '83773066', 'nosaraazulproperties@gmail.com', '|3 KM OE DE LA ANTIGUA ESCUELA SAN JUAN', '9.607619195295358,-84.6207967895285', 4),
-(3434, '134698755', 'MP-MARGOT WINTER (BOUGANBILIA)         ST THUNDER PAGA', '88388911', 'maw@margotwinters.com', 'Garza|Vista Royal No 15', '9.911484,-85.643872', 4),
-(3435, 'BA727589', 'Martin Tait', '3455260286', 'martintait1955@gmail.com', 'Garza|Nosara', '9.957564,-85.615748', 4),
-(3436, '1.84E+11', 'Richard Bryant', '83215132', 'rickdianebryant@gmail.com', 'Garza|Our address - lot 2 community paraiso San Juan de Nosara   Please come to Bario Los Arenales to the', '9.956204,-85.631086', 4),
-(3437, '3102678865', 'SHUKRANI INVESTMENT SRL', '83114920', 'bkdegraaf@gmail.com', 'Garza|Casa Punta Vista III, fin de la carretera de Las Huacas, 200m contiguo a Tierra Magnifica, secci¢n E', '9.9442,-85.6334', 4),
-(3438, '549676509', 'Thomas Drummond Walker', '17579991305', 'tdcwjcwb@yahoo.com', 'Garza|1.5 km al norte de la plaza de Playa Garza , Vista Royal lote 15b', '9.9278,-85.5872', 4),
-(3439, '3101320075', 'Venus de Garza', '84115242', 'venusdegarza@gmail.com', 'Garza|Vista Royal 16', '9.925507,-85.639060', 4),
-(3440, '3101426257', 'Arenal Compuesto Zeta S.A.', '87031561', 'nzcostarica@gmail.com', 'Tilaran |San Carlos, La Fortuna, 3 kms al oeste de la escuela, en El Castillo', '10.428120, -84.763771', 4),
-(3441, '3101402095', 'Rancho Margot S.A', '89112108', 'payments@ranchomargot.org', 'Tilaran|3 km al O del caser¡o El Castillo, Pe¤as Blancas San Ramon', '10.396729,-84.753808', 4),
-(3442, '3102437439', 'MALA MUJER LIMITADA', '88172816', 'facturamontealto@gmail.com', 'Cerro Azul|Nicoya', '9.973155,-85.279679', 4),
-(3443, '1.84E+11', 'Lloyd George Standish', '40000977', 'lloyd@crnatural.net', 'cerro azul|2km  al norte de la iglesia de Zapotal de Nandayure, Guanacaste', '10.010896,-85.302004', 4),
-(3444, '1.38E+11', 'Carlotta Jovino', '85166245', 'carlottajovino@gmail.com', 'Cerro Azul|Santiago Cobano, 200 mtrs al sur de la casa de Jorge Badilla', '9.683289,-85.197905', 4),
-(3445, '3102072631', 'HACIENDA VALLE SOLO SRL', '87126519', 'tguzmanf@hotmail.com', 'Vista al Mar|', '10.316726, -85.794111', 4),
-(3446, '3002656894', 'Asociacion del Santo Nombre', '87379595', 'Madhuvancostarica@gmail.com', 'Vista al Mar|De la plaza de deportes en Beln de Nosarita 500m Oeste, 5km al Noroeste, 1.5km al Oeste', '10.001208,-85.535136', 4),
-(3447, '506942204', 'Gary Chambers Macdonald      (paga 506942244)', '83854080 / 84038326', 'garycmac@outlook.com', 'Garza|Royal Vista, Garza #10 vista real del mar (Villa costa del mar)', '9.926266,-85.639872', 4),
-(3448, '1.84E+11', 'MP-Scott Ford', '89916832', 'fourfords@gmail.com', '|fourfords@gmail.com', '', 4),
-(3449, '', 'Casa Gino Cortes¡a', '', '', '|Tilaran, 700 metros norte de la entrada Vista Lago', '10.5643083,-84.958477777779', 4),
-(3450, '', '', '', '', '|', '', 4),
-(3451, '', '', '', '', '|', '', 4),
-(3452, '', '', '', '', '|', '', 4),
-(3453, '   ', '', '', '', '|', '', 4),
-(3454, '', 'Cindy Vásquez Sequeira', '8710-8365', '', 'Cuesta Grande', '10.0029255,-85.5042426', 3),
-(3455, '203290221', 'Eugenia Chaverri Quiros', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3456, '203290221', 'Eugenia Chaverri Quiros', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3457, '203290221', 'Eugenia Chaverri Quiros', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3458, '203290221', 'Eugenia Chaverri Quiros', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3459, '203290221', 'Eugenia Chaverri Quiros', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3460, '203290221', 'Eugenia Chaverri Quiros', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3461, '203290221', 'Eugenia Chaverri Quiros  (Modesto)', '8479-2990', '', 'Pita Rayada', '10.0377371,-85.3836685', 3),
-(3462, '503890312', 'Malixy Cordonero Espinoza', '8303-5337', '', 'SAN FERNANDO ', '9.919873,-85.525973', 3),
-(3463, '3-102-809689', 'VIDA MIGLIORE LLC SRL', '0000000', 'accounting@puravidamgmt.com', 'Vista Royal', '', 3),
-(3464, '', 'RIDLEY SAMARA', '8359-5045', '', 'SAMARA', '', 3),
-(3465, ' 517751387', 'John M Torrens', '+1 (315) 427-0500', 'john.m.torrens@gmail.com', 'San Juan Nosara', '9.9555365,-85.6153015', 3),
-(3466, '', 'Andres Parajon #2', '6441-5925', '', 'Vista Royal', '9.925711,-85.63875', 3),
-(3467, '3102827306', 'Loranger Investments LLC   (asley)', '', '', 'San Juan Nosara', '9.952527,-85.6204711', 3),
-(3468, '20230224', 'Jordan frances Mall Samara', '', '', 'San Fernando', '', 4),
-(3469, '504310341', 'Kimberly Matarrita Castro', '84444592', '', 'San Fernando', '9.9285025,-85.5367499', 3),
-(3470, '603270224', 'Veronica Obando Perez', '60572118', '', 'Buena Vista', '9.913259,-85.5318541', 3),
-(3471, '', 'Veronica Obando Perez', '60572118', '', 'Buena Vista', '9.913259,-85.5318541', 3),
-(3472, '', 'societe Lomas Limitada', '61415567', '', 'Buena Vista', '', 3),
-(3473, '', 'Cabañas Franz buenas vista', '', '', 'BARRIO LOS MONOS', '', 3),
-(3474, '114060263', 'Jonnathan Arguello', '88675736', 'jarguello576@gmail.com', 'ESTRADA', '', 3),
-(3475, '801500289', 'Joshua Michael Tablone Miller', '61104769', 'nicoyamma@yahoo.com', 'Cuesta grande', '10.02556,-85.5029', 3),
-(3476, '801500289', 'Joshua Michael Tablone Miller', '61104769', 'nicoyamma@yahoo.com', 'Cuesta Grande', '10.02556,-85.5029', 3),
-(3477, '', 'William Mejias Venegas  #2', '83865190', '', 'San Rafel, Hojancha', '10.0094023,-85.4393504', 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contrato`
---
-
-CREATE TABLE `contrato` (
-  `id_contrato` int(11) NOT NULL,
-  `numero_contrato` varchar(255) DEFAULT NULL,
-  `numero_facturacion` varchar(255) DEFAULT NULL,
-  `TMU` varchar(255) DEFAULT NULL,
-  `fecha_instalacion` date DEFAULT NULL,
-  `monto_instalacion` double DEFAULT NULL,
-  `abono_instalacion` double DEFAULT NULL,
-  `mensualidad` double DEFAULT NULL,
-  `moneda` varchar(255) DEFAULT NULL,
-  `fecha_cobro` date DEFAULT NULL,
-  `fecha_corte` date DEFAULT NULL,
-  `debe_mensualidad` tinyint(1) DEFAULT 1,
-  `id_cliente` int(11) NOT NULL,
-  `activo` tinyint(1) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `contrato`
---
-
-INSERT INTO `contrato` (`id_contrato`, `numero_contrato`, `numero_facturacion`, `TMU`, `fecha_instalacion`, `monto_instalacion`, `abono_instalacion`, `mensualidad`, `moneda`, `fecha_cobro`, `fecha_corte`, `debe_mensualidad`, `id_cliente`, `activo`) VALUES
-(2379, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3097, 0),
-(2380, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3098, 0),
-(2381, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3099, 0),
-(2382, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3100, 0),
-(2383, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3101, 0),
-(2384, '20201206', '', '', '2020-01-05', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3102, 1),
-(2385, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3103, 0),
-(2386, '20201208', '', '', '2020-01-01', 0, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3104, 1),
-(2387, '20201209', '', '', '2020-01-01', 90000, 90000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3105, 1),
-(2388, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3106, 0),
-(2389, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3107, 0),
-(2390, '20210102', '', '', '2021-10-12', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3108, 1),
-(2391, '20210103', '', '', '2020-01-19', 30000, 30000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3109, 1),
-(2392, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3110, 0),
-(2393, '20210105', '', '', '2021-11-08', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3111, 1),
-(2394, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3112, 0),
-(2395, '20210107', '', '', '2021-02-17', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3113, 1),
-(2396, '20210108', '', '', '2021-02-01', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3114, 1),
-(2397, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3115, 0),
-(2398, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3116, 0),
-(2399, '20210111', '', '', '2021-02-10', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3117, 1),
-(2400, '20210112', '', '', '2021-02-01', 30000, 30000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3118, 1),
-(2401, '20210113', '', '', '2021-02-10', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3119, 1),
-(2402, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3120, 0),
-(2403, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3121, 0),
-(2404, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3122, 0),
-(2405, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3123, 0),
-(2406, '20210118', '', '', '2021-02-10', 37700, 37700, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3124, 1),
-(2407, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3125, 0),
-(2408, NULL, '1031', '127', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3126, 0),
-(2409, '20210121', '', '', '2021-02-01', 60000, 60000, 10000, 'colones', '2023-08-01', '2023-08-15', 1, 3127, 1),
-(2410, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3128, 0),
-(2411, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3129, 0),
-(2412, '20210124', '', '', '2022-03-16', 60000, 40000, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3130, 1),
-(2413, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3131, 0),
-(2414, '20210126', '', '', '2021-02-28', 60000, 40000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3132, 1),
-(2415, '20210127', '1030', '129', '2021-03-10', 60000, 60000, 35000, 'colones', '2023-09-01', '2023-09-15', 1, 3133, 1),
-(2416, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3134, 0),
-(2417, '20210128', '', '', '2021-01-23', 60000, 60000, 22000, 'colones', '2023-08-01', '2023-08-15', 1, 3135, 1),
-(2418, '20210129', '', '', '2021-03-24', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3136, 1),
-(2419, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3137, 0),
-(2420, '20210131', '', '', '2021-04-04', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3138, 1),
-(2421, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3139, 1),
-(2422, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3140, 0),
-(2423, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3141, 0),
-(2424, '20210135', '', '', '2021-04-17', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3142, 1),
-(2425, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3143, 0),
-(2426, '20210137', '', '', '2021-04-24', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3144, 1),
-(2427, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3145, 0),
-(2428, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3146, 0),
-(2429, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3147, 0),
-(2430, '20210141', '', '', '2021-05-30', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3148, 1),
-(2431, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3149, 0),
-(2432, '20210143', '', '', '2021-06-01', 60000, 60000, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3150, 0),
-(2433, '20210144', '', '', '2021-06-01', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3151, 1),
-(2434, '20210145', '', '', '2021-07-03', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3152, 1),
-(2435, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3153, 0),
-(2436, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3154, 0),
-(2437, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3155, 0),
-(2438, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3156, 1),
-(2439, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3157, 0),
-(2440, '20210151', '', '', '2021-07-10', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3158, 1),
-(2441, '20210152', '1054', '128', '2021-07-18', 126400, 126400, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3159, 1),
-(2442, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3160, 0),
-(2443, '20210154', '', '', '2021-07-28', 60000, 45000, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3161, 1),
-(2444, '20210155', '', '', '2021-08-02', 25000, 25000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3162, 1),
-(2445, '20210158', '', '', '2021-08-06', 60000, 60000, 15000, 'colones', '2023-08-01', '2023-08-15', 1, 3163, 0),
-(2446, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3164, 0),
-(2447, '20210158', '', '', '2021-08-06', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3165, 1),
-(2448, '20210159', '', '', '2021-08-07', 60000, 60000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3166, 1),
-(2449, '20210160', '', '', '2021-08-07', 60000, 60000, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3167, 0),
-(2450, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3168, 0),
-(2451, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3169, 0),
-(2452, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3170, 0),
-(2453, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3171, 0),
-(2454, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3172, 0),
-(2455, '20210166', '', '', '2021-10-02', 60000, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3173, 1),
-(2456, '20210167', '1033', '128', '2021-10-02', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3174, 1),
-(2457, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3175, 0),
-(2458, '20210169', '', '', '2021-10-15', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3176, 1),
-(2459, '20210170', '', '', '2021-10-15', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3177, 1),
-(2460, '20210171', '', '', '2022-10-18', 60000, 60000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3178, 1),
-(2461, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3179, 0),
-(2462, '20210173', '1034', '130', '2021-11-12', 100000, 90000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3180, 1),
-(2463, '20210174', '', '', '2021-11-15', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3181, 1),
-(2464, '20210175', '', '', '2021-12-01', 0, 0, 30000, 'colones', '2023-08-01', '2023-08-15', 1, 3182, 1),
-(2465, '20210176', '', '', '2021-11-22', 64500, 64500, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3183, 1),
-(2466, '20210177', '', '', '2021-11-13', 60000, 60000, 30000, 'colones', '2023-09-01', '2023-09-15', 1, 3184, 1),
-(2467, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3185, 0),
-(2468, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3186, 0),
-(2469, '20210180', '', '', '2021-11-28', 60000, 60000, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3187, 1),
-(2470, '20210181', '', '', '2021-11-28', 100000, 100000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3188, 1),
-(2471, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3189, 0),
-(2472, '20210183', '', '', '2021-12-11', 74628, 74628, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3190, 1),
-(2473, '20210184', '', '', '2021-12-12', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3191, 1),
-(2474, '20210185', '', '', '2021-12-15', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3192, 1),
-(2475, '20210186', '1061', '158', '2021-12-18', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3193, 1),
-(2476, '20210187', '', '', '2021-12-18', 146000, 146000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3194, 1),
-(2477, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3195, 0),
-(2478, '20210189', '1037', '130', '2021-12-27', 63450, 63450, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3196, 1),
-(2479, '20210190', '', '', '2021-01-03', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3197, 1),
-(2480, '20220101', '', '', '2022-01-04', 60000, 60000, 40450, 'colones', '2023-09-01', '2023-09-15', 1, 3198, 1),
-(2481, '20220102', '', '', '2022-01-09', 40000, 40000, 25000, 'colones', '2023-09-01', '2023-09-15', 1, 3199, 1),
-(2482, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3200, 0),
-(2483, '20220104', '', '', '2022-01-16', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3201, 1),
-(2484, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3202, 0),
-(2485, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3203, 0),
-(2486, '20220107', '', '', '2022-01-26', 63750, 63750, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3204, 1),
-(2487, '20220108', '1070', '131', '2022-01-27', 60000, 60000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3205, 1),
-(2488, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3206, 0),
-(2489, '20220110', '', '', '2022-02-04', 268598, 268598, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3207, 1),
-(2490, '20220111', '', '', '2022-02-06', 80000, 30000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3208, 1),
-(2491, '20220112', '1093', '128', '2022-02-12', 60000, 60000, 30000, 'colones', '2023-09-01', '2023-09-15', 1, 3209, 1),
-(2492, '20220113', '', '', '2022-02-17', 63000, 63000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3210, 1),
-(2493, '20220114', '', '', '2022-02-24', 60000, 28100, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3211, 1),
-(2494, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3212, 0),
-(2495, '20220116', '1051', '132', '2022-02-27', 65000, 65000, 59900, 'colones', '2023-09-01', '2023-09-15', 1, 3213, 1),
-(2496, '20220117', '', '', '2022-03-03', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3214, 1),
-(2497, '20220118', '', '', '2022-03-24', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3215, 1),
-(2498, '20220119', '', '190', '2022-03-26', 60000, 60000, 42500, 'colones', '2023-09-01', '2023-09-15', 1, 3216, 1),
-(2499, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3217, 0),
-(2500, '20220121', '', '', '2022-03-31', 60000, 60000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3218, 1),
-(2501, '20220122', '', '', '2022-03-31', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3219, 1),
-(2502, NULL, '1045', '126', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3220, 0),
-(2503, NULL, '1035', '127', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3221, 0),
-(2504, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3222, 0),
-(2505, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3223, 0),
-(2506, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3224, 0),
-(2507, '20220128', '', '', '2022-04-19', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3225, 1),
-(2508, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3226, 0),
-(2509, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3227, 0),
-(2510, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3228, 0),
-(2511, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3229, 0),
-(2512, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3230, 0),
-(2513, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3231, 0),
-(2514, '20220135', '', '', '2022-05-04', 60000, 60000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3232, 1),
-(2515, '20220136', '', '', '2022-05-04', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3233, 1),
-(2516, NULL, '1036', '130', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3234, 0),
-(2517, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3235, 0),
-(2518, '20220139', '', '', '2022-05-10', 60000, 60000, 35000, 'colones', '2023-09-01', '2023-09-15', 1, 3236, 1),
-(2519, '20220140', '', '', '2022-05-20', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3237, 1),
-(2520, '20220141', '', '', '2022-05-20', 60000, 60000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3238, 1),
-(2521, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3239, 0),
-(2522, '20220143', '', '', '2022-05-31', 60000, 60000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3240, 1),
-(2523, '20220144', '', '', '2022-06-02', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3241, 1),
-(2524, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3242, 0),
-(2525, '20220146', '', '', '2022-06-17', 65000, 65000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3243, 1),
-(2526, '20220147', '1055', '128', '2022-06-23', 70000, 70000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3244, 1),
-(2527, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3245, 0),
-(2528, NULL, '1038', '131', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3246, 0),
-(2529, '20220150', '', '', '2022-07-20', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3247, 1),
-(2530, '20220151', '1032', '129', '2022-07-28', 66769, 66769, 35000, 'colones', '2023-09-01', '2023-09-15', 1, 3248, 1),
-(2531, '20220152', '', '', '2022-07-28', 60000, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3249, 1),
-(2532, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3250, 0),
-(2533, '20220154', '', '', '2022-07-28', 60000, 60000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3251, 1),
-(2534, '20220155', '', '', '2022-08-01', 90000, 90000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3252, 1),
-(2535, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3253, 0),
-(2536, '20220158', '', '', '2022-08-05', 201000, 201000, 10000, 'colones', '2023-09-01', '2023-09-15', 1, 3254, 1),
-(2537, '20220157', '', '', '2022-08-05', 201000, 201000, 69900, 'colones', '2023-09-01', '2023-09-15', 1, 3255, 1),
-(2538, '20220159', '', '', '2022-08-05', 201000, 201000, 10000, 'colones', '2023-09-01', '2023-09-15', 1, 3256, 1),
-(2539, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3257, 0),
-(2540, '20220161', '', '', '2022-08-10', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3258, 1),
-(2541, '20220162', '', '', '2022-08-13', 95000, 95000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3259, 0),
-(2542, '20220163', '', '', '2022-08-27', 140000, 140000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3260, 1),
-(2543, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3261, 0),
-(2544, '20220165', '', '', '2022-08-27', 60000, 0, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3262, 1),
-(2545, '20220166', '', '', '2022-09-05', 60000, 60000, 35000, 'colones', '2023-09-01', '2023-09-15', 1, 3263, 1),
-(2546, '20220167', '', '', '2022-08-26', 80000, 80000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3264, 1),
-(2547, '20220168', '', '', '2022-08-31', 97087, 97087, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3265, 1),
-(2548, '20220169', '1076', '128', '2022-08-31', 97087, 97087, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3266, 1),
-(2549, '20220170', '1050', '128', '2023-05-11', 154810, 154810, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3267, 1),
-(2550, '20220171', '', '', '2022-09-16', 111875, 111875, 59900, 'colones', '2023-09-01', '2023-09-15', 1, 3268, 1),
-(2551, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3269, 0),
-(2552, '20220173', '', '', '2022-10-07', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3270, 1),
-(2553, '20220174', '', '', '2022-10-17', 60000, 60000, 30000, 'colones', '2023-09-01', '2023-09-15', 0, 3271, 1),
-(2554, '20220175', '', '', '2022-10-26', 60000, 60000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3272, 1),
-(2555, '20220176', '', '', '2022-10-26', 60000, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3273, 1),
-(2556, '20220177', '', '', '2022-10-27', 60000, 0, 39900, 'colones', '2023-08-01', '2023-08-15', 1, 3274, 1),
-(2557, '20220178', '', '', '2022-10-27', 0, 0, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3275, 1),
-(2558, '20220179', '', '', '2022-10-26', 130000, 130000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3276, 1),
-(2559, '20220180', '', '132', '2022-10-28', 70000, 70000, 59900, 'colones', '2023-09-01', '2023-09-15', 1, 3277, 1),
-(2560, '20220181', '', '', '2022-11-25', 60000, 0, 15000, 'colones', '2023-08-01', '2023-08-15', 1, 3278, 1),
-(2561, '20220182', '', '', '2022-11-02', 203400, 203400, 49900, 'colones', '2023-08-01', '2023-08-15', 1, 3279, 1),
-(2562, '20220183', '', '127', '2022-11-03', 60000, 60000, 25000, 'colones', '2023-09-01', '2023-09-15', 1, 3280, 1),
-(2563, NULL, 'Fact', '128', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3281, 0),
-(2564, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3282, 0),
-(2565, '20220186', '', '', '2022-11-15', 60000, 60000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3283, 1),
-(2566, '20220187', '1047', '132', '2022-11-18', 60000, 60000, 59900, 'colones', '2023-09-01', '2023-09-15', 1, 3284, 1),
-(2567, '20220188', '', '', '2022-11-22', 60000, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3285, 1),
-(2568, '20220189', '1046', '131', '2022-11-25', 60000, 60000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3286, 1),
-(2569, '20220190', '1046', '131', '2022-11-25', 60000, 60000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3287, 1),
-(2570, '20220191', '', '', '2022-11-29', 75000, 75000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3288, 1),
-(2571, '20220192', '', '', '2022-11-29', 75000, 75000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3289, 1),
-(2572, '20220193', '', '', '2022-12-06', 60000, 60000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3290, 1),
-(2573, '20220194', '', '', '2022-12-05', 60000, 60000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3291, 1),
-(2574, '20220195', '', '', '2022-12-07', 60000, 60000, 30000, 'colones', '2023-09-01', '2023-09-15', 1, 3292, 1),
-(2575, '20220196', '', '', '2022-12-09', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3293, 1),
-(2576, '20220197', '', '', '2022-12-20', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3294, 1),
-(2577, '20220198', '', '128', '2022-12-15', 58200, 58200, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3295, 1),
-(2578, '20220199', '1052', '130', '2022-12-23', 280000, 0, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3296, 1),
-(2579, '20220200', '', '', '2022-12-23', 60000, 30000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3297, 1),
-(2580, '20220201', '', '', '2022-12-25', 70000, 70000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3298, 1),
-(2581, '20220202', '', '', '2022-12-28', 0, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3299, 1),
-(2582, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3300, 0),
-(2583, '20230101', '', '', '2023-01-04', 60000, 60000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3301, 1),
-(2584, '20230102', '', '', '2023-01-04', 90000, 90000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3302, 1),
-(2585, '20230103', '1079', '128', '2023-01-06', 60000, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3303, 1),
-(2586, '20230104', '1060', '130', '2023-01-07', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3304, 1),
-(2587, '20230105', '1078', '128', '2023-04-27', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3305, 1),
-(2588, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3306, 1),
-(2589, '20230106', '', '', '2023-01-17', 95000, 95000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3307, 1),
-(2590, '20230107', '1064', '127', '2023-01-18', 60000, 20000, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3308, 1),
-(2591, '20230108', '1063', '132', '2023-01-24', 124700, 124700, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3309, 1),
-(2592, '20230109', '', '', '2023-01-24', 60000, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3310, 1),
-(2593, '20230110', '', '130', '2023-01-24', 85000, 85000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3311, 1),
-(2594, '20230111', '', '', '2023-01-25', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3312, 1),
-(2595, NULL, '1065', '128', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3313, 0),
-(2596, '20230113', '', '', '2023-01-26', 65000, 65000, 30000, 'colones', '2023-09-01', '2023-09-15', 1, 3314, 1),
-(2597, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3315, 0),
-(2598, '20230115', '', '', '2023-02-05', 0, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3316, 1),
-(2599, '20230116', '1089', '128', '2023-02-07', 60000, 60000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3317, 1),
-(2600, '20230117', '', '', '2023-02-16', 60000, 0, 15000, 'colones', '2023-08-01', '2023-08-15', 1, 3318, 1),
-(2601, NULL, '1069', '128', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3319, 0),
-(2602, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3320, 0),
-(2603, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3321, 0),
-(2604, '20230121', '', '', '2023-02-15', 0, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3322, 1),
-(2605, '20230122', '', '', '2023-02-16', 0, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3323, 1),
-(2606, '20230123', '', '', '2023-02-18', 0, 0, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3324, 1),
-(2607, '20230124', '', '', '2023-02-19', 60000, 60000, 39000, 'colones', '2023-09-01', '2023-09-15', 1, 3325, 1),
-(2608, '20230125', '', '131', '2023-02-20', 60000, 0, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3326, 1),
-(2609, '20230126', '1068', '120', '2023-02-27', 60000, 60000, 114.75, 'dolares', '2023-09-01', '2023-09-15', 1, 3327, 1),
-(2610, '20230127', '1067', '130', '2023-02-28', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 0, 3328, 1),
-(2611, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3329, 0),
-(2612, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3330, 0),
-(2613, '20230130', '', '', '2023-03-04', 60000, 60000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3331, 1),
-(2614, '20230131', '', '', '2023-03-06', 60000, 60000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3332, 1),
-(2615, '20230132', '', '', '2023-03-09', 0, 0, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3333, 1),
-(2616, NULL, '1071', '128', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3334, 0),
-(2617, NULL, '1072', '128', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3335, 0),
-(2618, '20230135', '', '', '2023-03-20', 54600, 54600, 40000, 'colones', '2023-09-01', '2023-09-15', 1, 3336, 1),
-(2619, '20230136', '1074', '128', '2023-03-22', 75000, 75000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3337, 1),
-(2620, '20230137', '', '', '2023-03-28', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3338, 1),
-(2621, '20230138', '', '', '2023-03-30', 106000, 106000, 56.15, 'dolares', '2023-09-01', '2023-09-15', 1, 3339, 1),
-(2622, '20230139', '', '', '2023-04-03', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3340, 1),
-(2623, '20230140', '', '', '2023-03-31', 0, 0, 25000, 'colones', '2023-09-01', '2023-09-15', 1, 3341, 1),
-(2624, '20230141', '1083', '', '2023-03-31', 60000, 60000, 136, 'dolares', '2023-09-01', '2023-09-15', 1, 3342, 1),
-(2625, '20230142', '1075', '131', '2023-04-02', 139800, 139800, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3343, 1),
-(2626, '20230143', '1080', '120', '2023-04-13', 65000, 65000, 114.75, 'dolares', '2023-09-01', '2023-09-15', 1, 3344, 1),
-(2627, '20230144', '', '', '2023-04-14', 0, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3345, 1),
-(2628, '20230145', '', '', '2023-04-17', 60000, 4100, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3346, 1),
-(2629, '20230146', '', '', '2023-04-18', 60000, 0, 25900, 'colones', '2023-08-01', '2023-08-15', 1, 3347, 1),
-(2630, '20230147', '', '', '2023-04-15', 0, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3348, 1),
-(2631, '20230148', '', '', '2023-04-24', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3349, 1),
-(2632, '20230149', '', '', '2023-04-25', 0, 0, 39900, 'colones', '2023-08-01', '2023-08-15', 1, 3350, 1),
-(2633, '20230150', '', '', '2023-04-25', 0, 0, 20000, 'colones', '2023-08-01', '2023-08-15', 1, 3351, 1),
-(2634, '20230151', '', '', '2023-04-25', 0, 0, 15000, 'colones', '2023-09-01', '2023-09-15', 1, 3352, 1),
-(2635, '20230152', '', '', '2023-04-26', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3353, 1),
-(2636, '20230153', '', '', '2023-04-26', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3354, 1),
-(2637, '20230154', '1077', '130', '2023-04-26', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3355, 1),
-(2638, '20230155', '1081', '131', '2023-04-29', 213100, 213100, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3356, 1),
-(2639, '20230156   REGALIA', '1082', '127', '2023-04-29', 0, 0, 25900, 'colones', '2023-08-01', '2023-08-15', 1, 3357, 0),
-(2640, '20230157', '', '', '2023-04-29', 0, 0, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3358, 1),
-(2641, '20230158', '1060', '126', '2023-04-29', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3359, 1),
-(2642, '20230159', '1067', '130', '2023-05-03', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3360, 1),
-(2643, '20230160', '', '', '2023-05-03', 0, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3361, 1),
-(2644, '20230161', '', '', '2023-05-06', 160000, 160000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3362, 1),
-(2645, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3363, 0),
-(2646, '20230163', '', '', '2023-05-11', 110000, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3364, 1),
-(2647, '20230164', '', '', '2023-05-12', 60000, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3365, 1),
-(2648, '20230165', '', '', '2023-05-13', 60000, 20000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3366, 1),
-(2649, '20230166', '', '', '2023-05-15', 0, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3367, 1),
-(2650, '20230167', '', '', '2023-05-20', 50000, 50000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3368, 1),
-(2651, '20230168', '', '', '2023-05-20', 50000, 50000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3369, 1),
-(2652, '20230169', '', '', '2023-05-29', 0, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3370, 1),
-(2653, '20230170', '', '', '2023-06-02', 0, 0, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3371, 1),
-(2654, '20230171', '', '', '2023-06-03', 0, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3372, 1),
-(2655, '20230172', '1084', '127', '2023-06-08', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3373, 1),
-(2656, '20230173', '1040', '132', '2023-06-09', 60000, 0, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3374, 1),
-(2657, '20230174', '', '', '2023-06-12', 90000, 90000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3375, 1),
-(2658, '20230175', '1087', '127', '2023-06-12', 60000, 10000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3376, 1),
-(2659, '20230176', '', '', '2023-06-12', 0, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3377, 1),
-(2660, '', '', '', '2023-07-06', 0, 0, 0, 'colones', '2023-09-01', '2023-09-15', 1, 3378, 1),
-(2661, '20230178', '', '128', '2023-06-13', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3379, 1),
-(2662, '20230179', '', '', '2023-06-13', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3380, 1),
-(2663, '20230180', '', '', '2023-06-16', 90000, 90000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3381, 1),
-(2664, '20230181', '1085', '128', '2023-06-16', 60000, 60000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3382, 1),
-(2665, '20230182', '', '', '2023-06-17', 30000, 30000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3383, 1),
-(2666, '20230183', '', '', '2023-06-17', 30000, 30000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3384, 1),
-(2667, '20230184', '', '', '2023-06-17', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3385, 1),
-(2668, '20230185', '', '', '2023-06-07', 60000, 32000, 30000, 'colones', '2023-09-01', '2023-09-15', 1, 3386, 1),
-(2669, '20230186', '', '', '2023-06-19', 60000, 60000, 0, 'colones', '2023-09-01', '2023-09-15', 1, 3387, 1),
-(2670, '20230187', '', '', '2023-06-19', 90000, 0, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3388, 1),
-(2671, '20230188', '', '', '2023-06-19', 60000, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3389, 1),
-(2672, NULL, '', '', NULL, NULL, NULL, NULL, 'colones', '2023-08-01', '2023-08-15', 1, 3390, 0),
-(2673, '20230190', '', '', '2023-06-20', 60000, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3391, 1),
-(2674, '20230191', '', '', '2023-06-20', 60000, 20000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3392, 1),
-(2675, '20230192', '', '', '2023-06-21', 60000, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3393, 1),
-(2676, '20230193', '', '', '2023-06-21', 60000, 60000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3394, 1),
-(2677, '20230194', '', '', '2023-06-23', 0, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3395, 1),
-(2678, '20230195', '', '', '2023-06-23', 60000, 40000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3396, 1),
-(2679, '20230196', '', '', '2023-06-24', 0, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3397, 1),
-(2680, '20230197', '', '', '2023-06-26', 60000, 33200, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3398, 1),
-(2681, '20230198', '', '', '2023-06-28', 0, 0, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3399, 1),
-(2682, '20230199', '', '', '2023-06-28', 0, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3400, 1),
-(2683, '20230200', '', '', '2023-05-02', 60000, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3401, 1),
-(2684, '20230201', '', '', '2023-07-04', 30000, 30000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3402, 1),
-(2685, '20230202', '1095', '130', '2023-07-07', 30000, 30000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3403, 1),
-(2686, '20230203', '1088', '130', '2023-07-04', 60000, 60000, 39900, 'colones', '2023-09-01', '2023-09-15', 1, 3404, 1),
-(2687, '20230204', '', '', '2023-07-04', 60000, 40000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3405, 1),
-(2688, '20230205', '', '', '2023-07-04', 0, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3406, 1),
-(2689, '20230206', '', '', '2023-07-04', 60000, 0, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3407, 1),
-(2690, '20230207', '', '', '2023-07-10', 60000, 10000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3408, 1),
-(2691, '20230208', '', '', '2023-07-11', 60000, 10000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3409, 1),
-(2692, '20230209', '', '', '2023-07-12', 60000, 35000, 25000, 'colones', '2023-09-01', '2023-09-15', 1, 3410, 1),
-(2693, '20230210', '1090', '126', '2023-07-18', 60000, 40000, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3411, 1),
-(2694, '20230211', '', '', '2023-07-18', 60000, 20000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3412, 1),
-(2695, '20230212', '', '', '2023-07-19', 60000, 0, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3413, 1),
-(2696, '20230213', '', '', '2023-07-20', 60000, 23000, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3414, 1),
-(2697, '20230214', '1091', '', '2023-07-21', 74070, 74070, 29900, 'colones', '2023-09-01', '2023-09-15', 1, 3415, 1),
-(2698, '20230215', '', '', '2023-07-22', 0, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3416, 1),
-(2699, '20221001', '1002', '120', '2022-10-01', 0, 0, 114.75, 'dolares', '2023-09-01', '2023-09-15', 1, 3417, 1),
-(2700, '20221010', '1001', '136', '2022-10-01', 0, 0, 203.1, 'dolares', '2023-09-01', '2023-09-15', 1, 3418, 1),
-(2701, '20221002', '1003', '137', '2022-10-01', 0, 0, 242.5, 'dolares', '2023-09-01', '2023-09-15', 1, 3419, 1),
-(2702, '', '', '', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3420, 0),
-(2703, '2022100320221006', '1043', '135', '2022-10-01', 0, 0, 252.45, 'dolares', '2023-09-01', '2023-09-15', 1, 3421, 1),
-(2704, '20221004', '1005', '134', '2022-10-01', 0, 0, 355.42, 'dolares', '2023-09-01', '2023-09-15', 1, 3422, 1),
-(2705, '20221005', '', '', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3423, 0),
-(2706, '20221006', '', '123', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3424, 0),
-(2707, '20221007', '1008', '122', '2022-10-01', 0, 0, 172.13, 'dolares', '2023-09-01', '2023-09-15', 1, 3425, 1),
-(2708, '20221008', '1009', '121', '2022-10-01', 0, 0, 517, 'dolares', '2023-09-01', '2023-09-15', 1, 3426, 1),
-(2709, '20221009', '1010', '120', '2022-10-01', 0, 0, 114.75, 'dolares', '2023-08-01', '2023-08-15', 1, 3427, 1),
-(2710, '20221011', '1011', '101', '2022-10-01', 0, 0, 269.66, 'dolares', '2023-09-01', '2023-09-15', 1, 3428, 1),
-(2711, '20221012', '1012', '119', '2022-10-01', 0, 0, 201.81, 'dolares', '2023-09-01', '2023-09-15', 1, 3429, 1),
-(2712, '20221013', '1029', '102', '2022-10-01', 0, 0, 177.71, 'dolares', '2023-09-01', '2023-09-15', 1, 3430, 1),
-(2713, '20221014', '1014', '118', '2022-10-01', 0, 0, 201.81, 'dolares', '2023-09-01', '2023-09-15', 1, 3431, 1),
-(2714, '20221015', '1062', '117', '2022-10-01', 0, 0, 218.03, 'dolares', '2023-09-01', '2023-09-15', 0, 3432, 1),
-(2715, '20221016', '1016', '116', '2022-10-01', 0, 0, 170.98, 'dolares', '2023-09-01', '2023-09-15', 1, 3433, 1),
-(2716, '20221017', '1039', '103', '2000-10-01', 0, 0, 143.44, 'dolares', '2023-09-01', '2023-09-15', 1, 3434, 1),
-(2717, '20221018', '1040', '115', '2022-10-01', 0, 0, 80000, 'colones', '2023-09-01', '2023-09-15', 1, 3435, 1),
-(2718, '20221019', '1027', '114', '2022-10-01', 0, 0, 172.55, 'dolares', '2023-09-01', '2023-09-15', 1, 3436, 1),
-(2719, '20221020', '1026', '114', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3437, 0),
-(2720, '20221021', '1041', '113', '2022-10-01', 0, 0, 143.44, 'dolares', '2023-09-01', '2023-09-15', 1, 3438, 1),
-(2721, '20221022', '1025', '112', '2022-10-01', 0, 0, 154.91, 'dolares', '2023-09-01', '2023-09-15', 1, 3439, 1),
-(2722, '20221023', '1024', '111', '2022-10-01', 0, 0, 131, 'dolares', '2023-09-01', '2023-09-15', 1, 3440, 1),
-(2723, '20221024', '1023', '110', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3441, 0),
-(2724, '20221025', '1022', '109', '2022-10-01', 0, 0, 172.13, 'dolares', '2023-09-01', '2023-09-15', 1, 3442, 1),
-(2725, '20221026', '1021', '133', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3443, 0),
-(2726, '20221027', '1020', '108', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3444, 0),
-(2727, '20221028', '1019', '107', '2022-10-01', 0, 0, 315.56, 'dolares', '2023-09-01', '2023-09-15', 1, 3445, 1),
-(2728, '20221029', '1018', '106', '2022-10-01', 0, 0, 304.65, 'dolares', '2023-09-01', '2023-09-15', 1, 3446, 1),
-(2729, '20221030', '1042', '105', '2022-10-01', 0, 0, 172.13, 'dolares', '2023-08-01', '2023-08-15', 1, 3447, 0),
-(2730, '20221031', '1017', '104', '2022-10-01', 0, 0, 167.56, 'dolares', '2023-09-01', '2023-09-15', 1, 3448, 1),
-(2731, '20221032', '', '', '2022-10-01', 0, 0, 0, 'dolares', '2023-09-01', '2023-09-15', 1, 3449, 1),
-(2732, '', '', '', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3450, 1),
-(2733, '', '', '', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3451, 1),
-(2734, '', '', '', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3452, 1),
-(2735, '', '', '', NULL, NULL, NULL, 0, 'dolares', '2023-08-01', '2023-08-15', 1, 3453, 1),
-(2736, '20230216', '', '', '2023-07-22', 50000, 50000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3454, 1),
-(2737, '20230217', '', '', '2023-07-31', 60000, 0, 20000, 'colones', '2023-09-01', '2023-09-15', 1, 3461, 1),
-(2738, '20230218', '', '', '2023-07-31', 60000, 20000, 25900, 'colones', '2023-09-01', '2023-09-15', 1, 3462, 1),
-(2739, '20230220', '1096', '131', '2023-08-01', 60000, 0, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3463, 1),
-(2740, '20210179', '', '', '2022-01-14', 6000, 60000, 40450, 'colones', '2023-09-01', '2023-09-15', 1, 3464, 1),
-(2741, '20230221', '1097', '131', '2023-08-01', 60000, 60000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3465, 1),
-(2742, '20230223', '', '', '2023-08-07', 35000, 15000, 49900, 'colones', '2023-09-01', '2023-09-15', 1, 3466, 1),
-(2743, '20230222', '1098', '131', '2023-08-07', 60000, 0, 49900, 'colones', '2023-08-01', '2023-08-08', 1, 3467, 1),
-(2744, '20230224', '', '', '2023-08-08', 60000, 0, 39900, 'colones', '2023-08-01', '2023-08-15', 1, 3468, 1),
-(2745, '20230225', '', '', '2023-08-08', 30000, 0, 25000, 'colones', '2023-09-01', '2023-09-15', 1, 3469, 1),
-(2746, '20230226', '', '', '2023-08-08', 60000, 0, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3470, 0),
-(2747, '20230226', '', '', '2023-08-09', 30000, 15000, 29900, 'colones', '2023-08-01', '2023-08-15', 1, 3471, 1),
-(2748, '20230227', '', '', '2023-08-15', 60000, 0, 39900, 'colones', '2023-08-01', '2023-08-15', 1, 3472, 1),
-(2749, '20230228', '', '', '2023-08-15', 0, 0, 0, 'colones', '2023-09-01', '2023-09-16', 1, 3473, 1),
-(2750, '20230229', '1099', '130', '2023-08-15', 60000, 0, 39900, 'colones', '2023-09-01', '2023-09-16', 1, 3474, 1),
-(2751, '20230231', '', '', '2023-08-29', 0, 0, 39900, 'colones', '2023-10-01', '2023-10-15', 1, 3476, 1),
-(2752, '20230230', '', '', '2023-08-28', 60000, 60000, 20000, 'colones', '2023-10-01', '2023-10-15', 1, 3477, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `equipo`
---
-
-CREATE TABLE `equipo` (
-  `id_equipo` int(11) NOT NULL,
-  `equipo` varchar(255) DEFAULT NULL,
-  `mac_address` varchar(255) DEFAULT NULL,
-  `serie` varchar(255) DEFAULT NULL,
-  `id_servicio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `equipo`
---
-
-INSERT INTO `equipo` (`id_equipo`, `equipo`, `mac_address`, `serie`, `id_servicio`) VALUES
-(5501, 'NBE-5AC-Gen2', 'E063DAF205E9', '20044104612', 2376),
-(5502, 'hAP ac lite', '48:8F:5A:BF:67:4B/42', '20044104612', 2376),
-(5503, 'ETH-SP-G2', '', '20044104612', 2376),
-(5504, 'NBE-5AC-Gen2', 'E063DAF20B08', '20044104643', 2377),
-(5505, 'hAP ac lite', '48:8F:5A:BF:68:4D/53', '20044104643', 2377),
-(5506, 'ETH-SP-G2', '', '20044104643', 2377),
-(5507, 'LBE-5AC-Gen2', '', '20044104626', 2378),
-(5508, 'hAP ac lite', '48:8F:5A:BF:68:F8/FE', '20044104626', 2378),
-(5509, 'ETH-SP-G2', '', '20044104626', 2378),
-(5510, 'NBE-5AC-Gen2', 'E063DAF20A4A', '', 2379),
-(5511, 'hAP ac lite', '48:8F:5A:BF:67:90/96', '', 2379),
-(5512, 'ETH-SP-G2', '', '', 2379),
-(5513, 'NBE-5AC-Gen2', 'E063DAF20B3E', '20044104664', 2380),
-(5514, 'hAP ac lite', '48:8F:5A:BF:66:F9/FF', '20044104664', 2380),
-(5515, 'ETH-SP-G2', '', '20044104664', 2380),
-(5516, 'LBE-5AC-Gen2', '24:5A:4C:B4:79:64', '21074123508', 2381),
-(5517, 'hAP lite', '', '21074123508', 2381),
-(5518, 'LBE-5AC-Gen2', '', '21074123508', 2381),
-(5519, 'LBE-5AC-Gen2', '68:D7:9A:A8:50:D3', '20044104602', 2382),
-(5520, 'hAP ac lite', '48:8F:5A:BF:66:AA/B0', '20044104602', 2382),
-(5521, 'ETH-SP-G2', '', '20044104602', 2382),
-(5522, 'LBE-M5-23', '74ACB9F2B2A8', '', 2383),
-(5523, 'hAP ac lite', '', '', 2383),
-(5524, 'LBE-M5-23', '', '', 2383),
-(5525, 'NBE-5AC-Gen2', 'E063DAF2061E', '20044103809', 2384),
-(5526, 'CISCO ', '', '20044103809', 2384),
-(5527, 'NBE-5AC-Gen2', '', '20044103809', 2384),
-(5528, 'NBE-5AC-Gen2', 'E0:63:DA:F2:04:D0', '', 2385),
-(5529, 'hAP mini', '48:8F:5A:BF:67:9E/A4', '', 2385),
-(5530, 'ETH-SP-G2', '', '', 2385),
-(5531, 'NBE-5AC-Gen2', 'E063DAD45580', '20044104634', 2386),
-(5532, 'hAP lite', '08:55:31:14:14:4F/54', '20044104634', 2386),
-(5533, 'ETH-SP-G2', '', '20044104634', 2386),
-(5534, 'LBE-5AC-Gen2', '68:D7:9A:B2:39:AE', '20044123097', 2387),
-(5535, 'hAP lite', '', '20044123097', 2387),
-(5536, 'LBE-5AC-Gen2', '', '20044123097', 2387),
-(5537, 'LBE-M5-23', '74ACB9F2B2A9', '', 2388),
-(5538, 'hAP litehAp mini', '', '', 2388),
-(5539, 'LBE-M5-23', '', '', 2388),
-(5540, 'NBE-5AC-Gen2', 'E063DAD45512', '', 2389),
-(5541, 'hAP lite', '08:55:31:14:1D:2A/2F', '', 2389),
-(5542, 'ETH-SP-G2', '', '', 2389),
-(5543, 'NANO LOCO', '24:5A:4C:34:45:3B', '20044104612', 2390),
-(5544, 'hAP lite', '', '20044104612', 2390),
-(5545, 'NANO LOCO', '', '20044104612', 2390),
-(5546, 'NBE-5AC-Gen2', 'E063DAF2061E', '', 2391),
-(5547, 'hAP lite', '08:55:31:16:0E:D7:DC', '', 2391),
-(5548, 'ETH-SP-G2', '', '', 2391),
-(5549, 'LBE-M5-23', '74ACB9F2B453', '', 2392),
-(5550, 'hAP lite', '', '', 2392),
-(5551, 'LBE-M5-23', '', '', 2392),
-(5552, 'LBE-5AC-Gen2', 'F492BF4222F8', '', 2393),
-(5553, 'hAP lite', '', '', 2393),
-(5554, 'LBE-5AC-Gen2', '', '', 2393),
-(5555, 'NBE-5AC-Gen2', 'E063DAF20639', '20074113709', 2394),
-(5556, 'hAP mini', '08:55:31:65:8B:6D/r2', '20074113709', 2394),
-(5557, 'ETH-SP-G2', '', '20074113709', 2394),
-(5558, 'NBE-5AC-Gen2', 'E063DAD0C018', '20074113845', 2395),
-(5559, 'hAP mini', '08:55:31:65:8D:31/35', '20074113845', 2395),
-(5560, 'ETH-SP-G2', '', '20074113845', 2395),
-(5561, 'LBE-M5-23', '74ACB9F2B0F2', '20044104645', 2396),
-(5562, 'hAP mini', '', '20044104645', 2396),
-(5563, 'LBE-M5-23', '', '20044104645', 2396),
-(5564, 'NBE-5AC-Gen2', 'E063DAD0BF98', '20044104619', 2397),
-(5565, 'hAP lite', '', '20044104619', 2397),
-(5566, 'NBE-5AC-Gen2', '', '20044104619', 2397),
-(5567, 'LBE-M5-23', '74ACB9F2851D', '20044103925', 2398),
-(5568, 'hAP lite', '', '20044103925', 2398),
-(5569, 'LBE-M5-23', '', '20044103925', 2398),
-(5570, 'LBE-M5-23', '74ACB9F2B0AF', '20044103963', 2399),
-(5571, 'hAP lite', '08:55:31:73:A7:73/78', '20044103963', 2399),
-(5572, 'ETH-SP-G2', '', '20044103963', 2399),
-(5573, 'NBE-5AC-Gen2', 'E063EDAF20B3F', '20044103967', 2400),
-(5574, 'hAP lite\nhAP mini', '08:55:31:14:24:D0/D5\n08:55:31:65:90:E4:/E8', '20044103967', 2400),
-(5575, 'ETH-SP-G2', '', '20044103967', 2400),
-(5576, 'LBE-5AC-Gen2', '68:D7:9A:B2:3C:C5', 'N/A', 2401),
-(5577, 'N/A', 'N/A', 'N/A', 2401),
-(5578, 'N/A', '', 'N/A', 2401),
-(5579, 'NBE-5AC-Gen2', 'E0:63:DA:F2:07:95', '20044104211', 2402),
-(5580, 'hAP lite', '08:55:31:71:0C:97/9C', '20044104211', 2402),
-(5581, 'ETH-SP-G2', '', '20044104211', 2402),
-(5582, '', '', '', 2403),
-(5583, '', '', '', 2403),
-(5584, 'NBE-5AC-Gen2', 'E063DAF205ED', '20044103826', 2404),
-(5585, 'hAP lite', '08:55:31:73:A4:2F/34', '20044103826', 2404),
-(5586, 'ETH-SP-G2', '', '20044103826', 2404),
-(5587, 'NBE-5AC-Gen2', 'E063DAF205ED', '', 2405),
-(5588, 'hAP lite', '08:55:31:71:0C:30/35', '', 2405),
-(5589, 'NBE-5AC-Gen2', 'E063DAD0C1EA', '20074113879', 2406),
-(5590, 'hAP mini', '', '20074113879', 2406),
-(5591, 'NBE-5AC-Gen2', '', '20074113879', 2406),
-(5592, 'NBE-5AC-Gen2', 'E063DA969D71', '20074113843', 2407),
-(5593, 'hAP mini', '08:55:31:65:8D:02/06', '20074113843', 2407),
-(5594, 'ETH-SP-G2', '', '20074113843', 2407),
-(5595, 'NBE-5AC-Gen2', '68:D7:9A:B2:6A:C8', '', 2408),
-(5596, 'LBE-5AC-Gen2', '68:D7:9A:B6:6C:16', '', 2409),
-(5597, 'hAP lite', '', '', 2409),
-(5598, 'LBE-5AC-Gen2', '', '', 2409),
-(5599, 'N/A', 'N/A', 'N/A', 2410),
-(5600, 'N/A', 'N/A', 'N/A', 2410),
-(5601, 'N/A', '', 'N/A', 2410),
-(5602, 'NBE-5AC-Gen2', 'F492BF420741', '20044103823', 2411),
-(5603, 'hAP mini', '', '20044103823', 2411),
-(5604, 'NBE-5AC-Gen2', '', '20044103823', 2411),
-(5605, 'LBE-5AC-Gen2', 'F492BF423729', '20074113922', 2412),
-(5606, 'hAP mini', '', '20074113922', 2412),
-(5607, 'LBE-5AC-Gen2', '', '20074113922', 2412),
-(5608, 'LBE-5AC-Gen2', '68D79AA453C6', '20074113677', 2413),
-(5609, 'hAP mini', '08:55:31:65:8F:18/1C\n08:55:31:65:86:21/25', '20074113677', 2413),
-(5610, 'ETH-SP-G2', '', '20074113677', 2413),
-(5611, '', '', '', 2414),
-(5612, '', '', '', 2414),
-(5613, 'LBE-5AC-Gen2', '60:22:32:C6:FE:40', '20074113849', 2415),
-(5614, 'hAP ac lite', '', '20074113849', 2415),
-(5615, 'LBE-5AC-Gen2', '', '20074113849', 2415),
-(5616, 'NANO STATION', 'F492BFD83B84\nF492BFD85010', '20074113568', 2416),
-(5617, 'hAP mini', '08:55:31:65:8D:36/3A', '20074113568', 2416),
-(5618, 'ETH-SP-G2', '', '20074113568', 2416),
-(5619, 'LBE-5AC-Gen2', 'F492BF423EAC', '20074113865', 2417),
-(5620, 'hAP mini', '', '20074113865', 2417),
-(5621, 'LBE-5AC-Gen2', '', '20074113865', 2417),
-(5622, 'NBE-5AC-Gen2', 'E063DAD4542A', '20074113751', 2419),
-(5623, 'hAP mini', '08:55:31:66:FF:9E/A2', '20074113751', 2419),
-(5624, 'ETH-SP-G2', '', '20074113751', 2419),
-(5625, 'LBE-M5-23\nLBE-5AC-Gen2', '74ACB9F2AEAA\nF49BF423CDE', '', 2420),
-(5626, 'LINKSYS', 'PROPIO', '', 2420),
-(5627, 'Loco5ACLoco5AC', 'F492BFD84C23F49BFD83E7F', '20074120675', 2421),
-(5628, 'hAP mini', '', '20074120675', 2421),
-(5629, 'Loco5ACLoco5AC', '', '20074120675', 2421),
-(5630, 'NBE-5AC-Gen2', 'E0:63:DA:D4:55:71', '', 2422),
-(5631, 'hAP mini', '08:55:31:66:0D:C2/C6', '', 2422),
-(5632, '', '', '', 2423),
-(5633, '', '', '', 2423),
-(5634, 'NBE-5AC-Gen2', 'E063DAD0C018', '20074113743', 2424),
-(5635, 'hAP mini', '08:55:31:66:0C:E7/EB', '20074113743', 2424),
-(5636, 'ETH-SP-G2', '', '20074113743', 2424),
-(5637, 'LBE-5AC-Gen2', 'F492BF422C36', '20044104261', 2425),
-(5638, 'hAP mini', '08:55:31:65:83:E4/E8', '20044104261', 2425),
-(5639, 'ETH-SP-G2', '', '20044104261', 2425),
-(5640, 'LBE-5AC-Gen2', 'F492BFDA2A0B', '20074120531', 2426),
-(5641, 'hAP mini', '08:55:31:66:F0:E0/E4', '20074120531', 2426),
-(5642, 'ETH-SP-G2', '', '20074120531', 2426),
-(5643, 'NANO STATIONNANO STATION', 'F492BFEED44DF492BFEED33F', '20074120674', 2427),
-(5644, 'hAP mini', '', '20074120674', 2427),
-(5645, 'NANO STATIONNANO STATION', '', '20074120674', 2427),
-(5646, 'LBE-5AC-Gen2', 'F492BF4CB750', '2.00E+11', 2428),
-(5647, 'hAP mini', '48:8F:5A:E0:06:52/56', '2.00E+11', 2428),
-(5648, 'ETH-SP-G2', '', '2.00E+11', 2428),
-(5649, 'LBE-5AC-Gen2', 'F492BFDA281A', '20074113671', 2429),
-(5650, 'hAP mini', '', '20074113671', 2429),
-(5651, 'LBE-5AC-Gen2', '', '20074113671', 2429),
-(5652, 'LBE-5AC-Gen2', '68:D7:9A:90:1F:A2', '20074120425', 2430),
-(5653, 'hAP mini', '', '20074120425', 2430),
-(5654, 'LBE-5AC-Gen2', '', '20074120425', 2430),
-(5655, 'LBE-5AC-Gen2', '68D79AA453C6', '20114117341', 2431),
-(5656, 'hAP mini', '', '20114117341', 2431),
-(5657, 'LBE-5AC-Gen2', '', '20114117341', 2431),
-(5658, 'NBE-5AC-Gen2 loco 5AC', 'E063DAF0FDEE F492BFD845AB', '20124123866', 2432),
-(5659, 'hAP mini', '08:55:31:1E:15:F4/F8', '20124123866', 2432),
-(5660, 'ETH-SP-G2', '', '20124123866', 2432),
-(5661, 'NBE-5AC-Gen2 LBE-5AC-Gen2', 'E63DAD4542B\n68D79AA456C6', '20124123766', 2433),
-(5662, 'hAP mini', '08:55:31:1E:16:9B/9F', '20124123766', 2433),
-(5663, 'ETH-SP-G2', '', '20124123766', 2433),
-(5664, 'LBE-5AC-Gen2', 'F4:92:BF:42:22:36', '20124123855', 2434),
-(5665, 'hAP mini', '08:55:31:1E:16:88/8C', '20124123855', 2434),
-(5666, 'ETH-SP-G2', '', '20124123855', 2434),
-(5667, 'LBE-5AC-Gen2', '68D79AA86078', '20124124089', 2436),
-(5668, 'hAP mini', '08:55:31:4F:D1:4B/4F', '20124124089', 2436),
-(5669, 'ETH-SP-G2', '', '20124124089', 2436),
-(5670, 'LBE-5AC-Gen2', '68D79AA869D5', '20114117658', 2437),
-(5671, 'hAP mini', '', '20114117658', 2437),
-(5672, 'LBE-5AC-Gen2', '', '20114117658', 2437),
-(5673, 'NBE-5AC-Gen2', 'E0:63:DA:F0:16:17', '20114116885', 2438),
-(5674, 'hAP mini', '', '20114116885', 2438),
-(5675, 'NBE-5AC-Gen2', '', '20114116885', 2438),
-(5676, 'LBE-5AC-Gen2', '68D79AA86A06', '20124123734', 2439),
-(5677, 'hAP mini', '08:55.31:4F:D0:F0/F4', '20124123734', 2439),
-(5678, 'ETH-SP-G2', '', '20124123734', 2439),
-(5679, 'LBE-5AC-Gen2', '68D79AA8683D', '20124123848', 2440),
-(5680, 'hAP mini', '', '20124123848', 2440),
-(5681, 'LBE-5AC-Gen2', '', '20124123848', 2440),
-(5682, '', '', '', 2441),
-(5683, '', '', '', 2441),
-(5684, '', '', '', 2442),
-(5685, '', '', '', 2442),
-(5686, 'LBE-5AC-Gen2', '68D79AA86888', '20114117365', 2443),
-(5687, 'hAP mini', '2C:C8:1B:75:B0:BB/BF', '20114117365', 2443),
-(5688, 'ETH-SP-G2', '', '20114117365', 2443),
-(5689, 'LBE-5AC-Gen2', '68D79AA86A88', '20114116927', 2444),
-(5690, 'hAP mini', '', '20114116927', 2444),
-(5691, 'LBE-5AC-Gen2', '', '20114116927', 2444),
-(5692, 'LBE-5AC-Gen2', '68:D7:9A:A8:6A:C2', '20114116897', 2445),
-(5693, 'hAP mini', '', '20114116897', 2445),
-(5694, 'LBE-5AC-Gen2', '', '20114116897', 2445),
-(5695, 'NBE-5AC-Gen2', 'E0:63:DA:D4:55:77', '20114116906', 2446),
-(5696, 'hAP mini', '', '20114116906', 2446),
-(5697, 'NBE-5AC-Gen2', '', '20114116906', 2446),
-(5698, 'ETH-SP-G2', '', '20114116889', 2447),
-(5699, 'N/A', 'N/A', 'N/A', 2448),
-(5700, 'N/A', 'N/A', 'N/A', 2448),
-(5701, 'N/A', '', 'N/A', 2448),
-(5702, 'NBE-5AC-Gen2', 'E0:63:DA:D0:C1:92', '20114116922', 2449),
-(5703, 'hAP mini', '08:55:31:4F:D1:09/0D', '20114116922', 2449),
-(5704, 'ETH-SP-G2', '', '20114116922', 2449),
-(5705, 'NBE-5AC-Gen2', 'E0:63:DA:D0:BF:59', '20114116922', 2450),
-(5706, 'hAP mini', '2C:C8:1B:0A:AF:CD/D1', '20114116922', 2450),
-(5707, 'ETH-SP-G2', '', '20114116922', 2450),
-(5708, 'N/A', 'N/A', 'N/A', 2451),
-(5709, 'N/A', 'N/A', 'N/A', 2451),
-(5710, 'N/A', '', 'N/A', 2451),
-(5711, 'LBE-5AC-Gen2', '68:D7:9A:B2:7A:93', '20114116915', 2452),
-(5712, 'hAP lite', '', '20114116915', 2452),
-(5713, 'LBE-5AC-Gen2', '', '20114116915', 2452),
-(5714, 'LBE-5AC-Gen2', '68:D7:9A:B4:AC:76', '20114116899', 2453),
-(5715, 'hAP lite', '', '20114116899', 2453),
-(5716, 'LBE-5AC-Gen2', '', '20114116899', 2453),
-(5717, 'LBE-5AC-Gen2', '68:D7:9A:A8:5C:23', '20044104650', 2454),
-(5718, 'hAP lite', '08:55:31:14:1D:03', '20044104650', 2454),
-(5719, 'ETH-SP-G2', '', '20044104650', 2454),
-(5720, '', '', '', 2455),
-(5721, '', '', '', 2455),
-(5722, '', '', '', 2456),
-(5723, '', '', '', 2456),
-(5724, '', '', '', 2457),
-(5725, 'LBE-5AC-Gen2', '68:D7:9A:B2:3C:46', '21014130678', 2458),
-(5726, 'hAP lite', 'DC:2C:6E:04:52:A7/AC', '21014130678', 2458),
-(5727, 'ETH-SP-G2', '', '21014130678', 2458),
-(5728, '', '', '', 2459),
-(5729, '', '', '', 2459),
-(5730, '', '', '', 2460),
-(5731, '', '', '', 2460),
-(5732, '', '', '', 2461),
-(5733, '', '', '', 2461),
-(5734, 'NANO STATION', '24:5A:4C:34:3F:B8', '2004056467', 2462),
-(5735, 'hAP mini', '', '2004056467', 2462),
-(5736, 'NANO STATION', '', '2004056467', 2462),
-(5737, '', '', '', 2463),
-(5738, 'LBE-5AC-Gen2', '68:D7:9A:A8:5F:3D', '', 2464),
-(5739, 'LBE-5AC-Gen2', '68:D7:9A:B2:40:56', '', 2465),
-(5740, 'CUBE', '74ACB9F03C', '', 2465),
-(5741, 'LBE-5AC-Gen2', 'F4:92:BF:DA:2A:0B', '21014130682', 2466),
-(5742, 'hAP mini', '', '21014130682', 2466),
-(5743, 'LBE-5AC-Gen2', '', '21014130682', 2466),
-(5744, '', '', '', 2467),
-(5745, '', '', '', 2467),
-(5746, 'LBE-5AC-Gen2', '68:D7:9A:A8:61:39', '21014130692', 2468),
-(5747, 'HAP mini', '2C:C8:1B:0A:BE:E5/E9', '21014130692', 2468),
-(5748, 'ETH-SP-G2', '', '21014130692', 2468),
-(5749, 'LiteBeam M5', '70:A7:41:22:C8:BA', '21014130977', 2469),
-(5750, 'HAP mini', '', '21014130977', 2469),
-(5751, 'LiteBeam M5', '', '21014130977', 2469),
-(5752, 'LBE-5AC-Gen2', '68:D7:9A:B6:6C:B9', '21014131001', 2470),
-(5753, 'HAP mini', '', '21014131001', 2470),
-(5754, 'LBE-5AC-Gen2', '', '21014131001', 2470),
-(5755, 'LBE-5AC-Gen2', '68:D7:9A:B4:A3:B9', '20114116955', 2471),
-(5756, 'HAP mini', '', '20114116955', 2471),
-(5757, 'LBE-5AC-Gen2', '', '20114116955', 2471),
-(5758, '', '', '', 2472),
-(5759, '', '', '', 2473),
-(5760, '', '', '', 2473),
-(5761, 'LBE-5AC-Gen2', '68:D7:9A:B6:6A:3C', '20114116968', 2474),
-(5762, 'hAP lite', '2C:C8:1B:D9:91:50', '20114116968', 2474),
-(5763, 'ETH-SP-G2', '', '20114116968', 2474),
-(5764, 'NANO STATION', '68:D7:9A:A2:34:51', '', 2475),
-(5765, 'HAP mini', '', '', 2475),
-(5766, 'NANO STATION', '', '', 2475),
-(5767, 'LBE-5AC-Gen2', '68:D7:9A:B8:32:D4', '21014131003', 2476),
-(5768, 'hAP lite', '', '21014131003', 2476),
-(5769, 'LBE-5AC-Gen2', '', '21014131003', 2476),
-(5770, '', '', '', 2477),
-(5771, '', '', '', 2477),
-(5772, '', '', '', 2478),
-(5773, '', '', '', 2478),
-(5774, 'PowerBeam 5AC-Gen2', '24:5A:4C:DE:08:58', '', 2479),
-(5775, 'hAP lite', '08:55:31:78:BA:5F', '', 2479),
-(5776, 'ETH-SP-G2', '', '', 2479),
-(5777, 'LBE-5AC-Gen2', '68:D7:9A:B2:36:C9', '21014140991', 2480),
-(5778, 'hAP lite', '', '21014140991', 2480),
-(5779, 'LBE-5AC-Gen2', '', '21014140991', 2480),
-(5780, 'NANO STATION', '68:D7:9A:A2:34:30', '21014140879', 2481),
-(5781, 'hAP lite', 'DC:2C:6E:61:DA:7E', '21014140879', 2481),
-(5782, 'ETH-SP-G2', '', '21014140879', 2481),
-(5783, 'LBE-5AC-Gen2', '68:D7:9A:B2:74:BE', '21014141219', 2482),
-(5784, 'hAP lite', '08:55:31:79:0A:07', '21014141219', 2482),
-(5785, 'ETH-SP-G2', '', '21014141219', 2482),
-(5786, 'LBE-5AC-Gen2', '68:D7:9A:B8:32:C8', '', 2483),
-(5787, 'hAP lite', '', '', 2483),
-(5788, 'LBE-5AC-Gen2', '', '', 2483),
-(5789, 'NANO STATION', '24:5A:4C:34:3B:54', '', 2484),
-(5790, 'hAP lite', '', '', 2484),
-(5791, 'NANO STATION', '', '', 2484),
-(5792, 'LBE-5AC-Gen2', '68:D7:9A:B2:7C:79', '21014141239', 2485),
-(5793, 'hAP lite', '2C:C8:1B:08:14:DB', '21014141239', 2485),
-(5794, 'ETH-SP-G2', '', '21014141239', 2485),
-(5795, 'PowerBeam 5AC-ISO', '24:5A:4C:0A:2E:B8', '21014141337', 2486),
-(5796, 'hAP lite', '', '21014141337', 2486),
-(5797, 'PowerBeam 5AC-ISO', '', '21014141337', 2486),
-(5798, 'LBE-5AC-Gen2', '68:D7:9A:B2:34:94', '', 2487),
-(5799, 'hAP lite', '', '', 2487),
-(5800, 'LBE-5AC-Gen2', '', '', 2487),
-(5801, 'LBE-5AC-Gen2', '68:D7:9A:B2:36:C9', '21014141292', 2488),
-(5802, 'hAP lite', '', '21014141292', 2488),
-(5803, 'LBE-5AC-Gen2', '', '21014141292', 2488),
-(5804, 'LBE-5AC-Gen2', '68:D7:9A:B6:6E:63', '21014141251', 2489),
-(5805, 'hAP lite', '', '21014141251', 2489),
-(5806, 'LBE-5AC-Gen2', '', '21014141251', 2489),
-(5807, 'LBE-5AC-Gen2', '68:D7:9A:B6:6E:6C', '21044567341', 2490),
-(5808, 'hAP lite', '', '21044567341', 2490),
-(5809, 'LBE-5AC-Gen2', '', '21044567341', 2490),
-(5810, 'LBE-5AC-Gen2', '24:5A:4C:30:32:8D', '2.10E+11', 2491),
-(5811, 'HAP mini', '2C:C8:1B:0A:B5:84', '2.10E+11', 2491),
-(5812, 'ETH-SP-G2', '', '2.10E+11', 2491),
-(5813, 'LBE-5AC-Gen2', '68:D7:9A:B6:6E:C6', '', 2492),
-(5814, 'hAP lite', '', '', 2492),
-(5815, 'LBE-5AC-Gen2', '', '', 2492),
-(5816, 'LBE-5AC-Gen2', '24:5A:4C:30:BA:AC', '', 2493),
-(5817, 'HAP mini', '', '', 2493),
-(5818, 'LBE-5AC-Gen2', '', '', 2493),
-(5819, 'LBE-5AC-Gen2', '68:D7:9A:B6:6D:90', '', 2494),
-(5820, 'hAP lite', '', '', 2494),
-(5821, 'LBE-5AC-Gen2', '', '', 2494),
-(5822, 'LBE-5AC-Gen2', '68:D7:9A:B2:75:4E', '', 2495),
-(5823, 'hAP lite', '', '', 2495),
-(5824, 'LBE-5AC-Gen2', '', '', 2495),
-(5825, 'LBE-5AC-Gen2', '24:5A:4C:B4:7E:08', '20014141341', 2496),
-(5826, 'hAP lite', 'DC:2C:6E:61:CC:44', '20014141341', 2496),
-(5827, 'ETH-SP-G2', '', '20014141341', 2496),
-(5828, 'NBE-5AC-Gen2', '24:5A:4C:06:91:81', '21044116117', 2497),
-(5829, 'hAP lite', '', '21044116117', 2497),
-(5830, 'NBE-5AC-Gen2', '', '21044116117', 2497),
-(5831, 'LBE-5AC-Gen2', '24:5A:4C:B6:0A:42', '21044116107', 2498),
-(5832, 'hAP lite', '', '21044116107', 2498),
-(5833, 'LBE-5AC-Gen2', '', '21044116107', 2498),
-(5834, 'NANO STATION M5', '24:5A:4C:B6:06:0A', '21104140368', 2499),
-(5835, 'hAP lite', 'DC:2C:6E:F4:F9:3E', '21104140368', 2499),
-(5836, 'ETH-SP-G2', '', '21104140368', 2499),
-(5837, 'LBE-5AC-Gen2', '24:5A:4C:B2:3C:5B', '21014141210', 2500),
-(5838, 'hAP lite', 'DC:2C:6E:61:CB:BA', '21014141210', 2500),
-(5839, 'ETH-SP-G2', '', '21014141210', 2500),
-(5840, 'LBE-5AC-Gen2', '24:5A:4C:B4:7F:FE', '21074123373', 2501),
-(5841, 'hAP lite', 'DC:2C:6E:61:CB:B9', '21074123373', 2501),
-(5842, 'ETH-SP-G2', '', '21074123373', 2501),
-(5843, 'LBE-5AC-Gen2', '24:5A:4C:B4:70:7E', '', 2502),
-(5844, 'hAP lite', '08:55:31:77:35:29', '', 2502),
-(5845, 'ETH-SP-G2', '', '', 2502),
-(5846, 'NANO STATION', '68:D7:9A:9E:86:2E', '', 2503),
-(5847, 'hAP lite', '08:55:31:77:18:FE', '', 2503),
-(5848, 'ETH-SP-G2', '', '', 2503),
-(5849, 'LBE-5AC-Gen2', '24:5A:4C:B6:0B:F6', '21074123499', 2504),
-(5850, 'hAP lite', '', '21074123499', 2504),
-(5851, 'LBE-5AC-Gen2', '', '21074123499', 2504),
-(5852, 'NBE-5AC-Gen2', '24:54:4C:06:8A:28', '21074115967', 2505),
-(5853, 'hAP lite', 'DC:2C:6E:67:18:40', '21074115967', 2505),
-(5854, 'ETH-SP-G2', '', '21074115967', 2505),
-(5855, 'LBE-5AC-Gen2', '24:5A:4C:B6:0A:45', '', 2506),
-(5856, 'hAP lite', 'DC:2C:6E:67:18:E2', '', 2506),
-(5857, 'ETH-SP-G2', '', '', 2506),
-(5858, 'LBE-5AC-Gen2', '24:5A:4C:B4:7B:7A', '', 2507),
-(5859, 'hAP lite', 'DC:2C:6E:67:18:9A', '', 2507),
-(5860, 'ETH-SP-G2', '', '', 2507),
-(5861, 'LBE-5AC-Gen2', '24:5A:4C:B4:79:42', '', 2508),
-(5862, 'hAP lite', 'DC:2C:6E:67:18:70', '', 2508),
-(5863, 'ETH-SP-G2', '', '', 2508),
-(5864, 'LBE-5AC-Gen2', '24:5A:4C:B4:72:71', '21074116030', 2509),
-(5865, 'hAP lite', 'DC:2C:6E:67:18:41', '21074116030', 2509),
-(5866, 'ETH-SP-G2', '', '21074116030', 2509),
-(5867, 'LBE-5AC-Gen2', '24:5A:4C:B4:7C:3B', '', 2510),
-(5868, 'hAP lite', 'DC.:2C:6E:68:69:D8', '', 2510),
-(5869, 'ETH-SP-G2', '', '', 2510),
-(5870, 'LBE-5AC-Gen2', '24:5A:4C:30:39:E2', '21074115826', 2511),
-(5871, 'hAP lite', '', '21074115826', 2511),
-(5872, 'LBE-5AC-Gen2', '', '21074115826', 2511),
-(5873, 'LBE-5AC-Gen2', '68:D7:9A:B4:B7:E6', '', 2512),
-(5874, 'hAP lite', '', '', 2512),
-(5875, 'LBE-5AC-Gen2', '', '', 2512),
-(5876, 'LBE-5AC-Gen2', '24:5A:4C:B4:79:EB', '', 2513),
-(5877, 'hAP lite', 'DC:2C:6E:68:6A:C3', '', 2513),
-(5878, 'ETH-SP-G2', '', '', 2513),
-(5879, 'LiteBeam M5', '68:D7:9A:A0:18:74', '', 2514),
-(5880, 'hAP lite', 'DC:2C:6E:68:6A:4A', '', 2514),
-(5881, 'ETH-SP-G2', '', '', 2514),
-(5882, 'LiteBeam M5', '68:D7:9A:A0:23:FF', '21074122596', 2515),
-(5883, 'hAP lite', '', '21074122596', 2515),
-(5884, 'LiteBeam M5', '', '21074122596', 2515),
-(5885, 'LiteBeam M5', '68:D7:9A:A0:2E:CC', '21074113723', 2516),
-(5886, 'hAP lite', '', '21074113723', 2516),
-(5887, 'LiteBeam M5', '', '21074113723', 2516),
-(5888, 'NANO STATION', '68:D7:9A:A2:1A:3C', '21074124614', 2517),
-(5889, 'hAP lite', '', '21074124614', 2517),
-(5890, 'NANO STATION', '', '21074124614', 2517),
-(5891, 'NANO STATION', '24:5A:4C:34:3C:5A', '21074114292', 2518),
-(5892, 'hAP lite', 'DC:2C:6E:61:CE:17', '21074114292', 2518),
-(5893, 'ETH-SP-G2', '', '21074114292', 2518),
-(5894, 'LBE-5AC-Gen2', '24:5A:4C:B6:0A:42', '21014140150', 2519),
-(5895, 'hAP lite', '', '21014140150', 2519),
-(5896, 'LBE-5AC-Gen2', '', '21014140150', 2519),
-(5897, 'LBE-5AC-Gen2', '24:5A:4C:B4:7D:9B', '21074114138', 2520),
-(5898, 'hAP lite', '', '21074114138', 2520),
-(5899, 'LBE-5AC-Gen2', '', '21074114138', 2520),
-(5900, 'LiteBeam M5', '68:D7:9A:A0:2F:00', '21074114342', 2521),
-(5901, 'hAP lite', '08:55:31:78:C0:5F', '21074114342', 2521),
-(5902, 'ETH-SP-G2', '', '21074114342', 2521),
-(5903, 'NANO STATION', '68:D7:9A:A2:19:47', '21074114144', 2522),
-(5904, 'hAP lite', '', '21074114144', 2522),
-(5905, '', '', '', 2571),
-(5906, 'LiteBeam M5', '24:5A:4C:DC:17:95', '21074122347', 2523),
-(5907, 'hAP lite', '', '21074122347', 2523),
-(5908, 'LiteBeam M5', '', '21074122347', 2523),
-(5909, 'LiteBeam M5', '24:5A:4C:DC:08:36', '21074123788', 2524),
-(5910, 'hAP lite', 'DC:2C:6E:EC:60:33', '21074123788', 2524),
-(5911, 'ETH-SP-G2', '', '21074123788', 2524),
-(5912, 'Powerbeam M5', '68:D7:9A:AA:B3:FB', '', 2525),
-(5913, 'hAP lite', '', '', 2525),
-(5914, 'ETH-SP-G2', '', '', 2525),
-(5915, 'NANO STATION', '24:5A:4C:34:3D:DF', '', 2526),
-(5916, 'hAP lite', '', '', 2526),
-(5917, 'NANO STATION', '', '', 2526),
-(5918, 'NANO STATION', '68:D7:9A:9E:86:2E', '', 2527),
-(5919, 'hAP lite', '', '', 2527),
-(5920, 'NANO STATION', '', '', 2527),
-(5921, 'LiteBeam M5', '68:D7:9A:A8:69:CE', '21044115540', 2528),
-(5922, 'hAP lite', '', '21044115540', 2528),
-(5923, 'LiteBeam M5', '', '21044115540', 2528),
-(5924, 'LBE-5AC-Gen2', '68:D7:9A:B6:6D:90', 'N/A', 2529),
-(5925, 'Linksys ', '58EF6848BBGF', 'N/A', 2529),
-(5926, 'N/A', '', 'N/A', 2529),
-(5927, 'LBE-5AC-Gen2', '70:A7:41:12:E0:0B', '21044109783', 2530),
-(5928, 'Linksys ', '', '21044109783', 2530),
-(5929, 'LBE-5AC-Gen2', '', '21044109783', 2530),
-(5930, 'LiteBeam M5', '24:5A:4C:34:48:35', '', 2531),
-(5931, 'Linksys  E2500', '', '', 2531),
-(5932, 'LiteBeam M5', '', '', 2531),
-(5933, 'LBE-5AC-Gen2', '70:A7:41:12:E2:66', '', 2532),
-(5934, 'hAP lite', '08:55:31:77:17:83', '', 2532),
-(5935, 'ETH-SP-G2', '', '', 2532),
-(5936, 'LBE-5AC-Gen2', '70:A7:41:12:E8:06', 'N/A', 2533),
-(5937, 'Linksys  E2500', '', 'N/A', 2533),
-(5938, 'LBE-5AC-Gen2', '', 'N/A', 2533),
-(5939, 'LBE-5AC-Gen2', '70:A7:41:12:E8:06', 'N/A', 2534),
-(5940, 'Hap ac rd', '', 'N/A', 2534),
-(5941, 'LBE-5AC-Gen2', '', 'N/A', 2534),
-(5942, 'LBE-5AC-Gen2', '70:A7:41:12:E8:06', 'N/A', 2535),
-(5943, 'Linksys  E2500', '', 'N/A', 2535),
-(5944, 'LBE-5AC-Gen2', '', 'N/A', 2535),
-(5945, 'LiteBeam M5', '24:5A:4C:B6:06:0A', '', 2536),
-(5946, 'hAP lite', '08:55:31:77:47:81', '', 2536),
-(5947, 'ETH-SP-G2', '', '', 2536),
-(5948, 'LiteBeam M5', '68:D7:9A:A8:5E:CB', '', 2537),
-(5949, 'hAP lite', '', '', 2537),
-(5950, 'LiteBeam M5', '', '', 2537),
-(5951, 'LiteBeam M5', '24:5A:4C:DC:26:2A', '', 2538),
-(5952, 'hAP lite', '', '', 2538),
-(5953, 'LiteBeam M5', '', '', 2538),
-(5954, 'LBE-5AC-Gen2', '70:A7:41:12:E1:34', '21044115525', 2539),
-(5955, 'hAP lite', '', '21044115525', 2539),
-(5956, 'LBE-5AC-Gen2', '', '21044115525', 2539),
-(5957, 'NANOSTATION', '24:5A:4C:34:3C:01', '', 2540),
-(5958, 'hAP lite', '18:FD:74:5F:FE:81', '', 2540),
-(5959, 'ETH-SP-G2', '', '', 2540),
-(5960, 'LiteBeam M5', '24:5A:4C:DC:08:36', '', 2541),
-(5961, 'Linksys  E2500', '', '', 2541),
-(5962, 'LiteBeam M5', '', '', 2541),
-(5963, 'LBE-5AC-Gen2', '70:A7:41:12:E0:38', '', 2542),
-(5964, 'hAP lite', '', '', 2542),
-(5965, 'LBE-5AC-Gen2', '', '', 2542),
-(5966, '', '', '', 2543),
-(5967, '', '', '', 2543),
-(5968, '', '', '', 2544),
-(5969, '', '', '', 2544),
-(5970, '', '', '', 2544),
-(5971, '', '', '', 2545),
-(5972, '', '', '', 2545),
-(5973, 'LBE-5AC-Gen2', '68:D7:9A:B2:39:E3', '', 2546),
-(5974, 'hAP lite', '', '', 2546),
-(5975, 'LBE-5AC-Gen2', '', '', 2546),
-(5976, 'ETHERNET', 'ETHERNET', 'ETHERNET', 2547),
-(5977, 'ETHERNET', '', 'ETHERNET', 2547),
-(5978, 'ETHERNET', '', 'ETHERNET', 2547),
-(5979, 'LBE-5AC-Gen2', '24:54:4C:C0:71:56', '21014130966', 2548),
-(5980, 'hAP lite', 'DC:2C:6E:F4:F9:5B', '21014130966', 2548),
-(5981, 'ETH-SP-G2', '', '21014130966', 2548),
-(5982, 'LBE-5AC-Gen2', '70:A7:41:12:E2:83', '', 2549),
-(5983, 'hAP lite', '', '', 2549),
-(5984, 'LBE-5AC-Gen2', '', '', 2549),
-(5985, 'LBE-5AC-Gen2', '74:AC:B9:F4:D9:B8', '', 2550),
-(5986, 'hAP lite', '', '', 2550),
-(5987, 'LBE-5AC-Gen2', '', '', 2550),
-(5988, 'LBE-5AC-Gen2', '70:A7:41:12:E1:7F', '', 2551),
-(5989, 'hAP lite', '', '', 2551),
-(5990, 'LBE-5AC-Gen2', '', '', 2551),
-(5991, 'LBE-5AC-Gen2', '70:A7:41:12:E4:BD', '', 2552),
-(5992, 'hAP lite', '', '', 2552),
-(5993, 'LBE-5AC-Gen2', '', '', 2552),
-(5994, 'LBE-5AC-Gen2', '24:5A:4C:C0:75:6E', '', 2553),
-(5995, 'hAP lite', '', '', 2553),
-(5996, 'LBE-5AC-Gen2', '', '', 2553),
-(5997, 'LBE-5AC-Gen2', '74:AC:B9:86:FB:0C', '', 2554),
-(5998, 'hAP lite', '', '', 2554),
-(5999, 'LBE-5AC-Gen2', '', '', 2554),
-(6000, 'LBE-5AC-Gen2', '24:5A:4C:C0:85:72', '', 2555),
-(6001, 'hAP lite', '', '', 2555),
-(6002, 'LBE-5AC-Gen2', '', '', 2555),
-(6003, 'LBE-5AC-Gen2', '24:5A:4C:C0:7E:78', '', 2556),
-(6004, 'AP PROPIO', '', '', 2556),
-(6005, 'LBE-5AC-Gen2', '', '', 2556),
-(6006, 'LBE-5AC-Gen2', '24:5A:4C:C0:72:5B', '', 2557),
-(6007, 'hAP lite', '', '', 2557),
-(6008, 'LBE-5AC-Gen2', '', '', 2557),
-(6009, 'LBE-5AC-Gen2', '24:5A:4C:C0:7E:F2', '', 2558),
-(6010, 'hAP lite', '', '', 2558),
-(6011, 'LBE-5AC-Gen2', '', '', 2558),
-(6012, 'LBE-5AC-Gen2', '24:5A:4C:C0:7C:C0', '', 2559),
-(6013, 'hAP lite', '', '', 2559),
-(6014, 'LBE-5AC-Gen2', '', '', 2559),
-(6015, 'LBE-5AC-Gen2', 'F4:92:BF:42:22:36', '', 2560),
-(6016, 'AP PROPIO', 'AP PROPIO', '', 2560),
-(6017, 'ETH-SP-G2', '', '', 2560),
-(6018, 'LBE-5AC-Gen2', '70:A7:41:1A:A2:77', '', 2561),
-(6019, 'hAP lite', '2C:C8:1B:56:56:5D', '', 2561),
-(6020, 'ETH-SP-G2', '', '', 2561),
-(6021, 'LBE-5AC-Gen2', 'FC:EC:DA:C4:89:68', '', 2562),
-(6022, 'hAP lite', '', '', 2562),
-(6023, 'LBE-5AC-Gen2', '', '', 2562),
-(6024, 'LBE-5AC-Gen2', '70:A7:41:12:E5:D9', '', 2563),
-(6025, 'hAP lite', '', '', 2563),
-(6026, 'LBE-5AC-Gen2', '', '', 2563),
-(6027, 'LBE-5AC-Gen2', '70:A7:41:1A:E3:AA', '', 2564),
-(6028, 'hAP lite', '', '', 2564),
-(6029, 'LBE-5AC-Gen2', '', '', 2564),
-(6030, 'Powerebeam 2AC 400', '24:5A:4C:F0:2B:30', '', 2565),
-(6031, 'hAP lite', '', '', 2565),
-(6032, 'Powerebeam 2AC 400', '', '', 2565),
-(6033, '', '', '', 2566),
-(6034, '', '', '', 2566),
-(6035, 'LBE-5AC-Gen2', '70:A7:41:1A:EC:A9', '', 2567),
-(6036, 'hap lite', '', '', 2567),
-(6037, 'LBE-5AC-Gen2', '', '', 2567),
-(6038, 'NANO STATION M2', '68:D7:9A:BE:CC:A3', '', 2568),
-(6039, 'hap lite', '', '', 2568),
-(6040, 'NANO STATION M2', '', '', 2568),
-(6041, 'LBE-5AC-Gen2', '70:A7:41:1A:EC:C1', '', 2569),
-(6042, 'hap lite', '', '', 2569),
-(6043, 'LBE-5AC-Gen2', '', '', 2569),
-(6044, 'LiteBeam M5', '68:D7:9A:A1:18:74', '', 2570),
-(6045, 'Hap Mini', '', '', 2570),
-(6046, 'LiteBeam M5', '', '', 2570),
-(6047, '', '', '', 2571),
-(6048, '', '', '', 2571),
-(6049, 'LBE-5AC-Gen2', '68:D7:9A:B2:39:D9', '', 2572),
-(6050, 'ROUTER PROPIO', '', '', 2572),
-(6051, 'LBE-5AC-Gen2', '', '', 2572),
-(6052, '', '', '', 2573),
-(6053, '', '', '', 2573),
-(6054, '', '', '', 2574),
-(6055, '', '', '', 2574),
-(6056, 'LBE-5AC-Gen2', 'F4:92:BF:E0:51:B2', '', 2575),
-(6057, 'ROUTER PROPIO', '', '', 2575),
-(6058, 'LBE-5AC-Gen2', '', '', 2575),
-(6059, 'LBE-5AC-Gen2', '70:A7:41:1C:84:CF', '', 2576),
-(6060, 'hap lite', '', '', 2576),
-(6061, 'LBE-5AC-Gen2', '', '', 2576),
-(6062, 'LBE-5AC-Gen2', '70:A7:41:1C:82:81', '', 2577),
-(6063, 'hap lite', '', '', 2577),
-(6064, 'LBE-5AC-Gen2', '', '', 2577),
-(6065, 'LBE-5AC-Gen2', '70:A7:41:1C:C3:16', '', 2578),
-(6066, 'hap lite', '', '', 2578),
-(6067, 'LBE-5AC-Gen2', '', '', 2578),
-(6068, 'LBE-5AC-Gen2', '70:A7:41:1C:85:E5', '', 2579),
-(6069, 'hap lite', 'DC:2C:6E:AE:39:63', '', 2579),
-(6070, 'ETH-SP-G4', '', '', 2579),
-(6071, '', '', '', 2580),
-(6072, '', '', '', 2580),
-(6073, '', '', '', 2581),
-(6074, '', '', '', 2581),
-(6075, '', '', '', 2582),
-(6076, '', '', '', 2583),
-(6077, '', '', '', 2583),
-(6078, '', '', '', 2587),
-(6079, '', '', '', 2587),
-(6080, '', '', '', 2588),
-(6081, '', '', '', 2588),
-(6082, '', '', '', 2589),
-(6083, '', '', '', 2589),
-(6084, '', '', '', 2590),
-(6085, '', '', '', 2590),
-(6086, '', '', '', 2591),
-(6087, '', '', '', 2591),
-(6088, 'LBE-5AC-Gen2', '70:A7:41:28:3F:40', '', 2592),
-(6089, 'hap lite', '18:FD:74:8A:8C:D1', '', 2592),
-(6090, '', '', '', 2593),
-(6091, '', '', '', 2593),
-(6092, 'PBE-2AC-400', '24:5A:4C:F0:27:5A', '', 2594),
-(6093, 'hap lite', '', '', 2594),
-(6094, '', '', '', 2595),
-(6095, '', '', '', 2595),
-(6096, '', '', '', 2596),
-(6097, '', '', '', 2596),
-(6098, '', '', '', 2597),
-(6099, '', '', '', 2597),
-(6100, 'LBE-5AC', '70:A7:41:28:84:DF', '', 2598),
-(6101, 'hap lite', '', '', 2598),
-(6102, '', '', '', 2601),
-(6103, '', '', '', 2601),
-(6104, '', '', '', 2602),
-(6105, '', '', '', 2602),
-(6106, '', '', '', 2603),
-(6107, '', '', '', 2603),
-(6108, '', '', '', 2604),
-(6109, '', '', '', 2604),
-(6110, '', '', '', 2605),
-(6111, '', '', '', 2605),
-(6112, '', '', '', 2606),
-(6113, '', '', '', 2606),
-(6114, '', '', '', 2607),
-(6115, '', '', '', 2607),
-(6116, 'LBE-5AC-Gen2', '68:D7:9A:B4:B7:E6', '', 2608),
-(6117, 'hap lite', '08:55:31:71:0C:35', '', 2608),
-(6118, 'LBE-5AC-Gen2', '70:A7:41:28:85:BB', '', 2609),
-(6119, 'hap lite', 'DC:2C:6E:68:73:55', '', 2609),
-(6120, '', '', '', 2610),
-(6121, '', '', '', 2610),
-(6122, '', '', '', 2611),
-(6123, '', '', '', 2611),
-(6124, '', '', '', 2612),
-(6125, '', '', '', 2612),
-(6126, 'PBE-M5-400', '68:D7:9A:96:26:D6', '', 2613),
-(6127, 'hap lite', '', '', 2613),
-(6128, 'LBE-5AC ', '70:A7:41:1C:24:9D', '', 2614),
-(6129, 'hap lite', '08:55:31:78:C1:79', '', 2614),
-(6130, '', '', '', 2615),
-(6131, '', '', '', 2615),
-(6132, '', '', '', 2616),
-(6133, '', '', '', 2616),
-(6134, '', '', '', 2617),
-(6135, '', '', '', 2617),
-(6136, '', '', '', 2618),
-(6137, '', '', '', 2618),
-(6138, 'PBE-2AC-400', '24:5A:4C:F0:27:E8', '', 2619),
-(6139, 'Hap lite', '18:FD:74:A8:85:99', '', 2619),
-(6140, '', '', '', 2620),
-(6141, '', '', '', 2620),
-(6142, '', '', '', 2621),
-(6143, '', '', '', 2621),
-(6144, '', '', '', 2622),
-(6145, '', '', '', 2622),
-(6146, '', '', '', 2623),
-(6147, '', '', '', 2623),
-(6148, '', '', '', 2625),
-(6149, '', '', '', 2625),
-(6150, '', '', '', 2626),
-(6151, '', '', '', 2626),
-(6152, '', '', '', 2627),
-(6153, '', '', '', 2627),
-(6154, '', '', '', 2628),
-(6155, '', '', '', 2628),
-(6156, '', '', '', 2629),
-(6157, '', '', '', 2629),
-(6158, '', '', '', 2630),
-(6159, '', '', '', 2630),
-(6160, '', '', '', 2631),
-(6161, '', '', '', 2631),
-(6162, '', '', '', 2632),
-(6163, '', '', '', 2632),
-(6164, '', '', '', 2633),
-(6165, '', '', '', 2633),
-(6166, '', '', '', 2634),
-(6167, '', '', '', 2634),
-(6168, '', '', '', 2635),
-(6169, '', '', '', 2635),
-(6170, '', '', '', 2636),
-(6171, '', '', '', 2636),
-(6172, '', '', '', 2637),
-(6173, '', '', '', 2637),
-(6174, '', '', '', 2638),
-(6175, '', '', '', 2638),
-(6176, '', '', '', 2639),
-(6177, '', '', '', 2639),
-(6178, '', '', '', 2640),
-(6179, '', '', '', 2640),
-(6180, '', '', '', 2641),
-(6181, '', '', '', 2641),
-(6182, 'LBE-5AC', '70:A7:41:1C:1C:AA', '', 2642),
-(6183, 'hAP lite', '', '', 2642),
-(6184, '', '', '', 2643),
-(6185, '', '', '', 2643),
-(6186, '', '', '', 2644),
-(6187, '', '', '', 2644),
-(6188, '', '', '', 2645),
-(6189, '', '', '', 2645),
-(6190, '', '', '', 2646),
-(6191, '', '', '', 2646),
-(6192, '', '', '', 2647),
-(6193, '', '', '', 2647),
-(6194, '', '', '', 2648),
-(6195, '', '', '', 2648),
-(6196, '', '', '', 2649),
-(6197, '', '', '', 2649),
-(6198, '', '', '', 2650),
-(6199, '', '', '', 2650),
-(6200, '', '', '', 2651),
-(6201, '', '', '', 2651),
-(6202, '', '', '', 2652),
-(6203, '', '', '', 2652),
-(6204, '', '', '', 2653),
-(6205, '', '', '', 2654),
-(6206, '', '', '', 2654),
-(6207, '', '', '', 2655),
-(6208, '', '', '', 2655),
-(6209, '', '', '', 2656),
-(6210, '', '', '', 2656),
-(6211, '', '', '', 2658),
-(6212, '', '', '', 2658),
-(6213, '', '', '', 2659),
-(6214, '', '', '', 2659),
-(6215, '', '', '', 2660),
-(6216, '', '', '', 2660),
-(6217, '', '', '', 2661),
-(6218, '', '', '', 2661),
-(6219, '', '', '', 2662),
-(6220, '', '', '', 2662),
-(6221, '', '', '', 2663),
-(6222, '', '', '', 2663),
-(6223, '', '', '', 2664),
-(6224, '', '', '', 2664),
-(6225, '', '', '', 2665),
-(6226, '', '', '', 2665),
-(6227, '', '', '', 2666),
-(6228, '', '', '', 2666),
-(6229, '', '', '', 2667),
-(6230, '', '', '', 2667),
-(6231, '', '', '', 2668),
-(6232, '', '', '', 2668),
-(6233, 'LBE-5AC', 'F4:92:BF:42:2C:36', '', 2669),
-(6234, 'hAP lite', '18:FD:74:A9:4A:61', '', 2669),
-(6235, '', '', '', 2670),
-(6236, '', '', '', 2670),
-(6237, '', '', '', 2671),
-(6238, '', '', '', 2671),
-(6239, '', '', '', 2672),
-(6240, '', '', '', 2672),
-(6241, '', '', '', 2673),
-(6242, '', '', '', 2673),
-(6243, '', '', '', 2674),
-(6244, '', '', '', 2674),
-(6245, '', '', '', 2675),
-(6246, '', '', '', 2675),
-(6247, '', '', '', 2676),
-(6248, '', '', '', 2676),
-(6249, '', '', '', 2677),
-(6250, '', '', '', 2677),
-(6251, '', '', '', 2678),
-(6252, '', '', '', 2678),
-(6253, '', '', '', 2679),
-(6254, '', '', '', 2679),
-(6255, '', '', '', 2680),
-(6256, '', '', '', 2680),
-(6257, '', '', '', 2681),
-(6258, '', '', '', 2681),
-(6259, '', '', '', 2682),
-(6260, '', '', '', 2682),
-(6261, '', '', '', 2683),
-(6262, '', '', '', 2683),
-(6263, '', '', '', 2684),
-(6264, '', '', '', 2684),
-(6265, '', '', '', 2685),
-(6266, '', '', '', 2686),
-(6267, '', '', '', 2686),
-(6268, '', '', '', 2687),
-(6269, '', '', '', 2687),
-(6270, '', '', '', 2688),
-(6271, '', '', '', 2688),
-(6272, '', '', '', 2689),
-(6273, '', '', '', 2689),
-(6274, '', '', '', 2690),
-(6275, '', '', '', 2690),
-(6276, '', '', '', 2691),
-(6277, '', '', '', 2691),
-(6278, '', '', '', 2692),
-(6279, '', '', '', 2692),
-(6280, '', '', '', 2693),
-(6281, '', '', '', 2693),
-(6282, '', '', '', 2694),
-(6283, '', '', '', 2694),
-(6284, '', '', '', 2695),
-(6285, '', '', '', 2695),
-(6286, 'LBE-5AC', '60:22:32:DC:B8:7A', '', 2733),
-(6287, 'hAP lite', '', '', 2733),
-(6288, 'LBE-5AC', '', '', 2733),
-(6289, 'LBE-M5', '70:A7:41:26:D2:5B', '', 2734),
-(6290, 'hAP lite', '', '', 2734),
-(6291, 'LBE-M5', '', '', 2734),
-(6292, 'LBE-5AC', '60:22:32:DC:B5:48', '', 2735),
-(6293, 'hAP lite', '', '', 2735),
-(6294, 'LBE-5AC', '', '', 2735),
-(6295, 'LBE-5AC', '60:22:32:C6:F0:E9', '', 2736),
-(6296, 'hAP lite', '', '', 2736),
-(6297, 'LBE-5AC', '', '', 2736),
-(6298, 'LBE-5AC', '68:D7:9A:B2:40:56', '', 2737),
-(6299, 'CUBE', '74ACB9F2EEB8', '', 2737),
-(6300, '', '', '', 2737),
-(6301, 'LBE-5AC', '60:22:32:DC:B5:E7', '', 2738),
-(6302, 'hAP lite', '', '', 2738),
-(6303, 'LBE-5AC', '', 'ap unifi propio', 2738),
-(6304, 'LBE-5AC', '60:22:32:C6:FF:4E', '', 2739),
-(6305, 'hAP lite', '', '', 2739),
-(6306, 'LBE-5AC', '', '', 2739),
-(6307, '', '', '', 2740),
-(6308, '', '', '', 2740),
-(6309, '', '', '', 2623),
-(6310, 'LBE-5AC', '60:22:32:DC:B5:B8', '', 2741),
-(6311, 'hAP lite', '48:A9:8A:FB:5C:3D', '', 2741),
-(6312, '', '', '', 2741),
-(6313, 'LBE-5AC', '70:A7:41:26:D5:64', '', 2742),
-(6314, 'hAP lite', '', '', 2742),
-(6315, '', '', '', 2740),
-(6316, 'LBE-5AC', '60:22:32:CE:16:CA', '', 2743),
-(6317, 'hAP lite', '48:A9:8A:FB:53:69', '', 2743),
-(6318, '', '', '', 2743),
-(6319, '', '', '', 2744),
-(6320, '', '', '', 2698),
-(6321, '', '', '', 2698),
-(6322, 'LBE-5AC', '60:22:32:DC:BB:DE', '', 2745),
-(6323, 'hAP lite', '', '', 2745),
-(6324, 'LBE-5AC', '', '', 2745),
-(6325, 'LBE-M5', '70:A7:41:2A:CD:4B', '', 2746),
-(6326, 'hAP lite', '', '', 2746),
-(6327, 'LBE-M5', '', '', 2746),
-(6328, 'LBE-M5', '70:A7:41:2A:D4:FC', '', 2747),
-(6329, 'Hap lite', '08:55:31:77:17:83', '', 2747),
-(6330, 'LBE-M5', '', '', 2747),
-(6331, 'LBE-5AC', '68:D7:9A:B4:D0:3C', '', 2748),
-(6332, 'ROUTER PROPIO', 'ROUTER PROPIO', '', 2748),
-(6333, '', '', '', 2748),
-(6334, 'LBE-5AC', '70:A7:41:12:E2:66', '', 2749),
-(6335, 'hAP lite', '48:A9:8A:FB:5C:43', '', 2749),
-(6336, '', '', '', 2749);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `registro_pago`
---
-
-CREATE TABLE `registro_pago` (
-  `id_pago` int(11) NOT NULL,
-  `id_contrato` int(11) NOT NULL,
-  `fecha_pago` date DEFAULT NULL,
-  `monto_pago` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `registro_pago`
---
-
-INSERT INTO `registro_pago` (`id_pago`, `id_contrato`, `fecha_pago`, `monto_pago`) VALUES
-(24, 2399, '2023-08-01', 29900),
-(25, 2559, '2023-08-01', 59900),
-(26, 2578, '2023-08-01', 39900),
-(27, 2491, '2023-08-01', 30000),
-(29, 2584, '2023-08-03', 29900),
-(30, 2492, '2023-08-03', 29900),
-(31, 2736, '2023-08-03', 25900),
-(32, 2699, '2023-08-03', 114.75),
-(33, 2685, '2023-08-03', 39900),
-(34, 2679, '2023-08-03', 20000),
-(35, 2542, '2023-08-03', 49900),
-(36, 2738, '2023-08-03', 25900),
-(37, 2671, '2023-08-03', 25900),
-(38, 2592, '2023-08-03', 29900),
-(39, 2465, '2023-08-03', 15000),
-(41, 2440, '2023-08-03', 15000),
-(42, 2697, '2023-08-03', 29900),
-(43, 2646, '2023-08-03', 25900),
-(44, 2496, '2023-08-03', 29900),
-(45, 2640, '2023-08-03', 39900),
-(46, 2652, '2023-08-03', 29900),
-(47, 2565, '2023-08-03', 20000),
-(48, 2472, '2023-08-03', 39900),
-(49, 2557, '2023-08-03', 39900),
-(52, 2574, '2023-08-03', 30000),
-(53, 2656, '2023-08-03', 49900),
-(54, 2576, '2023-08-03', 25900),
-(55, 2466, '2023-08-03', 30000),
-(56, 2686, '2023-08-03', 39900),
-(57, 2548, '2023-08-03', 29900),
-(58, 2677, '2023-08-03', 25900),
-(59, 2667, '2023-08-03', 39900),
-(60, 2691, '2023-08-03', 29900),
-(62, 2487, '2023-08-03', 59900),
-(63, 2703, '2023-08-03', 252.45),
-(64, 2478, '2023-08-03', 39900),
-(65, 2713, '2023-08-03', 201.81),
-(66, 2655, '2023-08-03', 25900),
-(67, 2620, '2023-08-03', 29900),
-(68, 2642, '2023-08-03', 39900),
-(69, 2693, '2023-08-03', 20000),
-(70, 2594, '2023-08-03', 29900),
-(71, 2554, '2023-08-03', 20000),
-(72, 2401, '2023-08-03', 29900),
-(73, 2596, '2023-08-03', 30000),
-(74, 2495, '2023-08-03', 59900),
-(75, 2533, '2023-08-03', 20000),
-(76, 2540, '2023-08-03', 15000),
-(77, 2498, '2023-08-03', 42500),
-(78, 2474, '2023-08-03', 29900),
-(79, 2665, '2023-08-03', 25900),
-(80, 2607, '2023-08-03', 39000),
-(81, 2586, '2023-08-03', 39900),
-(82, 2641, '2023-08-03', 39900),
-(83, 2718, '2023-08-03', 172.55),
-(84, 2716, '2023-08-03', 143.44),
-(86, 2426, '2023-08-01', 25900),
-(87, 2545, '2023-08-03', 35000),
-(88, 2558, '2023-08-03', 29900),
-(90, 2583, '2023-08-03', 20000),
-(91, 2604, '2023-08-03', 15000),
-(94, 2678, '2023-08-04', 29900),
-(95, 2593, '2023-08-04', 49900),
-(96, 2608, '2023-08-04', 39900),
-(97, 2418, '2023-08-04', 29900),
-(98, 2681, '2023-08-04', 29900),
-(99, 2434, '2023-08-04', 29900),
-(100, 2573, '2023-08-04', 15000),
-(101, 2687, '2023-08-04', 20000),
-(102, 2515, '2023-08-04', 29900),
-(103, 2692, '2023-08-04', 25000),
-(104, 2470, '2023-08-04', 20000),
-(105, 2631, '2023-08-04', 29900),
-(106, 2552, '2023-08-04', 39900),
-(107, 2649, '2023-08-04', 29900),
-(108, 2577, '2023-08-04', 29900),
-(109, 2710, '2023-08-04', 269.66),
-(110, 2624, '2023-08-04', 136),
-(111, 2476, '2023-08-04', 39900),
-(112, 2730, '2023-08-04', 167.56),
-(113, 2390, '2023-08-04', 25900),
-(114, 2406, '2023-08-04', 25900),
-(115, 2420, '2023-08-04', 29900),
-(116, 2534, '2023-08-06', 29900),
-(117, 2694, '2023-08-06', 29900),
-(118, 2673, '2023-08-06', 25900),
-(119, 2529, '2023-08-06', 25900),
-(120, 2536, '2023-08-06', 10000),
-(121, 2538, '2023-08-06', 10000),
-(122, 2669, '2023-08-06', 0),
-(123, 2393, '2023-08-06', 29900),
-(124, 2479, '2023-08-06', 29900),
-(125, 2501, '2023-08-06', 15000),
-(126, 2662, '2023-08-06', 25900),
-(127, 2614, '2023-08-06', 49900),
-(128, 2683, '2023-08-06', 20000),
-(129, 2670, '2023-08-06', 39900),
-(130, 2525, '2023-08-06', 29900),
-(131, 2638, '2023-08-06', 49900),
-(132, 2657, '2023-08-06', 29900),
-(133, 2634, '2023-08-06', 15000),
-(134, 2666, '2023-08-06', 25900),
-(135, 2395, '2023-08-06', 25900),
-(136, 2387, '2023-08-06', 20000),
-(137, 2526, '2023-08-06', 29900),
-(138, 2580, '2023-08-06', 29900),
-(139, 2587, '2023-08-06', 29900),
-(140, 2704, '2023-08-06', 355.42),
-(141, 2621, '2023-08-06', 56.15),
-(142, 2727, '2023-08-06', 315.56),
-(143, 2700, '2023-08-06', 203.1),
-(144, 2722, '2023-08-06', 131),
-(145, 2625, '2023-08-06', 49900),
-(146, 2644, '2023-08-06', 29900),
-(147, 2566, '2023-08-06', 59900),
-(148, 2636, '2023-08-06', 39900),
-(149, 2668, '2023-08-06', 30000),
-(150, 2562, '2023-08-06', 25000),
-(151, 2518, '2023-08-06', 35000),
-(152, 2523, '2023-08-06', 29900),
-(153, 2575, '2023-08-06', 29900),
-(154, 2459, '2023-08-06', 29900),
-(155, 2627, '2023-08-06', 20000),
-(156, 2486, '2023-08-06', 49900),
-(157, 2480, '2023-08-06', 40450),
-(158, 2740, '2023-08-06', 40450),
-(159, 2568, '2023-08-06', 49900),
-(160, 2569, '2023-08-06', 49900),
-(161, 2463, '2023-08-07', 39900),
-(162, 2497, '2023-08-07', 39900),
-(163, 2661, '2023-08-07', 29900),
-(164, 2567, '2023-08-07', 15000),
-(165, 2537, '2023-08-07', 69900),
-(166, 2674, '2023-08-08', 25900),
-(167, 2689, '2023-08-08', 25900),
-(168, 2433, '2023-08-08', 29900),
-(169, 2684, '2023-08-08', 20000),
-(170, 2386, '2023-08-08', 15000),
-(171, 2688, '2023-08-09', 25900),
-(172, 2609, '2023-08-09', 114.75),
-(173, 2519, '2023-08-09', 39900),
-(174, 2721, '2023-08-09', 154.91),
-(175, 2712, '2023-08-09', 177.71),
-(176, 2618, '2023-08-09', 40000),
-(177, 2424, '2023-08-10', 29900),
-(178, 2711, '2023-08-10', 201.81),
-(179, 2396, '2023-08-10', 15000),
-(180, 2690, '2023-08-10', 20000),
-(181, 2400, '2023-08-10', 25900),
-(182, 2585, '2023-08-10', 29900),
-(183, 2696, '2023-08-10', 29900),
-(184, 2623, '2023-08-11', 25000),
-(185, 2590, '2023-08-11', 15000),
-(186, 2659, '2023-08-11', 29900),
-(187, 2550, '2023-08-11', 59900),
-(188, 2458, '2023-08-11', 29900),
-(189, 2648, '2023-08-14', 29900),
-(190, 2675, '2023-08-14', 25900),
-(191, 2581, '2023-08-14', 25900),
-(192, 2651, '2023-08-14', 29900),
-(193, 2455, '2023-08-15', 15000),
-(194, 2456, '2023-08-15', 15000),
-(195, 2658, '2023-08-15', 25900),
-(196, 2591, '2023-08-15', 25900),
-(197, 2441, '2023-08-15', 15000),
-(198, 2391, '2023-08-15', 29900),
-(199, 2630, '2023-08-15', 20000),
-(200, 2682, '2023-08-15', 25900),
-(201, 2698, '2023-08-15', 20000),
-(202, 2572, '2023-08-15', 20000),
-(203, 2462, '2023-08-15', 39900),
-(204, 2570, '2023-08-15', 29900),
-(205, 2553, '2023-09-15', 30000),
-(206, 2481, '2023-08-15', 25000),
-(207, 2701, '2023-08-15', 242.5),
-(208, 2473, '2023-08-15', 15000),
-(209, 2549, '2023-08-15', 29900),
-(210, 2414, '2023-08-15', 20000),
-(211, 2737, '2023-08-15', 20000),
-(212, 2626, '2023-08-15', 114.75),
-(213, 2448, '2023-08-15', 20000),
-(214, 2654, '2023-08-15', 25900),
-(215, 2664, '2023-08-15', 29900),
-(216, 2680, '2023-08-15', 25900),
-(217, 2676, '2023-08-15', 25900),
-(218, 2430, '2023-08-07', 39900),
-(219, 2741, '2023-08-15', 49900),
-(220, 2745, '2023-08-15', 25000),
-(221, 2598, '2023-08-16', 29900),
-(222, 2530, '2023-08-16', 35000),
-(223, 2547, '2023-08-16', 29900),
-(224, 2555, '2023-08-16', 20000),
-(225, 2384, '2023-08-16', 15000),
-(226, 2483, '2023-08-16', 15000),
-(227, 2553, '2023-08-16', 30000),
-(228, 2589, '2023-08-16', 29900),
-(229, 2731, '2023-08-16', 0),
-(230, 2660, '2023-08-16', 0),
-(231, 2415, '2023-08-16', 32500),
-(232, 2546, '2023-08-16', 39900),
-(233, 2520, '2023-08-16', 49900),
-(234, 2750, '2023-08-16', 39900),
-(235, 2637, '2023-08-16', 39900),
-(236, 2628, '2023-08-16', 25900),
-(237, 2622, '2023-08-16', 39900),
-(238, 2444, '2023-08-16', 15000),
-(239, 2605, '2023-08-16', 15000),
-(240, 2507, '2023-08-17', 25900),
-(241, 2531, '2023-08-17', 15000),
-(242, 2635, '2023-08-17', 29900),
-(243, 2447, '2023-08-17', 15000),
-(244, 2493, '2023-08-18', 25900),
-(245, 2707, '2023-08-21', 172.13),
-(246, 2489, '2023-08-21', 15000),
-(247, 2475, '2023-08-21', 29900),
-(248, 2724, '2023-08-21', 172.13),
-(249, 2643, '2023-08-22', 25900),
-(250, 2663, '2023-08-22', 25900),
-(251, 2728, '2023-08-22', 304.65),
-(252, 2619, '2023-08-22', 29200),
-(253, 2715, '2023-08-22', 170.98),
-(254, 2717, '2023-08-22', 80000),
-(255, 2742, '2023-08-22', 49900),
-(256, 2647, '2023-08-23', 25900),
-(257, 2490, '2023-08-24', 29900),
-(258, 2653, '2023-08-24', 39900),
-(259, 2720, '2023-08-25', 143.44),
-(260, 2751, '2023-09-01', 39900),
-(261, 2752, '2023-09-01', 20000),
-(262, 2714, '2023-08-29', 218.03),
-(263, 2714, '2023-09-29', 218.03),
-(264, 2749, '2023-08-30', 0),
-(265, 2708, '2023-08-31', 517),
-(266, 2610, '2023-08-31', 39900),
-(267, 2610, '2023-09-01', 39900);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `servicio`
---
-
-CREATE TABLE `servicio` (
-  `id_servicio` int(11) NOT NULL,
-  `velocidad_contratada` varchar(255) DEFAULT NULL,
-  `sector_anclado` varchar(255) DEFAULT NULL,
-  `contra_ppoe` varchar(255) DEFAULT NULL,
-  `id_contrato` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `servicio`
---
-
-INSERT INTO `servicio` (`id_servicio`, `velocidad_contratada`, `sector_anclado`, `contra_ppoe`, `id_contrato`) VALUES
-(2376, '10', 'GT1', 'ZK7sRxuZ', 2379),
-(2377, '10', 'GT3', 'HZVddU7j', 2380),
-(2378, '6', 'GT3', 'eZJTXo83', 2381),
-(2379, '10', 'GT1', 'MvP9Ng7i', 2382),
-(2380, '6', 'GT1', 'aTO3PkyY', 2383),
-(2381, '6', 'GT3', 'GbKa4HmY', 2384),
-(2382, '10', 'GT3', 'x4U8NwWj', 2385),
-(2383, '10', 'GT10', 'iA1MoPSY', 2386),
-(2384, '10', 'GT1', 'tJwJ3UYL', 2387),
-(2385, '10', 'GT1', 'akK9LIQ3', 2388),
-(2386, '20', 'GT3', 'tgbgxa3N', 2389),
-(2387, '6', 'GT3', 'pwXvpJ4F', 2390),
-(2388, '20', 'GT10', 'WVRuWoc1', 2391),
-(2389, '6', 'GT3', '0bt0UMvj', 2392),
-(2390, '10', 'GT1', 'uykD2hPj', 2393),
-(2391, '10', 'GT1', '4k5c7CpR', 2394),
-(2392, '6', 'GT10', 'bhAmFbN1', 2395),
-(2393, '6', 'GT10', 'zj27EfA7', 2396),
-(2394, '6', 'GT2', 'Ggc719F7', 2397),
-(2395, '6', 'GT5', 'jdp8IV0Z', 2398),
-(2396, '10', 'GT1', 'A3ZikDAp', 2399),
-(2397, '6', 'GT1', 'b6Pv1mPe', 2400),
-(2398, '10', 'GT3', 'nDE59umC', 2401),
-(2399, '10', 'GT2', '6AthZvpI', 2402),
-(2400, '6', 'GT1', 'Z687cFsj', 2403),
-(2401, '3', 'SEGT1', 'UIAkn43s', 2404),
-(2402, '10', 'GT3', 'TO5hVu2v', 2405),
-(2403, '6', 'GT1', 'AvrqzG3j', 2406),
-(2404, '10', 'GT1', 'SrMax1ph', 2407),
-(2405, '6', 'GT1', 'OtrRJUF9', 2408),
-(2406, '3', 'GT1', 'XupVr8tz', 2409),
-(2407, '10', 'GT2', 'J7ob2yYK', 2410),
-(2408, '6', 'GT3', 'jHSTT1gN', 2411),
-(2409, '3', 'GT1', 'rozYA7rF', 2412),
-(2410, '2', 'N/A', 'zvzSOSui', 2413),
-(2411, '3', 'GT10', 'HFkCQs65', 2414),
-(2412, '15', 'GT1', 'ASUR6y2U', 2415),
-(2413, '10', 'GT3', 'POc29Bxh', 2416),
-(2414, '6', '', 'POc29Bxh', 2417),
-(2415, '10', 'GT1', '4CrCqKbp', 2418),
-(2416, '6', 'GT1', 'XHy7viSs', 2419),
-(2417, '10', 'GT10', 'vzpYPG1s', 2420),
-(2418, '6', '', 'CVT6jo9O', 2421),
-(2419, '20', 'GT2', 'Lut6rfE5D', 2422),
-(2420, '10', 'GT2', 'GYUkvt5e', 2423),
-(2421, '10', 'NANO', 'loi78ft4DA', 2424),
-(2422, '20', 'GT2', 'JUt67Rtfc', 2425),
-(2423, '6', 'GT10', 'ml2OR49C', 2426),
-(2424, '6', 'GT5', '0CDf6as7A', 2427),
-(2425, '10', 'GT1', 'CbLp0t6Y3', 2428),
-(2426, '20', 'GT3', 'NBH7i9opl', 2429),
-(2427, '20', 'GT2', 'TRY0nfa7', 2430),
-(2428, '3', 'GT3', 'pOU7Btc46', 2431),
-(2429, '10', 'GT4', 'POL5tv3W', 2432),
-(2430, '10', 'GT3', 'Vbnz45RQ', 2433),
-(2431, '10', 'GT1', 'gfr5DR3E', 2434),
-(2432, '10', 'GT2', 'CVM09iFt', 2435),
-(2433, '3', 'GT2', 'p¤lQ2vtr', 2436),
-(2434, '6', 'GT2', 'ERT78gqe', 2437),
-(2435, '6', '', 'lpNAS56q', 2438),
-(2436, '3', 'GT2', 'cMv345RT', 2439),
-(2437, '6', 'GT3', 'PnAQ234R', 2440),
-(2438, '10', 'GT1', '90gty43s', 2441),
-(2439, '3', 'GT2', 'HJB5Aqw8', 2442),
-(2440, '3', 'GT3', 'ZXCVQ3Qw', 2443),
-(2441, '6', 'GT1', '765Yucre', 2444),
-(2442, '6', 'FREE', 'MAQEr502', 2445),
-(2443, '10', 'MGT1', 'lcer098I', 2446),
-(2444, '6', 'GT2', '90FTU12S', 2447),
-(2445, '3', 'GT3', 'cvbnz45R', 2448),
-(2446, '3', 'MGT3', 'BV456as5', 2449),
-(2447, '3', '', 'ploAS46H', 2450),
-(2448, '3', 'N/A', 'MNB2345c', 2451),
-(2449, '3', 'MGT1', 'kLT67Yvm', 2452),
-(2450, '3', 'MGT1', 'qwea345sf', 2453),
-(2451, '10', 'N/A', 'plmnvcr7', 2454),
-(2452, '3', 'GT4', '890aczvE', 2455),
-(2453, '10', 'GT4', 'COPB78fr', 2456),
-(2454, '20', 'GT2', 'Vy89cR3G', 2457),
-(2455, '10', '', 'Drt56Dcv', 2458),
-(2456, '10', '', 'MyuFR34s', 2459),
-(2457, '10', '', 'plo435Sw', 2460),
-(2458, '10', 'GT2', 'UGTvc21g', 2461),
-(2459, '20', 'SEGT2', 'bnzx90oP', 2462),
-(2460, '20', 'BVGT2', '0PNM31w9', 2463),
-(2461, '3', '', '67GHTSc4', 2464),
-(2462, '6', 'PGT1', 'mnae321q', 2465),
-(2463, '10', '', '098ipmfrr', 2466),
-(2464, '6', '', 'TYUr43Aq', 2467),
-(2465, '10', '', 'KVe4321S', 2468),
-(2466, '3', 'GT4', '678Gr21S', 2469),
-(2467, '10', 'SEGT2', 'frzv60L1', 2470),
-(2468, '3', 'GT2', 'LOTC56Re', 2471),
-(2469, '20', 'SGT', 'GHJ4r32t', 2472),
-(2470, '10', 'GT3', 'NVZD134A', 2473),
-(2471, '10', 'GT JAO', '120KAFX6', 2474),
-(2472, '20', '', 'GFT5621Z', 2475),
-(2473, '20', 'CAPGT1', 'KYQZ43Qs', 2476),
-(2474, '3', 'GT4', 'sg6OP01Q', 2477),
-(2475, '20', 'BVGT2', 'Npxcr5DW', 2478),
-(2476, '10', 'GT3', '986Dr5ac', 2479),
-(2477, '20', 'BVGT3', 'aJK4582M', 2480),
-(2478, '10', 'BVGT3', 'Am4829f5', 2481),
-(2479, '20', 'CGT3', '48sJFw04', 2482),
-(2480, '3', 'GT2', 'Ja31Ca9n', 2483),
-(2481, '10', 'GT5 PIL', 'CV56rt11', 2484),
-(2482, '3', 'GT2', '67ftMPKA', 2485),
-(2483, '30', 'CGT2', 'vbze456W', 2486),
-(2484, '30', 'BVGT4', 'NBY6fR34', 2487),
-(2485, '3', 'GT2', '0OARt31A', 2488),
-(2486, '30', 'CGT3', 'Bcfz46qw', 2489),
-(2487, '10', 'SEGT1', 'LKi8Gcrt', 2490),
-(2488, '10', 'BVGT5', 'AZer890u', 2491),
-(2489, '10', 'SEGT2', 'BGT5eQaX', 2492),
-(2490, '6', 'GT3', 'CVre45Sw', 2493),
-(2491, '6', 'MGT1', '0ag45vcR', 2494),
-(2492, '50', 'CAPGT1', 'L4cv43aS', 2495),
-(2493, '10', 'GT4', 'Dxj789tv', 2496),
-(2494, '20', 'CGT1', '1ZC4fj7M', 2497),
-(2495, '10', 'CGT2', '6CFVm8Qr', 2498),
-(2496, '10', 'GT1', 'VB65sa12', 2499),
-(2497, '10', 'SEGT2', '67VCe12L', 2500),
-(2498, '6', 'GT2', 'tyzvc3Sw', 2501),
-(2499, '3', 'SANDOVAL', 'Brayan Sandoval', 2502),
-(2500, '6', 'MGT1', 'Gtyu45h', 2503),
-(2501, '3', 'GT3', 'XT6cgt17', 2504),
-(2502, '6', 'GT3', 'TyVcxW90', 2505),
-(2503, '10', '3011 SEGT', 'GvuiAS3C', 2506),
-(2504, '6', 'GT3', 'Ytas13CV', 2507),
-(2505, '6', 'cerrilllos 1', '65TGc98', 2508),
-(2506, '6', 'Cerrillos 2', '0of41asV', 2509),
-(2507, '6', 'ceririllos 2', 'Ytcv54AS', 2510),
-(2508, '6', 'cerrillos 3', 'MNLK89e', 2511),
-(2509, '3', 'GT2', 'TY5ds21a', 2512),
-(2510, '6', 'Cerrillos 1', 'Vcxz3as2', 2513),
-(2511, '10', 'SEGT3', 'PLMN45ai', 2514),
-(2512, '10', 'SEGT3', 'PLBX43sf', 2515),
-(2513, '20', 'GT4', 'ln45ds24', 2516),
-(2514, '3', 'GT5', 'VBHGsd32', 2517),
-(2515, '15', 'GT4', 'TYU7fCrd3', 2518),
-(2516, '20', 'CGT4', 'CFDAd45a', 2519),
-(2517, '30', 'BVGT6', 'ZXCP09fd', 2520),
-(2518, '3', 'CGT2-2', 'BvcRfD4R', 2521),
-(2519, '10', 'GT4', 'YUTvcfr5', 2522),
-(2520, '10', 'CGT', 'cvgtDrf2', 2523),
-(2521, '20', 'Cerrillos 4', 'Frt725DG', 2524),
-(2522, '10', 'SGT2', 'cvtR41We', 2525),
-(2523, '10', 'SEGT1', 'BNMre321', 2526),
-(2524, '1', 'GT1', '0pnc23ER', 2527),
-(2525, '30', '', '78VXEqwa', 2528),
-(2526, '6', 'GT4', 'asxc67ty', 2529),
-(2527, '20', 'CGT6', '67T87Yvc', 2530),
-(2528, '6', 'GT4', 'yu5ratW', 2531),
-(2529, '30', 'CGT1', 'zc123R56', 2532),
-(2530, '10', 'GT4', 'bgtrs23a', 2533),
-(2531, '10', 'PGT1', 'GFtc345a', 2534),
-(2532, '10', 'SEGT4', 'zx5rToP0', 2535),
-(2533, '4', 'CGT6', 'mku76sA1', 2536),
-(2534, '100', 'CGT6', '1AS1PLUt', 2537),
-(2535, '4', 'CGT6', 'sd23jy67', 2538),
-(2536, '10', 'SEGT6', 'SGvg234R', 2539),
-(2537, '3', 'GT4', 'MBZXre33', 2540),
-(2538, '10', 'CGT2', 'cay567r4', 2541),
-(2539, '10', 'GGT2', 'Frh67Yu8', 2542),
-(2540, '3', 'GT2', 'MNb65ERd', 2543),
-(2541, '3', 'GT4', 'O7Yush34', 2544),
-(2542, '10', 'GT7', 'nas67Ytd', 2545),
-(2543, '20', 'BVGT2', 'SUPu78sd', 2546),
-(2544, '10', '', 'A234dfTU', 2547),
-(2545, '10', '', 'Daqw45Hj', 2548),
-(2546, '10', 'BVGT3', 'rty890AS', 2549),
-(2547, '50', '3011 PRINC', 'ert234AS', 2550),
-(2548, '6', 'GT3', 'TYUbv45f', 2551),
-(2549, '20', 'CGT1', '020FRTa3', 2552),
-(2550, '20', 'SEGT1', 'sdxz5678', 2553),
-(2551, '3', 'GT8', 'ert56POP', 2554),
-(2552, '3', 'GT8', 'Dbvt569O', 2555),
-(2553, '20', 'GT5', 'mnbty65E', 2556),
-(2554, '20', 'BVGT4', '89hRtvcK', 2557),
-(2555, '30', 'SEGT13', '890NMR34', 2558),
-(2556, '50', 'BVGT3', 'iopBr567', 2559),
-(2557, '6', 'GT2', 'jyuTB56F', 2560),
-(2558, '30', 'CGT2', 'mnBE1234', 2561),
-(2559, '6', 'GT4', 'NbcRtg6r', 2562),
-(2560, '10', 'BVGT5', 'LOP7yr3s', 2563),
-(2561, '6', 'GT3', 'BvFrtuJ9', 2564),
-(2562, '3', 'GT4', 'Tyhgcer4', 2565),
-(2563, '50', 'BVGT7', '20agtYdd', 2566),
-(2564, '3', 'GT2', 'Nmuy67rC', 2567),
-(2565, '30', 'GGT2', 'VCDS234r', 2568),
-(2566, '30', 'GGT2', 'VC54RtCv', 2569),
-(2567, '10', 'SEGT1', '78UIrfte', 2570),
-(2568, '10', '', '45fdertY', 2571),
-(2569, '3', '', '0opijnm8', 2572),
-(2570, '3', 'GT2', 'UIY765cx', 2573),
-(2571, '10', 'SEGT12', 'hgt56gcG', 2574),
-(2572, '10', '', 'p096Rdxc', 2575),
-(2573, '6', 'GT4', 'jvR43sDB', 2576),
-(2574, '10', 'BVGT3', 'BVCX12QW', 2577),
-(2575, '20', 'SGT', 'nbhy76ds', 2578),
-(2576, '10', 'SEGT14', '097hgvcr', 2579),
-(2577, '10', 'BVGT7', 'Jy56uh23', 2580),
-(2578, '10', 'GT4', 'HT254yus', 2581),
-(2579, '3', 'GT3', 'JNT56rSA', 2582),
-(2580, '3', 'GT3', 'fnmr6Gvc', 2583),
-(2581, '10', 'ASGT1', 'oTVfr1qu', 2584),
-(2582, '10', 'AZGT1', '12XMN7u3', 2585),
-(2583, '20', 'CGT3', 'vFfT56dn', 2586),
-(2584, '10', '', 'NMLser45', 2587),
-(2585, '15', 'AGT1', 'NMLser45', 2588),
-(2586, '10', '', 'GTY56saq', 2589),
-(2587, '6', 'GT3', 'Retcd340', 2590),
-(2588, '6', 'BVGT3', 'NMY67Sad', 2591),
-(2589, '10', 'ASGT1', 'yhu65vcd', 2592),
-(2590, '20', 'BVGT1', 'pmn123qA', 2593),
-(2591, '10', 'GT8', 'nbvcr54D', 2594),
-(2592, '20', 'GT4', 'MNu7yFSe', 2595),
-(2593, '10', 'ASGT1', 'nm789poG', 2596),
-(2594, '10', 'BVGT8', 'po90Ngr1', 2597),
-(2595, '10', 'ASGT1', 'cvbxERT1', 2598),
-(2596, '10', 'GGT1', 'BNTDF312', 2599),
-(2597, '6', 'GT10', 'mnad43er3', 2600),
-(2598, '10', '', 'vbnyt78y', 2601),
-(2599, '3', '', 'HBt43QWo', 2602),
-(2600, '3', '', 'MKNB5tDc', 2603),
-(2601, '10', 'GT4', 'nby645E3', 2604),
-(2602, '3', 'GT10', '9uyW12Xd', 2605),
-(2603, '6', 'GT4', 'bvT98U76', 2606),
-(2604, '20', 'GT2.', 'cv31EAfry', 2607),
-(2605, '30', 'BVGT7', 'cG5rt12S', 2608),
-(2606, '20', '', 'fgt6ybd4', 2609),
-(2607, '20', '', '89DTr2AH', 2610),
-(2608, '10', 'GT4', 'vnm4tig9', 2611),
-(2609, '6', 'MGT2', '89UJGdsr', 2612),
-(2610, '20', 'CGT3', 'Lu67DXC5', 2613),
-(2611, '10', 'SEGT2', 'lY6543Sv', 2614),
-(2612, '3', 'GT10', 'FT23QW1', 2615),
-(2613, '10', 'CGT3', '09HT12as', 2616),
-(2614, '10', 'SEGT4', 'Vbzsa12A', 2617),
-(2615, '20', 'BVGT6', 'MLOc56Fb', 2618),
-(2616, '10', 'SFGT8', 'Jai4tyq1', 2619),
-(2617, '10', 'BVGT3', 'JusvR4da', 2620),
-(2618, '10', 'SEGT1', '657Hvfre', 2621),
-(2619, '20', 'SEGT7', 'LpobRe34', 2622),
-(2620, '10', 'Enlace-Esterones-GT', 'Bvc1a2wu', 2623),
-(2621, '30', 'GRZ-B-DAT-1768-001', 'Nbt56fdVH', 2624),
-(2622, '30', 'CGT2', 'mnHt56De', 2625),
-(2623, '30', 'GRZ-B-DAT-1768-001', 'cv45R3SE', 2626),
-(2624, '10', '', 'NJK9df2E', 2627),
-(2625, '6', 'SFGT1', 'vgty67As', 2628),
-(2626, '6', '', 'HJy67FCA', 2629),
-(2627, '3', 'GT1.', 'SqwVBHjk', 2630),
-(2628, '10', 'SFGT1', 'De678Lp0', 2631),
-(2629, '10', 'SEGT4', 'Aq23Sqop', 2632),
-(2630, '3', 'GT4', '25DswQ1e', 2633),
-(2631, '3', 'GT4', '67uLogtY', 2634),
-(2632, '10', 'SFGT3', '25KJUasY', 2635),
-(2633, '20', 'BGT7', '21BNtYC', 2636),
-(2634, '20', 'SFGT2', 'BVGT5QW', 2637),
-(2635, '30', 'CGT8', 'Nvgty6zx', 2638),
-(2636, '6', 'SFGT4', 'mnhyr4E2', 2639),
-(2637, '20', 'GT JAO', 'nbVcd321', 2640),
-(2638, '20', '', 'bGt50Pdq', 2641),
-(2639, '20', '', 'xZswq1T5', 2642),
-(2640, '6', 'GT4', 'nILpfg53', 2643),
-(2641, '10', 'Swicht Carlos Jim', 'nBGtdsz3', 2644),
-(2642, '50', 'GGT3', '6y7U89Vp', 2645),
-(2643, '6', 'BVGT10', 'fr2sr56x', 2646),
-(2644, '6', 'CGT1', '56Potyvs', 2647),
-(2645, '6', 'GT5', 'rt543esC', 2648),
-(2646, '10', 'SFGT5', '3edrt56yb', 2649),
-(2647, '10', 'SEGT1', 'xswqa2QA', 2650),
-(2648, '10', 'SEGT1', 'ASE345up', 2651),
-(2649, '10', 'GRZ-B-DAT-1768', 'puygT56a', 2652),
-(2650, '20', 'GRZ-B-DAT-1768', '25fgT4sE', 2653),
-(2651, '6', 'GT1.', 'JUOgCR4', 2654),
-(2652, '6', 'SFGT1', '09WSaq12', 2655),
-(2653, '50', '', 'Ygfae34f', 2656),
-(2654, '10', 'SFGT2', 'LCSKNIhg', 2657),
-(2655, '6', 'SFGT1', 'dhY67gxc', 2658),
-(2656, '10', 'SFGT1', 'pL87uhgt', 2659),
-(2657, '6', 'SFGT2', 'nbvgt54RE', 2660),
-(2658, '10', 'SFGT2', 'GHt5321', 2661),
-(2659, '6', 'SFGT2', 'SFgt4FSA', 2662),
-(2660, '6', 'SFGT4', 'BGty6AD1', 2663),
-(2661, '10', 'SFGT2', '21LJKuhs', 2664),
-(2662, '6', '', '78gatrde3', 2665),
-(2663, '6', 'SFGT5', '1dsfgthfd', 2666),
-(2664, '20', 'BVGT2', 'hjyt54Rs', 2667),
-(2665, '6', 'SFGT7', 'SDfggjreq', 2668),
-(2666, '6', 'SFGT7', 'Jyut6rde', 2669),
-(2667, '20', 'SFGT1', 'JFOKuyt5', 2670),
-(2668, '6', 'SFGT4', '3sERvc3h', 2671),
-(2669, '10', 'GT4', 'fCgae4RA', 2672),
-(2670, '6', '', '8uFrty2E', 2673),
-(2671, '6', 'SFGT4', 'Ty34jkt5', 2674),
-(2672, '6', 'SFGT4', 'FgtersdX', 2675),
-(2673, '6', 'SFGT4', 'fRgt54DG', 2676),
-(2674, '6', 'SFGT2', 'Lmnu7yt5', 2677),
-(2675, '10', 'SFGT2', '3eDRfecv', 2678),
-(2676, '3', 'SFGT5', 'BvcsE4sg', 2679),
-(2677, '6', 'SFGT4', 'dHyuLv46', 2680),
-(2678, '10', 'GT4', 'SDg54Rtv', 2681),
-(2679, '6', 'GT10', 'pHjHGA56', 2682),
-(2680, '3', 'SFGT7', 'ascHyt56U', 2683),
-(2681, '3', 'SFGT7', 'Xvbgt40L', 2684),
-(2682, '20', 'GGT4', '58POyt4f', 2685),
-(2683, '10', 'GGT4', 'VBn789m4', 2686),
-(2684, '3', 'SFGT2', 'WkLphy67', 2687),
-(2685, '6', '', 'Ert54sqw', 2688),
-(2686, '6', 'SFGT4', '0nm2Ljup', 2689),
-(2687, '3', 'SFGT4', 'fgdhttj4', 2690),
-(2688, '10', 'SFGT9', '0nm2Ljup', 2691),
-(2689, '10', 'SFGT1', 'Ljkgfdg43', 2692),
-(2690, '3MB', 'SFGT2', 'dsetr30f', 2693),
-(2691, '30', 'GGT4', 'AA1234Bs', 2694),
-(2692, '10', 'SFGT2', 'dtetr35g', 2695),
-(2693, '10', 'SFGT10', 'ljkgfdg45', 2696),
-(2694, '10', 'CAPGT2', 'duetr36f', 2697),
-(2695, '3', 'GT1.', '21jUYGtF', 2698),
-(2696, '20', 'DAT-320', 'Aght25Ty', 2699),
-(2697, '20', 'DAT-313-001', '', 2700),
-(2698, '20', 'DAT-3096', 'JG92drf6', 2701),
-(2699, '20', 'DAT-3322-001', '', 2702),
-(2700, '20', 'ELC-354-001', 'Jyt5diY6', 2703),
-(2701, '20', 'DAT-1606-001', '', 2704),
-(2702, '20', 'DAT-4083-001', '', 2705),
-(2703, '10', 'ELC-1542-001', '', 2706),
-(2704, '10', 'ELC-1495-001', '', 2707),
-(2705, '50', 'DAT-4872-001', '', 2708),
-(2706, '20', 'DAT-5437-001', '', 2709),
-(2707, '5', 'ELC-1516-001', 'htayugdr7', 2710),
-(2708, '20', 'DAT-5041-001', '', 2711),
-(2709, '20', 'DAT-1585-001', '', 2712),
-(2710, '40', 'DAT-3481-001', '', 2713),
-(2711, '20', 'DAT-1868-001', '', 2714),
-(2712, '5', 'DAT-5276-001', '', 2715),
-(2713, '20', 'DAT-467', '', 2716),
-(2714, '30', 'DAT-1159-001', '', 2717),
-(2715, '20', 'ELC-1426-001', '', 2718),
-(2716, '20', 'DAT-1768-001', '', 2719),
-(2717, '10', 'ELC-1488-001', 'Hju45T128a', 2720),
-(2718, '20', 'DAT-580-001', 'f!1n5WEHr4', 2721),
-(2719, '20', '<', 'HR567jup', 2722),
-(2720, '20', 'DAT-587-001', '', 2723),
-(2721, '15', 'DAT-1815-001', 'WX458art', 2724),
-(2722, '10', 'DAT-456-001', 'Ty8578Uj', 2725),
-(2723, '15', 'DAT-809-001', 'JH685Ytr', 2726),
-(2724, '30', 'DAT-4214-001', 'THms631A', 2727),
-(2725, '20', 'DAT-855-001', 'Dr6514kl', 2728),
-(2726, '30', 'ELC-1569-001', '', 2729),
-(2727, '3', 'DAT-322-001', '', 2730),
-(2728, '10', 'DAT-3689-001', '', 2731),
-(2729, '', '', '', 2732),
-(2730, '', '', '', 2733),
-(2731, '', '', '', 2734),
-(2732, '', '', '', 2735),
-(2733, '6MB', 'SEGT1', 'hbvFTR45', 2736),
-(2734, '3', 'GT10', 'MnJYTgfd', 2737),
-(2735, '6', 'SFGT8', 'NBvasdg6', 2738),
-(2736, '30', 'GGT3', 'Hygtr3So', 2739),
-(2737, '20', 'GGT1', 'KVe4321S', 2740),
-(2738, '30', 'GGT4', 'JHYU78iJ', 2741),
-(2739, '30', 'GGT4', 'gHTYS45u', 2742),
-(2740, '30', 'GGT4', 'Pou8ytfV', 2743),
-(2741, '30', 'SFGT8', 'TYre236N', 2744),
-(2742, '6', 'SFGT3', '25cbhFGf', 2745),
-(2743, '', 'BVGT6', 'degdfa34', 2746),
-(2744, '10', 'BVGT6', 'degdfa34', 2747),
-(2745, '20', 'BVGT7', 'dawe32qA', 2748),
-(2746, '20', 'BVGT4', 'SLOP098U', 2749),
-(2747, '20', 'EGT1', 'VBN6CXVz', 2750),
-(2748, '20', 'SEGT1', '12VMNAHT', 2751),
-(2749, '3', 'SEGT14', '1P09Uy65', 2752);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipo_cliente`
---
-
-CREATE TABLE `tipo_cliente` (
-  `id_tipo_cliente` int(11) NOT NULL,
-  `descripcion_tipo_cliente` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tipo_cliente`
---
-
-INSERT INTO `tipo_cliente` (`id_tipo_cliente`, `descripcion_tipo_cliente`) VALUES
-(3, 'Residencial'),
-(4, 'Empresarial');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipo_usuario`
---
-
-CREATE TABLE `tipo_usuario` (
-  `id_tipo_usuario` int(11) NOT NULL,
-  `nombre_tipo_usuario` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tipo_usuario`
---
-
-INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `nombre_tipo_usuario`) VALUES
-(1, 'super_admin'),
-(2, 'administrador'),
-(3, 'solo_vista');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usuario`
---
-
-CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL,
-  `nombre_usuario` varchar(255) DEFAULT NULL,
-  `correo` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `id_tipo_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `usuario`
---
-
-INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `correo`, `password`, `id_tipo_usuario`) VALUES
-(2, 'Joshua Sandi Guevara', 'joshuasg99@gmail.com', '$2y$10$O0xKhy563EvvdQs7.reFveZL2u.uaSLJ88I2sffV8VumBrKMu4I2u', 1),
-(4, 'GT-Solutions', 'gtsolutionscr@gmail.com', '$2y$10$upY1rp6702NJ7vWI8I9LbubcpbV2Q1ZK1qAYqnHVaukzyJoUKmqo6', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wifi`
---
-
-CREATE TABLE `wifi` (
-  `id_wifi` int(11) NOT NULL,
-  `nombre_wifi` varchar(255) DEFAULT NULL,
-  `contra_wifi` varchar(255) DEFAULT NULL,
-  `id_servicio` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `wifi`
---
-
-INSERT INTO `wifi` (`id_wifi`, `nombre_wifi`, `contra_wifi`, `id_servicio`) VALUES
-(2129, 'Orlando', 'Dylan2009', 2376),
-(2130, 'Dj profe', 'Dajo2728', 2377),
-(2131, 'Familia Sibaja Blanco', 'mase2626', 2378),
-(2132, 'Familia Cruz Cruz', 'Ailana1820', 2379),
-(2133, 'Lic. M eugenia', 'maru2608', 2380),
-(2134, 'MILO', '2518161714', 2381),
-(2135, 'Esquivel', 'Coco1234', 2382),
-(2136, 'Familia Gonzalez Vargas', 'recarguenlimpios', 2383),
-(2137, 'Vecosta', 'Meva4850', 2384),
-(2138, 'Familia Mendoza', 'Familiamendoza2020', 2385),
-(2139, 'Casa Abelina', '123queso', 2386),
-(2140, 'FBC', 'Perla2003', 2387),
-(2141, 'Familia Vargas Carrillo', '*vargas2002*Jimenezvar20', 2388),
-(2142, 'Familia Alfaro', '26598194', 2389),
-(2143, 'Cascabel', 'Cscbl1999!', 2390),
-(2144, 'INTERNET CASA', 'M*VZ%g36&B$n', 2391),
-(2145, 'Luigi', 'luip2053', 2392),
-(2146, 'Castillo', 'Mari2430', 2393),
-(2147, 'Barboza Camacho', 'BarbozA2000*', 2394),
-(2148, 'Familia Sandoval Perez', 'facape2021', 2395),
-(2149, 'Familia Cortes Vega', '19971993', 2396),
-(2150, 'Familia Carrillo Picado', '199937368', 2397),
-(2151, 'Familia Elizondo Hernandez', 'Colo2018', 2398),
-(2152, 'Familia Chacon Vasques ', '17112308', 2399),
-(2153, 'Finca el Angel\nMathias', 'alejandra1984\nalev1984', 2400),
-(2154, 'N/A', 'N/A', 2401),
-(2155, 'Familia Venegas B.', 'Fwkam849', 2402),
-(2156, 'Familia Vargas', 'DeVaAg1991!', 2403),
-(2157, 'SKE', 'sdxc4567', 2404),
-(2158, 'Casa DKS', 'luna4393', 2405),
-(2159, 'INALI', 'corrales2020', 2406),
-(2160, 'Familia Carrillo Gomez', 'Isai/2020', 2407),
-(2161, 'Escuela Los Angeles', 'Esc123456*', 2408),
-(2162, 'Pollera', 'Jorgillo21*', 2409),
-(2163, 'N/A', 'N/A', 2410),
-(2164, 'Familia Matarrita Salazar', '2021FM59130', 2411),
-(2165, 'VENZU', 'Pita2021', 2412),
-(2166, 'Rojas Castillo\nCastillo', '20122020\n20122021', 2413),
-(2167, 'Sanchez Cruz', 'Alex2021', 2414),
-(2168, 'Mary Angel', 'mary2021*', 2415),
-(2169, 'Hermanos', 's18b26d17r3', 2416),
-(2170, 'TitaDennis internet', 'TatiTita2001@', 2417),
-(2171, '', '', 2418),
-(2172, 'Tango', 'Massri.11', 2419),
-(2173, 'Gutierrez  ', 'Massri.11', 2420),
-(2174, 'PINEDA', 'canelo15', 2421),
-(2175, 'Casa Huacas', 'Gemi2020', 2422),
-(2176, 'Leidy', 'cusa2014', 2423),
-(2177, 'Obando Sandoval', 'FAOSA1582', 2424),
-(2178, 'Familia Vargas Campos', '2061992', 2425),
-(2179, 'Porras', 'porras2437', 2426),
-(2180, 'JB', 'Bradley0509', 2427),
-(2181, 'Fam Bermudez', 'Puravida23*', 2428),
-(2182, 'Hellen', '504040108', 2429),
-(2183, 'Orozco', 'Santiago231', 2430),
-(2184, 'Rancho Cortez', 'lapita2020', 2431),
-(2185, 'Fam Barrantes', 'derian74', 2432),
-(2186, 'Familia Elizondo Perez', '21031946', 2433),
-(2187, 'Newton', 'Abarca78', 2434),
-(2188, '', '', 2435),
-(2189, 'Super Huacas', 'MAHG0000', 2436),
-(2190, 'Axel', 'patricia15', 2437),
-(2191, 'GraCar HouseGraCar House 2', 'Solocree127ElianJose05', 2438),
-(2192, 'Esc Huacas', 'fonseca28', 2439),
-(2193, 'BMS', 'BMS1938*', 2440),
-(2194, 'Alanna', '18011980*', 2441),
-(2195, 'DanielaNana', 'aleinad1429292303', 2442),
-(2196, 'Familia Perez', 'L19H17I23N19', 2443),
-(2197, 'Macela', 'mrcl1234', 2444),
-(2198, 'Mario', '503530881', 2445),
-(2199, 'Familia Aguilar Hernandez', 'aguilar83*', 2446),
-(2200, '', '', 2447),
-(2201, 'N/A', 'N/A', 2448),
-(2202, 'Vasquez Ruiz', 'vasquez06*', 2449),
-(2203, 'Familia HP', '20jeykey21', 2450),
-(2204, 'N/A', 'N/A', 2451),
-(2205, 'Family G', 'Jime0215*', 2452),
-(2206, 'Familia MYC', 'Alberto2898', 2453),
-(2207, 'Swedish Embasy', 'Sweden20', 2454),
-(2208, '', '', 2455),
-(2209, '', '', 2456),
-(2210, '', '', 2457),
-(2211, 'Familia Coto Carrillo', 'CotoC21*', 2458),
-(2212, 'Casa Daniela', '88918731', 2459),
-(2213, 'Casa gostosa', 'jungleview', 2460),
-(2214, 'Casa Celeste', 'Halamadrid', 2461),
-(2215, 'ATHOS', 'pela3089', 2462),
-(2216, '', '', 2463),
-(2217, '', '', 2464),
-(2218, '', '', 2465),
-(2219, 'Sury', 'geroge1323', 2466),
-(2220, '', '', 2467),
-(2221, 'OBRECAR', '123456789lexi', 2468),
-(2222, 'Familia Mendoza', 'Mendoza21*', 2469),
-(2223, 'Casa', 'Granados123', 2470),
-(2224, 'ThurRica', 'ThurRica28621', 2471),
-(2225, '', '', 2472),
-(2226, 'Casa Magna', 'cASAmAGNA', 2473),
-(2227, 'Maria', '24245824', 2474),
-(2228, 'Lille 1', '9854321', 2475),
-(2229, 'Yessica', '1.03E+11', 2476),
-(2230, 'Casa Baoba', 'casabaoba007', 2477),
-(2231, 'MINORyA', 'malavista', 2478),
-(2232, 'Pura Vida', 'shama2022', 2479),
-(2233, 'Leandro', 'prendas2013', 2480),
-(2234, 'Oriyir', '11047074', 2481),
-(2235, 'Eliecer Fabiana', 'pisotillo83', 2482),
-(2236, 'zopilote1', 'zopilote2', 2483),
-(2237, 'SIN WIFI', 'SIN WIFI', 2484),
-(2238, 'A.F.F.G', 'Gustavo2301', 2485),
-(2239, '', '', 2486),
-(2240, 'Familia JP', 'evans2007jp', 2487),
-(2241, 'Familia Artavia', 'Artavia01*', 2488),
-(2242, 'casa maquenco', 'sylvain01', 2489),
-(2243, 'THILE', 'thile0818', 2490),
-(2244, 'Fernanda', 'ferlv1409', 2491),
-(2245, 'harmonicconect', 'Harmonic', 2492),
-(2246, 'WG01', 'Andres01', 2493),
-(2247, 'Casa 2', 'barbieforest', 2494),
-(2248, 'Casa MACK', 'Ponedoras7', 2495),
-(2249, 'Jose Daniel', 'JDaniel0104', 2496),
-(2250, 'JOE', 'Q1W2E3R4T', 2497),
-(2251, 'Familia Diaz', 'Andres2014', 2498),
-(2252, '', '', 2499),
-(2253, 'Familia Hernandez Venegas', 'Hdezvene07', 2500),
-(2254, 'LEO', 'Ministerio03', 2501),
-(2255, 'Familia H.G', 'Gaitan1483', 2502),
-(2256, 'FGZ', 'senedama', 2503),
-(2257, 'Junior Quiros Vargas ', 'nuno2006qv', 2504),
-(2258, 'POCHO', 'pocho01142181', 2505),
-(2259, 'MUNOZ JIMENEZ', 'cholo259', 2506),
-(2260, 'Familia Barrantes', 'ValE2018@#', 2507),
-(2261, 'Yeimi', '18311227', 2508),
-(2262, 'Familia Salazar', '20212231', 2509),
-(2263, 'Lidieth Diaz', 'diaz1970', 2510),
-(2264, '', '', 2511),
-(2265, 'Casa Carina', '44444444', 2512),
-(2266, 'Garcia', 'Pilsen1989', 2513),
-(2267, 'Familia-Rodriguez', 'deowwi1104', 2514),
-(2268, '', '', 2515),
-(2269, 'CNWEED', '87654321', 2516),
-(2270, 'Casa Ora', 'msthomas57inc!', 2517),
-(2271, 'Nazareth', 'carrilloelizondo', 2518),
-(2272, 'Grace', 'jimenez89', 2519),
-(2273, 'Cielo', 'jane@home2022', 2520),
-(2274, 'Obregon Sanchez', 'YaDlirle763F', 2521),
-(2275, 'Bella Mar', '20227314', 2522),
-(2276, 'House Colibri', '1234dgvg4321', 2523),
-(2277, 'Familia Brenes', 'brenes2022', 2524),
-(2278, '', '', 2525),
-(2279, 'Familia Aguero Valverde', 'Aguero255524', 2526),
-(2280, '', '', 2527),
-(2281, 'Familia Salazar Gomez', 'Adriel1521*', 2528),
-(2282, 'Chamma', 'Mermaid2019!', 2529),
-(2283, 'Familia Kast Sanchez', '123456789', 2530),
-(2284, 'Cabinas Olas', 'Surf7751', 2531),
-(2285, 'Familia Mendez Gusman', '12345678Yu', 2532),
-(2286, 'Casa La Paz', '22-Apr', 2533),
-(2287, 'Casa Silencio', 'Jorge2022', 2534),
-(2288, 'Casa Tranquila', 'Juanka2022', 2535),
-(2289, 'Super Bahia', 'n^Xu^6h9iU$&ddcB!*9vM@YiZc#QVu!3*5ZM*FhBwM$26Mqu@@g5tZ4EHnJh^RR', 2536),
-(2290, 'ANTON', '123456789', 2537),
-(2291, 'Mono Loco', 'Pocoloco', 2538),
-(2292, '', '', 2539),
-(2293, 'Familia Rojas Batista', 'Maikel123', 2540),
-(2294, 'Jobel Pinea', '5545jcyv', 2541),
-(2295, 'Casa Azul._Udo', 'NoelleEstelle2012', 2542),
-(2296, 'Casa Frank 1', '12345678', 2543),
-(2297, '', '', 2544),
-(2298, '', '', 2545),
-(2299, 'Samarica', 'Cubera83', 2546),
-(2300, '', '', 2547),
-(2301, 'Garcia Perez', '3121624', 2548),
-(2302, 'Casa Marina', 'casamarina2022', 2549),
-(2303, 'Jayda walt', '22-Aug', 2550),
-(2304, 'Zeledon Nunez', '18300104', 2551),
-(2305, 'Benjamin', 'maheva2022', 2552),
-(2306, 'C.D.R. Pilangosta', 'xfncdr2022', 2553),
-(2307, 'Casa Jungle', 'Jungle22', 2554),
-(2308, 'Casa Tranquila', 'esquivel22', 2555),
-(2309, 'Casa Jungle', 'Puravida', 2556),
-(2310, 'Coca Pan', 'Lolas1629', 2557),
-(2311, 'Casa Guarda Parques', 'mobulabirostris', 2558),
-(2312, 'Casa Ron', 'r1hr312973', 2559),
-(2313, 'Colibri', 'costarica', 2560),
-(2314, 'Fam Vegas Alcoocer', 'Granados1990', 2561),
-(2315, 'Salazar Mora', 'Gerardo5156114', 2562),
-(2316, 'Casa 2', '28282828', 2563),
-(2317, 'Zeneida', '229151110', 2564),
-(2318, '', '', 2565),
-(2319, '', '', 2566),
-(2320, 'Casa Max', '135792468', 2567),
-(2321, '', '', 2568),
-(2322, 'Matarrita', '', 2569),
-(2323, 'Casa  Fonseca', 'fonseca05', 2570),
-(2324, '', '', 2571),
-(2325, '', '', 2572),
-(2326, '', '', 2573),
-(2327, '', '', 2574),
-(2328, '', '', 2575),
-(2329, 'Familia Valverde', '20737588', 2576),
-(2330, 'CasaSandra', 'Maurizio', 2577),
-(2331, 'Kelu', 'Todomayuscula', 2578),
-(2332, 'PIZZA FRNAK', 'lolita23', 2579),
-(2333, 'Fran Venegas', 'AniFer0804', 2580),
-(2334, 'SAS', 'sisi7669', 2581),
-(2335, 'Casa Vannesa', '', 2582),
-(2336, '116chapala', 'A((.P1us', 2583),
-(2337, '', '', 2584),
-(2338, 'Casa 1', '12345678', 2585),
-(2339, '', '', 2586),
-(2340, '', '', 2587),
-(2341, '', '', 2588),
-(2342, 'NACHOINTERNET', '1234567890', 2589),
-(2343, 'Casa ', 'pequena', 2590),
-(2344, 'Familia Gonzales Diaz', 'Valentina2018', 2591),
-(2345, 'Caliope PJ', 'caliopeatenea', 2592),
-(2346, 'Rancho Yellowstone', 'MRBAVH23', 2593),
-(2347, '', '', 2594),
-(2348, 'Rumina Come Tamales', 'M1mic1t428', 2595),
-(2349, 'Casa Q', 'delicias2023', 2596),
-(2350, 'Maribel', '24041979', 2597),
-(2351, '', '', 2598),
-(2352, '', '', 2599),
-(2353, '', '', 2600),
-(2354, 'GSM', 'Sarita1799', 2601),
-(2355, 'Alanna', 'A070821*', 2602),
-(2356, 'Castrillo', '87654321', 2603),
-(2357, 'Sara', '12345678', 2604),
-(2358, 'Casa Cecilie', '12345678', 2605),
-(2359, '', '', 2606),
-(2360, 'Casa Bliss', '12345678', 2607),
-(2361, 'PROF ALLAN', 'katana1984', 2608),
-(2362, 'Mary', 'Ema243188', 2609),
-(2363, '', '', 2610),
-(2364, 'Tyson', 'Homerun09', 2611),
-(2365, 'Jefferson', 'kenai123', 2612),
-(2366, '', '', 2613),
-(2367, 'Familia Vega Mendoza', 'Mc14121$', 2614),
-(2368, 'The Yorringtons', 'Yorringtons2001', 2615),
-(2369, '', '', 2616),
-(2370, 'Filitico', 'Potrero0203', 2617),
-(2371, 'Los Antonio', 'Enjoy2022', 2618),
-(2372, 'Carlos', 'Carlos300!', 2619),
-(2373, '', '', 2620),
-(2374, 'Casagaia', 'shadow50', 2621),
-(2375, 'Casa Sandra', 'Timo2015', 2622),
-(2376, 'CarolMichael House', 'SAWG212023', 2623),
-(2377, '', '', 2624),
-(2378, 'Nadine', '20021065', 2625),
-(2379, '', '', 2626),
-(2380, 'Familia Valverde Matarrita', 'mnbv1234', 2627),
-(2381, 'LORO1', 'DONALuisa1', 2628),
-(2382, 'Mendoza', 'LFMC1996', 2629),
-(2383, 'CASA  ', 'labebita19', 2630),
-(2384, 'YANINA', 'Yanina34', 2631),
-(2385, 'FAMILIA RUIZ', 'lila2023', 2632),
-(2386, 'CASA ESTRELLAS', 'CasaEstrellas2023', 2633),
-(2387, 'Familia Quiros Picado', 'FAQP1720', 2634),
-(2388, 'Holshe Jecke', 'Frieda2909', 2635),
-(2389, 'GENESIS', 'W31011655423X', 2636),
-(2390, 'Jose Angel Montiel', 'jamt1220', 2637),
-(2391, '', '', 2638),
-(2392, '', '', 2639),
-(2393, 'Ismael', '18202102', 2640),
-(2394, '', '', 2641),
-(2395, 'sin wifi', 'sin wifi', 2642),
-(2396, 'Casita Iguana', 'Matilori23', 2643),
-(2397, 'Carazo', 'Brittany', 2644),
-(2398, 'JLCR', 'JLCR0411', 2645),
-(2399, 'Casa Marina', 'cabanamarina', 2646),
-(2400, 'Barrantes', 'MORTADELA01', 2647),
-(2401, 'Neyman', 'Victoria2019', 2648),
-(2402, 'ELECTRICOS', 'Yomar.1986', 2649),
-(2403, 'Soldadores', 'Nov-85', 2650),
-(2404, 'Familia Castillo', 'ODKJK2023', 2651),
-(2405, 'MARY', '58590623', 2652),
-(2406, '', '', 2653),
-(2407, 'Familia Bustos Aguilar', 'mnstf13891', 2654),
-(2408, 'Fabi', 'Faby0514', 2655),
-(2409, 'Familia Rojas', '061024RSQ', 2656),
-(2410, '', '', 2657),
-(2411, 'Turco', '98765432', 2658),
-(2412, '', '', 2659),
-(2413, 'Butterfly House', 'SandaiwaSince2023', 2660),
-(2414, 'Repuestos Z', 'sofimZ26', 2661),
-(2415, '', '', 2662),
-(2416, 'SANCHEZ CASTRILLO', 'emily14.', 2663),
-(2417, 'Elena', '12345678', 2664),
-(2418, 'Iguana', 'jaco2023', 2665),
-(2419, 'Familia Herrera Jimenez', 'Memosajo', 2666),
-(2420, 'Drago', 'j4s2M19v3821', 2667),
-(2421, 'Herrera Rojas', '204071020', 2668),
-(2422, 'Familia RQ', 'Alejandro', 2669),
-(2423, 'Familia Gonzalez Alan', 'SamusyO13', 2670),
-(2424, 'Garden House', 'Tevy0210', 2671),
-(2425, 'Rustic cabin', 'Valechar18', 2672),
-(2426, 'los tres mosqueteros', 'Ianf2023', 2673),
-(2427, 'Casa JM', 'abramliam', 2674),
-(2428, 'Rojas', 'Evan04carmona20', 2675),
-(2429, 'Familia Matamoros', 'nina2023', 2676),
-(2430, 'Cruz Sanchez', 'CruzSanchez2023', 2677),
-(2431, 'jose', 'jmvr1962', 2678),
-(2432, 'Familia Matarrita', 'Hermanos2086', 2679),
-(2433, 'RIVUS', '1040710', 2680),
-(2434, '', '', 2681),
-(2435, '', '', 2682),
-(2436, '', '', 2683),
-(2437, 'Fanny Maria', 's@m@r@CR24', 2684),
-(2438, '', '', 2685),
-(2439, 'Karen', 'Darieth23', 2686),
-(2440, 'Familia Gomez', '501800702', 2687),
-(2441, 'Familia Smith', 'Samara23', 2688),
-(2442, 'Rancho Valverde', 'vega0971', 2689),
-(2443, 'Rocio', 'toyotara', 2690),
-(2444, '', '', 2691),
-(2445, 'Fayramiya', 'fayramiya01', 2692),
-(2446, 'Joss', '19891978', 2693),
-(2447, 'Mango', 'Josefina', 2694),
-(2448, 'Familia Marin ', 'FAFR3031', 2695),
-(2449, 'Cuesta Grande', 'Business', 2733),
-(2450, '', '', 2734),
-(2451, 'FISIOWELLNESS', 'Fisio2023', 2735),
-(2452, '', '', 2736),
-(2453, '', '', 2737),
-(2454, '', '', 2738),
-(2455, 'Integridad Estructural', 'Integridad2585', 2739),
-(2456, 'No Pasa Nada ', 'Loranger37', 2740),
-(2457, 'Samara Club', '12345678', 2741),
-(2458, 'Valentina', '12251899', 2742),
-(2459, 'Familia Obando', '2104jlpz', 2743),
-(2460, 'Familia Obando', '2104jlpz', 2744),
-(2461, 'Casa Loma ', '12345678', 2745),
-(2462, '', '', 2746),
-(2463, '', '', 2747),
-(2464, '', '', 2748),
-(2465, 'Christine848', '16041967', 2749);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`id_cliente`),
-  ADD KEY `fk_cliente_tipo_cliente` (`id_tipo_cliente`);
-
---
--- Indexes for table `contrato`
---
-ALTER TABLE `contrato`
-  ADD PRIMARY KEY (`id_contrato`),
-  ADD KEY `id_cliente` (`id_cliente`);
-
---
--- Indexes for table `equipo`
---
-ALTER TABLE `equipo`
-  ADD PRIMARY KEY (`id_equipo`),
-  ADD KEY `fk_equipo_servicio` (`id_servicio`);
-
---
--- Indexes for table `registro_pago`
---
-ALTER TABLE `registro_pago`
-  ADD PRIMARY KEY (`id_pago`),
-  ADD KEY `fk_registro_pago_servicio` (`id_contrato`);
-
---
--- Indexes for table `servicio`
---
-ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`id_servicio`),
-  ADD KEY `id_contrato` (`id_contrato`);
-
---
--- Indexes for table `tipo_cliente`
---
-ALTER TABLE `tipo_cliente`
-  ADD PRIMARY KEY (`id_tipo_cliente`);
-
---
--- Indexes for table `tipo_usuario`
---
-ALTER TABLE `tipo_usuario`
-  ADD PRIMARY KEY (`id_tipo_usuario`);
-
---
--- Indexes for table `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
--- Indexes for table `wifi`
---
-ALTER TABLE `wifi`
-  ADD PRIMARY KEY (`id_wifi`),
-  ADD KEY `fk_wifi_servicio` (`id_servicio`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3478;
-
---
--- AUTO_INCREMENT for table `contrato`
---
-ALTER TABLE `contrato`
-  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2753;
-
---
--- AUTO_INCREMENT for table `equipo`
---
-ALTER TABLE `equipo`
-  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6337;
-
---
--- AUTO_INCREMENT for table `registro_pago`
---
-ALTER TABLE `registro_pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
-
---
--- AUTO_INCREMENT for table `servicio`
---
-ALTER TABLE `servicio`
-  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2750;
-
---
--- AUTO_INCREMENT for table `tipo_cliente`
---
-ALTER TABLE `tipo_cliente`
-  MODIFY `id_tipo_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tipo_usuario`
---
-ALTER TABLE `tipo_usuario`
-  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `wifi`
---
-ALTER TABLE `wifi`
-  MODIFY `id_wifi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2466;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `cliente`
---
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `fk_cliente_tipo_cliente` FOREIGN KEY (`id_tipo_cliente`) REFERENCES `tipo_cliente` (`id_tipo_cliente`);
-
---
--- Constraints for table `contrato`
---
-ALTER TABLE `contrato`
-  ADD CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE;
-
---
--- Constraints for table `equipo`
---
-ALTER TABLE `equipo`
-  ADD CONSTRAINT `fk_equipo_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE;
-
---
--- Constraints for table `registro_pago`
---
-ALTER TABLE `registro_pago`
-  ADD CONSTRAINT `fk_registro_pago_servicio` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `servicio`
---
-ALTER TABLE `servicio`
-  ADD CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`) ON DELETE CASCADE;
-
---
--- Constraints for table `wifi`
---
-ALTER TABLE `wifi`
-  ADD CONSTRAINT `fk_wifi_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE;
-
-DELIMITER $$
---
--- Events
---
-CREATE DEFINER=`root`@`localhost` EVENT `sh_actualizar_fecha_contratos` ON SCHEDULE EVERY 1 MONTH STARTS '2023-10-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-    CALL ps_actualizar_fecha_contratos();
-    CALL ps_actualizar_deuda_clientes();
-END$$
-
-DELIMITER ;
-COMMIT;
-
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-03-01 16:46:04
